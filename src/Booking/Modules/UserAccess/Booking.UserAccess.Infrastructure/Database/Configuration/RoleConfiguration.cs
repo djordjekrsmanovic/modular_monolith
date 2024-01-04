@@ -13,16 +13,11 @@ namespace Booking.UserAccess.Infrastructure.Database.Configuration
 
             builder.HasKey(x => x.Id);
 
-            
+            builder.Property(role => role.Id).ValueGeneratedNever();
 
             builder.HasMany(x => x.Permissions)
                 .WithMany()
                 .UsingEntity<RolePermission>();
-
-            builder.HasMany(x => x.Users)
-                .WithMany(x => x.Roles);
-
-            IEnumerable<Role> roles = Role.GetValues();
 
             builder.HasData(Role.GetValues());
 

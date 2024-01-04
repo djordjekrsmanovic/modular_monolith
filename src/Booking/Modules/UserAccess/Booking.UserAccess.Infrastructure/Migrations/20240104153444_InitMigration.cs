@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Booking.UserAccess.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialMigration : Migration
+    public partial class InitMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -31,12 +31,32 @@ namespace Booking.UserAccess.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "RegistrationRequest",
+                schema: "user_access",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ConfirmationCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Type = table.Column<int>(type: "int", nullable: false),
+                    ConfirmationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Status_Value = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RegistrationRequest", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Role",
                 schema: "user_access",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
@@ -89,26 +109,26 @@ namespace Booking.UserAccess.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "RoleUser",
+                name: "UserRole",
                 schema: "user_access",
                 columns: table => new
                 {
-                    RolesId = table.Column<int>(type: "int", nullable: false),
-                    UsersId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    RoleId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RoleUser", x => new { x.RolesId, x.UsersId });
+                    table.PrimaryKey("PK_UserRole", x => new { x.UserId, x.RoleId });
                     table.ForeignKey(
-                        name: "FK_RoleUser_Role_RolesId",
-                        column: x => x.RolesId,
+                        name: "FK_UserRole_Role_RoleId",
+                        column: x => x.RoleId,
                         principalSchema: "user_access",
                         principalTable: "Role",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_RoleUser_User_UsersId",
-                        column: x => x.UsersId,
+                        name: "FK_UserRole_User_UserId",
+                        column: x => x.UserId,
                         principalSchema: "user_access",
                         principalTable: "User",
                         principalColumn: "Id",
@@ -152,28 +172,32 @@ namespace Booking.UserAccess.Infrastructure.Migrations
                 column: "PermissionId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_RoleUser_UsersId",
-                schema: "user_access",
-                table: "RoleUser",
-                column: "UsersId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_User_Email",
                 schema: "user_access",
                 table: "User",
                 column: "Email",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserRole_RoleId",
+                schema: "user_access",
+                table: "UserRole",
+                column: "RoleId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "RegistrationRequest",
+                schema: "user_access");
+
+            migrationBuilder.DropTable(
                 name: "RolePermission",
                 schema: "user_access");
 
             migrationBuilder.DropTable(
-                name: "RoleUser",
+                name: "UserRole",
                 schema: "user_access");
 
             migrationBuilder.DropTable(

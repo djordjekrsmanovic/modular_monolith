@@ -14,7 +14,7 @@ namespace Booking.BuildingBlocks.Domain
             Id = id;
         }
 
-        public void Raise(IDomainEvent domainEvent)
+        public void RaiseDomainEvent(IDomainEvent domainEvent)
         {
             _domainEvents.Add(domainEvent);
         }

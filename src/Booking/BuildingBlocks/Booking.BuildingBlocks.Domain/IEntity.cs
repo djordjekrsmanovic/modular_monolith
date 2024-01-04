@@ -8,7 +8,7 @@ namespace Booking.BuildingBlocks.Domain
 {
     public interface IEntity
     {
-        void Raise(IDomainEvent domainEvent);
+        void RaiseDomainEvent(IDomainEvent domainEvent);
 
         void ClearDomainEvents();
 

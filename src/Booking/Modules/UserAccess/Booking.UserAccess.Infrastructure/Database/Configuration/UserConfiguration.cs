@@ -15,7 +15,9 @@ namespace Booking.UserAccess.Infrastructure.Database.Configuration
         {
             builder.HasKey(user => user.Id);
             builder.HasIndex(user => user.Email).IsUnique();
-           
+            builder.HasMany(user => user.Roles)
+            .WithMany(role => role.Users)
+            .UsingEntity<UserRole>(); ;
         }
     }
 }

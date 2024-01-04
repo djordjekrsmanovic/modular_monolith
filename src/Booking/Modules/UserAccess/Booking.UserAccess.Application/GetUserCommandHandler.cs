@@ -16,7 +16,7 @@ namespace Booking.UserAccess.Application
 
         Task<Result<Guid>> IRequestHandler<GetUserCommand, Result<Guid>>.Handle(GetUserCommand request, CancellationToken cancellationToken)
         {
-            User user=new User { Id=Guid.NewGuid() };
+            User user=new User();
 
             return Task.FromResult(Result<Guid>.Success(user.Id));
         }

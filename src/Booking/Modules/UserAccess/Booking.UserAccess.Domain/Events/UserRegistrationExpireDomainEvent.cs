@@ -7,9 +7,7 @@ using System.Threading.Tasks;
 
 namespace Booking.UserAccess.Domain.Events
 {
-    public sealed record UserRegistrationExpireDomainEvent(Guid Id,
-    DateTime OccurredOn,
-    Guid UserRegistrationId) :DomainEvent(Id,OccurredOn)
+    public sealed record UserRegistrationExpireDomainEvent(Guid UserRegistrationId):DomainEvent()
     {
 
     }

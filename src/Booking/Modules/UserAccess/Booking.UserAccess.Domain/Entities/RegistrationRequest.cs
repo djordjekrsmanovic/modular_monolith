@@ -31,13 +31,10 @@ namespace Booking.UserAccess.Domain.Entities
         {
             if (isRequestExpire()) 
             {
-                Expire();
+                Status=RegistrationStatus.Expired;
                 return Result.Failure(RegistrationErrors.RegistrationRequestExpired);
             }
-            if (Status == RegistrationStatus.Confirmed)
-            {
-                var a = 1;
-            }
+            
             return Status switch
             {
                 var status when status == RegistrationStatus.Confirmed => Result.Failure(RegistrationErrors.RequestAlreadyConfirmed),
@@ -48,23 +45,14 @@ namespace Booking.UserAccess.Domain.Entities
 
         private RegistrationRequest() { }
 
-        private void Expire()
-        {
-            Status = RegistrationStatus.Expired;
-            
-        RaiseDomainEvent(new UserRegistrationExpireDomainEvent(
-            Guid.NewGuid(),
-            DateTime.UtcNow,
-            Id));
-        }
 
         private Result ConfirmInternal()
         {
-            //Status=RegistrationStatus.Confirmed;
-            RaiseDomainEvent(new UserRegistrationConfirmDomainEvent(
-                Guid.NewGuid(),
-                DateTime.UtcNow,
-                Id));
+            Status=RegistrationStatus.Confirmed;
+            ConfirmationDate=DateTime.UtcNow;
+
+            RaiseDomainEvent(new UserRegistrationConfirmedDomainEvent(Id));
+
             return Result.Success();
         }
 
@@ -94,6 +82,8 @@ namespace Booking.UserAccess.Domain.Entities
         {
             RegistrationRequest request=new RegistrationRequest(email, firstName, lastName, password,type);
 
+            request.RaiseDomainEvent(new RegistrationRequestSubmittedDomainEvent(email,request.ConfirmationCode));
+            
             return Result.Success(request);
         }
     }

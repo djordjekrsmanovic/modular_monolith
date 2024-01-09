@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\BuildingBlocks\Booking.BuildingBlocks.Infrastructure\Booking.BuildingBlocks.Infrastructure.csproj" />
     <ProjectReference Include="..\Booking.UserAccess.Application\Booking.UserAccess.Application.csproj" />
     <ProjectReference Include="..\Booking.UserAccess.Domain\Booking.UserAccess.Domain.csproj" />
   </ItemGroup>

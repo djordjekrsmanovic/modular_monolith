@@ -7,7 +7,7 @@ using MediatR;
 
 namespace Booking.UserAccess.Application.Features.Registration.ConfirmRegistrationRequest
 {
-    public class RegistrationConfirmedDomainEventHandler : IDomainEventHandler<UserRegistrationConfirmDomainEvent>
+    public class RegistrationConfirmedDomainEventHandler : IDomainEventHandler<UserRegistrationConfirmedDomainEvent>
     {
         private IUnitOfWork _unitOfWork;
         private IRegistrationRequestRepository _registrationRequestRepository;
@@ -20,7 +20,7 @@ namespace Booking.UserAccess.Application.Features.Registration.ConfirmRegistrati
             _userRepository = userRepository;
         }
 
-        public async Task Handle(UserRegistrationConfirmDomainEvent notification, CancellationToken cancellationToken)
+        public async Task Handle(UserRegistrationConfirmedDomainEvent notification, CancellationToken cancellationToken)
         {
             RegistrationRequest request = _registrationRequestRepository.GetByIdAsync(notification.UserRegistrationId).Result;
             User user = User.CreateFromRegistrationRequest(request).Value;

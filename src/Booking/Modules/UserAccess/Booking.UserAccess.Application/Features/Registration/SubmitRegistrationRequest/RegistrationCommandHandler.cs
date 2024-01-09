@@ -1,9 +1,13 @@
 ﻿using Booking.BuildingBlocks.Application;
+using Booking.BuildingBlocks.Application.Emails;
 using Booking.BuildingBlocks.Domain;
 using Booking.UserAccess.Domain;
 using Booking.UserAccess.Domain.Entities;
 using Booking.UserAccess.Domain.Errors;
 using Booking.UserAccess.Domain.Repositories;
+using MailKit.Net.Smtp;
+using MailKit.Security;
+using MimeKit;
 
 namespace Booking.UserAccess.Application.Features.Registration.SubmitRegistrationRequest
 {
@@ -12,14 +16,15 @@ namespace Booking.UserAccess.Application.Features.Registration.SubmitRegistratio
         private IUserRepository _userRepository;
         private IRegistrationRequestRepository _registrationRequestRepository;
         private IUnitOfWork _unitOfWork;
-        public RegistrationCommandHandler(IUserRepository userRepository, 
+        public RegistrationCommandHandler(IUserRepository userRepository,
             IRegistrationRequestRepository registrationRequestRepository,
             IUnitOfWork unitOfWork)
         {
             _userRepository = userRepository;
             _registrationRequestRepository = registrationRequestRepository;
-            _unitOfWork = unitOfWork;   
+            _unitOfWork = unitOfWork;
         }
+
         public async Task<Result<Guid>> Handle(RegistrationCommand request, CancellationToken cancellationToken)
         {
 
@@ -34,7 +39,6 @@ namespace Booking.UserAccess.Application.Features.Registration.SubmitRegistratio
                  request.Password,
                  request.Type).Value;
 
-            // send email code verifications
 
             _registrationRequestRepository.Add(registrationRequest);
 
@@ -43,5 +47,6 @@ namespace Booking.UserAccess.Application.Features.Registration.SubmitRegistratio
             return Result.Success(registrationRequest.Id);
 
         }
+
     }
 }

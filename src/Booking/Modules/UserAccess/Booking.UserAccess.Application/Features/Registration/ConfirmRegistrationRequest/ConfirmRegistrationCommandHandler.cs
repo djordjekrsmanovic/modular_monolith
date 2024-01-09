@@ -38,14 +38,9 @@ namespace Booking.UserAccess.Application.Features.Registration.ConfirmRegistrati
 
             Result result=registrationRequest.Confirm(request.ConfirmationCode);
 
-            if (result.IsFailure)
-            {
-                return result;
-            }
-
             await _unitOfWork.SaveChangesAsync();
 
-            return Result.Success();
+            return result;
         }
     }
 }

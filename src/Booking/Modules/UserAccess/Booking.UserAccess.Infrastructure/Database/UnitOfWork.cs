@@ -20,7 +20,7 @@ namespace Booking.UserAccess.Infrastructure.Database
 
         public async Task SaveChangesAsync(CancellationToken cancellationToken = default)
         {
-            SetStaticEntitiesAsNonTracking();
+            ExcludeStaticEntitiesFromTracking();
 
             await _context.SaveChangesAsync(cancellationToken);
 
@@ -45,7 +45,7 @@ namespace Booking.UserAccess.Infrastructure.Database
             }
         }
 
-        private void SetStaticEntitiesAsNonTracking()
+        private void ExcludeStaticEntitiesFromTracking()
         {
             var entries = _context
                         .ChangeTracker.Entries<IStaticEntity>()

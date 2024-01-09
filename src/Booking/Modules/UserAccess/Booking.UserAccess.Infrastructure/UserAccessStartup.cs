@@ -1,4 +1,6 @@
-﻿using Booking.UserAccess.Application.Abstractions;
+﻿using Booking.BuildingBlocks.Application.Emails;
+using Booking.BuildingBlocks.Infrastructure;
+using Booking.UserAccess.Application.Abstractions;
 using Booking.UserAccess.Application.Features.Registration.ConfirmRegistrationRequest;
 using Booking.UserAccess.Domain;
 using Booking.UserAccess.Domain.Repositories;
@@ -6,6 +8,7 @@ using Booking.UserAccess.Infrastructure.Authentication;
 using Booking.UserAccess.Infrastructure.Database;
 using Booking.UserAccess.Infrastructure.Database.Constants;
 using Booking.UserAccess.Infrastructure.Database.Repositories;
+using Booking.UserAccess.Infrastructure.Emails.RegistrationConfirmationEmail;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
@@ -20,6 +23,9 @@ namespace Booking.UserAccess.Infrastructure
         {
             string connectionString = configuration["DatabaseConfig:ConnectionString"];
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies([Application.AssemblyReference.Assembly]));
+            services.AddScoped<IEmailSender, EmailSender>();
+            services.AddScoped<IUserAccessEmailSender, UserAccessEmailSender>();
+              
             SetUpDatabase(services, connectionString);
             SetUpAuthentication(services);
             return services;

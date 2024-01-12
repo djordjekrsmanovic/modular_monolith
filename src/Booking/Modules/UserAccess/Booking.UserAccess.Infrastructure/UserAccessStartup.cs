@@ -1,15 +1,16 @@
 ﻿using Booking.BuildingBlocks.Application.Emails;
-using Booking.BuildingBlocks.Infrastructure;
+using Booking.BuildingBlocks.Application.EventBus;
+using Booking.BuildingBlocks.Infrastructure.Emails;
+using Booking.BuildingBlocks.Infrastructure.EventBus;
+using Booking.UserAccess.Application;
 using Booking.UserAccess.Application.Abstractions;
-using Booking.UserAccess.Application.Features.Registration.ConfirmRegistrationRequest;
 using Booking.UserAccess.Domain;
 using Booking.UserAccess.Domain.Repositories;
 using Booking.UserAccess.Infrastructure.Authentication;
 using Booking.UserAccess.Infrastructure.Database;
-using Booking.UserAccess.Infrastructure.Database.Constants;
 using Booking.UserAccess.Infrastructure.Database.Repositories;
 using Booking.UserAccess.Infrastructure.Emails.RegistrationConfirmationEmail;
-using MediatR;
+using MassTransit;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -23,12 +24,36 @@ namespace Booking.UserAccess.Infrastructure
         {
             string connectionString = configuration["DatabaseConfig:ConnectionString"];
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies([Application.AssemblyReference.Assembly]));
-            services.AddScoped<IEmailSender, EmailSender>();
-            services.AddScoped<IUserAccessEmailSender, UserAccessEmailSender>();
-              
+            
+            SetUpServices(services);
             SetUpDatabase(services, connectionString);
             SetUpAuthentication(services);
+            SetUpEventBus(services, configuration);
+
             return services;
+        }
+
+        private static void SetUpServices(IServiceCollection services)
+        {
+            services.AddScoped<IEmailSender, EmailSender>();
+            services.AddScoped<IUserAccessEmailSender, UserAccessEmailSender>();
+            services.AddScoped<IEventBus, EventBus>();
+        }
+
+        private static void SetUpEventBus(IServiceCollection services, IConfiguration configuration)
+        {
+            services
+                .AddOptions<MassTransitHostOptions>()
+                .Configure(options =>
+                {
+                    options.WaitUntilStarted = true;
+                });
+            services.AddMassTransit(bussConfigurator =>
+                {
+                    bussConfigurator.AddConsumer<ExampleConsumer>();
+                    bussConfigurator.SetKebabCaseEndpointNameFormatter();
+                    bussConfigurator.UsingInMemory((context, configurator) => configurator.ConfigureEndpoints(context));
+                });
         }
 
         private static void SetUpAuthentication(IServiceCollection services)

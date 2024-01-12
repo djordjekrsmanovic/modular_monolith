@@ -16,7 +16,7 @@ namespace Booking.UserAccess.Infrastructure.Emails.RegistrationConfirmationEmail
         {
             RegistrationConfirmationTemplate template = new RegistrationConfirmationTemplate();
             template.WithSubstitution(RegistrationConfirmationTemplate.ConfirmationLink, $"https://localhost:7096/register?confirmation-code={request.ConfirmationCode}");
-            _sender.SendEmailAsync(request.To, template.SubstituteVariables(), request.Subject);
+            _sender.SendEmailAsync(request.To, template.GenerateBody(), request.Subject);
         }
     }
 }

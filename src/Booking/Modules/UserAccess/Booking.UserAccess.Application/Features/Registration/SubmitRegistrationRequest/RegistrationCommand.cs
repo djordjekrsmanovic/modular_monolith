@@ -1,4 +1,4 @@
-﻿using Booking.BuildingBlocks.Application;
+﻿using Booking.BuildingBlocks.Application.CQRS;
 using Booking.UserAccess.Domain.Enums;
 
 namespace Booking.UserAccess.Application.Features.Registration.SubmitRegistrationRequest

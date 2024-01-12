@@ -1,4 +1,4 @@
-﻿using Booking.BuildingBlocks.Application;
+﻿using Booking.BuildingBlocks.Application.CQRS;
 using System;
 using System.Collections.Generic;
 using System.Linq;

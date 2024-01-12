@@ -1,8 +1,6 @@
-﻿
+﻿using System.Text;
 
-using System.Text;
-
-namespace Booking.BuildingBlocks.Infrastructure
+namespace Booking.BuildingBlocks.Infrastructure.Emails
 {
     public abstract class EmailTemplate
     {
@@ -10,7 +8,7 @@ namespace Booking.BuildingBlocks.Infrastructure
 
         protected abstract string GetEmailTemplate();
 
-        public string SubstituteVariables()
+        public string GenerateBody()
         {
             var template = GetEmailTemplate();
             var builder = new StringBuilder(template);

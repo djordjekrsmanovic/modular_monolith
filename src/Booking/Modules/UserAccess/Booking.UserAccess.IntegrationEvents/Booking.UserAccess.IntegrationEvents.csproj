@@ -7,11 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MassTransit" Version="8.1.3" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Booking.BuildingBlocks.Domain\Booking.BuildingBlocks.Domain.csproj" />
+    <ProjectReference Include="..\..\..\BuildingBlocks\Booking.BuildingBlocks.Infrastructure\Booking.BuildingBlocks.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

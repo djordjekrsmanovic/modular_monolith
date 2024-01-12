@@ -1,4 +1,4 @@
-﻿using Booking.BuildingBlocks.Infrastructure;
+﻿using Booking.BuildingBlocks.Infrastructure.Emails;
 
 namespace Booking.UserAccess.Infrastructure.Emails.RegistrationConfirmationEmail
 {

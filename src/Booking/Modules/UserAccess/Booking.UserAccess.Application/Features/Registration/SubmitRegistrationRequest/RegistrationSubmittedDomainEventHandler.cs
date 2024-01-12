@@ -1,18 +1,12 @@
-﻿using Booking.BuildingBlocks.Application.Emails;
-using Booking.BuildingBlocks.Domain;
+﻿using Booking.BuildingBlocks.Domain;
 using Booking.UserAccess.Application.Abstractions;
 using Booking.UserAccess.Domain.Events;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Booking.UserAccess.Application.Features.Registration.SubmitRegistrationRequest
 {
     internal class RegistrationSubmittedDomainEventHandler : IDomainEventHandler<RegistrationRequestSubmittedDomainEvent>
     {
-        private Abstractions.IUserAccessEmailSender _emailSender;
+        private IUserAccessEmailSender _emailSender;
 
         private readonly string Subject = "Confirm your registration request";
 

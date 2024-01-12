@@ -1,4 +1,4 @@
-﻿using Booking.BuildingBlocks.Application;
+﻿using Booking.BuildingBlocks.Application.CQRS;
 using Booking.BuildingBlocks.Domain;
 using Booking.UserAccess.Application.Abstractions;
 using Booking.UserAccess.Domain.Entities;

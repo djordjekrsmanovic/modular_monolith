@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Booking.BuildingBlocks.Application
+namespace Booking.BuildingBlocks.Application.CQRS
 {
-    public interface IQueryHandler<TQuery,TResponse> : IRequestHandler<TQuery,Result<TResponse>> where TQuery:IQuery<TResponse>
+    public interface IQuery<TResponse> : IRequest<Result<TResponse>>
     {
     }
 }

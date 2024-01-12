@@ -5,7 +5,7 @@ using MimeKit;
 using MailKit.Net.Smtp;
 using MailKit.Security;
 
-namespace Booking.BuildingBlocks.Infrastructure
+namespace Booking.BuildingBlocks.Infrastructure.Emails
 {
     public class EmailSender : IEmailSender
     {
@@ -14,7 +14,7 @@ namespace Booking.BuildingBlocks.Infrastructure
         private const string SMTPHost = "smtp.gmail.com";
         private const int SMTPPort = 587;
 
-        public async Task SendEmailAsync(string email, string body,string subject)
+        public async Task SendEmailAsync(string email, string body, string subject)
         {
             var message = new MimeMessage();
             message.From.Add(new MailboxAddress(From, Adress));

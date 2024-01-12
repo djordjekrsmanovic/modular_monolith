@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Booking.BuildingBlocks.Domain
+﻿namespace Booking.BuildingBlocks.Domain
 {
     public sealed record Error (string Code, string? Description=null)
     {

@@ -1,4 +1,4 @@
-﻿using Booking.BuildingBlocks.Application;
+﻿using Booking.BuildingBlocks.Application.CQRS;
 
 
 namespace Booking.UserAccess.Application.Features.Login

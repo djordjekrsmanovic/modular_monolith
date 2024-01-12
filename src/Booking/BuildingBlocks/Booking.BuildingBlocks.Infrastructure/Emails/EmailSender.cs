@@ -1,6 +1,4 @@
-﻿
-
-using Booking.BuildingBlocks.Application.Emails;
+﻿using Booking.BuildingBlocks.Application.Emails;
 using MimeKit;
 using MailKit.Net.Smtp;
 using MailKit.Security;

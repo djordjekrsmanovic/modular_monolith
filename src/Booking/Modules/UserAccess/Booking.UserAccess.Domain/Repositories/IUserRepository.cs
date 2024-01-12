@@ -1,6 +1,4 @@
-﻿
-using Booking.BuildingBlocks.Domain;
-using Booking.UserAccess.Domain.Entities;
+﻿using Booking.UserAccess.Domain.Entities;
 
 namespace Booking.UserAccess.Domain.Repositories
 {

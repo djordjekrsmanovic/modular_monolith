@@ -1,5 +1,4 @@
-﻿using Booking.BuildingBlocks.Domain;
-using Booking.UserAccess.Domain.Entities;
+﻿using Booking.UserAccess.Domain.Entities;
 using Booking.UserAccess.Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
 

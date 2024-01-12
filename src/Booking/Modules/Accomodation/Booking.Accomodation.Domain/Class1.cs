@@ -1,4 +1,4 @@
-﻿namespace Booking.Host.Domain
+﻿namespace Booking.Accomodation.Domain
 {
     public class Class1
     {

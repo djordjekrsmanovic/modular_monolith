@@ -7,6 +7,6 @@ namespace Booking.UserAccess.Domain.Errors
     {
         public static readonly Error EmailNotUniqueError = new("User.EmailNotUnique", "Email must be unique!");
 
-        public static Error InvalidUserRole { get; internal set; }
+        public static readonly Error InvalidUserRole = new("User.InvalidRole", "User role is invalid!");
     }
 }

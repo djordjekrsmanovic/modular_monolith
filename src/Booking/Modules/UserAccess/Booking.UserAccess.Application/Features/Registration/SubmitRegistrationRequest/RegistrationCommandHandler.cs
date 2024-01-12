@@ -50,7 +50,7 @@ namespace Booking.UserAccess.Application.Features.Registration.SubmitRegistratio
 
             _registrationRequestRepository.Add(registrationRequest);
 
-            await _bus.PublishAsync(new ExampleIntegrationEvent(Guid.Empty,DateTime.Today));
+            await _bus.PublishAsync(new HostRegisteredIntegrationEvent(Guid.Empty,DateTime.Today));
 
             await _unitOfWork.SaveChangesAsync();
 

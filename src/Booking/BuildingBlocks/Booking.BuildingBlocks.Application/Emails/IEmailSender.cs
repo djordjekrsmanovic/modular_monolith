@@ -1,7 +1,4 @@
-﻿using System;
-
-
-namespace Booking.BuildingBlocks.Application.Emails
+﻿namespace Booking.BuildingBlocks.Application.Emails
 {
     public interface IEmailSender
     {

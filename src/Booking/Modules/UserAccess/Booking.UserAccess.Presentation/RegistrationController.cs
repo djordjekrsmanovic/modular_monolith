@@ -1,16 +1,10 @@
 ﻿using Booking.BuildingBlocks.Domain;
 using Booking.BuildingBlocks.Presentation;
-using Booking.UserAccess.Application.Features.Login;
 using Booking.UserAccess.Application.Features.Registration.ConfirmRegistrationRequest;
 using Booking.UserAccess.Application.Features.Registration.SubmitRegistrationRequest;
 using Booking.UserAccess.Presentation.Contracts;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Booking.UserAccess.Presentation
 {

@@ -1,7 +1,6 @@
 ﻿using Booking.BuildingBlocks.Domain;
 using Booking.BuildingBlocks.Domain.Enums;
 using Booking.BuildingBlocks.Presentation;
-using Booking.UserAccess.Application;
 using Booking.UserAccess.Application.Features.Login;
 using Booking.UserAccess.Presentation.Contracts;
 using MediatR;

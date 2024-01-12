@@ -2,8 +2,7 @@
 
 namespace Booking.UserAccess.IntegrationEvents
 {
-    public record ExampleIntegrationEvent(Guid Id,DateTime OccuredOn):IntegrationEvent(Id, OccuredOn)
+    public sealed record GuestRegisteredIntegrationEvent(Guid GustId):IntegrationEvent
     {
-
     }
 }

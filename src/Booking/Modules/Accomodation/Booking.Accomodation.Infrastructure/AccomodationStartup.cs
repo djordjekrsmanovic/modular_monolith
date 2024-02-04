@@ -1,9 +1,11 @@
-﻿using Booking.BuildingBlocks.Application.EventBus;
+﻿using Booking.Booking.Infrastructure.Database;
+using Booking.BuildingBlocks.Application.EventBus;
 using Booking.BuildingBlocks.Infrastructure.EventBus;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Booking.Accomodation.Infrastructure
+namespace Booking.Booking.Infrastructure
 {
     public static class AccomodationStartup
     {
@@ -14,28 +16,26 @@ namespace Booking.Accomodation.Infrastructure
             //services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies([Application.AssemblyReference.Assembly]));
 
             SetUpServices(services);
-            //SetUpDatabase(services, connectionString);
-            //SetUpAuthentication(services);
-            
+            SetUpDatabase(services, connectionString);
 
             return services;
         }
 
         private static void SetUpServices(IServiceCollection services)
         {
-            
+
             services.AddScoped<IEventBus, EventBus>();
         }
 
-        /*private static void SetUpDatabase(IServiceCollection services, string connectionString)
+        private static void SetUpDatabase(IServiceCollection services, string connectionString)
         {
-            services.AddDbContext<UserAccessDbContext>(options =>
-            options.UseSqlServer(connectionString,
-            x => x.MigrationsHistoryTable("__MigrationHistory", "user_access")));
-            
-        }*/
+            Console.Write(connectionString);
+            services.AddDbContext<AccomodationDbContext>(options =>
+                options.UseSqlServer(connectionString, x => x.MigrationsHistoryTable("__MigrationHistory", "accomodation")));
+
+        }
     }
-    
+
 
 
 }

@@ -1,5 +1,4 @@
 ﻿using Booking.BuildingBlocks.Application.CQRS;
-using Booking.BuildingBlocks.Application.Emails;
 using Booking.BuildingBlocks.Application.EventBus;
 using Booking.BuildingBlocks.Domain;
 using Booking.UserAccess.Domain;
@@ -7,9 +6,6 @@ using Booking.UserAccess.Domain.Entities;
 using Booking.UserAccess.Domain.Errors;
 using Booking.UserAccess.Domain.Repositories;
 using Booking.UserAccess.IntegrationEvents;
-using MailKit.Net.Smtp;
-using MailKit.Security;
-using MimeKit;
 
 namespace Booking.UserAccess.Application.Features.Registration.SubmitRegistrationRequest
 {
@@ -20,7 +16,7 @@ namespace Booking.UserAccess.Application.Features.Registration.SubmitRegistratio
         private IUnitOfWork _unitOfWork;
         private IEventBus _bus;
 
-        
+
 
         public RegistrationCommandHandler(IUserRepository userRepository,
             IRegistrationRequestRepository registrationRequestRepository,
@@ -50,7 +46,7 @@ namespace Booking.UserAccess.Application.Features.Registration.SubmitRegistratio
 
             _registrationRequestRepository.Add(registrationRequest);
 
-            await _bus.PublishAsync(new HostRegisteredIntegrationEvent(Guid.Empty,DateTime.Today));
+            await _bus.PublishAsync(new HostRegisteredIntegrationEvent(Guid.Empty));
 
             await _unitOfWork.SaveChangesAsync();
 

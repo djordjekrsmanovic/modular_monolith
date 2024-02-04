@@ -18,11 +18,11 @@ namespace Booking.UserAccess.Infrastructure
 {
     public static class UserAccessStartup
     {
-        public static IServiceCollection ConfigureUserAccessModule(this IServiceCollection services,IConfiguration configuration)
+        public static IServiceCollection ConfigureUserAccessModule(this IServiceCollection services, IConfiguration configuration)
         {
             string connectionString = configuration["DatabaseConfig:ConnectionString"];
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies([Application.AssemblyReference.Assembly]));
-            
+
             SetUpServices(services);
             SetUpDatabase(services, connectionString);
             SetUpAuthentication(services);
@@ -37,7 +37,7 @@ namespace Booking.UserAccess.Infrastructure
             services.AddScoped<IEventBus, EventBus>();
         }
 
-        
+
 
         private static void SetUpAuthentication(IServiceCollection services)
         {
@@ -49,16 +49,16 @@ namespace Booking.UserAccess.Infrastructure
             services.AddSingleton<IAuthorizationPolicyProvider, PermissionAuthorizationPolicyProvider>();
         }
 
-        private static void SetUpDatabase(IServiceCollection services,string connectionString)
+        private static void SetUpDatabase(IServiceCollection services, string connectionString)
         {
             services.AddDbContext<UserAccessDbContext>(options =>
-            options.UseSqlServer(connectionString,
-            x => x.MigrationsHistoryTable("__MigrationHistory", "user_access")));
+                options.UseSqlServer(connectionString, x => x.MigrationsHistoryTable("__MigrationHistory", "user_access"))
+            );
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IRegistrationRequestRepository, RegistrationRequestRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
         }
 
-        
+
     }
 }

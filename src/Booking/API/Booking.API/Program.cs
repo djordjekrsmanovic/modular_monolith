@@ -1,7 +1,6 @@
-using Booking.API.Options;
 using Booking.API.Startup;
-using Booking.UserAccess.Domain.Entities;
 using Booking.UserAccess.Infrastructure.Authentication;
+using MassTransit;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 
@@ -18,8 +17,10 @@ builder.Services.AddSwaggerGen();
 
 
 // Configure jwt authentication
-builder.Services.ConfigureOptions<JwtOptionsSetup>();
-builder.Services.ConfigureOptions<JwtBearerOptionsSetup>();
+builder.Services.ConfigureOptions<Booking.API.Options.JwtOptionsSetup>();
+builder.Services.ConfigureOptions<Booking.API.Options.JwtBearerOptionsSetup>();
+
+
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer();
@@ -28,8 +29,13 @@ builder.Services.AddAuthorization();
 
 builder.Services.RegisterModules(builder.Configuration);
 
-builder.Services.AddScoped<IAuthorizationHandler,PermissionAuthorizationHandler>();
+builder.Services.AddScoped<IAuthorizationHandler, PermissionAuthorizationHandler>();
 builder.Services.AddSingleton<IAuthorizationPolicyProvider, PermissionAuthorizationPolicyProvider>();
+builder.Services.AddMassTransit(x =>
+{
+    // A Transport
+    x.UsingInMemory();
+});
 
 
 var app = builder.Build();

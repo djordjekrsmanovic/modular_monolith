@@ -25,7 +25,7 @@ namespace Booking.UserAccess.Domain.Entities
 
         private User(string firstName, string lastName, string email, string password, bool isActive)
         {
-            Id=Guid.NewGuid();
+            Id = Guid.NewGuid();
             FirstName = firstName;
             LastName = lastName;
             Email = email;
@@ -36,11 +36,12 @@ namespace Booking.UserAccess.Domain.Entities
         public static Result<User> CreateFromRegistrationRequest(RegistrationRequest request)
         {
             User user = new User(request.FirstName, request.LastName, request.Email, request.Password, true);
+
             if (request.Type == Enums.RegistrationType.Host)
             {
                 user._roles.Add(Role.Host);
             }
-            else if(request.Type==Enums.RegistrationType.Guest)
+            else if (request.Type == Enums.RegistrationType.Guest)
             {
                 user._roles.Add(Role.Guest);
             }

@@ -1,5 +1,4 @@
 ﻿using Booking.BuildingBlocks.Domain;
-using Booking.BuildingBlocks.Domain.Enums;
 using Booking.BuildingBlocks.Presentation;
 using Booking.UserAccess.Application.Features.Login;
 using Booking.UserAccess.Presentation.Contracts;
@@ -17,21 +16,7 @@ namespace Booking.UserAccess.Presentation
 
         }
 
-        [HasPermissionAttribute(Permission.ReadMember)]
-        [HttpGet("")]
-        public async Task<IActionResult> GetUserById(
-        CancellationToken cancellationToken)
-        {
 
-            var command = new GetUserCommand(Guid.NewGuid());
-
-            Result<Guid> result = await Sender.Send(command, cancellationToken);
-
-            return CreatedAtAction(
-            nameof(GetUserById),
-            new { id = result.Value });
-
-        }
 
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginRequest request, CancellationToken cancellationToken)

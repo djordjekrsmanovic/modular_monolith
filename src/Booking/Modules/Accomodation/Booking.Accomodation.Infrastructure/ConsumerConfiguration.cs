@@ -1,8 +1,8 @@
-﻿using Booking.Accomodation.Application;
+﻿using Booking.Booking.Application;
 using Booking.BuildingBlocks.Infrastructure.Extensions;
 using MassTransit;
 
-namespace Booking.Accomodation.Infrastructure
+namespace Booking.Booking.Infrastructure
 {
     internal class ConsumerConfiguration : IConsumerConfiguration
     {

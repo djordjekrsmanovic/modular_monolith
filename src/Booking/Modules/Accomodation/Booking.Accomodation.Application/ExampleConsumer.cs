@@ -1,7 +1,7 @@
 ﻿using Booking.BuildingBlocks.Application.EventBus;
 using Booking.UserAccess.IntegrationEvents;
 
-namespace Booking.Accomodation.Application
+namespace Booking.Booking.Application
 {
     public class ExampleConsumer : IntegrationEventHandler<HostRegisteredIntegrationEvent>
     {

@@ -14,7 +14,7 @@ namespace Booking.UserAccess.Application.Features.Login
 
         private IJwtProvider _jwtProvider;
 
-        public LoginCommandHandler(IUserRepository userRepository,IJwtProvider jwtProvider)
+        public LoginCommandHandler(IUserRepository userRepository, IJwtProvider jwtProvider)
         {
             _userRepository = userRepository;
             _jwtProvider = jwtProvider;
@@ -22,7 +22,7 @@ namespace Booking.UserAccess.Application.Features.Login
 
         async Task<Result<string>> IRequestHandler<LoginCommand, Result<string>>.Handle(LoginCommand request, CancellationToken cancellationToken)
         {
-            
+
             User user = await _userRepository.GetByEmailAsync(request.username, cancellationToken);
 
             if (user is null)

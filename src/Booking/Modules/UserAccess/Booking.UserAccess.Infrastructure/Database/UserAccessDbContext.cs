@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Reflection.Metadata;
 
 
 namespace Booking.UserAccess.Infrastructure.Database
@@ -11,9 +10,9 @@ namespace Booking.UserAccess.Infrastructure.Database
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasDefaultSchema("user_access");
-            
+
             modelBuilder.ApplyConfigurationsFromAssembly(AssemblyReference.Assembly);
-            
+
         }
     }
 }

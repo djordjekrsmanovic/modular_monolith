@@ -1,5 +1,4 @@
-﻿using Booking.Booking.Domain.ValueObjects;
-using Booking.BuildingBlocks.Domain;
+﻿using Booking.BuildingBlocks.Domain;
 
 namespace Booking.Booking.Domain.Entities
 {
@@ -9,7 +8,6 @@ namespace Booking.Booking.Domain.Entities
 
         public List<Accomodation> Accomodations { get; private set; }
 
-        public Address Address { get; private set; }
 
     }
 }

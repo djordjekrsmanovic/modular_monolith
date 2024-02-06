@@ -1,9 +1,9 @@
 ﻿using Booking.BuildingBlocks.Application.Emails;
 using Booking.BuildingBlocks.Application.EventBus;
+using Booking.BuildingBlocks.Domain;
 using Booking.BuildingBlocks.Infrastructure.Emails;
 using Booking.BuildingBlocks.Infrastructure.EventBus;
 using Booking.UserAccess.Application.Abstractions;
-using Booking.UserAccess.Domain;
 using Booking.UserAccess.Domain.Repositories;
 using Booking.UserAccess.Infrastructure.Authentication;
 using Booking.UserAccess.Infrastructure.Database;

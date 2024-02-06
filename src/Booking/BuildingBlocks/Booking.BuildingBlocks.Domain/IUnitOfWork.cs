@@ -1,4 +1,4 @@
-﻿namespace Booking.UserAccess.Domain
+﻿namespace Booking.BuildingBlocks.Domain
 {
     public interface IUnitOfWork
     {

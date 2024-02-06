@@ -1,4 +1,5 @@
 ﻿using Booking.Booking.Infrastructure;
+using Booking.Commerce.Infrastructure;
 using Booking.UserAccess.Infrastructure;
 
 namespace Booking.API.Startup
@@ -9,6 +10,7 @@ namespace Booking.API.Startup
         {
             services.ConfigureUserAccessModule(configuration);
             services.ConfigureAccomodationModule(configuration);
+            services.ConfigureCommerceModule(configuration);
             return services;
         }
     }

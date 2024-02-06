@@ -16,8 +16,6 @@ namespace Booking.Booking.Infrastructure.Database.Configuration
                 .WithOne()
                 .HasForeignKey(h => h.HostId)
                 .IsRequired(true);
-
-            builder.OwnsOne(x => x.Address);
         }
     }
 }

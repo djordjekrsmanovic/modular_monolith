@@ -1,5 +1,7 @@
-﻿using Booking.Booking.Infrastructure.Database;
+﻿using Booking.Accomodation.Infrastructure.Database;
+using Booking.Booking.Infrastructure.Database;
 using Booking.BuildingBlocks.Application.EventBus;
+using Booking.BuildingBlocks.Domain;
 using Booking.BuildingBlocks.Infrastructure.EventBus;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -25,6 +27,7 @@ namespace Booking.Booking.Infrastructure
         {
 
             services.AddScoped<IEventBus, EventBus>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
         }
 
         private static void SetUpDatabase(IServiceCollection services, string connectionString)

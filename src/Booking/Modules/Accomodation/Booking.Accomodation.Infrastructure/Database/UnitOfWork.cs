@@ -1,4 +1,5 @@
-﻿using Booking.Booking.Infrastructure.Database;
+﻿using Booking.Accomodation.Domain;
+using Booking.Booking.Infrastructure.Database;
 using Booking.BuildingBlocks.Domain;
 using MediatR;
 using Microsoft.EntityFrameworkCore;

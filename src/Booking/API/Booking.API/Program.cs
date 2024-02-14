@@ -38,9 +38,12 @@ builder.Services.ConfigureOptions<MassTransitHostOptionsSetup>()
 {
     x.AddConsumersFromAssemblies([
         Booking.Booking.Infrastructure.AssemblyReference.Assembly,
+        Booking.Commerce.Infrastructure.AssemblyReference.Assembly,
+        Booking.UserAccess.Infrastructure.AssemblyReference.Assembly,
     ]);
-
-    x.UsingInMemory();
+    x.SetKebabCaseEndpointNameFormatter();
+    x.SetKebabCaseEndpointNameFormatter();
+    x.UsingInMemory((context, configurator) => configurator.ConfigureEndpoints(context));
 });
 
 var app = builder.Build();

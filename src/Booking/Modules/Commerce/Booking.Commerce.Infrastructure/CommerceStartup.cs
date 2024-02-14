@@ -1,5 +1,7 @@
-﻿using Booking.BuildingBlocks.Domain;
+﻿using Booking.Commerce.Domain;
+using Booking.Commerce.Domain.Repositories;
 using Booking.Commerce.Infrastructure.Database;
+using Booking.Commerce.Infrastructure.Database.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -35,6 +37,8 @@ namespace Booking.Commerce.Infrastructure
             );
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<ISubscriberRepository, SubscriberRepository>();
+            services.AddScoped<IPayerRepository, PayerRepository>();
         }
     }
 }

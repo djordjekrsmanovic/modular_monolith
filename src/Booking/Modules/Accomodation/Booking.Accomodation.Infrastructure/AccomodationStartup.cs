@@ -1,9 +1,9 @@
-﻿using Booking.Accomodation.Domain.Repositories;
+﻿using Booking.Accomodation.Domain;
+using Booking.Accomodation.Domain.Repositories;
 using Booking.Accomodation.Infrastructure.Database;
 using Booking.Accomodation.Infrastructure.Database.Repositories;
 using Booking.Booking.Infrastructure.Database;
 using Booking.BuildingBlocks.Application.EventBus;
-using Booking.BuildingBlocks.Domain;
 using Booking.BuildingBlocks.Infrastructure.EventBus;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;

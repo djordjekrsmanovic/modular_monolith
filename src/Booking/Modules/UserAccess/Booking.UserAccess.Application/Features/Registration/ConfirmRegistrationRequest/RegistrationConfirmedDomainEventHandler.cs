@@ -4,7 +4,8 @@ using Booking.UserAccess.Domain;
 using Booking.UserAccess.Domain.Entities;
 using Booking.UserAccess.Domain.Events;
 using Booking.UserAccess.Domain.Repositories;
-using Booking.UserAccess.IntegrationEvents;
+using Booking.UserAccess.IntegrationEvents.Accomodation;
+using Booking.UserAccess.IntegrationEvents.Commerce;
 
 namespace Booking.UserAccess.Application.Features.Registration.ConfirmRegistrationRequest
 {
@@ -36,10 +37,12 @@ namespace Booking.UserAccess.Application.Features.Registration.ConfirmRegistrati
             {
                 case var roles when roles.Contains(Role.Host):
                     _eventBus.PublishAsync(new HostRegisteredIntegrationEvent(user.Id));
+                    _eventBus.PublishAsync(new SubscriberRegisteredIntegrationEvent(user.Id));
                     break;
 
                 case var roles when roles.Contains(Role.Guest):
                     _eventBus.PublishAsync(new GuestRegisteredIntegrationEvent(user.Id));
+                    _eventBus.PublishAsync(new PayerRegisteredIntegrationEvent(user.Id));
                     break;
                 default:
                     throw new InvalidOperationException("Invalid role assigned to user");

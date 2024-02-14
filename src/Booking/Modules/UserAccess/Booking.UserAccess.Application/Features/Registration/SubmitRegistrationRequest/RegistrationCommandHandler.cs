@@ -5,7 +5,6 @@ using Booking.UserAccess.Domain;
 using Booking.UserAccess.Domain.Entities;
 using Booking.UserAccess.Domain.Errors;
 using Booking.UserAccess.Domain.Repositories;
-using Booking.UserAccess.IntegrationEvents;
 
 namespace Booking.UserAccess.Application.Features.Registration.SubmitRegistrationRequest
 {
@@ -45,8 +44,6 @@ namespace Booking.UserAccess.Application.Features.Registration.SubmitRegistratio
 
 
             _registrationRequestRepository.Add(registrationRequest);
-
-            await _bus.PublishAsync(new HostRegisteredIntegrationEvent(Guid.Empty));
 
             await _unitOfWork.SaveChangesAsync();
 

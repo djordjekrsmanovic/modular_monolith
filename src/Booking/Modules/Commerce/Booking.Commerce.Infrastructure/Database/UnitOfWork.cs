@@ -1,4 +1,5 @@
 ﻿using Booking.BuildingBlocks.Domain;
+using Booking.Commerce.Domain;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 

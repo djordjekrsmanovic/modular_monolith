@@ -1,8 +1,8 @@
-﻿using Booking.Accomodation.Domain.Repositories;
+﻿using Booking.Accomodation.Domain;
+using Booking.Accomodation.Domain.Repositories;
 using Booking.Booking.Domain.Entities;
 using Booking.BuildingBlocks.Application.EventBus;
-using Booking.BuildingBlocks.Domain;
-using Booking.UserAccess.IntegrationEvents;
+using Booking.UserAccess.IntegrationEvents.Accomodation;
 
 namespace Booking.Booking.Application
 {

@@ -1,9 +1,9 @@
 ﻿using Booking.BuildingBlocks.Application.Emails;
 using Booking.BuildingBlocks.Application.EventBus;
-using Booking.BuildingBlocks.Domain;
 using Booking.BuildingBlocks.Infrastructure.Emails;
 using Booking.BuildingBlocks.Infrastructure.EventBus;
 using Booking.UserAccess.Application.Abstractions;
+using Booking.UserAccess.Domain;
 using Booking.UserAccess.Domain.Repositories;
 using Booking.UserAccess.Infrastructure.Authentication;
 using Booking.UserAccess.Infrastructure.Database;
@@ -20,7 +20,7 @@ namespace Booking.UserAccess.Infrastructure
     {
         public static IServiceCollection ConfigureUserAccessModule(this IServiceCollection services, IConfiguration configuration)
         {
-            string connectionString = configuration["DatabaseConfig:ConnectionString"];
+            string connectionString = "Server=NHL2131W;Database=Booking;Trusted_Connection=True;TrustServerCertificate=True;";
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies([Application.AssemblyReference.Assembly]));
 
             SetUpServices(services);
@@ -34,7 +34,7 @@ namespace Booking.UserAccess.Infrastructure
         {
             services.AddScoped<IEmailSender, EmailSender>();
             services.AddScoped<IUserAccessEmailSender, UserAccessEmailSender>();
-            services.AddScoped<IEventBus, EventBus>();
+            services.AddTransient<IEventBus, EventBus>();
         }
 
 

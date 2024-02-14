@@ -7,8 +7,9 @@ namespace Booking.BuildingBlocks.Infrastructure.Extensions
     {
         public static void AddConsumersFromAssemblies(this IBusRegistrationConfigurator registrationConfigurator, params Assembly[] assemblies)
         {
-            InstanceFactory
-                .CreateFromAssemblies<IConsumerConfiguration>(assemblies).ToList()
+            var ret = InstanceFactory
+                .CreateFromAssemblies<IConsumerConfiguration>(assemblies).ToList();
+            ret
                 .ForEach(consumerInstaller => consumerInstaller.AddConsumers(registrationConfigurator));
         }
     }

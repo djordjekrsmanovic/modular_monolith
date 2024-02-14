@@ -4,7 +4,8 @@ using Booking.UserAccess.Domain;
 using Booking.UserAccess.Domain.Entities;
 using Booking.UserAccess.Domain.Events;
 using Booking.UserAccess.Domain.Repositories;
-using Booking.UserAccess.IntegrationEvents;
+using Booking.UserAccess.IntegrationEvents.Accomodation;
+using Booking.UserAccess.IntegrationEvents.Commerce;
 
 namespace Booking.UserAccess.Application.Features.Registration.ConfirmRegistrationRequest
 {
@@ -15,15 +16,15 @@ namespace Booking.UserAccess.Application.Features.Registration.ConfirmRegistrati
         private IUserRepository _userRepository;
         private IEventBus _eventBus;
 
-        public RegistrationConfirmedDomainEventHandler(IUnitOfWork unitOfWork, 
-            IRegistrationRequestRepository registrationRequestRepository, 
+        public RegistrationConfirmedDomainEventHandler(IUnitOfWork unitOfWork,
+            IRegistrationRequestRepository registrationRequestRepository,
             IUserRepository userRepository,
             IEventBus eventBus)
         {
             _unitOfWork = unitOfWork;
             _registrationRequestRepository = registrationRequestRepository;
             _userRepository = userRepository;
-            _eventBus=eventBus;
+            _eventBus = eventBus;
         }
 
         public async Task Handle(UserRegistrationConfirmedDomainEvent notification, CancellationToken cancellationToken)
@@ -35,14 +36,15 @@ namespace Booking.UserAccess.Application.Features.Registration.ConfirmRegistrati
             switch (user.Roles)
             {
                 case var roles when roles.Contains(Role.Host):
-                    _eventBus.PublishAsync(new HostRegisteredIntegrationEvent(user.Id));
+                    await _eventBus.PublishAsync(new HostRegisteredIntegrationEvent(user.Id), new CancellationToken());
                     break;
 
                 case var roles when roles.Contains(Role.Guest):
-                    _eventBus.PublishAsync(new GuestRegisteredIntegrationEvent(user.Id));
+                    await _eventBus.PublishAsync(new GuestRegisteredIntegrationEvent(user.Id));
+                    await _eventBus.PublishAsync(new PayerRegisteredIntegrationEvent(user.Id));
                     break;
                 default:
-                    throw new InvalidOperationException("Invalid role assign to user");   
+                    throw new InvalidOperationException("Invalid role assigned to user");
             }
 
             await _unitOfWork.SaveChangesAsync();

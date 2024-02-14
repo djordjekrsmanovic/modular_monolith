@@ -18,5 +18,19 @@ namespace Booking.Booking.Domain.ValueObjects
             yield return Country;
             yield return PostalCode;
         }
+
+        private Address()
+        {
+            Street = "";
+            City = "";
+            State = "";
+            PostalCode = "";
+            Country = "";
+        }
+
+        public static Address CreateEmptyAdress()
+        {
+            return new Address();
+        }
     }
 }

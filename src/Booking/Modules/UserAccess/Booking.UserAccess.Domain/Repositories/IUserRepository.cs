@@ -4,7 +4,7 @@ namespace Booking.UserAccess.Domain.Repositories
 {
     public interface IUserRepository
     {
-        Task Add(User user);
+        void Add(User user);
         Task<User> GetByEmailAsync(string email, CancellationToken cancellationToken = default);
         Task<bool> IsEmailUniqueAsync(string email, CancellationToken cancellationToken = default);
     }

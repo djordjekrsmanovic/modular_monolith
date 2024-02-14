@@ -13,7 +13,7 @@ namespace Booking.UserAccess.Application.Features.Registration.ConfirmRegistrati
         private IUserRepository _userRepository;
         private IUnitOfWork _unitOfWork;
 
-        public ConfirmRegistrationCommandHandler(IRegistrationRequestRepository registrationRequestRepository , 
+        public ConfirmRegistrationCommandHandler(IRegistrationRequestRepository registrationRequestRepository,
             IUserRepository userRepository,
             IUnitOfWork unitOfWork)
         {
@@ -25,8 +25,8 @@ namespace Booking.UserAccess.Application.Features.Registration.ConfirmRegistrati
         public async Task<Result> Handle(ConfirmRegistrationCommand request, CancellationToken cancellationToken)
         {
             RegistrationRequest registrationRequest = _registrationRequestRepository.GetByConfirmationCodeAsync(request.ConfirmationCode).Result;
-            
-            if (registrationRequest is  null) 
+
+            if (registrationRequest is null)
             {
                 return Result.Failure(RegistrationErrors.InvalidConfirmationCode);
             }
@@ -36,7 +36,7 @@ namespace Booking.UserAccess.Application.Features.Registration.ConfirmRegistrati
                 return Result.Failure(UserErrors.EmailNotUniqueError);
             }
 
-            Result result=registrationRequest.Confirm(request.ConfirmationCode);
+            Result result = registrationRequest.Confirm(request.ConfirmationCode);
 
             await _unitOfWork.SaveChangesAsync();
 

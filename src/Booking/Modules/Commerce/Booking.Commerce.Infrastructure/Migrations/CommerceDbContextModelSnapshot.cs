@@ -29,7 +29,13 @@ namespace Booking.Commerce.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("PayerId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("PayerId")
+                        .IsUnique();
 
                     b.ToTable("Payer", "commerce");
                 });
@@ -101,7 +107,13 @@ namespace Booking.Commerce.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("HostId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("HostId")
+                        .IsUnique();
 
                     b.ToTable("Subscriber", "commerce");
                 });

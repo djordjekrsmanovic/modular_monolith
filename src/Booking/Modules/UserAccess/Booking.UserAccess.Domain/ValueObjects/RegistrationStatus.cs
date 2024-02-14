@@ -2,7 +2,7 @@
 
 namespace Booking.UserAccess.Domain.ValueObjects
 {
-    public class RegistrationStatus : ValueObject
+    public class RegistrationStatus : ValueObject, IStaticEntity
     {
         private RegistrationStatus() { }
 

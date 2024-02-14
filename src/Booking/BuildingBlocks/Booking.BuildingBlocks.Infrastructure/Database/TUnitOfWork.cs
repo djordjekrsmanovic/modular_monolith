@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Booking.BuildingBlocks.Infrastructure.Database
 {
-    public class TUnitOfWork<TContext> : IUnitOfWork where TContext : DbContext
+    public class TUnitOfWork<TContext> where TContext : DbContext
     {
         private readonly TContext _context;
 
@@ -51,7 +51,7 @@ namespace Booking.BuildingBlocks.Infrastructure.Database
                             .Where(e => e.State == EntityState.Modified || e.State == EntityState.Added);
             foreach (var entry in entries)
             {
-                entry.State = EntityState.Unchanged;
+                entry.State = EntityState.Detached; ;
             }
         }
     }

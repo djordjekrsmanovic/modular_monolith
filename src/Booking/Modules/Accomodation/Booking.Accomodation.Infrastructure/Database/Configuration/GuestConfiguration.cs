@@ -12,8 +12,6 @@ namespace Booking.Booking.Infrastructure.Database.Configuration
         {
             builder.HasKey(x => x.Id);
 
-            builder.HasIndex(x => x.UserId).IsUnique();
-
             builder.HasMany(g => g.ReservationRequests)
                 .WithOne()
                 .HasForeignKey(r => r.GuestId)

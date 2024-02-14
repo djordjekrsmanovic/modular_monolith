@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Booking.UserAccess.Presentation
 {
-
+    [ApiController]
     [Route("/register")]
     public class RegistrationController : ApiController
     {
@@ -17,7 +17,7 @@ namespace Booking.UserAccess.Presentation
         }
 
         [HttpPost()]
-        public async Task<IActionResult> RegisterUser([FromBody] RegistrationRequest request, 
+        public async Task<IActionResult> RegisterUser([FromBody] RegistrationRequest request,
             CancellationToken cancellationToken)
         {
             var command = new RegistrationCommand(request.Email,
@@ -26,7 +26,7 @@ namespace Booking.UserAccess.Presentation
                 request.FirstName,
                 request.Type);
 
-            Result result=await Sender.Send(command, cancellationToken);
+            Result result = await Sender.Send(command, cancellationToken);
 
             if (result.IsSuccess)
             {

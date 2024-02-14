@@ -1,4 +1,6 @@
-﻿using Booking.Accomodation.Infrastructure.Database;
+﻿using Booking.Accomodation.Domain.Repositories;
+using Booking.Accomodation.Infrastructure.Database;
+using Booking.Accomodation.Infrastructure.Database.Repositories;
 using Booking.Booking.Infrastructure.Database;
 using Booking.BuildingBlocks.Application.EventBus;
 using Booking.BuildingBlocks.Domain;
@@ -35,7 +37,7 @@ namespace Booking.Booking.Infrastructure
             Console.Write(connectionString);
             services.AddDbContext<AccomodationDbContext>(options =>
                 options.UseSqlServer(connectionString, x => x.MigrationsHistoryTable("__MigrationHistory", "accomodation")));
-
+            services.AddScoped<IHostRepository, HostRepository>();
         }
     }
 

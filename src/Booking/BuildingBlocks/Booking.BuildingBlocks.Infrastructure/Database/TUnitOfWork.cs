@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Booking.BuildingBlocks.Infrastructure.Database
 {
-    public class TUnitOfWork<TContext> : IUnitOfWork where TContext : DbContext
+    public class TUnitOfWork<TContext> where TContext : DbContext
     {
         private readonly TContext _context;
 

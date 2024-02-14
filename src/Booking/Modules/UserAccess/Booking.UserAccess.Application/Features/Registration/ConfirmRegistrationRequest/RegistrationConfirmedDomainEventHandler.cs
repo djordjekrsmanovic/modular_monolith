@@ -10,20 +10,20 @@ namespace Booking.UserAccess.Application.Features.Registration.ConfirmRegistrati
 {
     public class RegistrationConfirmedDomainEventHandler : IDomainEventHandler<UserRegistrationConfirmedDomainEvent>
     {
-        private IUnitOfWork _unitOfWork;
+        private IUserAccessUnitOfWork _unitOfWork;
         private IRegistrationRequestRepository _registrationRequestRepository;
         private IUserRepository _userRepository;
         private IEventBus _eventBus;
 
-        public RegistrationConfirmedDomainEventHandler(IUnitOfWork unitOfWork, 
-            IRegistrationRequestRepository registrationRequestRepository, 
+        public RegistrationConfirmedDomainEventHandler(IUserAccessUnitOfWork unitOfWork,
+            IRegistrationRequestRepository registrationRequestRepository,
             IUserRepository userRepository,
             IEventBus eventBus)
         {
             _unitOfWork = unitOfWork;
             _registrationRequestRepository = registrationRequestRepository;
             _userRepository = userRepository;
-            _eventBus=eventBus;
+            _eventBus = eventBus;
         }
 
         public async Task Handle(UserRegistrationConfirmedDomainEvent notification, CancellationToken cancellationToken)
@@ -42,7 +42,7 @@ namespace Booking.UserAccess.Application.Features.Registration.ConfirmRegistrati
                     _eventBus.PublishAsync(new GuestRegisteredIntegrationEvent(user.Id));
                     break;
                 default:
-                    throw new InvalidOperationException("Invalid role assign to user");   
+                    throw new InvalidOperationException("Invalid role assigned to user");
             }
 
             await _unitOfWork.SaveChangesAsync();

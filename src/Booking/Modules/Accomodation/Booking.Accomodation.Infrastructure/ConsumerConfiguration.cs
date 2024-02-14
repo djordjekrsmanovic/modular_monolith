@@ -8,7 +8,7 @@ namespace Booking.Booking.Infrastructure
     {
         public void AddConsumers(IRegistrationConfigurator registrationConfigurator)
         {
-            registrationConfigurator.AddConsumer<ExampleConsumer>();
+            registrationConfigurator.AddConsumer<HostRegisteredIntegrationEventHandler>();
         }
     }
 }

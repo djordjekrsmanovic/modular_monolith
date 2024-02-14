@@ -1,4 +1,6 @@
 using Booking.API.Startup;
+using Booking.App.Options;
+using Booking.BuildingBlocks.Infrastructure.Extensions;
 using Booking.UserAccess.Infrastructure.Authentication;
 using MassTransit;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -31,12 +33,15 @@ builder.Services.RegisterModules(builder.Configuration);
 
 builder.Services.AddScoped<IAuthorizationHandler, PermissionAuthorizationHandler>();
 builder.Services.AddSingleton<IAuthorizationPolicyProvider, PermissionAuthorizationPolicyProvider>();
-builder.Services.AddMassTransit(x =>
+builder.Services.ConfigureOptions<MassTransitHostOptionsSetup>()
+    .AddMassTransit(x =>
 {
-    // A Transport
+    x.AddConsumersFromAssemblies([
+        Booking.Booking.Infrastructure.AssemblyReference.Assembly,
+    ]);
+
     x.UsingInMemory();
 });
-
 
 var app = builder.Build();
 

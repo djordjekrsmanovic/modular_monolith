@@ -5,8 +5,6 @@ namespace Booking.Booking.Domain.Entities
 {
     public class Guest : Entity<Guid>
     {
-        public Guid UserId { get; private set; }
-
         public Address Address { get; private set; }
 
         public List<ReservationRequest> ReservationRequests { get; private set; }

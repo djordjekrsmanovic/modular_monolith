@@ -11,12 +11,12 @@ namespace Booking.UserAccess.Application.Features.Registration.ConfirmRegistrati
 {
     public class RegistrationConfirmedDomainEventHandler : IDomainEventHandler<UserRegistrationConfirmedDomainEvent>
     {
-        private IUserAccessUnitOfWork _unitOfWork;
+        private IUnitOfWork _unitOfWork;
         private IRegistrationRequestRepository _registrationRequestRepository;
         private IUserRepository _userRepository;
         private IEventBus _eventBus;
 
-        public RegistrationConfirmedDomainEventHandler(IUserAccessUnitOfWork unitOfWork,
+        public RegistrationConfirmedDomainEventHandler(IUnitOfWork unitOfWork,
             IRegistrationRequestRepository registrationRequestRepository,
             IUserRepository userRepository,
             IEventBus eventBus)

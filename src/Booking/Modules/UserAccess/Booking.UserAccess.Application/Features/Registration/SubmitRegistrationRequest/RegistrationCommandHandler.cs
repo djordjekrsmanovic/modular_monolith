@@ -12,14 +12,14 @@ namespace Booking.UserAccess.Application.Features.Registration.SubmitRegistratio
     {
         private IUserRepository _userRepository;
         private IRegistrationRequestRepository _registrationRequestRepository;
-        private IUserAccessUnitOfWork _unitOfWork;
+        private IUnitOfWork _unitOfWork;
         private IEventBus _bus;
 
 
 
         public RegistrationCommandHandler(IUserRepository userRepository,
             IRegistrationRequestRepository registrationRequestRepository,
-            IUserAccessUnitOfWork unitOfWork,
+            IUnitOfWork unitOfWork,
             IEventBus bus)
         {
             _userRepository = userRepository;

@@ -56,7 +56,7 @@ namespace Booking.UserAccess.Infrastructure
             );
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IRegistrationRequestRepository, RegistrationRequestRepository>();
-            services.AddScoped<IUserAccessUnitOfWork, UnitOfWork>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
         }
 
 

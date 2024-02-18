@@ -11,11 +11,11 @@ namespace Booking.UserAccess.Application.Features.Registration.ConfirmRegistrati
     {
         private IRegistrationRequestRepository _registrationRequestRepository;
         private IUserRepository _userRepository;
-        private IUserAccessUnitOfWork _unitOfWork;
+        private IUnitOfWork _unitOfWork;
 
         public ConfirmRegistrationCommandHandler(IRegistrationRequestRepository registrationRequestRepository,
             IUserRepository userRepository,
-            IUserAccessUnitOfWork unitOfWork)
+            IUnitOfWork unitOfWork)
         {
             _userRepository = userRepository;
             _registrationRequestRepository = registrationRequestRepository;

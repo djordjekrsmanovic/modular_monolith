@@ -1,6 +1,6 @@
 ﻿namespace Booking.UserAccess.Domain
 {
-    public interface IUserAccessUnitOfWork
+    public interface IUnitOfWork
     {
         Task SaveChangesAsync(CancellationToken cancellationToken = default);
     }

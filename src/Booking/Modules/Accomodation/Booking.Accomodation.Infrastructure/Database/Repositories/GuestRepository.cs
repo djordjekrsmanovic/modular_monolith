@@ -4,19 +4,18 @@ using Booking.Booking.Infrastructure.Database;
 
 namespace Booking.Accomodation.Infrastructure.Database.Repositories
 {
-    internal class HostRepository : IHostRepository
+    internal class GuestRepository : IGuestRepository
     {
-
         private readonly AccomodationDbContext _context;
 
-        public HostRepository(AccomodationDbContext context)
+        public GuestRepository(AccomodationDbContext context)
         {
             _context = context;
         }
 
-        public void Add(Host host)
+        public async Task Add(Guest guest)
         {
-            _context.Add(host);
+            _context.Add(guest);
         }
     }
 }

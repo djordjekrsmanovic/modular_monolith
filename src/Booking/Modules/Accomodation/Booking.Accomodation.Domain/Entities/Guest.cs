@@ -13,5 +13,22 @@ namespace Booking.Booking.Domain.Entities
 
         public List<Accomodation> FavouriteAccomodations { get; private set; }
 
+
+        private Guest() { }
+
+        private Guest(Guid id)
+        {
+            Id = id;
+            ReservationRequests = new List<ReservationRequest>();
+            VisitedAccomodations = new List<Accomodation>();
+            FavouriteAccomodations = new List<Accomodation>();
+            Address = Address.CreateEmptyAdress();
+        }
+
+        public static Guest Create(Guid id)
+        {
+            return new Guest(id);
+        }
+
     }
 }

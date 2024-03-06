@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Booking.BuildingBlocks.Presentation
 {
+    [ApiController]
     public abstract class ApiController : ControllerBase
     {
 

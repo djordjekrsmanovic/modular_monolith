@@ -4,6 +4,6 @@ namespace Booking.Commerce.Domain.Repositories
 {
     public interface ISubscriberRepository
     {
-        Task Add(Subscriber subscriber);
+        void Add(Subscriber subscriber);
     }
 }

@@ -36,13 +36,12 @@ namespace Booking.UserAccess.Application.Features.Registration.ConfirmRegistrati
             switch (user.Roles)
             {
                 case var roles when roles.Contains(Role.Host):
-                    _eventBus.PublishAsync(new HostRegisteredIntegrationEvent(user.Id));
-                    _eventBus.PublishAsync(new SubscriberRegisteredIntegrationEvent(user.Id));
+                    await _eventBus.PublishAsync(new HostRegisteredIntegrationEvent(user.Id), new CancellationToken());
                     break;
 
                 case var roles when roles.Contains(Role.Guest):
-                    _eventBus.PublishAsync(new GuestRegisteredIntegrationEvent(user.Id));
-                    _eventBus.PublishAsync(new PayerRegisteredIntegrationEvent(user.Id));
+                    await _eventBus.PublishAsync(new GuestRegisteredIntegrationEvent(user.Id));
+                    await _eventBus.PublishAsync(new PayerRegisteredIntegrationEvent(user.Id));
                     break;
                 default:
                     throw new InvalidOperationException("Invalid role assigned to user");

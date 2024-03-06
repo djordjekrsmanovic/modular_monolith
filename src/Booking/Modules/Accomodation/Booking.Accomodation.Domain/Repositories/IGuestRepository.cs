@@ -2,8 +2,8 @@
 
 namespace Booking.Accomodation.Domain.Repositories
 {
-    public interface IHostRepository
+    public interface IGuestRepository
     {
-        void Add(Host host);
+        Task Add(Guest guest);
     }
 }

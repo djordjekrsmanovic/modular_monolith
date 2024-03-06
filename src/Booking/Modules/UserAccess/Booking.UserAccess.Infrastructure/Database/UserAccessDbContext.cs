@@ -14,5 +14,7 @@ namespace Booking.UserAccess.Infrastructure.Database
             modelBuilder.ApplyConfigurationsFromAssembly(AssemblyReference.Assembly);
 
         }
+
+
     }
 }

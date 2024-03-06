@@ -21,7 +21,7 @@ namespace Booking.Commerce.Application
         {
             Payer payer = Payer.Create(integrationEvnet.GustId);
 
-            _payerRepository.Add(payer);
+            await _payerRepository.Add(payer);
 
             await _unitOfWork.SaveChangesAsync();
         }

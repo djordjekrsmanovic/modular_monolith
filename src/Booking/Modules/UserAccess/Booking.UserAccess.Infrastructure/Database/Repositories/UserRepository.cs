@@ -9,12 +9,12 @@ namespace Booking.UserAccess.Infrastructure.Database.Repositories
     {
 
         private readonly UserAccessDbContext _context;
-        public UserRepository(UserAccessDbContext userAccessDbContext) 
+        public UserRepository(UserAccessDbContext userAccessDbContext)
         {
             _context = userAccessDbContext;
         }
 
-        public async Task Add(User user)
+        public void Add(User user)
         {
             _context.Add(user);
         }

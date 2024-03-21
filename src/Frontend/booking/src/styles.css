@@ -1,0 +1,198 @@
+/*************************************************
+**************************************************
+
+Website Name: Fishing Booker
+Website URL: http://localhost:4200/
+GitHub URL: https://github.com/tara-pogancev/fishing-booker
+Copyright 2017. All Rights Reserved.
+
+Color Guide
+***************
+White: FBF9F8
+Light Blue: 87C6F0
+Sky Blue: 459FBD
+Medium Blue: 37F0B4
+Gray Blue: 3A4E66
+Text Black: 191919
+
+*************************************************
+
+Debugging Tools
+***************
+border: 1px solid #fff;
+
+*************************************************/
+
+/************************************************
+*************************************************
+0. CSS Reset ------------------------ 
+1. Universal Styles -----------------
+2. Header & Nav Styles -------------- 
+3. Main Body Styles ----------------- 
+4. Sidebar Styles ------------------- 
+5. Widget Styles --------------------
+6. Footer Styles -------------------- 
+7. Comments & Form Styles ----------- 
+8. Generic Styles ----------- 
+*************************************************
+************************************************/
+
+/*----------------------------------------------
+------------------------------------------------
+0. CSS Reset
+------------------------------------------------
+----------------------------------------------*/
+@import "bulma/css/bulma.css";
+@import "~font-awesome/css/font-awesome.css";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/*----------------------------------------------
+  ------------------------------------------------
+  1. Universal Styles
+  ------------------------------------------------
+  ----------------------------------------------*/
+body {
+  font-family: Century Gothic, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/*----------------------------------------------
+  ------------------------------------------------
+  2. Header & Nav Styles
+  ------------------------------------------------
+  ----------------------------------------------*/
+.logo-font {
+  font-weight: 900;
+}
+
+.fa-star {
+  color: rgb(252, 175, 76);
+}
+
+.star-text {
+  color: rgb(252, 175, 76);
+  line-height: 20px;
+}
+
+.rating {
+  background-color: rgb(252, 175, 76) !important;
+  color: white !important;
+  box-shadow: 0px 0px 20px rgba(250, 145, 60, 0.596);
+}
+
+.rating .fa-star {
+  color: white !important;
+}
+
+/*----------------------------------------------
+  ------------------------------------------------
+  3. Main Body Styles
+  ------------------------------------------------
+  ----------------------------------------------*/
+.is-primary {
+  background-color: #459fdb !important;
+}
+
+.has-background-blue {
+  background-color: #c3dae9 !important;
+}
+
+.black-overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.zoom {
+  transition: transform 0.6s; /* Animation */
+  margin: 0 auto;
+}
+
+.zoom:hover {
+  transform: scale(
+    1.03
+  ); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+
+.shadow {
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.301);
+}
+
+/*----------------------------------------------
+  ------------------------------------------------
+  4. Sidebar Styles
+  ------------------------------------------------
+  ----------------------------------------------*/
+
+/*----------------------------------------------
+  ------------------------------------------------
+  5. Widget Styles
+  ------------------------------------------------
+  ----------------------------------------------*/
+.paralax {
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 500px;
+}
+
+.tag {
+  margin-right: 10px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+.body-wrapper {
+  min-height: calc(100vh - 168px);
+}
+
+/*----------------------------------------------
+  ------------------------------------------------
+  6. Footer Styles
+  ------------------------------------------------
+  ----------------------------------------------*/
+
+/*----------------------------------------------
+  ------------------------------------------------
+  7. Comments & Form Styles
+  ------------------------------------------------
+  ----------------------------------------------*/
+
+/*----------------------------------------------
+  ------------------------------------------------
+  8. Generic Styles
+  ------------------------------------------------
+  ----------------------------------------------*/
+.max-width-800 {
+  max-width: 800px;
+}
+
+.min-width-800 {
+  min-width: 800px;
+}
+
+.max-width-700 {
+  max-width: 700px;
+}
+
+.max-width-600 {
+  max-width: 600px;
+}
+
+.max-width-500 {
+  max-width: 500px;
+}
+
+.max-width-400 {
+  max-width: 400px;
+}
+
+.p-6 {
+  padding: 20px;
+}

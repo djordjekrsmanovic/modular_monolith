@@ -1,0 +1,74 @@
+<section class="hero is-info is-large hero-main">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <h1 class="title">Your best site to rent accomodation!</h1>
+      <p class="subtitle">Planning taken to perfection.</p>
+    </div>
+  </div>
+
+  <div class="hero-foot">
+    <nav class="tabs is-boxed is-fullwidth">
+      <div class="container">
+        <ul>
+          <li class="is-active">
+            <a href="#overview">Overview</a>
+          </li>
+          <li>
+            <a href="#accomodations">Accommdations</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</section>
+
+<div id="overview" class="container block p-6 mt-6 mb-6">
+  <div class="content is-medium has-text-centered">
+    <h1>Booking</h1>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla accumsan,
+      metus ultrices eleifend gravida, nulla nunc varius lectus, nec rutrum
+      justo nibh eu lectus. Ut vulputate semper dui. Fusce erat odio,
+      sollicitudin vel erat vel, interdum mattis neque.
+    </p>
+  </div>
+  <div class="columns is-8 is-variable mt-6">
+    <div class="column block content">
+      <h4>Outstanding experience</h4>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla accumsan,
+        metus ultrices eleifend gravida, nulla nunc varius lectus, nec rutrum
+        justo nibh eu lectus. Ut vulputate semper dui. Fusce erat odio,
+        sollicitudin vel erat vel, interdum mattis neque.
+      </p>
+    </div>
+    <div class="column block content">
+      <h4>Ease of Use</h4>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla accumsan,
+        metus ultrices eleifend gravida, nulla nunc varius lectus, nec rutrum
+        justo nibh eu lectus. Ut vulputate semper dui. Fusce erat odio,
+        sollicitudin vel erat vel, interdum mattis neque.
+      </p>
+    </div>
+  </div>
+</div>
+
+<div id="accomodations" class="has-background-blue block p-6 mt-6 mb-6">
+  <div class="container content is-medium">
+    <h1>Accommdations</h1>
+    <hr />
+    <div class="columns">
+      <div class="column" *ngFor="let cottage of cottages.slice(0, 4)">
+        <accomodation-card [id]="cottage.id"></accomodation-card>
+      </div>
+    </div>
+  </div>
+
+  <div class="has-text-centered mt-6">
+    <a href="/accomodations" class="button is-primary">View all</a>
+  </div>
+</div>
+
+
+<app-footer></app-footer>

@@ -1,0 +1,36 @@
+.tag {
+  margin-right: 10px;
+}
+
+.button-tag {
+  padding: 0px !important;
+  font-size: 1rem;
+  height: auto !important;
+  border: 0px;
+  background-color: transparent;
+  color: white;
+}
+
+.button-tag .tag-icon {
+  color: white;
+  margin-left: 10px;
+}
+
+.unselected {
+  background-color: rgb(187, 187, 187) !important;
+}
+
+.select select {
+  font-size: 1rem;
+  width: 100%;
+}
+
+.select {
+  height: 2.5rem;
+  min-width: 187px;
+  width: 100%;
+}
+
+.input {
+  min-width: 187px;
+}

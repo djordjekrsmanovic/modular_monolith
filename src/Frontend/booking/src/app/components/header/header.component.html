@@ -1,0 +1,27 @@
+<nav class="navbar container">
+  <div class="navbar-brand">
+    <a class="navbar-item navbar-logo" href="/">
+      <img src="assets/icons/accommodation.jpg" height="50px" width="50px" />
+      <h1 class="logo-font">Booking</h1>
+    </a>
+  </div>
+
+  <div class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item" href="/accomodations"> Accomodations </a>
+      <a class="navbar-item" href="/reservations"> Reservations </a>
+      <a class="navbar-item" href="/reviews"> Reviews </a>
+    </div>
+
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div *ngIf="!isActive; else activeUser">
+          <new-user-header></new-user-header>
+        </div>
+        <ng-template #activeUser>
+          <user-header></user-header>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</nav>

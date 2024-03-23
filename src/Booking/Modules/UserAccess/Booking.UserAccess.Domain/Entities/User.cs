@@ -1,4 +1,5 @@
 ﻿using Booking.BuildingBlocks.Domain;
+using Booking.BuildingBlocks.Domain.SharedKernel;
 using Booking.UserAccess.Domain.Errors;
 
 namespace Booking.UserAccess.Domain.Entities
@@ -14,7 +15,11 @@ namespace Booking.UserAccess.Domain.Entities
 
         public string Password { get; init; }
 
+        public string Phone { get; init; }
+
         public bool isActive { get; init; }
+
+        public Address Address { get; init; }
 
         public IReadOnlyCollection<Role> Roles => _roles.ToList().AsReadOnly();
 
@@ -23,7 +28,7 @@ namespace Booking.UserAccess.Domain.Entities
 
         }
 
-        private User(string firstName, string lastName, string email, string password, bool isActive)
+        private User(string firstName, string lastName, string email, string password, bool isActive, string phone, Address address)
         {
             Id = Guid.NewGuid();
             FirstName = firstName;
@@ -31,11 +36,13 @@ namespace Booking.UserAccess.Domain.Entities
             Email = email;
             Password = password;
             this.isActive = isActive;
+            Phone = phone;
+            Address = address;
         }
 
         public static Result<User> CreateFromRegistrationRequest(RegistrationRequest request)
         {
-            User user = new User(request.FirstName, request.LastName, request.Email, request.Password, true);
+            User user = new User(request.FirstName, request.LastName, request.Email, request.Password, true, request.Phone, request.Address);
 
             if (request.Type == Enums.RegistrationType.Host)
             {

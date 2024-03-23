@@ -10,8 +10,6 @@ namespace Booking.Commerce.Infrastructure.Database.Configuration
         {
             builder.HasKey(x => x.Id);
 
-            builder.HasIndex(x => x.PayerId).IsUnique();
-
             builder.HasMany(x => x.Invoices)
                 .WithOne();
 

@@ -1,11 +1,9 @@
-﻿using Booking.Booking.Domain.ValueObjects;
-using Booking.BuildingBlocks.Domain;
+﻿using Booking.BuildingBlocks.Domain;
 
 namespace Booking.Booking.Domain.Entities
 {
     public class Guest : Entity<Guid>
     {
-        public Address Address { get; private set; }
 
         public List<ReservationRequest> ReservationRequests { get; private set; }
 
@@ -22,7 +20,6 @@ namespace Booking.Booking.Domain.Entities
             ReservationRequests = new List<ReservationRequest>();
             VisitedAccomodations = new List<Accomodation>();
             FavouriteAccomodations = new List<Accomodation>();
-            Address = Address.CreateEmptyAdress();
         }
 
         public static Guest Create(Guid id)

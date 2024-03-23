@@ -14,6 +14,8 @@ namespace Booking.UserAccess.Infrastructure.Database.Configuration
             builder.ToTable(nameof(RegistrationRequest));
 
             builder.ComplexProperty(x => x.Status);
+
+            builder.ComplexProperty(x => x.Address);
         }
     }
 }

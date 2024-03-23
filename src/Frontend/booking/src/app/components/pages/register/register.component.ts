@@ -1,8 +1,10 @@
 import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit, ɵgetInjectableDef } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserModel } from '../../../model/user-model';
 import { RegistrationService } from '../../../service/registration.service';
+import { UserRegistration } from 'src/app/model/register-user';
+import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 
 @Component({
   selector: 'app-register',
@@ -10,10 +12,12 @@ import { RegistrationService } from '../../../service/registration.service';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
-  user = new UserModel();
+  user = new UserRegistration();
   validPassword: boolean = true;
   validEmail: boolean = true;
   validForm: boolean = true;
+
+  passwordConfirm='';
 
   constructor(
     private registrationService: RegistrationService,
@@ -23,12 +27,12 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {}
 
   validatePassword() {
-    this.validPassword = this.user.password == this.user.passwordConfirm;
+    this.validPassword = this.user.password == this.passwordConfirm;
   }
 
   validateForm() {
     this.validForm =
-      this.user.name != '' &&
+      this.user.firstName != '' &&
       this.user.lastName != '' &&
       this.user.email != '' &&
       this.user.phone != '' &&
@@ -36,26 +40,28 @@ export class RegisterComponent implements OnInit {
       this.user.city != '' &&
       this.user.country != '' &&
       this.user.password != '' &&
-      this.user.passwordConfirm != '' &&
+      this.passwordConfirm != '' &&
       this.validPassword;
 
     if (this.validForm) {
-      this.registrationService
-        .validateEmail(this.user.email)
-        .subscribe((data) => {
-          this.validEmail = data;
+      this.registerUser();
 
-          if (this.validEmail) {
-            this.registerUser();
-          }
-        });
     }
   }
 
   registerUser() {
+    console.log(this.user);
     this.registrationService
       .register(this.user)
-      .subscribe((data) => console.log(data));
-    this.route.navigate(['thank-you-registration']);
+      .pipe(
+        catchError(error => {
+          alert(error.error.detail);
+          return throwError(error);
+        })
+      )
+      .subscribe(data => {
+        alert("Succesffully registered, check your email to confirm registration!")
+        this.route.navigate([''])
+      });
   }
 }

@@ -25,8 +25,6 @@ namespace Booking.Booking.Infrastructure.Database.Configuration
                 .WithMany()
                 .UsingEntity<GuestFavouriteAccomodation>();
 
-            builder.OwnsOne(g => g.Address);
-
         }
     }
 }

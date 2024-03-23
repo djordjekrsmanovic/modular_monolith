@@ -1,4 +1,5 @@
 ﻿using Booking.BuildingBlocks.Application.CQRS;
+using Booking.BuildingBlocks.Domain.SharedKernel;
 using Booking.UserAccess.Domain.Enums;
 
 namespace Booking.UserAccess.Application.Features.Registration.SubmitRegistrationRequest
@@ -7,5 +8,7 @@ namespace Booking.UserAccess.Application.Features.Registration.SubmitRegistratio
         string Password,
         string FirstName,
         string LastName,
-        RegistrationType Type) : ICommand<Guid>;
+        RegistrationType Type,
+        string Phone,
+        Address Address) : ICommand<Guid>;
 }

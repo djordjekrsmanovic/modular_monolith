@@ -1,6 +1,4 @@
-﻿using Booking.BuildingBlocks.Domain;
-
-namespace Booking.Booking.Domain.ValueObjects
+﻿namespace Booking.BuildingBlocks.Domain.SharedKernel
 {
     public class Address : ValueObject
     {
@@ -24,9 +22,21 @@ namespace Booking.Booking.Domain.ValueObjects
             Country = "";
         }
 
+        private Address(string street, string city, string country)
+        {
+            Street = street;
+            City = city;
+            Country = country;
+        }
+
         public static Address CreateEmptyAdress()
         {
             return new Address();
+        }
+
+        public static Address Create(string street, string city, string country)
+        {
+            return new Address(street, city, country);
         }
     }
 }

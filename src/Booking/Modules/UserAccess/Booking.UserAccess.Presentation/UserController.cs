@@ -16,8 +16,6 @@ namespace Booking.UserAccess.Presentation
 
         }
 
-
-
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginRequest request, CancellationToken cancellationToken)
         {

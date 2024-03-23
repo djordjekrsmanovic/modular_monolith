@@ -40,7 +40,9 @@ namespace Booking.UserAccess.Application.Features.Registration.SubmitRegistratio
                  request.FirstName,
                  request.LastName,
                  request.Password,
-                 request.Type).Value;
+                 request.Type,
+                 request.Phone,
+                 request.Address).Value;
 
 
             _registrationRequestRepository.Add(registrationRequest);

@@ -1,4 +1,5 @@
 ﻿using Booking.BuildingBlocks.Domain;
+using Booking.BuildingBlocks.Domain.SharedKernel;
 using Booking.UserAccess.Domain.Enums;
 using Booking.UserAccess.Domain.Errors;
 using Booking.UserAccess.Domain.Events;
@@ -17,6 +18,10 @@ namespace Booking.UserAccess.Domain.Entities
 
         public string LastName { get; private set; }
 
+        public string Phone { get; private set; }
+
+        public Address Address { get; private set; }
+
         public DateTime CreatedAt { get; private set; }
 
         public string ConfirmationCode { get; private set; }
@@ -27,14 +32,16 @@ namespace Booking.UserAccess.Domain.Entities
 
         public DateTime ConfirmationDate { get; private set; }
 
+
+
         public Result Confirm(string confirmationCode)
         {
-            if (isRequestExpire()) 
+            if (isRequestExpire())
             {
-                Status=RegistrationStatus.Expired;
+                Status = RegistrationStatus.Expired;
                 return Result.Failure(RegistrationErrors.RegistrationRequestExpired);
             }
-            
+
             return Status switch
             {
                 var status when status == RegistrationStatus.Confirmed => Result.Failure(RegistrationErrors.RequestAlreadyConfirmed),
@@ -48,8 +55,8 @@ namespace Booking.UserAccess.Domain.Entities
 
         private Result ConfirmInternal()
         {
-            Status=RegistrationStatus.Confirmed;
-            ConfirmationDate=DateTime.UtcNow;
+            Status = RegistrationStatus.Confirmed;
+            ConfirmationDate = DateTime.UtcNow;
 
             RaiseDomainEvent(new UserRegistrationConfirmedDomainEvent(Id));
 
@@ -58,11 +65,12 @@ namespace Booking.UserAccess.Domain.Entities
 
         private bool isRequestExpire()
         {
-            DateTime sevenDaysAgo=DateTime.UtcNow.AddDays(-7);
+            DateTime sevenDaysAgo = DateTime.UtcNow.AddDays(-7);
             return CreatedAt < sevenDaysAgo;
         }
 
-        private RegistrationRequest(string email, string password, string firstName, string lastName,RegistrationType registrationType)
+        private RegistrationRequest(string email, string password, string firstName,
+            string lastName, RegistrationType registrationType, string phone, Address address)
         {
             Email = email;
             Password = password;
@@ -72,18 +80,22 @@ namespace Booking.UserAccess.Domain.Entities
             ConfirmationCode = Guid.NewGuid().ToString();
             Status = RegistrationStatus.Waiting;
             Type = registrationType;
+            Phone = phone;
+            Address = address;
         }
 
         public static Result<RegistrationRequest> Create(string email,
             string firstName,
-            string lastName, 
+            string lastName,
             string password,
-            RegistrationType type)
+            RegistrationType type,
+            string phone,
+            Address address)
         {
-            RegistrationRequest request=new RegistrationRequest(email, firstName, lastName, password,type);
+            RegistrationRequest request = new RegistrationRequest(email, firstName, lastName, password, type, phone, address);
 
-            request.RaiseDomainEvent(new RegistrationRequestSubmittedDomainEvent(email,request.ConfirmationCode));
-            
+            request.RaiseDomainEvent(new RegistrationRequestSubmittedDomainEvent(email, request.ConfirmationCode));
+
             return Result.Success(request);
         }
     }

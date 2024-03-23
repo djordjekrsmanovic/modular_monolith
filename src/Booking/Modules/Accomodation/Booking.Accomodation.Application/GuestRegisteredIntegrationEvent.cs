@@ -22,7 +22,7 @@ namespace Booking.Accomodation.Application
 
             await _guestRepository.Add(guest);
 
-            _unitOfWork.SaveChangesAsync();
+            await _unitOfWork.SaveChangesAsync();
         }
     }
 }

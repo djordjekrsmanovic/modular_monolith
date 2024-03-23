@@ -4,22 +4,20 @@ namespace Booking.Commerce.Domain.Entities
 {
     public class Subscriber : Entity<Guid>
     {
-        public Guid HostId { get; set; }
         public List<Subscription> Subscriptions { get; set; }
 
         public List<SubscriptionInvoice> Invoices { get; set; }
 
         private Subscriber(Guid id)
         {
-            HostId = Guid.NewGuid();
-            Id = Guid.NewGuid();
+            Id = id;
             Subscriptions = new List<Subscription>();
             Invoices = new List<SubscriptionInvoice>();
         }
 
-        public static Subscriber Create(Guid Id)
+        public static Subscriber Create(Guid id)
         {
-            Subscriber subscriber = new Subscriber(Id);
+            Subscriber subscriber = new Subscriber(id);
             return subscriber;
         }
     }

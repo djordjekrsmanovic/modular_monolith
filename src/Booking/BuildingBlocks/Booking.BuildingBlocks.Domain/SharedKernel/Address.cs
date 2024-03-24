@@ -1,4 +1,5 @@
-﻿namespace Booking.BuildingBlocks.Domain.SharedKernel
+﻿
+namespace Booking.BuildingBlocks.Domain.SharedKernel
 {
     public class Address : ValueObject
     {
@@ -37,6 +38,11 @@
         public static Address Create(string street, string city, string country)
         {
             return new Address(street, city, country);
+        }
+
+        public string ConvertToString()
+        {
+            return $"{Street}, {City}, {Country}";
         }
     }
 }

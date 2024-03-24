@@ -2,7 +2,6 @@
 using Booking.UserAccess.Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
 
-
 namespace Booking.UserAccess.Infrastructure.Database.Repositories
 {
     public sealed class UserRepository : IUserRepository
@@ -25,6 +24,11 @@ namespace Booking.UserAccess.Infrastructure.Database.Repositories
                 Where(user => user.Email.Equals(username))
                 .Include(user => user.Roles)
                 .FirstOrDefaultAsync(cancellationToken);
+        }
+
+        public async Task<User> GetByIdAsync(Guid id, CancellationToken cancellationToken)
+        {
+            return await _context.Set<User>().Where(user => user.Id == id).Include(user => user.Roles).FirstOrDefaultAsync(cancellationToken);
         }
 
         public async Task<bool> IsEmailUniqueAsync(string email, CancellationToken cancellationToken = default)

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActiveUser } from 'src/app/model/user-model';
-import { LoginService } from 'src/app/service/login.service';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'user-header',
@@ -11,7 +11,7 @@ export class UserHeaderComponent implements OnInit {
   user = new ActiveUser();
   db_url = '/';
 
-  constructor(private loginService: LoginService) {}
+  constructor(private loginService: UserService) {}
 
   ngOnInit(): void {
     let currentUser: ActiveUser = JSON.parse(

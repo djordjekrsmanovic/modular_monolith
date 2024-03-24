@@ -1,17 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { Guest } from 'src/app/model/guest';
-import { UserModel } from 'src/app/model/user-model';
-import { GuestService } from 'src/app/service/guest.service';
-import { UserHeaderComponent } from '../../header/user-header/user-header.component';
 import { UserPersonalInfo } from 'src/app/model/personal-info-model';
 import { UserService } from 'src/app/service/user.service';
 
 @Component({
-  selector: 'app-guest-dashboard',
-  templateUrl: './guest-dashboard.component.html',
-  styleUrls: ['./guest-dashboard.component.css'],
+  selector: 'app-host-dashboard',
+  templateUrl: './host-dashboard.component.html',
+  styleUrls: ['./host-dashboard.component.css']
 })
-export class GuestDashboardComponent implements OnInit {
+export class HostDashboardComponent implements OnInit {
+
   userPersonalInfo: UserPersonalInfo = new UserPersonalInfo();
   activeTab: string = 'PERSONAL_INFO';
 
@@ -27,4 +24,5 @@ export class GuestDashboardComponent implements OnInit {
   changeTab(tabName: string) {
     this.activeTab = tabName;
   }
+
 }

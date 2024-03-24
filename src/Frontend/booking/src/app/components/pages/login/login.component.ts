@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActiveUser, AuthRequest } from 'src/app/model/user-model';
-import { LoginService } from 'src/app/service/login.service';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
   request = new AuthRequest();
   errorMessage: string = '';
 
-  constructor(private loginService: LoginService, private route: Router) {}
+  constructor(private loginService: UserService, private route: Router) {}
 
   ngOnInit(): void {}
 

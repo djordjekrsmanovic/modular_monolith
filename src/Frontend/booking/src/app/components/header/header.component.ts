@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActiveUser } from 'src/app/model/user-model';
-import { LoginService } from 'src/app/service/login.service';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +11,7 @@ export class HeaderComponent implements OnInit {
   user = new ActiveUser();
   isActive: boolean = false;
 
-  constructor(private loginService: LoginService) {}
+  constructor(private loginService: UserService) {}
 
   ngOnInit(): void {
     this.refreshUser();

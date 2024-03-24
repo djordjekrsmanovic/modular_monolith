@@ -10,10 +10,12 @@ import { AccomodationOwnerDashboardComponent } from './components/accomodations/
 import { BrowseCottagesComponent } from './components/pages/browse-cottages/browse-cottages.component';
 import { ReviewsPageComponent } from './components/pages/reviews-page/reviews-page.component';
 import { AccomodationPageComponent } from './components/accomodations/accomodation-page/accomodation-page.component';
+import { HostDashboardComponent } from './components/host/host-dashboard/host-dashboard.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'host-db', component: HostDashboardComponent },
   { path: 'thank-you-registration', component: ThankYouRegistrationComponent },
   { path: 'accomodations', component: BrowseCottagesComponent },
   { path: 'reviews', component: ReviewsPageComponent },
@@ -22,6 +24,7 @@ const routes: Routes = [
   { path: 'accomodation/:id', component: AccomodationPageComponent },
   { path: '', component: HomeComponent },
   { path: '**', component: NotFoundComponent },
+
 ];
 
 @NgModule({

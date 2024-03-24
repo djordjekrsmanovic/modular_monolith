@@ -17,28 +17,23 @@
             >Settings</a
           >
         </li>
+
         <li>
           <a
-            [ngClass]="{ 'is-active': activeTab === 'SUBSCRIPTIONS' }"
-            (click)="changeTab('SUBSCRIPTIONS')"
-            >My Subscriptions</a
+            [ngClass]="{ 'is-active': activeTab === 'REVIEW' }"
+            (click)="changeTab('REVIEW')"
+            >Leave a Review</a
           >
         </li>
+
       </ul>
       <p class="menu-label">Find Reservations</p>
       <ul class="menu-list">
         <li>
           <a
-            [ngClass]="{ 'is-active': activeTab === 'COTTAGE_RESERVATIONS' }"
-            (click)="changeTab('COTTAGE_RESERVATIONS')"
-            >Cottage Reservations</a
-          >
-        </li>
-        <li>
-          <a
-            [ngClass]="{ 'is-active': activeTab === 'SPECIAL_OFFERS' }"
-            (click)="changeTab('SPECIAL_OFFERS')"
-            >Special Offers</a
+            [ngClass]="{ 'is-active': activeTab === 'ACCOMODATION_RESERVATIONS' }"
+            (click)="changeTab('ACCOMODATION_RESERVATIONS')"
+            >Accommodation Reservations</a
           >
         </li>
         <li>
@@ -49,41 +44,28 @@
           >
         </li>
         <li>
-          <div class="mt-4">
-            <b>Past Reservations</b>
-            <ul>
-              <li>
-                <a
-                  [ngClass]="{ 'is-active': activeTab === 'PAST_COTTAGE' }"
-                  (click)="changeTab('PAST_COTTAGE')"
-                  >Cottage Reservations</a
-                >
-              </li>
-            </ul>
-          </div>
-        </li>
-      </ul>
-      <p class="menu-label">My Account</p>
-      <ul class="menu-list">
-        <li>
           <a
-            [ngClass]="{ 'is-active': activeTab === 'REVIEW' }"
-            (click)="changeTab('REVIEW')"
-            >Leave a Review</a
+            [ngClass]="{ 'is-active': activeTab === 'PAST_ACCOMMODATION' }"
+            (click)="changeTab('PAST_ACCOMMODATION')"
+            >Past Reservations</a
           >
         </li>
+      </ul>
+      <p class="menu-label">Transactions</p>
+      <ul class="menu-list">
+
         <li>
           <a
             [ngClass]="{ 'is-active': activeTab === 'COMPLAINT' }"
             (click)="changeTab('COMPLAINT')"
-            >Leave a Complaint</a
+            >My Transactions</a
           >
         </li>
         <li>
           <a
             [ngClass]="{ 'is-active': activeTab === 'REVIEW_COMPLAINT' }"
             (click)="changeTab('REVIEW_COMPLAINT')"
-            >My Reviews and Complaints</a
+            >Transactions In Progress</a
           >
         </li>
         <li>
@@ -100,25 +82,26 @@
   <div class="column db-content">
     <div class="hero is-primary">
       <div class="hero-body">
-        <p class="title">Welcome, {{ client.name }} {{ client.lastName }}</p>
-        <p class="subtitle">Client Dashboard</p>
+        <p class="title">Welcome, {{ userPersonalInfo.firstName }} {{ userPersonalInfo.lastName }}</p>
+        <p class="subtitle">Guest Dashboard</p>
       </div>
     </div>
     <div class="m-5">
       <div *ngIf="activeTab == 'PERSONAL_INFO'">
-        <app-personal-info [client]="client"></app-personal-info>
+        <app-personal-info [client]="userPersonalInfo"></app-personal-info>
       </div>
       <div *ngIf="activeTab == 'SETTINGS'">
-        <app-settings [user]="client"></app-settings>
+        <app-settings [userId]="userPersonalInfo.id"></app-settings>
       </div>
-      <div *ngIf="activeTab == 'SUBSCRIPTIONS'">
-        <app-subscriptions [user]="client"></app-subscriptions>
-      </div>
-      <div *ngIf="activeTab == 'COTTAGE_RESERVATIONS'">
+      <div *ngIf="activeTab == 'ACCOMODATION_RESERVATIONS'">
         <client-guest-reservations
-          [user]="client"
+
         ></client-guest-reservations>
       </div>
+      <!-- <div *ngIf="activeTab == 'SUBSCRIPTIONS'">
+        <app-subscriptions [user]="client"></app-subscriptions>
+      </div>
+
       <div *ngIf="activeTab == 'SPECIAL_OFFERS'">
         <client-special-offers [user]="client"></client-special-offers>
       </div>
@@ -128,20 +111,13 @@
         ></client-upcoming-reservations>
       </div>
       <div *ngIf="activeTab == 'PAST_COTTAGE'">
-        <client-past-accomodation [user]="client"></client-past-accomodation>
+
       </div>
       <div *ngIf="activeTab == 'REVIEW'">
-        <guest-reviews [user]="client"></guest-reviews>
-      </div>
-      <div *ngIf="activeTab == 'COMPLAINT'">
-        <guest-complaints [user]="client"></guest-complaints>
-      </div>
-      <div *ngIf="activeTab == 'REVIEW_COMPLAINT'">
-        <my-reviews-and-complaints [user]="client"></my-reviews-and-complaints>
-      </div>
-      <div *ngIf="activeTab == 'DELETE_ACCOUNT'">
-        <guest-delete-account [user]="client"></guest-delete-account>
-      </div>
+        <guest-reviews [user]="userPersonalInfo"></guest-reviews>
+      </div> -->
+
+
     </div>
   </div>
 </div>

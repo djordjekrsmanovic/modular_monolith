@@ -7,19 +7,19 @@ namespace Booking.UserAccess.Domain.Entities
     public class User : Entity<Guid>
     {
         private readonly HashSet<Role> _roles = new();
-        public string FirstName { get; init; }
+        public string FirstName { get; private set; }
 
-        public string LastName { get; init; }
+        public string LastName { get; private set; }
 
-        public string Email { get; init; }
+        public string Email { get; private set; }
 
-        public string Password { get; init; }
+        public string Password { get; private set; }
 
-        public string Phone { get; init; }
+        public string Phone { get; private set; }
 
-        public bool isActive { get; init; }
+        public bool isActive { get; private set; }
 
-        public Address Address { get; init; }
+        public Address Address { get; private set; }
 
         public IReadOnlyCollection<Role> Roles => _roles.ToList().AsReadOnly();
 
@@ -58,6 +58,23 @@ namespace Booking.UserAccess.Domain.Entities
             }
 
             return user;
+        }
+
+        public Result<Guid> UpdateUser(string firstName, string lastName, string phone, string email, Address address, string currentPassword, string newPassword)
+        {
+            if (currentPassword != newPassword)
+            {
+                return Result.Failure<Guid>(UserErrors.WrongPreviousPassword);
+            }
+
+            FirstName = firstName;
+            LastName = lastName;
+            Email = email;
+            Password = newPassword;
+            Phone = phone;
+            Address = Address.Create(address.Street, address.City, address.Country);
+
+            return Result.Success(Id);
         }
     }
 }

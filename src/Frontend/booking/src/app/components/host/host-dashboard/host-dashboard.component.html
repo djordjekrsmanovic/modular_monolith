@@ -1,0 +1,124 @@
+<div class="columns db-container">
+    <div class="colum is-two-fifths px-6 pt-5 side-menu">
+      <aside class="menu">
+        <p class="menu-label">General</p>
+        <ul class="menu-list">
+          <li>
+            <a
+              [ngClass]="{ 'is-active': activeTab === 'PERSONAL_INFO' }"
+              (click)="changeTab('PERSONAL_INFO')"
+              >Personal Info</a
+            >
+          </li>
+          <li>
+            <a
+              [ngClass]="{ 'is-active': activeTab === 'SETTINGS' }"
+              (click)="changeTab('SETTINGS')"
+              >Settings</a
+            >
+          </li>
+
+          <li>
+            <a
+              [ngClass]="{ 'is-active': activeTab === 'REVIEW' }"
+              (click)="changeTab('REVIEW')"
+              >Subscription</a
+            >
+          </li>
+
+        </ul>
+        <p class="menu-label">Find Reservations</p>
+        <ul class="menu-list">
+          <li>
+            <a
+              [ngClass]="{ 'is-active': activeTab === 'ACCOMODATION_RESERVATIONS' }"
+              (click)="changeTab('ACCOMODATION_RESERVATIONS')"
+              >Accommodation Reservations</a
+            >
+          </li>
+          <li>
+            <a
+              [ngClass]="{ 'is-active': activeTab === 'UPCOMING' }"
+              (click)="changeTab('UPCOMING')"
+              >Upcoming Reservations</a
+            >
+          </li>
+          <li>
+            <a
+              [ngClass]="{ 'is-active': activeTab === 'PAST_ACCOMMODATION' }"
+              (click)="changeTab('PAST_ACCOMMODATION')"
+              >Past Reservations</a
+            >
+          </li>
+        </ul>
+        <p class="menu-label">Transactions</p>
+        <ul class="menu-list">
+
+          <li>
+            <a
+              [ngClass]="{ 'is-active': activeTab === 'COMPLAINT' }"
+              (click)="changeTab('COMPLAINT')"
+              >My Transactions</a
+            >
+          </li>
+          <li>
+            <a
+              [ngClass]="{ 'is-active': activeTab === 'REVIEW_COMPLAINT' }"
+              (click)="changeTab('REVIEW_COMPLAINT')"
+              >Transactions In Progress</a
+            >
+          </li>
+          <li>
+            <a
+              [ngClass]="{ 'is-active': activeTab === 'DELETE_ACCOUNT' }"
+              (click)="changeTab('DELETE_ACCOUNT')"
+              >Delete my Account</a
+            >
+          </li>
+        </ul>
+      </aside>
+    </div>
+
+    <div class="column db-content">
+      <div class="hero is-primary">
+        <div class="hero-body">
+          <p class="title">Welcome, {{ userPersonalInfo.firstName }} {{ userPersonalInfo.lastName }}</p>
+          <p class="subtitle">Host Dashboard</p>
+        </div>
+      </div>
+      <div class="m-5">
+        <div *ngIf="activeTab == 'PERSONAL_INFO'">
+          <app-personal-info [client]="userPersonalInfo"></app-personal-info>
+        </div>
+        <div *ngIf="activeTab == 'SETTINGS'">
+          <app-settings [userId]="userPersonalInfo.id"></app-settings>
+        </div>
+        <div *ngIf="activeTab == 'ACCOMODATION_RESERVATIONS'">
+          <client-guest-reservations
+
+          ></client-guest-reservations>
+        </div>
+        <!-- <div *ngIf="activeTab == 'SUBSCRIPTIONS'">
+          <app-subscriptions [user]="client"></app-subscriptions>
+        </div>
+
+        <div *ngIf="activeTab == 'SPECIAL_OFFERS'">
+          <client-special-offers [user]="client"></client-special-offers>
+        </div>
+        <div *ngIf="activeTab == 'UPCOMING'">
+          <client-upcoming-reservations
+            [user]="client"
+          ></client-upcoming-reservations>
+        </div>
+        <div *ngIf="activeTab == 'PAST_COTTAGE'">
+
+        </div>
+        <div *ngIf="activeTab == 'REVIEW'">
+          <guest-reviews [user]="userPersonalInfo"></guest-reviews>
+        </div> -->
+
+
+      </div>
+    </div>
+  </div>
+

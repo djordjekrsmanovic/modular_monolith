@@ -3,15 +3,15 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { server } from '../app-global';
 import { Guest } from '../model/guest';
-import { LoginService } from './login.service';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ClientService {
+export class GuestService {
   url = server + 'api/client';
 
-  constructor(private _http: HttpClient, private loginService: LoginService) {}
+  constructor(private _http: HttpClient, private loginService: UserService) {}
 
   getClient(id: number) {
     const url = this.url + '/' + id;
@@ -19,7 +19,7 @@ export class ClientService {
     return this._http.get<Guest>(url, { headers: headers });
   }
 
-  getCurrentClient() {
+  getCurrentUserInfo() {
     const id = this.loginService.getCurrentUser().id;
     const url = this.url + '/' + id;
     const headers = this.loginService.getHeaders();

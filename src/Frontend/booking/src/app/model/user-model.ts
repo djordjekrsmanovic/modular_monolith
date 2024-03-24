@@ -23,7 +23,7 @@ export class ActiveUser {
     throw new Error('Method not implemented.');
   }
   constructor(
-    public id: number = -1,
+    public id: string = '',
     public jwt: string = '',
     public role: string = 'LOGGED_OUT'
   ) {}

@@ -7,7 +7,7 @@ import { Guest } from 'src/app/model/guest';
   styleUrls: ['./guest-reservations.component.css'],
 })
 export class GuestReservationsComponent implements OnInit {
-  @Input() user: Guest = new Guest();
+
 
   constructor() {}
 

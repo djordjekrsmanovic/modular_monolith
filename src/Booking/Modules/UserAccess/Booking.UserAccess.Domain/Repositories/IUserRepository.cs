@@ -6,6 +6,7 @@ namespace Booking.UserAccess.Domain.Repositories
     {
         void Add(User user);
         Task<User> GetByEmailAsync(string email, CancellationToken cancellationToken = default);
+        Task<User> GetByIdAsync(Guid id, CancellationToken cancellationToken);
         Task<bool> IsEmailUniqueAsync(string email, CancellationToken cancellationToken = default);
     }
 }

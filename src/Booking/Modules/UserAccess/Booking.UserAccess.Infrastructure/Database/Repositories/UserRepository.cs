@@ -23,6 +23,7 @@ namespace Booking.UserAccess.Infrastructure.Database.Repositories
         {
             return await _context.Set<User>().
                 Where(user => user.Email.Equals(username))
+                .Include(user => user.Roles)
                 .FirstOrDefaultAsync(cancellationToken);
         }
 

@@ -3,6 +3,7 @@ using Booking.BuildingBlocks.Application.EventBus;
 using Booking.BuildingBlocks.Infrastructure.Emails;
 using Booking.BuildingBlocks.Infrastructure.EventBus;
 using Booking.UserAccess.Application.Abstractions;
+using Booking.UserAccess.Application.Implementations;
 using Booking.UserAccess.Domain;
 using Booking.UserAccess.Domain.Repositories;
 using Booking.UserAccess.Infrastructure.Authentication;
@@ -34,6 +35,7 @@ namespace Booking.UserAccess.Infrastructure
         {
             services.AddScoped<IEmailSender, EmailSender>();
             services.AddScoped<IUserAccessEmailSender, UserAccessEmailSender>();
+            services.AddScoped<ICryptograpyProvider, CryptograpyProvider>();
             services.AddTransient<IEventBus, EventBus>();
         }
 

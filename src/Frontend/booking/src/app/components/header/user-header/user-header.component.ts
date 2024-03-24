@@ -20,20 +20,11 @@ export class UserHeaderComponent implements OnInit {
     if (currentUser.role != 'LOGGED_OUT' && currentUser != null) {
       this.user = currentUser;
       switch (this.user.role) {
-        case 'REGISTERED_CLIENT':
-          this.db_url = '/client-db';
+        case 'Guest':
+          this.db_url = '/guest-db';
           break;
-        case 'COTTAGE_OWNER':
-          this.db_url = '/cottage-owner-db';
-          break;
-        case 'BOAT_OWNER':
-          this.db_url = '/boat-owner-db';
-          break;
-        case 'FISHING_INSTRUCTOR':
-          this.db_url = '/instructor-db';
-          break;
-        case 'ADMINISTRATOR':
-          this.db_url = '/admin-db';
+        case 'Host':
+          this.db_url = '/host-db';
           break;
       }
     }

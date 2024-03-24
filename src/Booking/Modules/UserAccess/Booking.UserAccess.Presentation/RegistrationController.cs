@@ -4,7 +4,7 @@ using Booking.BuildingBlocks.Presentation;
 using Booking.UserAccess.Application.Features.Registration.ConfirmRegistrationRequest;
 using Booking.UserAccess.Application.Features.Registration.SubmitRegistrationRequest;
 using Booking.UserAccess.Domain.Enums;
-using Booking.UserAccess.Presentation.Contracts;
+using Booking.UserAccess.Presentation.Contracts.Request;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

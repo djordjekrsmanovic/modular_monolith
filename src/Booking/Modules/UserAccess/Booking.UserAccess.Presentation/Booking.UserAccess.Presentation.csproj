@@ -11,4 +11,8 @@
     <ProjectReference Include="..\Booking.UserAccess.Application\Booking.UserAccess.Application.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Contracts\Response\" />
+  </ItemGroup>
+
 </Project>

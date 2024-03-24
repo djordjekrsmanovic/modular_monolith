@@ -24,9 +24,7 @@ export class ActiveUser {
   }
   constructor(
     public id: number = -1,
-    public name: string = '',
     public jwt: string = '',
-    public role: string = 'LOGGED_OUT',
-    public email: string = ''
+    public role: string = 'LOGGED_OUT'
   ) {}
 }

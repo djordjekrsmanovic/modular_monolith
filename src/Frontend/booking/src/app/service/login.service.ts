@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class LoginService {
-  url = server + 'login';
+  url = `${server}api/users/login`;
   private user = new ActiveUser();
 
   constructor(private _http: HttpClient, private route: Router) {}

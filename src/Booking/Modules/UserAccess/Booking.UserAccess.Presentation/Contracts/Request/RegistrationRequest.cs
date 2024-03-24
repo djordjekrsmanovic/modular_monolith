@@ -1,4 +1,4 @@
-﻿namespace Booking.UserAccess.Presentation.Contracts
+﻿namespace Booking.UserAccess.Presentation.Contracts.Request
 {
     public record RegistrationRequest(
         string Email,

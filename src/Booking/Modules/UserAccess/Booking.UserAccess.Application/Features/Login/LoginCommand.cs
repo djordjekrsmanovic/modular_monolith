@@ -3,7 +3,7 @@
 
 namespace Booking.UserAccess.Application.Features.Login
 {
-    public record LoginCommand(string username, string password) : ICommand<string>
+    public record LoginCommand(string username, string password) : ICommand<LoginResponse>
     {
     }
 }

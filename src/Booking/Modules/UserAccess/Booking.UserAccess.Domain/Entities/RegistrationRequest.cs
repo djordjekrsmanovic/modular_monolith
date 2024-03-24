@@ -92,7 +92,7 @@ namespace Booking.UserAccess.Domain.Entities
             string phone,
             Address address)
         {
-            RegistrationRequest request = new RegistrationRequest(email, firstName, lastName, password, type, phone, address);
+            RegistrationRequest request = new RegistrationRequest(email, password, firstName, lastName, type, phone, address);
 
             request.RaiseDomainEvent(new RegistrationRequestSubmittedDomainEvent(email, request.ConfirmationCode));
 

@@ -7,7 +7,7 @@ import { RegisterComponent } from './components/pages/register/register.componen
 import { ThankYouRegistrationComponent } from './components/pages/register/thank-you-registration/thank-you-registration.component';
 import { GuestDashboardComponent } from './components/guest/guest-dashboard/guest-dashboard.component';
 import { AccomodationOwnerDashboardComponent } from './components/accomodations/accomodation-owner-dashboard/accomodation-owner-dashboard.component';
-import { BrowseCottagesComponent } from './components/pages/browse-cottages/browse-cottages.component';
+import { BrowseAccommodationsComponent } from './components/pages/browse-accommodations/browse-accommodations.component';
 import { ReviewsPageComponent } from './components/pages/reviews-page/reviews-page.component';
 import { AccomodationPageComponent } from './components/accomodations/accomodation-page/accomodation-page.component';
 import { HostDashboardComponent } from './components/host/host-dashboard/host-dashboard.component';
@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'host-db', component: HostDashboardComponent },
   { path: 'thank-you-registration', component: ThankYouRegistrationComponent },
-  { path: 'accomodations', component: BrowseCottagesComponent },
+  { path: 'accomodations', component: BrowseAccommodationsComponent },
   { path: 'reviews', component: ReviewsPageComponent },
   { path: 'guest-db', component: GuestDashboardComponent },
   { path: 'accomodation-owner-db', component: AccomodationOwnerDashboardComponent },

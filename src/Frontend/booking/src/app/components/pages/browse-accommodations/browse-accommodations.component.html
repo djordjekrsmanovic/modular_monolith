@@ -1,0 +1,102 @@
+<div class="box p-6">
+  <div class="columns mb-4">
+    <div class="column">
+      <div class="field">
+        <div class="field-label is-normal has-text-centered">
+          <label class="label">Where to?</label>
+        </div>
+        <p class="control has-icons-left">
+          <span class="select is-rounded">
+            <select class="select" [(ngModel)]="searchFilter.country">
+              <option selected value="">All Countries</option>
+
+              <option *ngFor="let country of countries" [value]="country.name.common">
+                {{ country.name.common }}
+              </option>
+            </select>
+          </span>
+          <span class="icon is-small is-left">
+            <i class="fa fa-globe"></i>
+          </span>
+        </p>
+      </div>
+    </div>
+
+    <div class="column">
+      <div class="field">
+        <div class="field-label is-normal has-text-centered">
+          <label class="label">Start date:</label>
+        </div>
+        <div class="field-body control has-icons-left has-icons-right">
+          <input
+            id="startInput"
+            class="input is-rounded"
+            type="datetime-local"
+            [(ngModel)]="searchFilter.startDate"
+          />
+          <span class="icon is-small is-left">
+            <i class="fa fa-calendar"></i>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="column">
+      <div class="field">
+        <div class="field-label is-normal has-text-centered">
+          <label class="label">End date:</label>
+        </div>
+        <div class="field-body control has-icons-left has-icons-right">
+          <input
+            id="endInput"
+            class="input is-rounded"
+            type="datetime-local"
+            [(ngModel)]="searchFilter.endDate"
+          />
+          <span class="icon is-small is-left">
+            <i class="fa fa-calendar"></i>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="column">
+      <div class="field">
+        <div class="field-label is-normal has-text-centered">
+          <label class="label">People:</label>
+        </div>
+        <div class="field-body control has-icons-left has-icons-right">
+          <input
+            class="input is-rounded"
+            type="number"
+            value="2"
+            min="1"
+            max="35"
+            [(ngModel)]="searchFilter.people"
+          />
+          <span class="icon is-small is-left">
+            <i class="fa fa-user"></i>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <search-field (doSearch)="search($event)"></search-field>
+
+  <hr />
+      <div *ngFor="let accommodation of accommodations">
+        <browse-card
+          [name]="accommodation.name"
+          [description]="accommodation.description"
+          [address]="accommodation.address"
+          [ownerName]="accommodation.ownerName"
+          [utilities]="accommodation.utilities"
+          [price]="accommodation.price"
+          [rating]="accommodation.rating"
+          [id]="accommodation.id"
+          type="accommodation"
+        ></browse-card>
+      </div>
+
+</div>

@@ -1,5 +1,5 @@
-﻿using Booking.Accomodation.Application;
-using Booking.Booking.Application;
+﻿using Booking.Accomodation.Application.Features.Guests;
+using Booking.Accomodation.Application.Features.Hosts;
 using Booking.BuildingBlocks.Infrastructure.Extensions;
 using MassTransit;
 

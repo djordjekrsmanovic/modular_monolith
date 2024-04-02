@@ -17,7 +17,7 @@ namespace Booking.Booking.Infrastructure
         (this IServiceCollection services, IConfiguration configuration)
         {
             string connectionString = "Server=NHL2131W;Database=Booking;Trusted_Connection=True;TrustServerCertificate=True;";
-            //services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies([Application.AssemblyReference.Assembly]));
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies([Application.AssemblyReference.Assembly]));
 
             SetUpServices(services);
             SetUpDatabase(services, connectionString);
@@ -30,15 +30,17 @@ namespace Booking.Booking.Infrastructure
 
             services.AddTransient<IEventBus, EventBus>();
 
+
         }
 
         private static void SetUpDatabase(IServiceCollection services, string connectionString)
         {
-            Console.Write(connectionString);
+
             services.AddDbContext<AccomodationDbContext>(options =>
                 options.UseSqlServer(connectionString, x => x.MigrationsHistoryTable("__MigrationHistory", "accomodation")), ServiceLifetime.Scoped);
             services.AddScoped<IHostRepository, HostRepository>();
             services.AddScoped<IGuestRepository, GuestRepository>();
+            services.AddScoped<IAccommodationRepository, AccommodationRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
         }
     }

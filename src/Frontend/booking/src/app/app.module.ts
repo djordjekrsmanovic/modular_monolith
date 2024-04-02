@@ -47,6 +47,7 @@ import { MapComponent } from './components/map/map.component';
 import { RoomComponent } from './components/accomodations/room/room.component';
 import { UpcomingReservationsComponent } from './components/guest/guest-dashboard/upcoming-reservations/upcoming-reservations.component';
 import { HostDashboardComponent } from './components/host/host-dashboard/host-dashboard.component';
+import { AddAccommodationComponent } from './components/host/add-accommodation/add-accommodation.component';
 
 @NgModule({
   declarations: [
@@ -93,6 +94,7 @@ import { HostDashboardComponent } from './components/host/host-dashboard/host-da
     RoomComponent,
     UpcomingReservationsComponent,
     HostDashboardComponent,
+    AddAccommodationComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],

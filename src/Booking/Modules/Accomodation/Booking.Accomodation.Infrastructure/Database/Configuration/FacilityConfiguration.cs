@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Booking.Accomodation.Infrastructure.Database.Configuration
 {
-    internal class FacilityConfiguration : IEntityTypeConfiguration<Facility>
+    internal class FacilityConfiguration : IEntityTypeConfiguration<AdditionalService>
     {
-        public void Configure(EntityTypeBuilder<Facility> builder)
+        public void Configure(EntityTypeBuilder<AdditionalService> builder)
         {
             builder.HasKey(e => e.Id);
 

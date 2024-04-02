@@ -26,6 +26,14 @@
             >
           </li>
 
+          <li>
+            <a
+              [ngClass]="{ 'is-active': activeTab === 'ADD ACCOMMODATION' }"
+              (click)="changeTab('ADD ACCOMODATION')"
+              >Subscription</a
+            >
+          </li>
+
         </ul>
         <p class="menu-label">Find Reservations</p>
         <ul class="menu-list">
@@ -98,13 +106,15 @@
 
           ></client-guest-reservations>
         </div>
+
+        <div *ngIf="activeTab == 'ADD ACCOMMODATION'">
+          <app-add-accommodation></app-add-accommodation>
+        </div>
         <!-- <div *ngIf="activeTab == 'SUBSCRIPTIONS'">
           <app-subscriptions [user]="client"></app-subscriptions>
         </div>
 
-        <div *ngIf="activeTab == 'SPECIAL_OFFERS'">
-          <client-special-offers [user]="client"></client-special-offers>
-        </div>
+
         <div *ngIf="activeTab == 'UPCOMING'">
           <client-upcoming-reservations
             [user]="client"

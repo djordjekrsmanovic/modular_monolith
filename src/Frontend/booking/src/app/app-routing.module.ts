@@ -11,6 +11,7 @@ import { BrowseCottagesComponent } from './components/pages/browse-cottages/brow
 import { ReviewsPageComponent } from './components/pages/reviews-page/reviews-page.component';
 import { AccomodationPageComponent } from './components/accomodations/accomodation-page/accomodation-page.component';
 import { HostDashboardComponent } from './components/host/host-dashboard/host-dashboard.component';
+import { AddAccommodationComponent } from './components/host/add-accommodation/add-accommodation.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'guest-db', component: GuestDashboardComponent },
   { path: 'accomodation-owner-db', component: AccomodationOwnerDashboardComponent },
   { path: 'accomodation/:id', component: AccomodationPageComponent },
+  { path: 'add-accommodation',component: AddAccommodationComponent},
   { path: '', component: HomeComponent },
   { path: '**', component: NotFoundComponent },
 

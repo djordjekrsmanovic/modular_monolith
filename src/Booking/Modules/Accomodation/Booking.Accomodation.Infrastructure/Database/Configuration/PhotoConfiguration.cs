@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Booking.Accomodation.Infrastructure.Database.Configuration
 {
-    internal class PhotoConfiguration : IEntityTypeConfiguration<Photo>
+    internal class PhotoConfiguration : IEntityTypeConfiguration<Image>
     {
-        public void Configure(EntityTypeBuilder<Photo> builder)
+        public void Configure(EntityTypeBuilder<Image> builder)
         {
             builder.HasKey(x => x.Id);
 

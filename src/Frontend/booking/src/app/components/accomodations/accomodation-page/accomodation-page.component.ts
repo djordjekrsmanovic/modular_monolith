@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Accomodation } from 'src/app/model/accomodation';
-import { AccomodationService } from 'src/app/service/accomodation.service';
+import { AccommodationService } from 'src/app/service/accomodation.service';
 
 @Component({
   selector: 'app-accomodation-page',
@@ -14,7 +14,7 @@ export class AccomodationPageComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private cottageService: AccomodationService
+    private cottageService: AccommodationService
   ) {}
 
   ngOnInit(): void {

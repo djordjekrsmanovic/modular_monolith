@@ -5,7 +5,7 @@ using Booking.BuildingBlocks.Application.EventBus;
 using Booking.UserAccess.IntegrationEvents.Accomodation;
 using Booking.UserAccess.IntegrationEvents.Commerce;
 
-namespace Booking.Booking.Application
+namespace Booking.Accomodation.Application.Features.Hosts
 {
     public class HostRegisteredIntegrationEventHandler : IntegrationEventHandler<HostRegisteredIntegrationEvent>
     {

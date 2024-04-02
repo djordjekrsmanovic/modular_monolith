@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Accomodation } from 'src/app/model/accomodation';
-import { AccomodationService } from 'src/app/service/accomodation.service';
+import { AccommodationService } from 'src/app/service/accomodation.service';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +12,7 @@ export class HomeComponent implements OnInit {
   cottages: Accomodation[] = [];
 
   constructor(
-    private cottageService: AccomodationService
+    private cottageService: AccommodationService
   ) {}
 
   ngOnInit(): void {

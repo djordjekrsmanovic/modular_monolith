@@ -6,4 +6,13 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="12.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\BuildingBlocks\Booking.BuildingBlocks.Presentation\Booking.BuildingBlocks.Presentation.csproj" />
+    <ProjectReference Include="..\Booking.Accomodation.Application\Booking.Accomodation.Application.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -41,7 +41,7 @@ namespace Booking.Booking.Domain.ValueObjects
             return new Money(Currency, Ammount - other.Ammount);
         }
 
-        public static Money CreateMoney(Currency currency, Double amount)
+        public static Result<Money> Create(Currency currency, Double amount)
         {
             return new Money(currency, amount);
         }

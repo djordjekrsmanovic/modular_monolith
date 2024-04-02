@@ -4,13 +4,13 @@ namespace Booking.Booking.Domain.Entities
 {
     public class Host : Entity<Guid>
     {
-        public List<Accomodation> Accomodations { get; private set; }
+        public List<Accommodation> Accomodations { get; private set; }
 
         private Host() { }
-        private Host(Guid Id)
+        private Host(Guid id)
         {
-            Id = Id;
-            Accomodations = new List<Accomodation>();
+            Id = id;
+            Accomodations = new List<Accommodation>();
 
         }
 

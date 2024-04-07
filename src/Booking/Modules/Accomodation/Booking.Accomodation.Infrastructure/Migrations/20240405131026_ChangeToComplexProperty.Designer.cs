@@ -5,6 +5,7 @@ using Booking.Booking.Infrastructure.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -12,9 +13,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Booking.Accomodation.Infrastructure.Migrations
 {
     [DbContext(typeof(AccomodationDbContext))]
-    partial class AccomodationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240405131026_ChangeToComplexProperty")]
+    partial class ChangeToComplexProperty
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -124,9 +127,6 @@ namespace Booking.Accomodation.Infrastructure.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("Raiting")
-                        .HasColumnType("float");
 
                     b.Property<bool>("isBlocked")
                         .HasColumnType("bit");

@@ -34,7 +34,7 @@ import { SubscriptionComponentComponent } from './components/guest/subscription-
 import { ReservationCardComponent } from './components/guest/reservation-card/reservation-card.component';
 import { SearchFieldComponent } from './components/search-field/search-field.component';
 import { ReservationSearchComponent } from './components/guest/reservation-search/reservation-search.component';
-import { BrowseCottagesComponent } from './components/pages/browse-cottages/browse-cottages.component';
+import { BrowseAccommodationsComponent } from './components/pages/browse-accommodations/browse-accommodations.component';
 import { SpecialOfferCardComponent } from './components/special-offer-card/special-offer-card.component';
 import { ReviewsPageComponent } from './components/pages/reviews-page/reviews-page.component';
 import { BrowseCardComponent } from './components/browse-card/browse-card.component';
@@ -81,7 +81,7 @@ import { AddAccommodationComponent } from './components/host/add-accommodation/a
     ReservationCardComponent,
     SearchFieldComponent,
     ReservationSearchComponent,
-    BrowseCottagesComponent,
+    BrowseAccommodationsComponent,
     SpecialOfferCardComponent,
     ReviewsPageComponent,
     BrowseCardComponent,

@@ -1,4 +1,6 @@
 ﻿using Booking.Accomodation.Application.Features.AccommodationNS.AddAccommodation;
+using Booking.Accomodation.Application.Features.Accommodations.GetAccommodation;
+using Booking.Accomodation.Application.Features.Accommodations.GetAdditionalServices;
 using Booking.Accomodation.Presentation.Contracts;
 using Booking.Booking.Domain.Entities;
 using Booking.BuildingBlocks.Domain;
@@ -50,6 +52,37 @@ namespace Booking.Booking.Presentation
 
             return Ok(response.Value);
         }
+
+        [HttpGet("")]
+        public async Task<IActionResult> Get([FromQuery] GetAccommodationsQuery query, CancellationToken cancellationToken)
+        {
+
+            var response = await Sender.Send(query, cancellationToken);
+
+            if (response.IsFailure)
+            {
+                return HandleFailure(response);
+            }
+            return Ok(response.Value);
+
+        }
+
+        [HttpGet("additional-services")]
+        public async Task<IActionResult> GetAdditionalServices(CancellationToken cancellationToken)
+        {
+
+            var response = await Sender.Send(new GetAdditionalServicesQuery(), cancellationToken);
+
+            if (response.IsFailure)
+            {
+                return HandleFailure(response);
+            }
+            return Ok(response.Value);
+
+        }
+
+
+
 
     }
 }

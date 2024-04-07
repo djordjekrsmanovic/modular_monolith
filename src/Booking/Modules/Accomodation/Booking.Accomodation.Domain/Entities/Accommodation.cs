@@ -30,10 +30,12 @@ namespace Booking.Booking.Domain.Entities
 
         public Guid HostId { get; set; }
 
+        public Double Raiting { get; set; }
+
         private Accommodation() { }
 
         private Accommodation(string name, string description, Address address, GuestCapacity capacity,
-            Money pricePerGuest, List<Image> images, Guid hostId)
+            Money pricePerGuest, List<Image> images, Guid hostId, List<AdditionalService> additionalServices)
         {
             Id = Guid.NewGuid();
             Name = name;
@@ -43,13 +45,34 @@ namespace Booking.Booking.Domain.Entities
             PricePerGuest = pricePerGuest;
             Images = images;
             HostId = hostId;
-
+            AdditionalServices = additionalServices;
+            Raiting = 0;
         }
 
         public static Result<Accommodation> Create(Guid hostId, string name, string description,
-            Money pricePerGuest, GuestCapacity capacity, List<Image> images, Address address)
+            Money pricePerGuest, GuestCapacity capacity, List<Image> images, Address address, List<AdditionalService> additionalServices)
         {
-            return new Accommodation(name, description, address, capacity, pricePerGuest, images, hostId);
+            Accommodation accommodation = new Accommodation(name, description, address, capacity, pricePerGuest, images, hostId, additionalServices);
+            AvailabilityPeriod availabilityPeriod = AvailabilityPeriod.Create(DateTime.UtcNow, DateTime.UtcNow.AddYears(1), pricePerGuest, accommodation.Id).Value;
+            accommodation.AddAvailabilityPeriod(availabilityPeriod);
+            return accommodation;
+        }
+
+        public bool IsAvailableForBooking(DateTime startDate, DateTime endDate)
+        {
+            bool currentReservationNotExist = true;
+            bool availibilityPeriodsExists = AvailabilityPeriods.Where(x => x.Slot.isInRange(startDate, endDate)).ToList().Count != 0;
+            if (Reservations.Count != 0)
+            {
+                currentReservationNotExist = Reservations.Where(x => !x.DateTimeSlot.isInRange(startDate, endDate)).ToList().Count == 0;
+            }
+
+            return availibilityPeriodsExists && currentReservationNotExist;
+        }
+
+        public void AddAvailabilityPeriod(AvailabilityPeriod period)
+        {
+            AvailabilityPeriods.Add(period);
         }
     }
 }

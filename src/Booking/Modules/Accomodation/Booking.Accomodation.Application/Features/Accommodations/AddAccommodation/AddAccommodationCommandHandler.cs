@@ -45,7 +45,7 @@ namespace Booking.Accomodation.Application.Features.AccommodationNS.AddAccommoda
             }
 
 
-            Result<Accommodation> accommodation = Accommodation.Create(request.hostId, request.Name, request.Description, pricePerGuestResponse.Value, guestCapacityResponse.Value, request.Images, addressResponse.Value);
+            Result<Accommodation> accommodation = Accommodation.Create(request.hostId, request.Name, request.Description, pricePerGuestResponse.Value, guestCapacityResponse.Value, request.Images, addressResponse.Value, request.AdditionalServices);
 
             if (accommodation.IsFailure)
             {

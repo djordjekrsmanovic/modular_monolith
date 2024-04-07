@@ -1,13 +1,17 @@
 ﻿using Booking.Booking.Domain.Enums;
 using Booking.BuildingBlocks.Domain;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Booking.Booking.Domain.ValueObjects
 {
+    [ComplexType]
     public class Money : ValueObject
     {
-        public Currency Currency { get; }
+        public Currency Currency { get; private set; }
 
-        public Double Ammount { get; }
+        public Double Ammount { get; private set; }
+
+        public static explicit operator Double(Money money) => money.Ammount;
 
         public override IEnumerable<object> GetAtomicValues()
         {
@@ -44,6 +48,11 @@ namespace Booking.Booking.Domain.ValueObjects
         public static Result<Money> Create(Currency currency, Double amount)
         {
             return new Money(currency, amount);
+        }
+
+        public string ConvertToString()
+        {
+            return $"{Ammount} {Currency.ToString()}";
         }
     }
 }

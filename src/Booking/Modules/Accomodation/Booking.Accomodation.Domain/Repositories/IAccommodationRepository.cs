@@ -5,5 +5,11 @@ namespace Booking.Accomodation.Domain.Repositories
     public interface IAccommodationRepository
     {
         Task Add(Accommodation accommodation);
+
+        Task<List<Accommodation>> Get(string? SearchTerm, string? SortColumn, string? SortOrder, int Page,
+        int PageSize,
+        DateTime StartDate,
+        DateTime EndDate,
+        string? Country);
     }
 }

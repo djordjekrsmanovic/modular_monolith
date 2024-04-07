@@ -1,3 +1,4 @@
+import { AvailableTimePeriod } from './available-time-period';
 import { Utility } from './utility-model';
 
 export class Accomodation {
@@ -13,7 +14,8 @@ export class Accomodation {
     public utilities: Utility[] = [],
     public rooms: Room[] = [],
     public ownerName: string = '',
-    public roomOverview: string = ''
+    public roomOverview: string = '',
+    public availableTimePeriods: AvailableTimePeriod[] = []
   ) {}
 }
 

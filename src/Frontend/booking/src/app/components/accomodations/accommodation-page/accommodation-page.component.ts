@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Accomodation } from 'src/app/model/accomodation';
+import { AvailableTimePeriod } from 'src/app/model/available-time-period';
+import { Reservation } from 'src/app/model/reservation';
 import { AccommodationService } from 'src/app/service/accomodation.service';
 import { GuestService } from 'src/app/service/guest.service';
 import { UserService } from 'src/app/service/user.service';
@@ -14,8 +16,8 @@ export class AccommodationPageComponent implements OnInit {
 
   id: number = 0;
   cottage: Accomodation = new Accomodation();
-  //reservations: ReservationModel[] = [];
-  reservationsLoaded: boolean = false;
+  reservations: Reservation[] = [];
+  reservationsLoaded: boolean = true;
   image: any = 'assets/images/placeholder.jpg';
   //reviews: ReviewModel[] = [];
   isSubscribed: boolean = false;
@@ -31,7 +33,7 @@ export class AccommodationPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = +this.route.snapshot.paramMap.get('id')!;
-
+    this.cottage.availableTimePeriods.push(new AvailableTimePeriod(new Date('01-01-2024'),new Date('01-01-2025'),12))
 
 
 

@@ -49,7 +49,13 @@ import { UpcomingReservationsComponent } from './components/guest/guest-dashboar
 import { HostDashboardComponent } from './components/host/host-dashboard/host-dashboard.component';
 import { AddAccommodationComponent } from './components/host/add-accommodation/add-accommodation.component';
 import { AccommodationPageComponent } from './components/accomodations/accommodation-page/accommodation-page.component';
-
+import { CalendarComponent } from './components/calendar/calendar.component';
+import { CalendarHeaderComponent } from './components/calendar/calendar-header/calendar-header.component';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { CommonModule } from '@angular/common';
+import { FlatpickrModule } from 'angularx-flatpickr';
 
 @NgModule({
   declarations: [
@@ -97,9 +103,17 @@ import { AccommodationPageComponent } from './components/accomodations/accommoda
     UpcomingReservationsComponent,
     HostDashboardComponent,
     AddAccommodationComponent,
-    AccommodationPageComponent
+    AccommodationPageComponent,
+    CalendarComponent,
+    CalendarHeaderComponent
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule,NgbModalModule,
+    FlatpickrModule.forRoot(),
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    }),
+    CommonModule],
   providers: [],
   bootstrap: [AppComponent],
 })

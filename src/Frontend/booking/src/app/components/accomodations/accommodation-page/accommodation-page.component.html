@@ -1,0 +1,91 @@
+<div class="body-wrapper">
+    <div class="container content my-6">
+      <h1>{{ cottage.address }}</h1>
+      <hr />
+      <div class="columns">
+        <div class="figure column max-height-600" *ngIf="cottage.id != 0">
+          <!-- <image-carousel [imageUrls]="cottage.imageUrls"></image-carousel> -->
+        </div>
+
+        <div class="column">
+          <h2>{{ cottage.name }}</h2>
+          <hr />
+          <div><strong>Owner: </strong> {{ cottage.ownerName }}</div>
+
+          <hr />
+          <div class="columns is-vcentered">
+            <div class="column">
+              <div><strong>Guest Limit: </strong> {{ cottage.guestLimit }}</div>
+              <div>
+                <span class="tag is-large mt-5 rating"
+                  >{{ cottage.rating }} <i class="ml-1 fa fa-star"></i
+                ></span>
+              </div>
+              <gap height="20"></gap>
+              <div>
+                <h4>Price per day: ${{ cottage.price }}</h4>
+              </div>
+            </div>
+            <div class="column">
+              <div class="mb-5">
+
+              </div>
+              <div>
+                <button
+                  class="button is-success is-large"
+                  (click)="bookNowButton()"
+                >
+                  Book now
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div>
+        <h2>Description:</h2>
+        <p>
+          {{ cottage.description }}
+        </p>
+      </div>
+      <hr />
+      <div class="columns">
+
+        <div class="column">
+          <h3>Additional Services</h3>
+
+        </div>
+
+      </div>
+      <hr />
+      <div class="columns">
+        <div class="column" *ngIf="cottage.address">
+          <app-map [address]="cottage.address"></app-map>
+        </div>
+      </div>
+      <hr />
+      <div>
+        <!-- <entity-calendar
+          *ngIf="cottage.id != 0 && reservationsLoaded"
+          [availableDates]="cottage.availableTimePeriods"
+          [reservationDates]="reservations"
+        ></entity-calendar> -->
+      </div>
+
+      <hr />
+      <h3>Reviews</h3>
+      <!-- <div *ngIf="reviews.length > 0">
+        <div *ngFor="let review of this.reviews">
+          <review-card [review]="review"></review-card>
+        </div>
+      </div>
+      <div *ngIf="reviews.length == 0">
+        <p>No reviews to show.</p>
+      </div> -->
+
+
+    </div>
+  </div>
+
+  <app-footer></app-footer>

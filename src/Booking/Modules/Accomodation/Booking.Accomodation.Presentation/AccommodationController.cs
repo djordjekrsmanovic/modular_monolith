@@ -42,7 +42,7 @@ namespace Booking.Booking.Presentation
                 .Select(service => AdditionalService.Create(service.Id, service.Name)).ToList();
 
             AddAccommodationCommand command = new AddAccommodationCommand(request.Name, request.Description, request.Street, request.City,
-                request.Country, request.MinGuest, request.MaxGuest, request.PricePerGuest, additionalServices, request.hostId, images);
+                request.Country, request.MinGuest, request.MaxGuest, request.PricePerGuest, additionalServices, request.hostId, images, request.ReservationApprovalRequired);
 
             Result<Guid> response = await Sender.Send(command, cancellationToken);
             if (response.IsFailure)

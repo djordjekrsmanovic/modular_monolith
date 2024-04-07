@@ -11,6 +11,7 @@ namespace Booking.Accomodation.Application.Features.Accommodations.GetAccommodat
     DateTime StartDate,
     DateTime EndDate,
     string? Country,
+    int GuestNumber,
     List<string>? AdditionalServices
     ) : PagedQuery(SearchTerm, SortColumn, SortOrder, Page, PageSize), IQuery<List<AccommodationResponse>>
     {

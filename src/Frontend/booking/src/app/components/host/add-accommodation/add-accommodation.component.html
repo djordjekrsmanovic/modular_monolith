@@ -77,7 +77,6 @@
                   </option>
                 </select>
               </div>
-
             </div>
           </div>
         </div>
@@ -167,14 +166,15 @@
       </div>
 
       <gap height="30"></gap>
+      <label class="checkbox">
+        <input type="checkbox" [checked]="addAccommodation.ReservationApprovalRequired"
+        (change)="addAccommodation.ReservationApprovalRequired = !addAccommodation.ReservationApprovalRequired" />
+        Required approval for reservation
+      </label>
+      <gap height="30"></gap>
       <div class="field">
         <div class="control">
           <button class="button is-link" (click)="submit()">Submit</button>
-          <p
-            class="help is-danger mt-5"
-          >
-            Please fill in all the form fields!
-          </p>
         </div>
       </div>
     </div>

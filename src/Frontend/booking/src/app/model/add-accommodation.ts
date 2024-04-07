@@ -13,6 +13,7 @@ export class AddAccommodation {
       public pricePerGuest: number = 0,
       public additionalServices: AdditionalService[] = [],
       public hostId: string = '',
-      public images: Image[] = []  //url encoded images with name and extension
+      public images: Image[] = [], //url encoded images with name and extension
+      public ReservationApprovalRequired:boolean=false
     ) {}
   }

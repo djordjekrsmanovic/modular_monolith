@@ -54,6 +54,9 @@ export class AccommodationService {
     if (searchFilter.tags.length > 0) {
         searchFilter.tags.forEach(tag => queryParams.push(`AdditionalServices=${encodeURIComponent(tag)}`));
     }
+    if (searchFilter.people>0) {
+      queryParams.push(`GuestNumber=${searchFilter.people}`);
+    }
     // Assuming Page and PageSize are fixed
     queryParams.push('Page=1');
     queryParams.push('PageSize=10');

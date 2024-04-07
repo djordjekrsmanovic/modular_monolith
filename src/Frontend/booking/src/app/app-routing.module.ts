@@ -9,9 +9,9 @@ import { GuestDashboardComponent } from './components/guest/guest-dashboard/gues
 import { AccomodationOwnerDashboardComponent } from './components/accomodations/accomodation-owner-dashboard/accomodation-owner-dashboard.component';
 import { BrowseAccommodationsComponent } from './components/pages/browse-accommodations/browse-accommodations.component';
 import { ReviewsPageComponent } from './components/pages/reviews-page/reviews-page.component';
-import { AccomodationPageComponent } from './components/accomodations/accomodation-page/accomodation-page.component';
 import { HostDashboardComponent } from './components/host/host-dashboard/host-dashboard.component';
 import { AddAccommodationComponent } from './components/host/add-accommodation/add-accommodation.component';
+import { AccommodationPageComponent } from './components/accomodations/accommodation-page/accommodation-page.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -22,7 +22,7 @@ const routes: Routes = [
   { path: 'reviews', component: ReviewsPageComponent },
   { path: 'guest-db', component: GuestDashboardComponent },
   { path: 'accomodation-owner-db', component: AccomodationOwnerDashboardComponent },
-  { path: 'accomodation/:id', component: AccomodationPageComponent },
+  { path: 'accomodation/:id', component: AccommodationPageComponent },
   { path: 'add-accommodation',component: AddAccommodationComponent},
   { path: '', component: HomeComponent },
   { path: '**', component: NotFoundComponent },

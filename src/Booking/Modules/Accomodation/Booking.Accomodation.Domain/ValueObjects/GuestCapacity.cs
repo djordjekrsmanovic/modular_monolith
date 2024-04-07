@@ -37,5 +37,10 @@ namespace Booking.Accomodation.Domain.ValueObjects
             return Result.Success(new GuestCapacity(minGuestNumber, maxGuestNumber));
 
         }
+
+        public bool CheckAccommodationCapacity(int guestNumber)
+        {
+            return guestNumber >= MinGuestNumber && guestNumber <= MaxGuestNumber;
+        }
     }
 }

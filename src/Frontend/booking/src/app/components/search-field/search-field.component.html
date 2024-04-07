@@ -12,14 +12,12 @@
     <div class="select">
       <select [(ngModel)]="searchFilter.sort">
         <option value="NO_SORT">Select sorting:</option>
-        <option value="PRICE_LOWER">Price: Lower first</option>
-        <option value="PRICE_HIGHER">Price: Higher first</option>
-        <option value="RATING_HIGHER">Rating: Higher first</option>
-        <option value="RATING_LOWER">Rating: Lower first</option>
-        <option value="NAME_ACS">Name: Acsending</option>
-        <option value="NAME_DES">Name: Descending</option>
-        <option value="ADDR_ACS">Address: Acsending</option>
-        <option value="ADDR_DES">Address: Descending</option>
+        <option value="price_asc">Price: Lower first</option>
+        <option value="price_desc">Price: Higher first</option>
+        <option value="raiting_desc">Rating: Higher first</option>
+        <option value="raiting_asc">Rating: Lower first</option>
+        <option value="name_asc">Name: Acsending</option>
+        <option value="name_desc">Name: Descending</option>
       </select>
     </div>
   </div>

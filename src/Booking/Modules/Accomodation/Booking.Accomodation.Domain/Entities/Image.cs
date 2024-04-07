@@ -73,6 +73,12 @@ namespace Booking.Booking.Domain.Entities
             }
         }
 
+        public string ToBase64()
+        {
+            string base64 = Convert.ToBase64String(Content);
+            return $"data:image/{Extension};charset=utf-8;base64,{base64}";
+        }
+
 
     }
 }

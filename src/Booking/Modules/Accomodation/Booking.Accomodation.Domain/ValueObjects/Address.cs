@@ -1,13 +1,18 @@
 ﻿using Booking.BuildingBlocks.Domain;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Booking.Booking.Domain.ValueObjects
 {
+    [ComplexType]
     public class Address : ValueObject
     {
         public string Street { get; private set; }
         public string City { get; private set; }
 
         public string Country { get; private set; }
+
+
+        public static explicit operator string(Address address) => address.Street;
 
         public override IEnumerable<object> GetAtomicValues()
         {
@@ -40,6 +45,11 @@ namespace Booking.Booking.Domain.ValueObjects
         {
             Address address = new Address(street, city, country);
             return Result.Success(address);
+        }
+
+        public string ConvertToString()
+        {
+            return $"{Street},{City},{Country}";
         }
     }
 }

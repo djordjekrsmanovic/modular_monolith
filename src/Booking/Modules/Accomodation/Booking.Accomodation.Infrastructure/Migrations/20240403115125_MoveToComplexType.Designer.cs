@@ -5,6 +5,7 @@ using Booking.Booking.Infrastructure.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -12,9 +13,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Booking.Accomodation.Infrastructure.Migrations
 {
     [DbContext(typeof(AccomodationDbContext))]
-    partial class AccomodationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240403115125_MoveToComplexType")]
+    partial class MoveToComplexType
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -125,9 +128,6 @@ namespace Booking.Accomodation.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("Raiting")
-                        .HasColumnType("float");
-
                     b.Property<bool>("isBlocked")
                         .HasColumnType("bit");
 
@@ -201,34 +201,12 @@ namespace Booking.Accomodation.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("AccommodationId")
+                    b.Property<Guid>("AccomodationId")
                         .HasColumnType("uniqueidentifier");
-
-                    b.ComplexProperty<Dictionary<string, object>>("Price", "Booking.Booking.Domain.Entities.AvailabilityPeriod.Price#Money", b1 =>
-                        {
-                            b1.IsRequired();
-
-                            b1.Property<double>("Ammount")
-                                .HasColumnType("float");
-
-                            b1.Property<int>("Currency")
-                                .HasColumnType("int");
-                        });
-
-                    b.ComplexProperty<Dictionary<string, object>>("Slot", "Booking.Booking.Domain.Entities.AvailabilityPeriod.Slot#DateTimeSlot", b1 =>
-                        {
-                            b1.IsRequired();
-
-                            b1.Property<DateTime>("End")
-                                .HasColumnType("datetime2");
-
-                            b1.Property<DateTime>("Start")
-                                .HasColumnType("datetime2");
-                        });
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AccommodationId");
+                    b.HasIndex("AccomodationId");
 
                     b.ToTable("AvailabilityPeriod", "accomodaton");
                 });
@@ -535,8 +513,52 @@ namespace Booking.Accomodation.Infrastructure.Migrations
                 {
                     b.HasOne("Booking.Booking.Domain.Entities.Accommodation", null)
                         .WithMany("AvailabilityPeriods")
-                        .HasForeignKey("AccommodationId")
+                        .HasForeignKey("AccomodationId")
                         .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.OwnsOne("Booking.Accomodation.Domain.ValueObjects.DateTimeSlot", "DateTimeSlot", b1 =>
+                        {
+                            b1.Property<Guid>("AvailabilityPeriodId")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.Property<DateTime>("End")
+                                .HasColumnType("datetime2");
+
+                            b1.Property<DateTime>("Start")
+                                .HasColumnType("datetime2");
+
+                            b1.HasKey("AvailabilityPeriodId");
+
+                            b1.ToTable("AvailabilityPeriod", "accomodaton");
+
+                            b1.WithOwner()
+                                .HasForeignKey("AvailabilityPeriodId");
+                        });
+
+                    b.OwnsOne("Booking.Booking.Domain.ValueObjects.Money", "Price", b1 =>
+                        {
+                            b1.Property<Guid>("AvailabilityPeriodId")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.Property<double>("Ammount")
+                                .HasColumnType("float");
+
+                            b1.Property<int>("Currency")
+                                .HasColumnType("int");
+
+                            b1.HasKey("AvailabilityPeriodId");
+
+                            b1.ToTable("AvailabilityPeriod", "accomodaton");
+
+                            b1.WithOwner()
+                                .HasForeignKey("AvailabilityPeriodId");
+                        });
+
+                    b.Navigation("DateTimeSlot")
+                        .IsRequired();
+
+                    b.Navigation("Price")
                         .IsRequired();
                 });
 

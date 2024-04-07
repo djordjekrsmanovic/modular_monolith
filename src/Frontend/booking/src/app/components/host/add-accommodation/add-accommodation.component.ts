@@ -5,6 +5,7 @@ import { AdditionalService } from 'src/app/model/additiona-service';
 import {Image} from 'src/app/model/image'
 import * as CryptoJS from 'crypto-js';
 import { AccommodationService } from 'src/app/service/accomodation.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-add-accommodation',
@@ -21,17 +22,19 @@ export class AddAccommodationComponent implements OnInit {
     file: new FormControl('', [Validators.required]),
     fileSource: new FormControl('', [Validators.required])
   });
-  constructor(private accommodationService:AccommodationService) { }
+
+  countries:any[]=[];
+  private countriesUrl = 'https://restcountries.com/v3.1/all';
+  constructor(private accommodationService:AccommodationService,private http: HttpClient) { }
 
   ngOnInit(): void {
-    const service1=new AdditionalService('1','Service 1');
-    const service2=new AdditionalService('2','Service 2');
-    const service3=new AdditionalService('3','Service 3');
-    this.additionalServices[0]=service1;
-    this.additionalServices[1]=service2;
-    this.additionalServices[2]=service3;
+    this.getCountries()
+    this.accommodationService.GetAdditionalServices().subscribe(data=>this.additionalServices=data);
   }
 
+  getCountries() {
+    this.http.get<any[]>(this.countriesUrl).subscribe(data=>{console.log(data);this.countries=data;console.log(this.countries[0].name.common)});
+  }
   onFileChange(event: any) {
     if (event.target.files && event.target.files[0]) {
       var filesAmount = event.target.files.length;

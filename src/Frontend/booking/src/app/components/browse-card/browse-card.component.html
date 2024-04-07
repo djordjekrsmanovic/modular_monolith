@@ -2,7 +2,7 @@
   <article class="media shadow p-4">
     <figure class="media-left">
       <p class="image">
-        <img class="image" src="assets/images/cottage.jpg" />
+        <img class="image" [src]="sanitizer.bypassSecurityTrustResourceUrl(image)" />
       </p>
     </figure>
     <div class="media-content">
@@ -12,7 +12,7 @@
             <strong
               ><a (click)="readMore()">{{ name }}</a></strong
             >
-            <small>, @{{ ownerName }} </small>
+
             <br />
             {{ description | truncate: [200] }}
           </p>
@@ -24,7 +24,7 @@
         </div>
         <div class="columns is-vcentered">
           <div class="column" *ngFor="let utility of utilities.slice(0, 7)">
-            <span class="tag is-success">{{ utility.name }}</span>
+            <span class="tag is-success">{{ utility}}</span>
           </div>
           <div
             class="

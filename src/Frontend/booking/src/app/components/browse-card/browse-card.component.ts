@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Utility } from 'src/app/model/utility-model';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'browse-card',
@@ -12,13 +13,13 @@ export class BrowseCardComponent implements OnInit {
   @Input() address: string = '';
   @Input() price: number = 0;
   @Input() rating: number = 0;
-  @Input() ownerName: string = '';
-  @Input() utilities: Utility[] = [];
+  @Input() utilities: string[] = [];
+  @Input() image: any;
 
   @Input() id: number = 0;
   @Input() type: string = 'entity';
 
-  constructor() {}
+  constructor(public sanitizer: DomSanitizer) {}
 
   ngOnInit(): void {}
 

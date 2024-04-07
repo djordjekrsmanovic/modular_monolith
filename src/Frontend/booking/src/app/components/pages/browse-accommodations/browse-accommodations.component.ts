@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Accomodation } from 'src/app/model/accomodation';
+import { BrowseAccommodation } from 'src/app/model/browse-accommodation';
 import { SearchFilter } from 'src/app/model/search-filter';
 import { AccommodationService } from 'src/app/service/accomodation.service';
 
@@ -14,10 +15,10 @@ export class BrowseAccommodationsComponent implements OnInit {
   @Output() doSearch: EventEmitter<SearchFilter> = new EventEmitter();
   countries:any[]=[];
   private countriesUrl = 'https://restcountries.com/v3.1/all';
-  accommodations: Accomodation[] = [];
+  accommodations: BrowseAccommodation[] = [];
   searchFilter = new SearchFilter();
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,private accommodationService:AccommodationService) {}
 
   ngOnInit(): void {
     this.getCountries();
@@ -31,6 +32,7 @@ export class BrowseAccommodationsComponent implements OnInit {
     this.searchFilter.tags = filter.tags;
     this.searchFilter.sort = filter.sort;
     this.searchFilter.text = filter.text;
-    this.doSearch.emit(this.searchFilter);
+    console.log(this.searchFilter);
+    this.accommodationService.searchAccommodations(this.searchFilter).subscribe(data=>this.accommodations=data);
   }
 }

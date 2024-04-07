@@ -11,9 +11,9 @@ namespace Booking.Booking.Infrastructure.Database.Configuration
         {
             builder.HasKey(x => x.Id);
 
-            builder.OwnsOne(x => x.Address);
+            builder.ComplexProperty(x => x.Address);
 
-            builder.OwnsOne(x => x.PricePerGuest);
+            builder.ComplexProperty(x => x.PricePerGuest);
 
             builder.ComplexProperty(x => x.Capacity);
 
@@ -32,7 +32,7 @@ namespace Booking.Booking.Infrastructure.Database.Configuration
 
             builder.HasMany(x => x.AvailabilityPeriods)
                 .WithOne()
-                .HasForeignKey(x => x.AccomodationId);
+                .HasForeignKey(x => x.AccommodationId);
 
             builder.HasMany(x => x.Images)
                 .WithOne()

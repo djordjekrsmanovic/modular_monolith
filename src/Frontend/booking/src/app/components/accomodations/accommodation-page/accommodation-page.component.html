@@ -1,29 +1,29 @@
 <div class="body-wrapper">
     <div class="container content my-6">
-      <h1>{{ cottage.address }}</h1>
+      <h1>{{ accommodation.address }}</h1>
       <hr />
       <div class="columns">
-        <div class="figure column max-height-600" *ngIf="cottage.id != 0">
-          <!-- <image-carousel [imageUrls]="cottage.imageUrls"></image-carousel> -->
+        <div class="figure column max-height-600" *ngIf="accommodation.id != ''">
+            <app-carousel [images]="accommodation.images"></app-carousel>
         </div>
 
         <div class="column">
-          <h2>{{ cottage.name }}</h2>
+          <h2>{{ accommodation.name }}</h2>
           <hr />
-          <div><strong>Owner: </strong> {{ cottage.ownerName }}</div>
+          <div><strong>Owner: </strong> {{ accommodation.ownerName }}</div>
 
           <hr />
           <div class="columns is-vcentered">
             <div class="column">
-              <div><strong>Guest Limit: </strong> {{ cottage.guestLimit }}</div>
+              <div><strong>Guest Limit: </strong> {{ accommodation.guestLimit }}</div>
               <div>
                 <span class="tag is-large mt-5 rating"
-                  >{{ cottage.rating }} <i class="ml-1 fa fa-star"></i
+                  >{{ accommodation.raiting }} <i class="ml-1 fa fa-star"></i
                 ></span>
               </div>
               <gap height="20"></gap>
               <div>
-                <h4>Price per day: ${{ cottage.price }}</h4>
+                <h4>Price per day: ${{ accommodation.price }}</h4>
               </div>
             </div>
             <div class="column">
@@ -46,7 +46,7 @@
       <div>
         <h2>Description:</h2>
         <p>
-          {{ cottage.description }}
+          {{ accommodation.description }}
         </p>
       </div>
       <hr />
@@ -54,21 +54,26 @@
 
         <div class="column">
           <h3>Additional Services</h3>
-
+          <div *ngIf="accommodation.additionalServices.length == 0">
+            <p>No Additional Services.</p>
+          </div>
+          <div *ngFor="let additionalService of accommodation.additionalServices">
+            <app-additional-service [additionalService]="additionalService"></app-additional-service>
+          </div>
         </div>
 
       </div>
       <hr />
       <div class="columns">
-        <div class="column" *ngIf="cottage.address">
-          <app-map [address]="cottage.address"></app-map>
+        <div class="column" *ngIf="accommodation.address">
+          <app-map [address]="accommodation.address"></app-map>
         </div>
       </div>
       <hr />
       <div>
-        <app-calendar
-          [availableDates]="cottage.availableTimePeriods"
-          [reservationDates]="reservations"
+        <app-calendar *ngIf="accommodationsLoaded"
+          [availableDates]="accommodation.availabilityPeriods"
+          [reservationDates]="accommodation.reservations"
         ></app-calendar>
       </div>
 
@@ -82,8 +87,6 @@
       <div *ngIf="reviews.length == 0">
         <p>No reviews to show.</p>
       </div> -->
-
-
     </div>
   </div>
 

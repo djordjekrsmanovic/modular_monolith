@@ -1,7 +1,7 @@
 export class AvailableTimePeriod {
     constructor(
-      public startDate: Date,
-      public endDate: Date,
+      public start: Date,
+      public end: Date,
       public id: number
     ) {}
   }

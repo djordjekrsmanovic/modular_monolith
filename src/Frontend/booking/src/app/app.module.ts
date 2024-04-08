@@ -40,7 +40,6 @@ import { ReviewsPageComponent } from './components/pages/reviews-page/reviews-pa
 import { BrowseCardComponent } from './components/browse-card/browse-card.component';
 import { ReviewCardComponent } from './components/review-card/review-card.component';
 import { ComplaintCardComponent } from './components/complaint-card/complaint-card.component';
-import { AccomodationPageComponent } from './components/accomodations/accomodation-page/accomodation-page.component';
 import { RuleComponent } from './components/rule/rule.component';
 import { UtilityComponent } from './components/utility/utility.component';
 import { MapComponent } from './components/map/map.component';
@@ -56,6 +55,9 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { CommonModule } from '@angular/common';
 import { FlatpickrModule } from 'angularx-flatpickr';
+import { AdditionalServiceComponent } from './components/additional-service/additional-service.component';
+import { CarouselComponent } from './components/carousel/carousel.component';
+import { IvyCarouselModule } from 'angular-responsive-carousel';
 
 @NgModule({
   declarations: [
@@ -95,7 +97,6 @@ import { FlatpickrModule } from 'angularx-flatpickr';
     BrowseCardComponent,
     ReviewCardComponent,
     ComplaintCardComponent,
-    AccomodationPageComponent,
     RuleComponent,
     UtilityComponent,
     MapComponent,
@@ -105,10 +106,13 @@ import { FlatpickrModule } from 'angularx-flatpickr';
     AddAccommodationComponent,
     AccommodationPageComponent,
     CalendarComponent,
-    CalendarHeaderComponent
+    CalendarHeaderComponent,
+    AdditionalServiceComponent,
+    CarouselComponent
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule,NgbModalModule,
     FlatpickrModule.forRoot(),
+    IvyCarouselModule,
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory,

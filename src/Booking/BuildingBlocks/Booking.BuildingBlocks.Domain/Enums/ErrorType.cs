@@ -3,7 +3,7 @@
     public enum ErrorType
     {
         BadRequest,
-        ValidationError,
+        ConflictError,
         Unauthorized,
     }
 }

@@ -15,6 +15,7 @@ export class MapComponent implements OnInit {
   constructor(private mapService: MapService) {}
 
   ngOnInit(): void {
+    console.log("Address: " + this.address);
     this.mapService.getCoordinates(this.address).subscribe((data) => {
       console.log("Address: " + this.address);
 
@@ -22,7 +23,7 @@ export class MapComponent implements OnInit {
       this.lng = data.results[0].geometry.location.lng;
 
       let loader = new Loader({
-        apiKey: '123',
+        apiKey: 'AIzaSyAykJufoSCBm8jsBUh8todlthkv-VAZYyA',
       });
 
       loader.load().then(() => {

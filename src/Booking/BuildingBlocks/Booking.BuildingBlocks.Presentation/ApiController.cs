@@ -39,7 +39,7 @@ namespace Booking.BuildingBlocks.Presentation
                     Detail = result.Error.Description,
                     Status = StatusCodes.Status401Unauthorized
                 }),
-            { Error: { ErrorType: ErrorType.ValidationError } } =>
+            { Error: { ErrorType: ErrorType.ConflictError } } =>
                 StatusCode(StatusCodes.Status409Conflict, new ProblemDetails
                 {
                     Title = "ValidationError",

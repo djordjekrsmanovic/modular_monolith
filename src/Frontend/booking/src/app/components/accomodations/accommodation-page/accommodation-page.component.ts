@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { AccomodationView } from 'src/app/model/accommodation-view';
 import { Accomodation } from 'src/app/model/accomodation';
 import { AvailableTimePeriod } from 'src/app/model/available-time-period';
 import { Reservation } from 'src/app/model/reservation';
@@ -14,10 +15,9 @@ import { UserService } from 'src/app/service/user.service';
 })
 export class AccommodationPageComponent implements OnInit {
 
-  id: number = 0;
-  cottage: Accomodation = new Accomodation();
-  reservations: Reservation[] = [];
-  reservationsLoaded: boolean = true;
+  id: string='';
+  accommodation: AccomodationView = new AccomodationView();
+  accommodationsLoaded: boolean = false;
   image: any = 'assets/images/placeholder.jpg';
   //reviews: ReviewModel[] = [];
   isSubscribed: boolean = false;
@@ -26,28 +26,15 @@ export class AccommodationPageComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private cottageService: AccommodationService,
+    private accommodationService: AccommodationService,
     private clientService: GuestService,
     private loginService: UserService
   ) {}
 
   ngOnInit(): void {
-    this.id = +this.route.snapshot.paramMap.get('id')!;
-    this.cottage.availableTimePeriods.push(new AvailableTimePeriod(new Date('01-01-2024'),new Date('01-01-2025'),12))
+    this.id =this.route.snapshot.paramMap.get('id')!;
+    this.accommodationService.get(this.id).subscribe(data=>{this.accommodation=data;console.log(this.accommodation);this.accommodationsLoaded=true;});
 
-
-
-
-    // this.actionService.findAll().subscribe((data) => {
-    //   for (let action of data) {
-    //     if (
-    //       action.entityId == this.cottage.id &&
-    //       action.entityType == 'COTTAGE'
-    //     ) {
-    //       this.actions.push(action);
-    //     }
-    //   }
-    // });
   }
 
 

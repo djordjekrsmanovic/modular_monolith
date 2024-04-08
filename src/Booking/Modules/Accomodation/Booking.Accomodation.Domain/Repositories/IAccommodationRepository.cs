@@ -11,5 +11,7 @@ namespace Booking.Accomodation.Domain.Repositories
         DateTime StartDate,
         DateTime EndDate,
         string? Country);
+
+        public Task<Accommodation> GetAsync(Guid Id);
     }
 }

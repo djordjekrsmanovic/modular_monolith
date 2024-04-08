@@ -64,6 +64,12 @@ namespace Booking.Accomodation.Infrastructure.Database.Repositories
             _ => accommodation => accommodation.Id
         };
 
-
+        public async Task<Accommodation> GetAsync(Guid Id)
+        {
+            return await _context.Set<Accommodation>().Where(accommodation => accommodation.Id == Id)
+                .Include(x => x.AvailabilityPeriods).Include(x => x.Reservations)
+                .Include(x => x.AdditionalServices)
+                .Include(x => x.Images).FirstOrDefaultAsync();
+        }
     }
 }

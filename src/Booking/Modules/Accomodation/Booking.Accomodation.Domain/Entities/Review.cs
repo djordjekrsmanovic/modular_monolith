@@ -4,9 +4,11 @@ namespace Booking.Booking.Domain.Entities
 {
     public class Review : Entity<Guid>
     {
-        public int Raiting { get; set; }
+        public int Rating { get; set; }
 
         public string Comment { get; set; }
+
+        public DateTime CreatedAt { get; set; }
 
         public Guid AccomodationId { get; set; }
 

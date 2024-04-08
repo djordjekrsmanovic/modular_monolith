@@ -4,7 +4,7 @@ namespace Booking.Accomodation.Application.Features.Accommodations.GetAccommodat
 {
     public record GetAccommodationByIdResponse(Guid Id, string Name, string Description,
         string Address, string Price, List<string> AdditionalServices, Double Raiting, List<string> Images,
-        List<DateTimeSlot> AvailabilityPeriods, List<DateTimeSlot> Reservations)
+        List<DateTimeSlot> AvailabilityPeriods, List<DateTimeSlot> Reservations, Guid HostId)
     {
     }
 

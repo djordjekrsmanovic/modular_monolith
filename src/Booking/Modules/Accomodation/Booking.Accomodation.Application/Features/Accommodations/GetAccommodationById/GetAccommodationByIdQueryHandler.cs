@@ -36,7 +36,8 @@ namespace Booking.Accomodation.Application.Features.Accommodations.GetAccommodat
                 Raiting: accommodation.Raiting,
                 Images: accommodation.Images.Select(img => { return img.ToBase64(); }).ToList(),
                 AvailabilityPeriods: accommodation.AvailabilityPeriods.Select(a => { return DateTimeSlot.Create(a.Slot.Start, a.Slot.End).Value; }).ToList(),
-                Reservations: accommodation.Reservations.Select(a => { return DateTimeSlot.Create(a.DateTimeSlot.Start, a.DateTimeSlot.End).Value; }).ToList()
+                Reservations: accommodation.Reservations.Select(a => { return DateTimeSlot.Create(a.DateTimeSlot.Start, a.DateTimeSlot.End).Value; }).ToList(),
+                HostId: accommodation.HostId
             );
         }
     }

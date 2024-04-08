@@ -11,7 +11,7 @@ export class AccomodationView {
       public description: string = '',
       public guestLimit: number = 0,
       public additionalServices: string[] = [],
-      public ownerName: string = '',
+      public hostId: string = '',
       public images:string[]=[],
       public availabilityPeriods:AvailableTimePeriod[]=[],
       public reservations:Reservation[]=[]

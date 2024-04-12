@@ -18,5 +18,10 @@ namespace Booking.Commerce.Infrastructure.Database.Repositories
             _subscribers.Add(subscriber);
             Console.WriteLine("Command add subscriber executed");
         }
+
+        public async Task<Subscriber> GetAsync(Guid id)
+        {
+            return _subscribers.Include(s => s.Subscriptions).FirstOrDefault(s => s.Id == id);
+        }
     }
 }

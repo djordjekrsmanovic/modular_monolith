@@ -2,10 +2,10 @@
 using Booking.Accomodation.Domain.Repositories;
 using Booking.Accomodation.Domain.ValueObjects;
 using Booking.Booking.Domain.Entities;
-using Booking.Booking.Domain.Enums;
-using Booking.Booking.Domain.ValueObjects;
 using Booking.BuildingBlocks.Application.CQRS;
 using Booking.BuildingBlocks.Domain;
+using Booking.BuildingBlocks.Domain.Enums;
+using Booking.BuildingBlocks.Domain.SharedKernel.ValueObjects;
 
 namespace Booking.Accomodation.Application.Features.AccommodationNS.AddAccommodation
 {

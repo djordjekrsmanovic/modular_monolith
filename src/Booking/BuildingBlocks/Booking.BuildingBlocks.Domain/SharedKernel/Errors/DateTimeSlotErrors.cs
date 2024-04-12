@@ -1,6 +1,4 @@
-﻿using Booking.BuildingBlocks.Domain;
-
-namespace Booking.Accomodation.Domain.Errors
+﻿namespace Booking.BuildingBlocks.Domain.SharedKernel.Errors
 {
     public class DateTimeSlotErrors
     {

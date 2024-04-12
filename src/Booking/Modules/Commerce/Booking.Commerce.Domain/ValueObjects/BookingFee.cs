@@ -1,4 +1,4 @@
-﻿using Booking.BuildingBlocks.Domain.SharedKernel;
+﻿using Booking.BuildingBlocks.Domain.SharedKernel.ValueObjects;
 
 namespace Booking.Commerce.Domain.ValueObjects
 {

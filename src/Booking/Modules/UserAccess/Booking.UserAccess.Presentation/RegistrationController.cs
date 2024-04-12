@@ -1,5 +1,5 @@
 ﻿using Booking.BuildingBlocks.Domain;
-using Booking.BuildingBlocks.Domain.SharedKernel;
+using Booking.BuildingBlocks.Domain.SharedKernel.ValueObjects;
 using Booking.BuildingBlocks.Presentation;
 using Booking.UserAccess.Application.Features.Registration.ConfirmRegistrationRequest;
 using Booking.UserAccess.Application.Features.Registration.SubmitRegistrationRequest;
@@ -31,7 +31,7 @@ namespace Booking.UserAccess.Presentation
                 request.FirstName,
                 registrationType,
                 request.Phone,
-                Address.Create(request.Street, request.City, request.Country));
+                Address.Create(request.Street, request.City, request.Country).Value);
 
             Result result = await Sender.Send(command, cancellationToken);
 

@@ -1,5 +1,5 @@
 ﻿using Booking.BuildingBlocks.Domain;
-using Booking.BuildingBlocks.Domain.SharedKernel;
+using Booking.BuildingBlocks.Domain.SharedKernel.ValueObjects;
 
 namespace Booking.Commerce.Domain.Entities
 {
@@ -10,5 +10,7 @@ namespace Booking.Commerce.Domain.Entities
         public int AccomodationLimit { get; set; }
 
         public Money Price { get; set; }
+
+        public int durationInMonths { get; set; }
     }
 }

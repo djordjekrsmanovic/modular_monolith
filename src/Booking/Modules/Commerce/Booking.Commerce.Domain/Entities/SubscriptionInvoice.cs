@@ -1,11 +1,11 @@
 ﻿using Booking.BuildingBlocks.Domain;
-using Booking.BuildingBlocks.Domain.SharedKernel;
+using Booking.BuildingBlocks.Domain.SharedKernel.ValueObjects;
 
 namespace Booking.Commerce.Domain.Entities
 {
     public class SubscriptionInvoice : Entity<Guid>
     {
-        public Subscription Subscription { get; set; }
+        public Guid SubscriptionId { get; set; }
 
         public Money Price { get; set; }
 

@@ -1,6 +1,6 @@
 ﻿using Booking.Accomodation.Domain.ValueObjects;
-using Booking.Booking.Domain.ValueObjects;
 using Booking.BuildingBlocks.Domain;
+using Booking.BuildingBlocks.Domain.SharedKernel.ValueObjects;
 
 namespace Booking.Booking.Domain.Entities
 {
@@ -65,10 +65,10 @@ namespace Booking.Booking.Domain.Entities
         public bool IsAvailableForBooking(DateTime startDate, DateTime endDate)
         {
             bool currentReservationNotExist = true;
-            bool availibilityPeriodsExists = AvailabilityPeriods.Where(x => x.Slot.isInRange(startDate, endDate)).ToList().Count != 0;
+            bool availibilityPeriodsExists = AvailabilityPeriods.Where(x => x.Slot.IsRangeOverlapping(startDate, endDate)).ToList().Count != 0;
             if (Reservations.Count != 0)
             {
-                currentReservationNotExist = Reservations.Where(x => !x.DateTimeSlot.isInRange(startDate, endDate)).ToList().Count == 0;
+                currentReservationNotExist = Reservations.Where(x => !x.DateTimeSlot.IsRangeOverlapping(startDate, endDate)).ToList().Count == 0;
             }
 
             return availibilityPeriodsExists && currentReservationNotExist;

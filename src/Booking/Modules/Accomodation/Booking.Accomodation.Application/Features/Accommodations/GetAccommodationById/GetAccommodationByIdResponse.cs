@@ -1,4 +1,4 @@
-﻿using Booking.Accomodation.Domain.ValueObjects;
+﻿using Booking.BuildingBlocks.Domain.SharedKernel.ValueObjects;
 
 namespace Booking.Accomodation.Application.Features.Accommodations.GetAccommodationById
 {

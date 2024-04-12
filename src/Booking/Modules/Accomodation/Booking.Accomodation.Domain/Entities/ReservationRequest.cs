@@ -1,6 +1,6 @@
-﻿using Booking.Accomodation.Domain.ValueObjects;
-using Booking.Booking.Domain.Enums;
+﻿using Booking.Booking.Domain.Enums;
 using Booking.BuildingBlocks.Domain;
+using Booking.BuildingBlocks.Domain.SharedKernel.ValueObjects;
 
 namespace Booking.Booking.Domain.Entities
 {

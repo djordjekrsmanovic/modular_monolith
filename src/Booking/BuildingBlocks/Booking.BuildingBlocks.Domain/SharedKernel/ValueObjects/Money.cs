@@ -1,12 +1,14 @@
 ﻿using Booking.BuildingBlocks.Domain.Enums;
 
-namespace Booking.BuildingBlocks.Domain.SharedKernel
+namespace Booking.BuildingBlocks.Domain.SharedKernel.ValueObjects
 {
     public class Money : ValueObject
     {
-        public Currency Currency { get; }
+        public Currency Currency { get; private set; }
 
-        public Double Ammount { get; }
+        public Double Ammount { get; private set; }
+
+        public static explicit operator Double(Money money) => money.Ammount;
 
         public override IEnumerable<object> GetAtomicValues()
         {
@@ -24,7 +26,7 @@ namespace Booking.BuildingBlocks.Domain.SharedKernel
 
         public Money Add(Money other)
         {
-            if (Currency == other.Currency)
+            if (Currency != other.Currency)
             {
                 throw new InvalidOperationException("Unable to add amount of differenc currency!");
             }
@@ -33,11 +35,16 @@ namespace Booking.BuildingBlocks.Domain.SharedKernel
 
         public Money Substract(Money other)
         {
-            if (Currency == other.Currency)
+            if (Currency != other.Currency)
             {
                 throw new InvalidOperationException("Unable to add amount of differenc currency!");
             }
             return new Money(Currency, Ammount - other.Ammount);
+        }
+
+        public static Result<Money> Create(Currency currency, Double amount)
+        {
+            return new Money(currency, amount);
         }
 
         public Money CalculatePercent(Double percent)
@@ -45,9 +52,9 @@ namespace Booking.BuildingBlocks.Domain.SharedKernel
             return new Money(Currency, (Ammount * percent) / 100);
         }
 
-        public static Money CreateMoney(Currency currency, Double amount)
+        public string ConvertToString()
         {
-            return new Money(currency, amount);
+            return $"{Ammount} {Currency.ToString()}";
         }
     }
 }

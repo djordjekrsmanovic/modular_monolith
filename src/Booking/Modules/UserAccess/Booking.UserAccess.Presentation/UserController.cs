@@ -1,5 +1,5 @@
 ﻿using Booking.BuildingBlocks.Domain;
-using Booking.BuildingBlocks.Domain.SharedKernel;
+using Booking.BuildingBlocks.Domain.SharedKernel.ValueObjects;
 using Booking.BuildingBlocks.Presentation;
 using Booking.UserAccess.Application.Features.Login;
 using Booking.UserAccess.Application.Features.UserInfo.GetUserInfo;
@@ -52,7 +52,7 @@ namespace Booking.UserAccess.Presentation
         {
 
             UpdateUserInfoCommand command = new UpdateUserInfoCommand(request.Id, request.FirstName, request.LastName,
-                request.Email, request.Phone, Address.Create(request.Street, request.City, request.Country),
+                request.Email, request.Phone, Address.Create(request.Street, request.City, request.Country).Value,
                 request.PreviousPassword, request.NewPassword);
 
             Result<Guid> response = await Sender.Send(command, cancellationToken);

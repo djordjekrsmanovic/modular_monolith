@@ -10,7 +10,7 @@ namespace Booking.Commerce.Infrastructure.Database.Configuration
         {
             builder.HasKey(x => x.Id);
 
-            builder.OwnsOne(x => x.SubscriptionPeriod);
+            builder.ComplexProperty(x => x.SubscriptionPeriod);
 
             builder.HasOne(x => x.Plan);
         }

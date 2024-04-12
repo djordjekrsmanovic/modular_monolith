@@ -25,15 +25,15 @@ border: 1px solid #fff;
 
 /************************************************
 *************************************************
-0. CSS Reset ------------------------ 
+0. CSS Reset ------------------------
 1. Universal Styles -----------------
-2. Header & Nav Styles -------------- 
-3. Main Body Styles ----------------- 
-4. Sidebar Styles ------------------- 
+2. Header & Nav Styles --------------
+3. Main Body Styles -----------------
+4. Sidebar Styles -------------------
 5. Widget Styles --------------------
-6. Footer Styles -------------------- 
-7. Comments & Form Styles ----------- 
-8. Generic Styles ----------- 
+6. Footer Styles --------------------
+7. Comments & Form Styles -----------
+8. Generic Styles -----------
 *************************************************
 ************************************************/
 
@@ -42,6 +42,10 @@ border: 1px solid #fff;
 0. CSS Reset
 ------------------------------------------------
 ----------------------------------------------*/
+@import "../node_modules/bootstrap/dist/css/bootstrap.min.css" ;
+@import "../node_modules/bootstrap/dist/css/bootstrap.css";
+  /* angular-cli file: src/styles.css */
+@import "../node_modules/angular-calendar/css/angular-calendar.css";
 @import "bulma/css/bulma.css";
 @import "~font-awesome/css/font-awesome.css";
 
@@ -196,3 +200,8 @@ html {
 .p-6 {
   padding: 20px;
 }
+
+@import "../node_modules/bootstrap/dist/css/bootstrap.min.css" @import
+  "../node_modules/bootstrap/dist/css/bootstrap.css"
+  /* angular-cli file: src/styles.css */ @import
+  "../node_modules/angular-calendar/css/angular-calendar.css";

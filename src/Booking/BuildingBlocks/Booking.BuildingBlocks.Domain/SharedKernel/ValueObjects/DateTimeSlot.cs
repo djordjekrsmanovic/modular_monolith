@@ -1,7 +1,6 @@
-﻿using Booking.Accomodation.Domain.Errors;
-using Booking.BuildingBlocks.Domain;
+﻿using Booking.BuildingBlocks.Domain.SharedKernel.Errors;
 
-namespace Booking.Accomodation.Domain.ValueObjects
+namespace Booking.BuildingBlocks.Domain.SharedKernel.ValueObjects
 {
     public class DateTimeSlot : ValueObject
     {
@@ -22,7 +21,7 @@ namespace Booking.Accomodation.Domain.ValueObjects
             yield return End;
         }
 
-        public bool isInRange(DateTime start, DateTime end)
+        public bool IsRangeOverlapping(DateTime start, DateTime end)
         {
             return start > Start && end < End;
         }
@@ -35,6 +34,11 @@ namespace Booking.Accomodation.Domain.ValueObjects
             }
             return Result.Success(new DateTimeSlot(start, end));
 
+        }
+
+        public bool isInRange(DateTime date)
+        {
+            return date >= Start && date <= End;
         }
     }
 }

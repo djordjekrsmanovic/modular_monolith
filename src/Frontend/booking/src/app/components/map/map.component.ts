@@ -1,6 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
-import { Loader } from '@googlemaps/js-api-loader';
-import { MapService } from 'src/app/service/map.service';
+import * as L from 'leaflet';
 
 
 @Component({
@@ -10,32 +10,38 @@ import { MapService } from 'src/app/service/map.service';
 })
 export class MapComponent implements OnInit {
   @Input() address: string = 'Bahami';
-  lat: number = 0;
-  lng: number = 0;
-  constructor(private mapService: MapService) {}
+  private map: L.Map;
+  private centroid: L.LatLngExpression=[0,0]; //
+  private nominatimBaseUrl = 'https://nominatim.openstreetmap.org/';
+  public loaded=false;
+  private initMap(): void {
+    this.loaded=true
+    console.log(this.centroid)
+    this.map = L.map('map', {
+      center: this.centroid,
+      zoom: 5
+    });
+
+    const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 18,
+      minZoom: 10,
+      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    });
+    tiles.addTo(this.map);
+    L.marker(this.centroid).addTo(this.map);
+  }
+
+  constructor(private http: HttpClient) {
+    this.map = {} as L.Map; // Initialize map property
+   }
 
   ngOnInit(): void {
-    this.mapService.getCoordinates(this.address).subscribe((data) => {
-      console.log("Address: " + this.address);
-
-      this.lat = data.results[0].geometry.location.lat;
-      this.lng = data.results[0].geometry.location.lng;
-
-      let loader = new Loader({
-        apiKey: '123',
-      });
-
-      loader.load().then(() => {
-        const map = new google.maps.Map(document.getElementById('map')!, {
-          center: { lat: this.lat, lng: this.lng },
-          zoom: 14,
-        });
-
-        new google.maps.Marker({
-          position: { lat: this.lat, lng: this.lng },
-          map,
-        });
-      });
+    const url = `${this.nominatimBaseUrl}search?q=${encodeURIComponent(this.address)}&format=json&limit=1`;
+    this.http.get(url).subscribe((response:any)=>{const latitude = response[0].lat;
+      const longitude = response[0].lon;
+      this.centroid=[latitude,longitude ];
+      this.initMap();
     });
+
   }
 }

@@ -51,6 +51,12 @@ export class UserService {
     return headers;
   }
 
+  getUserInfo(id:string){
+    const url = `${this.url}/${id}`;
+    const headers = this.getHeaders();
+    return this._http.get<UserPersonalInfo>(url, { headers: headers });
+  }
+
   getCurrentUserInfo() {
     const id = this.getCurrentUser().id;
     const url = `${this.url}/${id}`;

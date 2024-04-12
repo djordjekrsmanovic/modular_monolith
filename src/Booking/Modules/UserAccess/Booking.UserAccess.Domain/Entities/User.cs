@@ -1,5 +1,5 @@
 ﻿using Booking.BuildingBlocks.Domain;
-using Booking.BuildingBlocks.Domain.SharedKernel;
+using Booking.BuildingBlocks.Domain.SharedKernel.ValueObjects;
 using Booking.UserAccess.Domain.Errors;
 
 namespace Booking.UserAccess.Domain.Entities
@@ -72,7 +72,7 @@ namespace Booking.UserAccess.Domain.Entities
             Email = email;
             Password = newPassword;
             Phone = phone;
-            Address = Address.Create(address.Street, address.City, address.Country);
+            Address = Address.Create(address.Street, address.City, address.Country).Value;
 
             return Result.Success(Id);
         }

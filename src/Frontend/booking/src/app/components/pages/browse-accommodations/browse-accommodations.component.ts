@@ -25,7 +25,12 @@ export class BrowseAccommodationsComponent implements OnInit {
   }
 
   getCountries() {
-    this.http.get<any[]>(this.countriesUrl).subscribe(data=>{console.log(data);this.countries=data;console.log(this.countries[0].name.common)});
+    this.http.get<any[]>(this.countriesUrl).subscribe(data=>{console.log(data);this.countries=data;this.countries = this.countries.sort((x, y) => {
+      if (x.name.common < y.name.common) return -1;
+      if (x.name.common > y.name.common) return 1;
+      return 0;
+  });
+      console.log(this.countries[0].name.common)});
   }
 
   search(filter: SearchFilter) {

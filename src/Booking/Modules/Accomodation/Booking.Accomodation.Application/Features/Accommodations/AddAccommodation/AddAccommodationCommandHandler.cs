@@ -2,10 +2,10 @@
 using Booking.Accomodation.Domain.Repositories;
 using Booking.Accomodation.Domain.ValueObjects;
 using Booking.Booking.Domain.Entities;
-using Booking.Booking.Domain.Enums;
-using Booking.Booking.Domain.ValueObjects;
 using Booking.BuildingBlocks.Application.CQRS;
 using Booking.BuildingBlocks.Domain;
+using Booking.BuildingBlocks.Domain.Enums;
+using Booking.BuildingBlocks.Domain.SharedKernel.ValueObjects;
 
 namespace Booking.Accomodation.Application.Features.AccommodationNS.AddAccommodation
 {
@@ -45,7 +45,7 @@ namespace Booking.Accomodation.Application.Features.AccommodationNS.AddAccommoda
             }
 
 
-            Result<Accommodation> accommodation = Accommodation.Create(request.hostId, request.Name, request.Description, pricePerGuestResponse.Value, guestCapacityResponse.Value, request.Images, addressResponse.Value, request.AdditionalServices);
+            Result<Accommodation> accommodation = Accommodation.Create(request.hostId, request.Name, request.Description, pricePerGuestResponse.Value, guestCapacityResponse.Value, request.Images, addressResponse.Value, request.AdditionalServices, request.ReservationApprovalRequired);
 
             if (accommodation.IsFailure)
             {

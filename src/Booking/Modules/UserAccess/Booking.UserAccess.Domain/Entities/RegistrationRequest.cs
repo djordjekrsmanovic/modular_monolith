@@ -1,5 +1,5 @@
 ﻿using Booking.BuildingBlocks.Domain;
-using Booking.BuildingBlocks.Domain.SharedKernel;
+using Booking.BuildingBlocks.Domain.SharedKernel.ValueObjects;
 using Booking.UserAccess.Domain.Enums;
 using Booking.UserAccess.Domain.Errors;
 using Booking.UserAccess.Domain.Events;

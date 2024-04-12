@@ -1,5 +1,6 @@
 ﻿using Booking.Accomodation.Application.Features.AccommodationNS.AddAccommodation;
 using Booking.Accomodation.Application.Features.Accommodations.GetAccommodation;
+using Booking.Accomodation.Application.Features.Accommodations.GetAccommodationById;
 using Booking.Accomodation.Application.Features.Accommodations.GetAdditionalServices;
 using Booking.Accomodation.Presentation.Contracts;
 using Booking.Booking.Domain.Entities;
@@ -42,7 +43,7 @@ namespace Booking.Booking.Presentation
                 .Select(service => AdditionalService.Create(service.Id, service.Name)).ToList();
 
             AddAccommodationCommand command = new AddAccommodationCommand(request.Name, request.Description, request.Street, request.City,
-                request.Country, request.MinGuest, request.MaxGuest, request.PricePerGuest, additionalServices, request.hostId, images);
+                request.Country, request.MinGuest, request.MaxGuest, request.PricePerGuest, additionalServices, request.hostId, images, request.ReservationApprovalRequired);
 
             Result<Guid> response = await Sender.Send(command, cancellationToken);
             if (response.IsFailure)
@@ -54,7 +55,7 @@ namespace Booking.Booking.Presentation
         }
 
         [HttpGet("")]
-        public async Task<IActionResult> Get([FromQuery] GetAccommodationsQuery query, CancellationToken cancellationToken)
+        public async Task<IActionResult> GetAccommodations([FromQuery] GetAccommodationsQuery query, CancellationToken cancellationToken)
         {
 
             var response = await Sender.Send(query, cancellationToken);
@@ -66,6 +67,22 @@ namespace Booking.Booking.Presentation
             return Ok(response.Value);
 
         }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetAccommodationById(Guid id, CancellationToken cancellationToken)
+        {
+            var query = new GetAccommodationByIdQuery(id); // Assuming you have a query for retrieving accommodation by ID
+            var response = await Sender.Send(query, cancellationToken);
+
+            if (response.IsFailure)
+            {
+                return HandleFailure(response);
+            }
+            return Ok(response.Value);
+        }
+
+
+
 
         [HttpGet("additional-services")]
         public async Task<IActionResult> GetAdditionalServices(CancellationToken cancellationToken)

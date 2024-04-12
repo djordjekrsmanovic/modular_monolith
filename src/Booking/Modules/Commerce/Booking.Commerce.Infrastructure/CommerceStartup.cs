@@ -15,7 +15,7 @@ namespace Booking.Commerce.Infrastructure
         public static IServiceCollection ConfigureCommerceModule(this IServiceCollection services, IConfiguration configuration)
         {
             string connectionString = "Server=NHL2131W;Database=Booking;Trusted_Connection=True;TrustServerCertificate=True;";
-            //services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies([Application.AssemblyReference.Assembly]));
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies([Application.AssemblyReference.Assembly]));
 
             SetUpServices(services);
             SetUpDatabase(services, connectionString);
@@ -36,11 +36,14 @@ namespace Booking.Commerce.Infrastructure
             services.AddDbContext<CommerceDbContext>(options =>
             options.UseSqlServer(connectionString, x => x.MigrationsHistoryTable("__MigrationHistory", "commerce")),
             ServiceLifetime.Scoped
-);
+        );
 
 
             services.AddScoped<ISubscriberRepository, SubscriberRepository>();
             services.AddScoped<IPayerRepository, PayerRepository>();
+            services.AddScoped<ISubscriptionPlanRepository, SubscriptionPlanRepository>();
+            services.AddScoped<ISubscriberRepository, SubscriberRepository>();
+            services.AddScoped<ISubscriptionRepository, SubscriptionRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
         }
     }

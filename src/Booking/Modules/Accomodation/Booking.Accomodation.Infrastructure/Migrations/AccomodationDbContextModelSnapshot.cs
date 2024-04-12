@@ -128,6 +128,9 @@ namespace Booking.Accomodation.Infrastructure.Migrations
                     b.Property<double>("Raiting")
                         .HasColumnType("float");
 
+                    b.Property<bool>("ReservationApprovalRequired")
+                        .HasColumnType("bit");
+
                     b.Property<bool>("isBlocked")
                         .HasColumnType("bit");
 

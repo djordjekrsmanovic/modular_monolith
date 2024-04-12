@@ -21,6 +21,7 @@
     <ProjectReference Include="..\..\Modules\Accomodation\Booking.Accomodation.Infrastructure\Booking.Accomodation.Infrastructure.csproj" />
     <ProjectReference Include="..\..\Modules\Accomodation\Booking.Accomodation.Presentation\Booking.Accomodation.Presentation.csproj" />
     <ProjectReference Include="..\..\Modules\Commerce\Booking.Commerce.Infrastructure\Booking.Commerce.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\Modules\Commerce\Booking.Commerce.Presentation\Booking.Commerce.Presentation.csproj" />
     <ProjectReference Include="..\..\Modules\UserAccess\Booking.UserAccess.Infrastructure\Booking.UserAccess.Infrastructure.csproj" />
     <ProjectReference Include="..\..\Modules\UserAccess\Booking.UserAccess.Presentation\Booking.UserAccess.Presentation.csproj" />
   </ItemGroup>

@@ -1,11 +1,12 @@
 ﻿using Booking.Accomodation.Domain.ValueObjects;
-using Booking.Booking.Domain.ValueObjects;
 using Booking.BuildingBlocks.Domain;
+using Booking.BuildingBlocks.Domain.SharedKernel.ValueObjects;
 
 namespace Booking.Booking.Domain.Entities
 {
     public class Accommodation : AgregateRoot<Guid>
     {
+
         public string Name { get; set; }
 
         public string Description { get; set; }
@@ -32,10 +33,12 @@ namespace Booking.Booking.Domain.Entities
 
         public Double Raiting { get; set; }
 
+        public bool ReservationApprovalRequired { get; set; }
+
         private Accommodation() { }
 
         private Accommodation(string name, string description, Address address, GuestCapacity capacity,
-            Money pricePerGuest, List<Image> images, Guid hostId, List<AdditionalService> additionalServices)
+            Money pricePerGuest, List<Image> images, Guid hostId, List<AdditionalService> additionalServices, bool reservationApprovalRequired)
         {
             Id = Guid.NewGuid();
             Name = name;
@@ -47,12 +50,13 @@ namespace Booking.Booking.Domain.Entities
             HostId = hostId;
             AdditionalServices = additionalServices;
             Raiting = 0;
+            ReservationApprovalRequired = reservationApprovalRequired;
         }
 
         public static Result<Accommodation> Create(Guid hostId, string name, string description,
-            Money pricePerGuest, GuestCapacity capacity, List<Image> images, Address address, List<AdditionalService> additionalServices)
+            Money pricePerGuest, GuestCapacity capacity, List<Image> images, Address address, List<AdditionalService> additionalServices, bool reservationApprovalRequired)
         {
-            Accommodation accommodation = new Accommodation(name, description, address, capacity, pricePerGuest, images, hostId, additionalServices);
+            Accommodation accommodation = new Accommodation(name, description, address, capacity, pricePerGuest, images, hostId, additionalServices, reservationApprovalRequired);
             AvailabilityPeriod availabilityPeriod = AvailabilityPeriod.Create(DateTime.UtcNow, DateTime.UtcNow.AddYears(1), pricePerGuest, accommodation.Id).Value;
             accommodation.AddAvailabilityPeriod(availabilityPeriod);
             return accommodation;
@@ -61,10 +65,10 @@ namespace Booking.Booking.Domain.Entities
         public bool IsAvailableForBooking(DateTime startDate, DateTime endDate)
         {
             bool currentReservationNotExist = true;
-            bool availibilityPeriodsExists = AvailabilityPeriods.Where(x => x.Slot.isInRange(startDate, endDate)).ToList().Count != 0;
+            bool availibilityPeriodsExists = AvailabilityPeriods.Where(x => x.Slot.IsRangeOverlapping(startDate, endDate)).ToList().Count != 0;
             if (Reservations.Count != 0)
             {
-                currentReservationNotExist = Reservations.Where(x => !x.DateTimeSlot.isInRange(startDate, endDate)).ToList().Count == 0;
+                currentReservationNotExist = Reservations.Where(x => !x.DateTimeSlot.IsRangeOverlapping(startDate, endDate)).ToList().Count == 0;
             }
 
             return availibilityPeriodsExists && currentReservationNotExist;

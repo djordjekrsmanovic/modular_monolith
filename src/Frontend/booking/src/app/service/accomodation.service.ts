@@ -10,6 +10,7 @@ import { SearchFilter } from '../model/search-filter';
 })
 export class AccommodationService {
 
+
   url = server + 'api/accommodations';
 
   constructor(private _http: HttpClient,private loginService: UserService) {}
@@ -22,6 +23,11 @@ export class AccommodationService {
     return this._http.get<any>(this.url);
   }
 
+  get(id: string) {
+    const url=`${this.url}/${id}`
+    console.log(url);
+    return this._http.get<any>(url);
+  }
   addAccommodation(accommodation:AddAccommodation){
     accommodation.hostId=this.loginService.getCurrentUser().id;
     const headers = this.loginService.getHeaders();
@@ -53,6 +59,9 @@ export class AccommodationService {
     }
     if (searchFilter.tags.length > 0) {
         searchFilter.tags.forEach(tag => queryParams.push(`AdditionalServices=${encodeURIComponent(tag)}`));
+    }
+    if (searchFilter.people>0) {
+      queryParams.push(`GuestNumber=${searchFilter.people}`);
     }
     // Assuming Page and PageSize are fixed
     queryParams.push('Page=1');

@@ -23,7 +23,8 @@ namespace Booking.Accomodation.Application.Features.Accommodations.GetAccommodat
                request.Country);
 
 
-            accommodations = accommodations.Where(accommodation => accommodation.IsAvailableForBooking(request.StartDate, request.EndDate)).ToList();
+            accommodations = accommodations.Where(accommodation => accommodation.IsAvailableForBooking(request.StartDate, request.EndDate)
+                                            && accommodation.Capacity.CheckAccommodationCapacity(request.GuestNumber)).ToList();
 
             if (request.AdditionalServices is not null && request.AdditionalServices.Any())
             {

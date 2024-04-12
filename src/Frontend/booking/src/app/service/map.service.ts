@@ -12,7 +12,8 @@ export class MapService {
   constructor(private _http: HttpClient) {}
 
   getCoordinates(address: string) {
-    address = address.split(' ').join('+');
+    address = address.split(',').map(part => part.trim()).join('+');
+
     address = address.replace(',', '');
     return this._http.get<any>(this.url_begin + address + this.url_end);
   }

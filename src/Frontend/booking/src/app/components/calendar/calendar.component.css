@@ -1,0 +1,16 @@
+.unavailable {
+    background-color: rgba(252, 151, 151, 0.377) !important;
+    opacity: 0.8;
+    color: black;
+    font-weight: 900;
+  }
+
+  .available {
+    background-color: rgb(235, 247, 255) !important;
+    color: black;
+    font-weight: 900;
+  }
+
+  .cal-cell-top {
+    background-color: white;
+  }

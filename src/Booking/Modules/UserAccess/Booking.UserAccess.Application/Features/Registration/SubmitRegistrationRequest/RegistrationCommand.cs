@@ -1,5 +1,5 @@
 ﻿using Booking.BuildingBlocks.Application.CQRS;
-using Booking.BuildingBlocks.Domain.SharedKernel;
+using Booking.BuildingBlocks.Domain.SharedKernel.ValueObjects;
 using Booking.UserAccess.Domain.Enums;
 
 namespace Booking.UserAccess.Application.Features.Registration.SubmitRegistrationRequest

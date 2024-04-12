@@ -10,7 +10,7 @@ namespace Booking.Commerce.Infrastructure.Database.Configuration
         {
             builder.HasKey(p => p.Id);
 
-            builder.OwnsOne(x => x.Amount);
+            builder.ComplexProperty(x => x.Amount);
         }
     }
 }

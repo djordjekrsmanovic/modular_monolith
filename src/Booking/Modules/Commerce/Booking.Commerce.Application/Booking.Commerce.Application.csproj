@@ -13,4 +13,8 @@
     <ProjectReference Include="..\Booking.Commerce.Domain\Booking.Commerce.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\Subscriptions\GetUserSubscriptions\" />
+  </ItemGroup>
+
 </Project>

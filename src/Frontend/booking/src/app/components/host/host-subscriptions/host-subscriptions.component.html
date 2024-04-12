@@ -1,0 +1,7 @@
+<h1>Available Subscription Plans</h1>
+
+<div *ngIf="plans.length > 0">
+    <div *ngFor="let plan of this.plans">
+      <app-subscription [plan]="plan"></app-subscription>
+    </div>
+</div>

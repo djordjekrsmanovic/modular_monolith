@@ -1,11 +1,12 @@
 <div class="subscription-card">
-    <h2>Accommodation Rental Subscription</h2>
+    <h2>{{plan.name}}</h2>
     <div class="plan-details">
-      <p class="price">Price: $49.99/month</p>
-      <p class="max-accommodations">Maximum Accommodations: 5</p>
+      <p class="price">Price: {{plan.price}}/month</p>
+      <p class="max-accommodations">Maximum Accommodations: {{plan.accommodationLimit}}</p>
+      <p class="max-accommodations">Duration: {{plan.duration}}</p>
     </div>
     <div class="description">
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum commodo magna at lacus cursus hendrerit. Donec et convallis velit, at fermentum orci. Duis vitae efficitur lorem.</p>
+      <p>{{plan.description}}</p>
     </div>
     <label class="checkbox-container">
       <input type="checkbox">
@@ -13,4 +14,4 @@
       <p>Subscribe</p>
     </label>
     <p class="terms">By subscribing, you agree to our terms and conditions.</p>
-  </div>
+</div>

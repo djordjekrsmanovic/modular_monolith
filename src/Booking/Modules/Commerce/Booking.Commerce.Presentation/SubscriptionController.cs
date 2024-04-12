@@ -1,5 +1,5 @@
 ﻿using Booking.BuildingBlocks.Presentation;
-using Booking.Commerce.Application.Subscriptions;
+using Booking.Commerce.Application.Features.Subscriptions.Subscribe;
 using Booking.Commerce.Domain.Enums;
 using Booking.Commerce.Presentation.Contracts;
 using MediatR;

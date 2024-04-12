@@ -59,6 +59,7 @@ import { AdditionalServiceComponent } from './components/additional-service/addi
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { IvyCarouselModule } from 'angular-responsive-carousel';
 import { SubscriptionComponent } from './components/subscription/subscription.component';
+import { HostSubscriptionsComponent } from './components/host/host-subscriptions/host-subscriptions.component';
 
 @NgModule({
   declarations: [
@@ -110,7 +111,8 @@ import { SubscriptionComponent } from './components/subscription/subscription.co
     CalendarHeaderComponent,
     AdditionalServiceComponent,
     CarouselComponent,
-    SubscriptionComponent
+    SubscriptionComponent,
+    HostSubscriptionsComponent
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule,NgbModalModule,
     FlatpickrModule.forRoot(),

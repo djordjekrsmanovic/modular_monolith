@@ -1,0 +1,14 @@
+<h1>My Subscriptions</h1>
+
+<div *ngIf="subscriptions.length > 0">
+  <div *ngFor="let subscription of this.subscriptions">
+    <app-subscription [subscription]="subscription"></app-subscription>
+  </div>
+</div>
+
+<h1>Available Subscription Plans</h1>
+<div *ngIf="plans.length > 0">
+    <div *ngFor="let plan of this.plans">
+      <app-subscription-plan [plan]="plan"></app-subscription-plan>
+    </div>
+</div>

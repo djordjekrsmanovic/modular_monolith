@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { SubscriptionPlan } from 'src/app/model/subscription-plan';
+import { Subscription } from 'rxjs';
+import { UserSubscription } from '../../../model/user-subscription';
 
 @Component({
   selector: 'app-subscription',
@@ -7,9 +8,10 @@ import { SubscriptionPlan } from 'src/app/model/subscription-plan';
   styleUrls: ['./subscription.component.css']
 })
 export class SubscriptionComponent implements OnInit {
-  @Input() plan: SubscriptionPlan=new SubscriptionPlan();
-  constructor() { }
 
+  @Input() subscription: UserSubscription=new UserSubscription();
+  constructor() { }
+  cardClass="subscription-card-silver"
   ngOnInit(): void {
   }
 

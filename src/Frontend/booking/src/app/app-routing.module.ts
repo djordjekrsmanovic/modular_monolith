@@ -12,8 +12,8 @@ import { ReviewsPageComponent } from './components/pages/reviews-page/reviews-pa
 import { HostDashboardComponent } from './components/host/host-dashboard/host-dashboard.component';
 import { AddAccommodationComponent } from './components/host/add-accommodation/add-accommodation.component';
 import { AccommodationPageComponent } from './components/accomodations/accommodation-page/accommodation-page.component';
-import { SubscriptionComponent } from './components/subscription/subscription.component';
-import { HostSubscriptionsComponent } from './components/host/host-subscriptions/host-subscriptions.component';
+import { SubscriptionPlanComponent } from './components/subscription-plan/subscription-plan.component';
+import { HostSubscriptionsPageComponent } from './components/host/host-subscriptions-page/host-subscriptions-page.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -26,7 +26,7 @@ const routes: Routes = [
   { path: 'accomodation-owner-db', component: AccomodationOwnerDashboardComponent },
   { path: 'accomodation/:id', component: AccommodationPageComponent },
   { path: 'add-accommodation',component: AddAccommodationComponent},
-  { path: 'subscriptions',component: HostSubscriptionsComponent},
+  { path: 'subscriptions',component: HostSubscriptionsPageComponent},
   { path: '', component: HomeComponent },
   { path: '**', component: NotFoundComponent },
 

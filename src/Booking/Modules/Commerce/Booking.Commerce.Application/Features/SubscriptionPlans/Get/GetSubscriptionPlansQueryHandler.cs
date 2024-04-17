@@ -5,7 +5,7 @@ using Booking.Commerce.Domain.Repositories;
 
 namespace Booking.Commerce.Application.Features.SubscriptionPlans.Get
 {
-    internal class GetSubscriptionPlansQueryHandler : IQueryHandler<GetSubscriptionPlansQuery, List<GetSubscriptionPlanResponse>>
+    internal class GetSubscriptionPlansQueryHandler : IQueryHandler<GetSubscriptionPlansQuery, List<SubscriptionPlanResponse>>
     {
         private readonly ISubscriptionPlanRepository _subscriptionPlanRepository;
 
@@ -13,11 +13,11 @@ namespace Booking.Commerce.Application.Features.SubscriptionPlans.Get
         {
             _subscriptionPlanRepository = subscriptionPlanRepository;
         }
-        public async Task<Result<List<GetSubscriptionPlanResponse>>> Handle(GetSubscriptionPlansQuery request, CancellationToken cancellationToken)
+        public async Task<Result<List<SubscriptionPlanResponse>>> Handle(GetSubscriptionPlansQuery request, CancellationToken cancellationToken)
         {
             List<SubscriptionPlan> plans = await _subscriptionPlanRepository.GetAsync();
 
-            return plans.Select(plan => new GetSubscriptionPlanResponse(
+            return plans.Select(plan => new SubscriptionPlanResponse(
                 Id: plan.Id,
                 Name: plan.Name,
                 Description: plan.Description,

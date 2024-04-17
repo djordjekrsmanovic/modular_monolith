@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Subscriptions\GetUserSubscriptions\" />
+    <Folder Include="Features\Subscriptions\Payments\RejectPayment\" />
   </ItemGroup>
 
 </Project>

@@ -3,6 +3,8 @@
     public enum SubscriptionStatus
     {
         Active,
-        Expired
+        Expired,
+        WaitingForApproval,
+        Canceled
     }
 }

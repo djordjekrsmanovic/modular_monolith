@@ -58,8 +58,9 @@ import { FlatpickrModule } from 'angularx-flatpickr';
 import { AdditionalServiceComponent } from './components/additional-service/additional-service.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { IvyCarouselModule } from 'angular-responsive-carousel';
-import { SubscriptionComponent } from './components/subscription/subscription.component';
-import { HostSubscriptionsComponent } from './components/host/host-subscriptions/host-subscriptions.component';
+import { SubscriptionPlanComponent } from './components/subscription-plan/subscription-plan.component';
+import { HostSubscriptionsPageComponent } from './components/host/host-subscriptions-page/host-subscriptions-page.component';
+import { SubscriptionComponent } from './components/host/subscription/subscription.component';
 
 @NgModule({
   declarations: [
@@ -111,8 +112,9 @@ import { HostSubscriptionsComponent } from './components/host/host-subscriptions
     CalendarHeaderComponent,
     AdditionalServiceComponent,
     CarouselComponent,
-    SubscriptionComponent,
-    HostSubscriptionsComponent
+    SubscriptionPlanComponent,
+    HostSubscriptionsPageComponent,
+    SubscriptionComponent
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule,NgbModalModule,
     FlatpickrModule.forRoot(),

@@ -50,5 +50,16 @@ namespace Booking.Commerce.Domain.Entities
         {
             return Payments.Any(p => p.Id == payment.Id);
         }
+
+        public Result ConfirmPayment(Guid paymentId)
+        {
+            Payment payment = Payments.Where(p => p.Id == paymentId).FirstOrDefault();
+            if (payment is null)
+            {
+                return Result.Failure(PaymentErrors.PaymentNotExist);
+            }
+
+            return payment.ConfirmPayment();
+        }
     }
 }

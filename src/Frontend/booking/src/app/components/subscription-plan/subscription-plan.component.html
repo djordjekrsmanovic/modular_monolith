@@ -1,0 +1,46 @@
+<div class="subscription-card">
+    <h2>{{plan.name}}</h2>
+    <div class="plan-details">
+      <p class="price">Price: {{plan.price}}/month</p>
+      <p class="max-accommodations">Maximum Accommodations: {{plan.accommodationLimit}}</p>
+      <p class="max-accommodations">Duration: {{plan.duration}}</p>
+    </div>
+    <div class="description">
+      <p>{{plan.description}}</p>
+    </div>
+    <button (click)="openModalTab()">Subscribe</button>
+    <p class="terms">By subscribing, you agree to our terms and conditions.</p>
+</div>
+
+<div class="modal" id='modal'>
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Subscription payment</p>
+      <button class="delete" aria-label="close" (click)="closeModalTab()"></button>
+    </header>
+    <section class="modal-card-body">
+      <div>
+        <label for="paymentMethod">Payment Method:</label>
+        <select id="paymentMethod" name="paymentMethod" [(ngModel)]="paymentMethod">
+          <option value="CreditCard">Credit Card</option>
+          <option value="PayPal">PayPal</option>
+          <option value="BankTransfer">Bank Transfer</option>
+        </select>
+      </div>
+
+      <!-- Price Display -->
+      <div>
+        <h3>Price: {{plan.price}}/month</h3>
+      </div>
+    </section>
+    <footer class="modal-card-foot">
+      <div class="field">
+        <div class="control">
+          <button class="button is-link" (click)="confirm()">Confirm</button>
+        </div>
+      </div>
+
+    </footer>
+  </div>
+</div>

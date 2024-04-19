@@ -8,5 +8,7 @@ namespace Booking.Accomodation.Domain.Errors
         public static readonly Error ImageIsCorrupted = new("Accommodation.ImageCorrupted", "Image is corrupted", ErrorType.BadRequest);
 
         public static readonly Error IdNotExist = new("Accommodation.NotExistingId", "Accommodation with provided id does not exist", ErrorType.BadRequest);
+
+        public static readonly Error AccommodationLimitExceeded = new("Accommodation.LimitExceeded", "Your subscription does not allow to create more accommodations", ErrorType.BadRequest);
     }
 }

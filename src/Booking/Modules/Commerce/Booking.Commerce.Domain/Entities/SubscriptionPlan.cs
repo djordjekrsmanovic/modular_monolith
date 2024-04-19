@@ -12,6 +12,6 @@ namespace Booking.Commerce.Domain.Entities
 
         public Money Price { get; set; }
 
-        public int durationInMonths { get; set; }
+        public int DurationInMonths { get; set; }
     }
 }

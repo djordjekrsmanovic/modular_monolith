@@ -2,15 +2,11 @@
 using Booking.Commerce.Domain;
 using Booking.Commerce.Domain.Entities;
 using Booking.Commerce.Domain.Events;
-using Booking.Commerce.Domain.Repositories;
 
 namespace Booking.Commerce.Application.Features.Subscriptions.Subscribe
 {
     internal class UserSubscribedDomainEventHandler : IDomainEventHandler<UserSubscribedDomainEvent>
     {
-
-        private readonly IPaymentRepository paymentRepository;
-
         private readonly IUnitOfWork _unitOfWork;
 
         public UserSubscribedDomainEventHandler(IUnitOfWork unitOfWork)

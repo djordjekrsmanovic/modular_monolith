@@ -22,7 +22,7 @@ namespace Booking.Commerce.Application.Features.SubscriptionPlans.Get
                 Name: plan.Name,
                 Description: plan.Description,
                 Price: plan.Price.ConvertToString(),
-                Duration: plan.durationInMonths,
+                Duration: plan.DurationInMonths,
                 AccommodationLimit: plan.AccomodationLimit
             )).ToList();
         }

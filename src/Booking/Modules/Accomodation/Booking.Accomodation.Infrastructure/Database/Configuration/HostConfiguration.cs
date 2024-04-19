@@ -10,7 +10,7 @@ namespace Booking.Booking.Infrastructure.Database.Configuration
         {
             builder.HasKey(x => x.Id);
 
-            builder.HasMany(h => h.Accomodations)
+            builder.HasMany(h => h.Accommodations)
                 .WithOne()
                 .HasForeignKey(h => h.HostId)
                 .IsRequired(true);

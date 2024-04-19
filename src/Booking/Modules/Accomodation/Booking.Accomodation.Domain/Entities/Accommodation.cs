@@ -15,7 +15,7 @@ namespace Booking.Booking.Domain.Entities
 
         public GuestCapacity Capacity { get; set; }
 
-        public bool isBlocked { get; set; }
+        public bool IsBlocked { get; set; }
 
         public List<AdditionalService> AdditionalServices { get; set; } = new List<AdditionalService>();
 
@@ -35,6 +35,8 @@ namespace Booking.Booking.Domain.Entities
 
         public bool ReservationApprovalRequired { get; set; }
 
+        public DateTime CreatedAt { get; set; }
+
         private Accommodation() { }
 
         private Accommodation(string name, string description, Address address, GuestCapacity capacity,
@@ -51,14 +53,14 @@ namespace Booking.Booking.Domain.Entities
             AdditionalServices = additionalServices;
             Raiting = 0;
             ReservationApprovalRequired = reservationApprovalRequired;
+            CreatedAt = DateTime.Now;
         }
 
         public static Result<Accommodation> Create(Guid hostId, string name, string description,
-            Money pricePerGuest, GuestCapacity capacity, List<Image> images, Address address, List<AdditionalService> additionalServices, bool reservationApprovalRequired)
+            Money pricePerGuest, GuestCapacity capacity, List<Image> images, Address address,
+            List<AdditionalService> additionalServices, bool reservationApprovalRequired)
         {
             Accommodation accommodation = new Accommodation(name, description, address, capacity, pricePerGuest, images, hostId, additionalServices, reservationApprovalRequired);
-            AvailabilityPeriod availabilityPeriod = AvailabilityPeriod.Create(DateTime.UtcNow, DateTime.UtcNow.AddYears(1), pricePerGuest, accommodation.Id).Value;
-            accommodation.AddAvailabilityPeriod(availabilityPeriod);
             return accommodation;
         }
 
@@ -74,9 +76,14 @@ namespace Booking.Booking.Domain.Entities
             return availibilityPeriodsExists && currentReservationNotExist;
         }
 
-        public void AddAvailabilityPeriod(AvailabilityPeriod period)
+        public Result AddAvailabilityPeriod(DateTime start, DateTime end, Money Price)
         {
-            AvailabilityPeriods.Add(period);
+            var availabilityPeriodResponse = AvailabilityPeriod.Create(start, end, Price, Id);
+            if (availabilityPeriodResponse.IsSuccess)
+            {
+                AvailabilityPeriods.Add(availabilityPeriodResponse.Value);
+            }
+            return availabilityPeriodResponse;
         }
     }
 }

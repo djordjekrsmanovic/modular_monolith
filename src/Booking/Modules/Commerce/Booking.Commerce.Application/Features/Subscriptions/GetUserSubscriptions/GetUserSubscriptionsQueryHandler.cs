@@ -31,7 +31,7 @@ namespace Booking.Commerce.Application.Features.Subscriptions.GetUserSubscriptio
                                                         Name: s.Plan.Name,
                                                         Description: s.Plan.Description,
                                                         Price: s.Plan.Price.ConvertToString(),
-                                                        Duration: s.Plan.durationInMonths,
+                                                        Duration: s.Plan.DurationInMonths,
                                                         AccommodationLimit: s.Plan.AccomodationLimit
                                               ),
                             SubscriptionPeriod: s.SubscriptionPeriod,

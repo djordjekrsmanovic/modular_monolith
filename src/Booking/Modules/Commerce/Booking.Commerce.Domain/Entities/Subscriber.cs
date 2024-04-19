@@ -31,7 +31,7 @@ namespace Booking.Commerce.Domain.Entities
                 return Result.Failure<Subscription>(SubscriptionErrors.UserAlreadySubscribed);
             }
 
-            Subscription subscription = Subscription.Create(plan).Value;
+            Subscription subscription = Subscription.Create(plan, Id).Value;
             Subscriptions.Add(subscription);
             this.RaiseDomainEvent(new UserSubscribedDomainEvent(subscription, paymentMethod));
             return Result.Success(subscription);

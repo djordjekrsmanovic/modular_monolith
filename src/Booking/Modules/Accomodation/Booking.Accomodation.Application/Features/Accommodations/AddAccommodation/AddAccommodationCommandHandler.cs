@@ -1,4 +1,5 @@
 ﻿using Booking.Accomodation.Domain;
+using Booking.Accomodation.Domain.Errors;
 using Booking.Accomodation.Domain.Repositories;
 using Booking.Accomodation.Domain.ValueObjects;
 using Booking.Booking.Domain.Entities;
@@ -15,14 +16,24 @@ namespace Booking.Accomodation.Application.Features.AccommodationNS.AddAccommoda
 
         private readonly IUnitOfWork _unitOfWork;
 
-        public AddAccommodationCommandHandler(IAccommodationRepository accommodationRepository, IUnitOfWork unitOfWork)
+        private readonly IHostRepository _hostRepository;
+
+        public AddAccommodationCommandHandler(IAccommodationRepository accommodationRepository, IUnitOfWork unitOfWork, IHostRepository hostRepository)
         {
             _accommodationRepository = accommodationRepository;
             _unitOfWork = unitOfWork;
+            _hostRepository = hostRepository;
         }
 
         public async Task<Result<Guid>> Handle(AddAccommodationCommand request, CancellationToken cancellationToken)
         {
+            Host host = await _hostRepository.GetByIdAsync(request.hostId);
+
+            if (!host.IsAllowedToCreateAccommodation())
+            {
+                return Result.Failure<Guid>(AccommodationErrors.AccommodationLimitExceeded);
+            }
+
             var addressResponse = Address.Create(request.Street, request.City, request.Country);
 
             if (addressResponse.IsFailure)
@@ -53,16 +64,30 @@ namespace Booking.Accomodation.Application.Features.AccommodationNS.AddAccommoda
 
             }
 
-            foreach (var image in accommodation.Value.Images)
-            {
-                image.AddImageToAccommodation(accommodation.Value.Id);
-            }
+            AddAvailabilityPeriod(host, pricePerGuestResponse, accommodation);
+
+            AddImages(accommodation);
 
             await _accommodationRepository.Add(accommodation.Value);
 
             await _unitOfWork.SaveChangesAsync();
 
             return Result.Success(accommodation.Value.Id);
+        }
+
+        private static void AddImages(Result<Accommodation> accommodation)
+        {
+            foreach (var image in accommodation.Value.Images)
+            {
+                image.AddImageToAccommodation(accommodation.Value.Id);
+            }
+        }
+
+        private static void AddAvailabilityPeriod(Host host, Result<Money> pricePerGuestResponse, Result<Accommodation> accommodation)
+        {
+            DateTime endDate = host.AccommodationLimit == 1 ? DateTime.UtcNow.AddYears(1) : host.SubscriptionExpirationDate;
+
+            accommodation.Value.AddAvailabilityPeriod(DateTime.UtcNow, endDate, pricePerGuestResponse.Value);
         }
     }
 }

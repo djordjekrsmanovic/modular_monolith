@@ -21,7 +21,10 @@ namespace Booking.Commerce.Infrastructure.Database.Repositories
 
         public async Task<Subscriber> GetAsync(Guid id)
         {
-            return _subscribers.Include(s => s.Subscriptions).FirstOrDefault(s => s.Id == id);
+            return _subscribers.Include(s => s.Subscriptions)
+                .ThenInclude(s => s.Plan)
+                .Include(s => s.Subscriptions)
+                .ThenInclude(sub => sub.Payments).FirstOrDefault(s => s.Id == id);
         }
     }
 }

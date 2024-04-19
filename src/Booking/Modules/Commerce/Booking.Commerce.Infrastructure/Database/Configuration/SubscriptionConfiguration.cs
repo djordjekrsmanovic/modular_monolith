@@ -13,6 +13,8 @@ namespace Booking.Commerce.Infrastructure.Database.Configuration
             builder.ComplexProperty(x => x.SubscriptionPeriod);
 
             builder.HasOne(x => x.Plan);
+
+            builder.HasMany(x => x.Payments).WithOne().HasForeignKey(x => x.ProductId);
         }
     }
 }

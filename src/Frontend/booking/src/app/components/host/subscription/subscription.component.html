@@ -1,0 +1,13 @@
+<div [ngClass]="cardClass">
+    <h2></h2>
+    <div class="plan-details">
+      <p class="price">Price: {{subscription.plan.price}} /month</p>
+      <p class="max-accommodations">Maximum Accommodations:{{subscription.plan.accommodationLimit}}</p>
+      <p class="max-accommodations">Duration: {{subscription.subscriptionPeriod.start}}-{{subscription.subscriptionPeriod.end}}</p>
+    </div>
+    <div class="description">
+      <p>{{subscription.plan.price}}</p>
+    </div>
+    <h3>Subscription Status:{{subscription.status}}</h3>
+
+</div>

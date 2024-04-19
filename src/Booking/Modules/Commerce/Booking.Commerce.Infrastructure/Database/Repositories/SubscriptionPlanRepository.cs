@@ -1,5 +1,6 @@
 ﻿using Booking.Commerce.Domain.Entities;
 using Booking.Commerce.Domain.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace Booking.Commerce.Infrastructure.Database.Repositories
 {
@@ -13,7 +14,12 @@ namespace Booking.Commerce.Infrastructure.Database.Repositories
         }
         public async Task<SubscriptionPlan> GetAsync(Guid id)
         {
-            return _context.Set<SubscriptionPlan>().FirstOrDefault(plan => plan.Id == id);
+            return await _context.Set<SubscriptionPlan>().FirstOrDefaultAsync(plan => plan.Id == id);
+        }
+
+        public async Task<List<SubscriptionPlan>> GetAsync()
+        {
+            return await _context.Set<SubscriptionPlan>().ToListAsync();
         }
     }
 }

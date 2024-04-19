@@ -47,14 +47,14 @@ namespace Booking.Commerce.Infrastructure.Migrations
                     b.Property<int>("Method")
                         .HasColumnType("int");
 
+                    b.Property<int>("PaymentType")
+                        .HasColumnType("int");
+
                     b.Property<Guid>("ProductId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
-
-                    b.Property<Guid?>("SubscriptionId")
-                        .HasColumnType("uniqueidentifier");
 
                     b.ComplexProperty<Dictionary<string, object>>("Amount", "Booking.Commerce.Domain.Entities.Payment.Amount#Money", b1 =>
                         {
@@ -69,7 +69,7 @@ namespace Booking.Commerce.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("SubscriptionId");
+                    b.HasIndex("ProductId");
 
                     b.ToTable("Payment", "commerce");
                 });
@@ -138,7 +138,7 @@ namespace Booking.Commerce.Infrastructure.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<Guid?>("SubscriberId")
+                    b.Property<Guid>("SubscriberId")
                         .HasColumnType("uniqueidentifier");
 
                     b.ComplexProperty<Dictionary<string, object>>("SubscriptionPeriod", "Booking.Commerce.Domain.Entities.Subscription.SubscriptionPeriod#DateTimeSlot", b1 =>
@@ -201,8 +201,12 @@ namespace Booking.Commerce.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("durationInMonths")
+                    b.Property<int>("DurationInMonths")
                         .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -213,7 +217,9 @@ namespace Booking.Commerce.Infrastructure.Migrations
                 {
                     b.HasOne("Booking.Commerce.Domain.Entities.Subscription", null)
                         .WithMany("Payments")
-                        .HasForeignKey("SubscriptionId");
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Booking.Commerce.Domain.Entities.ReservationInvoice", b =>
@@ -286,7 +292,9 @@ namespace Booking.Commerce.Infrastructure.Migrations
 
                     b.HasOne("Booking.Commerce.Domain.Entities.Subscriber", null)
                         .WithMany("Subscriptions")
-                        .HasForeignKey("SubscriberId");
+                        .HasForeignKey("SubscriberId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Plan");
                 });

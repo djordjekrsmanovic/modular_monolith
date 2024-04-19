@@ -5,7 +5,7 @@ using Booking.Commerce.Domain.Entities;
 using Booking.Commerce.Domain.Errors;
 using Booking.Commerce.Domain.Repositories;
 
-namespace Booking.Commerce.Application.Subscriptions
+namespace Booking.Commerce.Application.Features.Subscriptions.Subscribe
 {
     internal class SubscribeOnPlanCommandHandler : ICommandHandler<SubscribeOnPlanCommand, Guid>
     {

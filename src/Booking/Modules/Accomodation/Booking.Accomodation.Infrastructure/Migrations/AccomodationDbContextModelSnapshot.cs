@@ -114,12 +114,18 @@ namespace Booking.Accomodation.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("HostId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsBlocked")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -129,9 +135,6 @@ namespace Booking.Accomodation.Infrastructure.Migrations
                         .HasColumnType("float");
 
                     b.Property<bool>("ReservationApprovalRequired")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("isBlocked")
                         .HasColumnType("bit");
 
                     b.ComplexProperty<Dictionary<string, object>>("Address", "Booking.Booking.Domain.Entities.Accommodation.Address#Address", b1 =>
@@ -253,6 +256,12 @@ namespace Booking.Accomodation.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<int>("AccommodationLimit")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("SubscriptionExpirationDate")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("Id");
 
                     b.ToTable("Host", "accomodaton");
@@ -359,7 +368,7 @@ namespace Booking.Accomodation.Infrastructure.Migrations
 
             modelBuilder.Entity("Booking.Accomodation.Domain.Entities.AvailabilityPeriodChangeTrack", b =>
                 {
-                    b.OwnsOne("Booking.Booking.Domain.ValueObjects.Money", "NewPrice", b1 =>
+                    b.OwnsOne("Booking.BuildingBlocks.Domain.SharedKernel.ValueObjects.Money", "NewPrice", b1 =>
                         {
                             b1.Property<Guid>("AvailabilityPeriodChangeTrackId")
                                 .HasColumnType("uniqueidentifier");
@@ -378,7 +387,7 @@ namespace Booking.Accomodation.Infrastructure.Migrations
                                 .HasForeignKey("AvailabilityPeriodChangeTrackId");
                         });
 
-                    b.OwnsOne("Booking.Accomodation.Domain.ValueObjects.DateTimeSlot", "NewTimeSlot", b1 =>
+                    b.OwnsOne("Booking.BuildingBlocks.Domain.SharedKernel.ValueObjects.DateTimeSlot", "NewTimeSlot", b1 =>
                         {
                             b1.Property<Guid>("AvailabilityPeriodChangeTrackId")
                                 .HasColumnType("uniqueidentifier");
@@ -397,7 +406,7 @@ namespace Booking.Accomodation.Infrastructure.Migrations
                                 .HasForeignKey("AvailabilityPeriodChangeTrackId");
                         });
 
-                    b.OwnsOne("Booking.Booking.Domain.ValueObjects.Money", "OldPrice", b1 =>
+                    b.OwnsOne("Booking.BuildingBlocks.Domain.SharedKernel.ValueObjects.Money", "OldPrice", b1 =>
                         {
                             b1.Property<Guid>("AvailabilityPeriodChangeTrackId")
                                 .HasColumnType("uniqueidentifier");
@@ -416,7 +425,7 @@ namespace Booking.Accomodation.Infrastructure.Migrations
                                 .HasForeignKey("AvailabilityPeriodChangeTrackId");
                         });
 
-                    b.OwnsOne("Booking.Accomodation.Domain.ValueObjects.DateTimeSlot", "OldTimeSlot", b1 =>
+                    b.OwnsOne("Booking.BuildingBlocks.Domain.SharedKernel.ValueObjects.DateTimeSlot", "OldTimeSlot", b1 =>
                         {
                             b1.Property<Guid>("AvailabilityPeriodChangeTrackId")
                                 .HasColumnType("uniqueidentifier");
@@ -480,7 +489,7 @@ namespace Booking.Accomodation.Infrastructure.Migrations
 
             modelBuilder.Entity("Booking.Accomodation.Domain.Entities.PriceChangeTrack", b =>
                 {
-                    b.OwnsOne("Booking.Booking.Domain.ValueObjects.Money", "NewPrice", b1 =>
+                    b.OwnsOne("Booking.BuildingBlocks.Domain.SharedKernel.ValueObjects.Money", "NewPrice", b1 =>
                         {
                             b1.Property<Guid>("PriceChangeTrackId")
                                 .HasColumnType("uniqueidentifier");
@@ -499,7 +508,7 @@ namespace Booking.Accomodation.Infrastructure.Migrations
                                 .HasForeignKey("PriceChangeTrackId");
                         });
 
-                    b.OwnsOne("Booking.Booking.Domain.ValueObjects.Money", "OldPrice", b1 =>
+                    b.OwnsOne("Booking.BuildingBlocks.Domain.SharedKernel.ValueObjects.Money", "OldPrice", b1 =>
                         {
                             b1.Property<Guid>("PriceChangeTrackId")
                                 .HasColumnType("uniqueidentifier");
@@ -528,7 +537,7 @@ namespace Booking.Accomodation.Infrastructure.Migrations
             modelBuilder.Entity("Booking.Booking.Domain.Entities.Accommodation", b =>
                 {
                     b.HasOne("Booking.Booking.Domain.Entities.Host", null)
-                        .WithMany("Accomodations")
+                        .WithMany("Accommodations")
                         .HasForeignKey("HostId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -560,7 +569,7 @@ namespace Booking.Accomodation.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.OwnsOne("Booking.Accomodation.Domain.ValueObjects.DateTimeSlot", "DateTimeSlot", b1 =>
+                    b.OwnsOne("Booking.BuildingBlocks.Domain.SharedKernel.ValueObjects.DateTimeSlot", "DateTimeSlot", b1 =>
                         {
                             b1.Property<Guid>("ReservationId")
                                 .HasColumnType("uniqueidentifier");
@@ -579,7 +588,7 @@ namespace Booking.Accomodation.Infrastructure.Migrations
                                 .HasForeignKey("ReservationId");
                         });
 
-                    b.OwnsOne("Booking.Booking.Domain.ValueObjects.Money", "Price", b1 =>
+                    b.OwnsOne("Booking.BuildingBlocks.Domain.SharedKernel.ValueObjects.Money", "Price", b1 =>
                         {
                             b1.Property<Guid>("ReservationId")
                                 .HasColumnType("uniqueidentifier");
@@ -619,7 +628,7 @@ namespace Booking.Accomodation.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.OwnsOne("Booking.Accomodation.Domain.ValueObjects.DateTimeSlot", "DateTimeSlot", b1 =>
+                    b.OwnsOne("Booking.BuildingBlocks.Domain.SharedKernel.ValueObjects.DateTimeSlot", "DateTimeSlot", b1 =>
                         {
                             b1.Property<Guid>("ReservationRequestId")
                                 .HasColumnType("uniqueidentifier");
@@ -660,7 +669,7 @@ namespace Booking.Accomodation.Infrastructure.Migrations
 
             modelBuilder.Entity("Booking.Booking.Domain.Entities.Host", b =>
                 {
-                    b.Navigation("Accomodations");
+                    b.Navigation("Accommodations");
                 });
 #pragma warning restore 612, 618
         }

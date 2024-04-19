@@ -2,10 +2,30 @@
     max-width: 400px;
     margin: 0 auto;
     padding: 20px;
+    border: 1px solid 	#3b8efc;
+    border-radius: 5px;
+    text-align: center;
+    background-color: #1e51dd;
+  }
+
+  .subscription-card-gold {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
     border: 1px solid 	#FFD700;
     border-radius: 5px;
     text-align: center;
     background-color: #fff2a9;
+  }
+
+  .subscription-card-silver {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid 	#9b9a93;
+    border-radius: 5px;
+    text-align: center;
+    background-color: #f8f7ee;
   }
 
   .subscription-card h2 {

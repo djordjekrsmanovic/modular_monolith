@@ -1,4 +1,4 @@
-<div class="subscription-card">
+<div [ngClass]="cardClass">
     <h2>{{plan.name}}</h2>
     <div class="plan-details">
       <p class="price">Price: {{plan.price}}/month</p>
@@ -8,7 +8,7 @@
     <div class="description">
       <p>{{plan.description}}</p>
     </div>
-    <button (click)="openModalTab()">Subscribe</button>
+    <button class="button is-success" (click)="openModalTab()">Subscribe</button>
     <p class="terms">By subscribing, you agree to our terms and conditions.</p>
 </div>
 

@@ -17,20 +17,23 @@ namespace Booking.Commerce.Domain.Entities
 
         public Guid ProductId { get; set; }
 
+        public PaymentType PaymentType { get; set; }
+
         private Payment() { }
 
-        private Payment(Money amount, DateTime executonTime, PaymentStatus status, PaymentMethod method, Guid productId)
+        private Payment(Money amount, DateTime executonTime, PaymentStatus status, PaymentMethod method, Guid productId, PaymentType type)
         {
             Amount = amount;
             ExecutonTime = executonTime;
             Status = status;
             Method = method;
             ProductId = productId;
+            PaymentType = type;
         }
 
-        public static Result<Payment> Create(Money amount, PaymentMethod method, Guid productId)
+        public static Result<Payment> Create(Money amount, PaymentMethod method, Guid productId, PaymentType type)
         {
-            return Result.Success(new Payment(amount, DateTime.UtcNow, PaymentStatus.InProgress, method, productId));
+            return Result.Success(new Payment(amount, DateTime.UtcNow, PaymentStatus.InProgress, method, productId, type));
         }
 
         public Result ConfirmPayment()

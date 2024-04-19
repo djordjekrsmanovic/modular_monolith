@@ -6,7 +6,7 @@ using Booking.Commerce.IntegrationEvents;
 
 namespace Booking.Accomodation.Application.Features.Hosts
 {
-    internal class SubscribedOnPlanIntegrationEventHandler : IntegrationEventHandler<SubscribedOnPlanIntegrationEvent>
+    public class SubscribedOnPlanIntegrationEventHandler : IntegrationEventHandler<SubscribedOnPlanIntegrationEvent>
     {
 
         private readonly IHostRepository _hostRepository;

@@ -11,11 +11,20 @@ import { SubscriptionService } from '../../service/subscription.service';
 })
 export class SubscriptionPlanComponent implements OnInit {
   @Input() plan: SubscriptionPlan=new SubscriptionPlan();
+  cardClass:string='';
   constructor(private userService:UserService,private subscriptionService:SubscriptionService) { }
 
   paymentMethod:string='';
 
   ngOnInit(): void {
+    console.log(this.plan)
+    if(this.plan.name=='Gold'){
+      this.cardClass='subscription-card-gold'
+    }else if(this.plan.name='Silver'){
+      this.cardClass='subscription-card-silver'
+    }else{
+      this.cardClass='subscription-card'
+    }
   }
 
   openModalTab():void{

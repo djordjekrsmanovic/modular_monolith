@@ -3,11 +3,9 @@
 namespace Booking.Commerce.Domain.Enums
 {
     [JsonConverter(typeof(JsonStringEnumConverter))]
-    public enum SubscriptionStatus
+    public enum PaymentType
     {
-        Active,
-        Expired,
-        WaitingForApproval,
-        Canceled
+        SUBSCRIPTION,
+        RESERVATION,
     }
 }

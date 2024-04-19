@@ -19,7 +19,7 @@ namespace Booking.Commerce.Infrastructure.Database.Repositories
 
         public async Task<Subscription> GetAsync(Guid Id)
         {
-            return await _context.Set<Subscription>().Where(x => x.Id == Id).FirstOrDefaultAsync();
+            return await _context.Set<Subscription>().Where(x => x.Id == Id).Include(x => x.Payments).Include(x => x.Plan).FirstOrDefaultAsync();
         }
     }
 }

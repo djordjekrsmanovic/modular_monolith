@@ -9,6 +9,11 @@ namespace Booking.Commerce.Application.Features.Subscriptions.Payments.ConfirmPa
     {
         private readonly IEventBus _eventBus;
 
+        public PaymentConfirmedDomainEventHandler(IEventBus eventBus)
+        {
+            _eventBus = eventBus;
+        }
+
         public async Task Handle(PaymentConfirmedDomainEvent notification, CancellationToken cancellationToken)
         {
             await _eventBus.PublishAsync(

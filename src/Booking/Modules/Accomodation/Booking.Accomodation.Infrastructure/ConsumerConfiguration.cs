@@ -11,6 +11,7 @@ namespace Booking.Booking.Infrastructure
         {
             registrationConfigurator.AddConsumer<HostRegisteredIntegrationEventHandler>();
             registrationConfigurator.AddConsumer<GuestRegisteredIntegrationEventHandler>();
+            registrationConfigurator.AddConsumer<SubscribedOnPlanIntegrationEventHandler>();
         }
     }
 }

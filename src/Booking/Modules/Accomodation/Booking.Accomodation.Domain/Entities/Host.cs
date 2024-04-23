@@ -5,7 +5,6 @@ namespace Booking.Booking.Domain.Entities
 {
     public class Host : Entity<Guid>
     {
-        public List<Accommodation> Accommodations { get; private set; }
 
         public DateTime SubscriptionExpirationDate { get; private set; }
 
@@ -15,7 +14,6 @@ namespace Booking.Booking.Domain.Entities
         private Host(Guid id)
         {
             Id = id;
-            Accommodations = new List<Accommodation>();
             SubscriptionExpirationDate = DateTime.Now;
             AccommodationLimit = 1;
 
@@ -39,9 +37,9 @@ namespace Booking.Booking.Domain.Entities
 
         }
 
-        public bool IsAllowedToCreateAccommodation()
+        public bool IsAllowedToCreateAccommodation(int currentAccommodationNumber)
         {
-            return Accommodations.Count < AccommodationLimit;
+            return currentAccommodationNumber < AccommodationLimit;
         }
     }
 }

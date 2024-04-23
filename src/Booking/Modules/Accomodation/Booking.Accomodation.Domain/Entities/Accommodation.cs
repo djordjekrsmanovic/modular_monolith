@@ -1,4 +1,5 @@
-﻿using Booking.Accomodation.Domain.ValueObjects;
+﻿using Booking.Accomodation.Domain.Errors;
+using Booking.Accomodation.Domain.ValueObjects;
 using Booking.BuildingBlocks.Domain;
 using Booking.BuildingBlocks.Domain.SharedKernel.ValueObjects;
 
@@ -67,23 +68,77 @@ namespace Booking.Booking.Domain.Entities
         public bool IsAvailableForBooking(DateTime startDate, DateTime endDate)
         {
             bool currentReservationNotExist = true;
-            bool availibilityPeriodsExists = AvailabilityPeriods.Where(x => x.Slot.IsRangeOverlapping(startDate, endDate)).ToList().Count != 0;
+            bool availibilityPeriodsExists = AvailabilityPeriods.Where(x => x.Slot.IsSlotInProvidedRange(startDate, endDate)).ToList().Count != 0;
             if (Reservations.Count != 0)
             {
-                currentReservationNotExist = Reservations.Where(x => !x.DateTimeSlot.IsRangeOverlapping(startDate, endDate)).ToList().Count == 0;
+                currentReservationNotExist = Reservations.Where(x => x.DateTimeSlot.IsSlotInProvidedRange(startDate, endDate)).ToList().Count == 0;
             }
 
             return availibilityPeriodsExists && currentReservationNotExist;
         }
 
-        public Result AddAvailabilityPeriod(DateTime start, DateTime end, Money Price)
+        public Result<AvailabilityPeriod> AddAvailabilityPeriod(DateTime start, DateTime end, Money price)
         {
-            var availabilityPeriodResponse = AvailabilityPeriod.Create(start, end, Price, Id);
+            return addAvailabilityPeriod(start, end, price);
+        }
+
+        private Result<AvailabilityPeriod> addAvailabilityPeriod(DateTime start, DateTime end, Money price)
+        {
+            bool isOverlappingWithExistingPeriod = AvailabilityPeriods.Where(x => x.Slot.IsDateInSlot(start) || x.Slot.IsDateInSlot(end)).Any();
+            if (isOverlappingWithExistingPeriod)
+            {
+                return Result.Failure<AvailabilityPeriod>(AvailabilityPeriodErrors.AvailaibilityPerodOverlapsWithExisting);
+            }
+            var availabilityPeriodResponse = AvailabilityPeriod.Create(start, end, price, Id);
             if (availabilityPeriodResponse.IsSuccess)
             {
                 AvailabilityPeriods.Add(availabilityPeriodResponse.Value);
             }
             return availabilityPeriodResponse;
+        }
+
+        public Result<AvailabilityPeriod> AddAvailabilityPeriod(DateTime start, DateTime end, Money price, DateTime subscriptionRestriction)
+        {
+            if (end > subscriptionRestriction)
+            {
+                return Result.Failure<AvailabilityPeriod>(AvailabilityPeriodErrors.EndDateAfterSubscriptionExpiration);
+            }
+
+            return addAvailabilityPeriod(start, end, price);
+        }
+
+        public Result RemoveAvailabilityPeriod(Guid availabilityPeriodId)
+        {
+            AvailabilityPeriod period = AvailabilityPeriods.Where(x => x.Id == availabilityPeriodId).FirstOrDefault();
+            Reservation reservation = Reservations.Where(x => period.Slot.IsDateInSlot(x.DateTimeSlot.Start) || period.Slot.IsDateInSlot(x.DateTimeSlot.End)).FirstOrDefault();
+            if (reservation is not null)
+            {
+                return Result.Failure(AvailabilityPeriodErrors.AvailabilityPeriodContainsReservations);
+            }
+            AvailabilityPeriods.Remove(period);
+            return Result.Success();
+        }
+
+        public Result<Guid> UpdateAccommodation(string name, string description,
+            Money pricePerGuest, GuestCapacity capacity, List<Image> images, Address address,
+            List<AdditionalService> additionalServices, bool reservationApprovalRequired)
+        {
+            Name = name;
+            Description = description;
+            PricePerGuest = pricePerGuest;
+            Capacity = capacity;
+            Address = address;
+            return Id;
+        }
+
+        public void AddAditionalServices(List<AdditionalService> additionalServices)
+        {
+            AdditionalServices.AddRange(additionalServices);
+        }
+
+        public void AddImages(List<Image> images)
+        {
+            Images.AddRange(images);
         }
     }
 }

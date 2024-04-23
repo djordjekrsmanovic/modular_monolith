@@ -61,6 +61,7 @@ import { IvyCarouselModule } from 'angular-responsive-carousel';
 import { SubscriptionPlanComponent } from './components/subscription-plan/subscription-plan.component';
 import { HostSubscriptionsPageComponent } from './components/host/host-subscriptions-page/host-subscriptions-page.component';
 import { SubscriptionComponent } from './components/host/subscription/subscription.component';
+import { EditAccommodationComponent } from './components/host/edit-accommodation/edit-accommodation.component';
 
 @NgModule({
   declarations: [
@@ -114,7 +115,8 @@ import { SubscriptionComponent } from './components/host/subscription/subscripti
     CarouselComponent,
     SubscriptionPlanComponent,
     HostSubscriptionsPageComponent,
-    SubscriptionComponent
+    SubscriptionComponent,
+    EditAccommodationComponent
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule,NgbModalModule,
     FlatpickrModule.forRoot(),

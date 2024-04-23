@@ -9,11 +9,6 @@ namespace Booking.Booking.Infrastructure.Database.Configuration
         public void Configure(EntityTypeBuilder<Host> builder)
         {
             builder.HasKey(x => x.Id);
-
-            builder.HasMany(h => h.Accommodations)
-                .WithOne()
-                .HasForeignKey(h => h.HostId)
-                .IsRequired(true);
         }
     }
 }

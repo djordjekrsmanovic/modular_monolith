@@ -1,5 +1,9 @@
 ﻿using Booking.Accomodation.Application.Features.AccommodationNS.AddAccommodation;
+using Booking.Accomodation.Application.Features.Accommodations.AddAvailabilityPeriod;
+using Booking.Accomodation.Application.Features.Accommodations.DeleteAvailabilityPeriod;
+using Booking.Accomodation.Application.Features.Accommodations.EditAccommodation;
 using Booking.Accomodation.Application.Features.Accommodations.GetAccommodation;
+using Booking.Accomodation.Application.Features.Accommodations.GetAccommodationAvailabilityPeriod;
 using Booking.Accomodation.Application.Features.Accommodations.GetAccommodationById;
 using Booking.Accomodation.Application.Features.Accommodations.GetAdditionalServices;
 using Booking.Accomodation.Presentation.Contracts;
@@ -40,7 +44,7 @@ namespace Booking.Booking.Presentation
             List<Image> images = createImagesResponse.Select(photo => photo.Value).ToList();
 
             List<AdditionalService> additionalServices = request.additionalServices
-                .Select(service => AdditionalService.Create(service.Id, service.Name)).ToList();
+                .Where(service => service.Selected).Select(service => AdditionalService.Create(service.Id, service.Name)).ToList();
 
             AddAccommodationCommand command = new AddAccommodationCommand(request.Name, request.Description, request.Street, request.City,
                 request.Country, request.MinGuest, request.MaxGuest, request.PricePerGuest, additionalServices, request.hostId, images, request.ReservationApprovalRequired);
@@ -81,6 +85,81 @@ namespace Booking.Booking.Presentation
             return Ok(response.Value);
         }
 
+        [HttpPut("")]
+        public async Task<IActionResult> UpdateAccommodation([FromBody] EditAccommodationRequest request, CancellationToken cancellationToken)
+        {
+            List<Result<Image>> createImagesResponse = request.Images.Select(image =>
+            {
+                return Image.Create(image.Name, image.Extension, image.Content, request.hostId, image.Hash);
+            }).ToList();
+
+            Result<Image> failedPhoto = createImagesResponse.FirstOrDefault(photo => photo.IsFailure);
+            if (failedPhoto != null)
+            {
+                return HandleFailure(failedPhoto);
+            }
+
+            List<Image> images = createImagesResponse.Select(photo => photo.Value).ToList();
+
+            List<AdditionalService> additionalServices = request.additionalServices
+                .Where(service => service.Selected).Select(service => AdditionalService.Create(service.Id, service.Name)).ToList();
+
+            EditAccommodationCommand command = new EditAccommodationCommand(request.Id, request.Name, request.Description, request.Street, request.City,
+                request.Country, request.MinGuest, request.MaxGuest, request.PricePerGuest, additionalServices, request.hostId, images, request.ReservationApprovalRequired);
+
+            var response = await Sender.Send(command, cancellationToken);
+
+            if (response.IsFailure)
+            {
+                return HandleFailure(response);
+            }
+            return Ok(response.Value);
+        }
+
+
+        [HttpPost("add-availability-period")]
+        public async Task<IActionResult> AddAvailabilityPeriod([FromBody] AddAvailabilityPeriodRequest request, CancellationToken cancellationToken)
+        {
+            var command = new AddAvailabilityPeriodCommand(request.AccommodationId, request.Start, request.End, request.PricePerGuest);
+            var response = await Sender.Send(command, cancellationToken);
+
+            if (response.IsFailure)
+            {
+                return HandleFailure(response);
+            }
+
+            return Ok(response.Value);
+        }
+
+
+        [HttpPost("{id}/get-availability-period")]
+        public async Task<IActionResult> GetAccommodationAvailabilityPeriod(Guid accommodationId, CancellationToken cancellationToken)
+        {
+            var command = new GetAccommodationAvailabilityPeriodQuery(accommodationId);
+            var response = await Sender.Send(command, cancellationToken);
+
+            if (response.IsFailure)
+            {
+                return HandleFailure(response);
+            }
+
+            return Ok(response.Value);
+        }
+
+        [HttpPost("delete-availability-period")]
+        public async Task<IActionResult> DeleteAccommodationAvailabilityPeriod([FromBody] DeleteAvailabilityPeriodRequest request, CancellationToken cancellationToken)
+        {
+            var command = new DeleteAvailabilityPeriodCommand(request.AccommodationId, request.AvailabilityPeriodId);
+            var response = await Sender.Send(command, cancellationToken);
+
+            if (response.IsFailure)
+            {
+                return HandleFailure(response);
+            }
+
+            return Ok(response);
+        }
+
 
 
 
@@ -97,9 +176,6 @@ namespace Booking.Booking.Presentation
             return Ok(response.Value);
 
         }
-
-
-
 
     }
 }

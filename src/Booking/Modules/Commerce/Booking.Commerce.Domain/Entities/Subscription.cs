@@ -20,7 +20,7 @@ namespace Booking.Commerce.Domain.Entities
 
         public bool IsExpired()
         {
-            return SubscriptionPeriod.isInRange(DateTime.UtcNow);
+            return SubscriptionPeriod.IsDateInSlot(DateTime.UtcNow);
         }
         private Subscription() { }
 

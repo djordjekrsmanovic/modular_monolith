@@ -21,7 +21,7 @@ namespace Booking.BuildingBlocks.Domain.SharedKernel.ValueObjects
             yield return End;
         }
 
-        public bool IsRangeOverlapping(DateTime start, DateTime end)
+        public bool IsSlotInProvidedRange(DateTime start, DateTime end)
         {
             return start > Start && end < End;
         }
@@ -36,7 +36,7 @@ namespace Booking.BuildingBlocks.Domain.SharedKernel.ValueObjects
 
         }
 
-        public bool isInRange(DateTime date)
+        public bool IsDateInSlot(DateTime date)
         {
             return date >= Start && date <= End;
         }

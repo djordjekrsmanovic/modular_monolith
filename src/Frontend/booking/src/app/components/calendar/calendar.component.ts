@@ -35,8 +35,8 @@ export class CalendarComponent implements OnInit {
     for (let date of this.availableDates) {
       let event = {
         title: 'Available',
-        start: new Date(date.start),
-        end: new Date(date.end),
+        start: new Date(date.slot.start),
+        end: new Date(date.slot.end),
         allDay: false,
         color: colors.green,
       };

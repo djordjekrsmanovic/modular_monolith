@@ -1,7 +1,6 @@
 ﻿using Booking.Accomodation.Domain.Repositories;
 using Booking.Booking.Domain.Entities;
 using Booking.Booking.Infrastructure.Database;
-using Microsoft.EntityFrameworkCore;
 
 namespace Booking.Accomodation.Infrastructure.Database.Repositories
 {
@@ -22,7 +21,7 @@ namespace Booking.Accomodation.Infrastructure.Database.Repositories
 
         public async Task<Host> GetByIdAsync(Guid id)
         {
-            return _context.Set<Host>().Where(h => h.Id == id).Include(x => x.Accommodations).FirstOrDefault();
+            return _context.Set<Host>().Where(h => h.Id == id).FirstOrDefault();
         }
     }
 }

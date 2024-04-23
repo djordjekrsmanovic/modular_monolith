@@ -1,4 +1,5 @@
 ﻿
+using Booking.Booking.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -38,6 +39,7 @@ namespace Booking.Booking.Infrastructure.Database.Configuration
                 .WithOne()
                 .HasForeignKey(x => x.AccomodationId);
 
+            builder.HasOne<Host>().WithMany().HasForeignKey(x => x.HostId);
 
         }
     }

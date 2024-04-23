@@ -537,7 +537,7 @@ namespace Booking.Accomodation.Infrastructure.Migrations
             modelBuilder.Entity("Booking.Booking.Domain.Entities.Accommodation", b =>
                 {
                     b.HasOne("Booking.Booking.Domain.Entities.Host", null)
-                        .WithMany("Accommodations")
+                        .WithMany()
                         .HasForeignKey("HostId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -665,11 +665,6 @@ namespace Booking.Accomodation.Infrastructure.Migrations
             modelBuilder.Entity("Booking.Booking.Domain.Entities.Guest", b =>
                 {
                     b.Navigation("ReservationRequests");
-                });
-
-            modelBuilder.Entity("Booking.Booking.Domain.Entities.Host", b =>
-                {
-                    b.Navigation("Accommodations");
                 });
 #pragma warning restore 612, 618
         }

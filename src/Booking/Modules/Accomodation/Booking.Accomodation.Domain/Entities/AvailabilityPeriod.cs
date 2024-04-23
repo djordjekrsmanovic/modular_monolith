@@ -14,6 +14,7 @@ namespace Booking.Booking.Domain.Entities
 
         private AvailabilityPeriod(DateTimeSlot slot, Money price, Guid accommodationId)
         {
+            Id = Guid.NewGuid();
             Slot = slot;
             Price = price;
             AccommodationId = accommodationId;

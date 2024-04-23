@@ -9,6 +9,6 @@
 
 >
   <div class="carousel-cell" *ngFor="let image of images">
-    <img [src]="sanitizer.bypassSecurityTrustResourceUrl(image)" class="center-cropped" />
+    <img [src]="sanitizer.bypassSecurityTrustResourceUrl(image.content)" class="center-cropped" />
   </div>
 </carousel>

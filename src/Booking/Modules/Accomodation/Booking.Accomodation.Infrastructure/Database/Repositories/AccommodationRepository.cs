@@ -66,10 +66,31 @@ namespace Booking.Accomodation.Infrastructure.Database.Repositories
 
         public async Task<Accommodation> GetAsync(Guid Id)
         {
+
             return await _context.Set<Accommodation>().Where(accommodation => accommodation.Id == Id)
                 .Include(x => x.AvailabilityPeriods).Include(x => x.Reservations)
                 .Include(x => x.AdditionalServices)
                 .Include(x => x.Images).FirstOrDefaultAsync();
+        }
+
+        public async Task<Accommodation> GetFirstAccommodation(Guid hostId)
+        {
+            return await _context.Set<Accommodation>().OrderBy(x => x.CreatedAt).FirstAsync();
+        }
+
+        public int GetNumberOfHostAccommodations(Guid hostId)
+        {
+            return _context.Set<Accommodation>().Where(x => x.HostId == hostId).ToList().Count();
+        }
+
+        public void Update(Accommodation accommodation)
+        {
+            _context.Set<Accommodation>().Update(accommodation);
+        }
+
+        public async Task<Accommodation> Get(Guid Id)
+        {
+            return _context.Set<Accommodation>().Where(x => x.Id == Id).FirstOrDefault();
         }
     }
 }

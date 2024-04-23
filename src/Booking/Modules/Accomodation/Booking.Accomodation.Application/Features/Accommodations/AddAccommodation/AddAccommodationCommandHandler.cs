@@ -29,7 +29,7 @@ namespace Booking.Accomodation.Application.Features.AccommodationNS.AddAccommoda
         {
             Host host = await _hostRepository.GetByIdAsync(request.hostId);
 
-            if (!host.IsAllowedToCreateAccommodation())
+            if (!host.IsAllowedToCreateAccommodation(_accommodationRepository.GetNumberOfHostAccommodations(request.hostId)))
             {
                 return Result.Failure<Guid>(AccommodationErrors.AccommodationLimitExceeded);
             }
@@ -64,7 +64,7 @@ namespace Booking.Accomodation.Application.Features.AccommodationNS.AddAccommoda
 
             }
 
-            AddAvailabilityPeriod(host, pricePerGuestResponse, accommodation);
+            AddAvailabilityPeriod(host, pricePerGuestResponse.Value, accommodation.Value);
 
             AddImages(accommodation);
 
@@ -83,11 +83,11 @@ namespace Booking.Accomodation.Application.Features.AccommodationNS.AddAccommoda
             }
         }
 
-        private static void AddAvailabilityPeriod(Host host, Result<Money> pricePerGuestResponse, Result<Accommodation> accommodation)
+        private static void AddAvailabilityPeriod(Host host, Money pricePerGuest, Accommodation accommodation)
         {
             DateTime endDate = host.AccommodationLimit == 1 ? DateTime.UtcNow.AddYears(1) : host.SubscriptionExpirationDate;
 
-            accommodation.Value.AddAvailabilityPeriod(DateTime.UtcNow, endDate, pricePerGuestResponse.Value);
+            accommodation.AddAvailabilityPeriod(DateTime.UtcNow, endDate, pricePerGuest);
         }
     }
 }

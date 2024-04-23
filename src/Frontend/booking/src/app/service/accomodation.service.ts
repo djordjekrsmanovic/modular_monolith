@@ -4,6 +4,9 @@ import { server } from '../app-global';
 import { AddAccommodation } from '../model/add-accommodation';
 import { UserService } from './user.service';
 import { SearchFilter } from '../model/search-filter';
+import { ChangeTimeSlot } from '../model/calendar/change-time-slot';
+import { AddAvilableTimePeriod } from '../model/calendar/add-available-time-period';
+import { DeleteAvailabilityPeriod } from '../model/delete-availability-period';
 
 @Injectable({
   providedIn: 'root',
@@ -32,6 +35,28 @@ export class AccommodationService {
     accommodation.hostId=this.loginService.getCurrentUser().id;
     const headers = this.loginService.getHeaders();
     return this._http.post<any>(this.url,accommodation,{ headers: headers });
+  }
+
+  editAccommodation(accommodation:AddAccommodation){
+    accommodation.hostId=this.loginService.getCurrentUser().id;
+    const headers = this.loginService.getHeaders();
+    return this._http.put<any>(this.url,accommodation,{ headers: headers });
+  }
+
+  updateFreeSlot(timePeriod: ChangeTimeSlot){ //need to be fixed
+    const headers = this.loginService.getHeaders();
+    return this._http.post<any>(this.url,{ headers: headers });
+  }
+  addAvailbleTime(availableTimePeriod: AddAvilableTimePeriod){ //need to be fixed
+    const headers = this.loginService.getHeaders();
+    const url=`${this.url}/add-availability-period`
+    return this._http.post<any>(url,availableTimePeriod,{ headers: headers });
+  }
+  deleteAvailabilityPeriod(request:DeleteAvailabilityPeriod){ //need to be fiexed
+    const headers = this.loginService.getHeaders();
+    const url=`${this.url}/delete-availability-period`
+    console.log(request);
+    return this._http.post<any>(url,request,{headers:headers});
   }
 
   searchAccommodations(searchFilter:SearchFilter){

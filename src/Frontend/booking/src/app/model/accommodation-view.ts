@@ -1,6 +1,6 @@
 import { AvailableTimePeriod } from "./available-time-period";
 import { Reservation } from "./reservation";
-
+import { Image } from "./image";
 export class AccomodationView {
     constructor(
       public id: string = '',
@@ -12,9 +12,11 @@ export class AccomodationView {
       public guestLimit: number = 0,
       public additionalServices: string[] = [],
       public hostId: string = '',
-      public images:string[]=[],
+      public images:Image[]=[],
       public availabilityPeriods:AvailableTimePeriod[]=[],
-      public reservations:Reservation[]=[]
+      public reservations:Reservation[]=[],
+      public minGuest:number=0,
+      public maxGuest:number=0,
     ) {}
   }
 

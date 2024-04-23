@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Image } from '../../model/image';
 
 @Component({
   selector: 'app-carousel',
@@ -8,7 +9,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class CarouselComponent implements OnInit {
 
-  @Input() images: string[] = [];
+  @Input() images: Image[] = [];
 
   constructor(public sanitizer: DomSanitizer) {}
 

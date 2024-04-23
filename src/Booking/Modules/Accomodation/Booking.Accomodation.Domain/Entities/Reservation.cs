@@ -14,5 +14,7 @@ namespace Booking.Booking.Domain.Entities
         public Guid GustId { get; set; }
 
         public Guid AccomodationId { get; set; }
+
+        public Guid? ReservationRequestId { get; set; }
     }
 }

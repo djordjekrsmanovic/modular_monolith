@@ -13,5 +13,14 @@ namespace Booking.Accomodation.Domain.Repositories
         string? Country);
 
         public Task<Accommodation> GetAsync(Guid Id);
+
+        public Task<Accommodation> Get(Guid Id);
+
+        public Task<Accommodation> GetFirstAccommodation(Guid hostId);
+
+        public int GetNumberOfHostAccommodations(Guid hostId);
+
+        void Update(Accommodation accommodation);
+
     }
 }

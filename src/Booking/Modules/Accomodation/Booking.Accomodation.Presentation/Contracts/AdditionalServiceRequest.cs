@@ -1,6 +1,6 @@
 ﻿namespace Booking.Accomodation.Presentation.Contracts
 {
-    public record AdditionalServiceRequest(Guid Id, string Name)
+    public record AdditionalServiceRequest(Guid Id, string Name, bool Selected)
     {
     }
 }

@@ -1,12 +1,14 @@
-﻿using Booking.Booking.Domain.Enums;
+﻿using Booking.Accomodation.Domain.Errors;
+using Booking.Accomodation.Domain.Events;
+using Booking.Booking.Domain.Enums;
 using Booking.BuildingBlocks.Domain;
 using Booking.BuildingBlocks.Domain.SharedKernel.ValueObjects;
 
 namespace Booking.Booking.Domain.Entities
 {
-    public class ReservationRequest : AgregateRoot<Guid>
+    public class ReservationRequest : Entity<Guid>
     {
-        public DateTimeSlot DateTimeSlot { get; set; }
+        public DateTimeSlot Slot { get; set; }
 
         public ReservationRequestStatus Status { get; set; }
 
@@ -17,5 +19,56 @@ namespace Booking.Booking.Domain.Entities
         public Guid GuestId { get; set; }
 
         public Guid AccomodationId { get; set; }
+
+        private ReservationRequest(DateTimeSlot slot, int guestNumber, string message, Guid guestId, Guid accommodationId)
+        {
+            Id = Guid.NewGuid();
+            Slot = slot;
+            GuestNumber = guestNumber;
+            Message = message;
+            GuestId = guestId;
+            AccomodationId = accommodationId;
+            Status = ReservationRequestStatus.Waiting;
+        }
+
+
+        public static Result<ReservationRequest> Create(DateTimeSlot slot, int guestNumber, string message, Guid guestId, Guid accommodationId)
+        {
+            return Result.Success(new ReservationRequest(slot, guestNumber, message, guestId, accommodationId));
+        }
+
+        public Result Accept()
+        {
+            if (Status == ReservationRequestStatus.Canceled)
+            {
+                return Result.Failure(ReservationRequestErrors.ReservationRequestAlreadyCanceled);
+            }
+
+            if (Status == ReservationRequestStatus.Accepted)
+            {
+                return Result.Failure(ReservationRequestErrors.ReservationRequestIsAlreadyAccepted);
+            }
+
+            Status = ReservationRequestStatus.Accepted;
+            //throw domain event to create reservation from request
+            RaiseDomainEvent(new ReservationRequestAcceptedDomainEvent(Slot, AccomodationId, GuestId, Id, GuestNumber));
+            return Result.Success();
+        }
+
+        public Result Cancel()
+        {
+            if (Status == ReservationRequestStatus.Canceled)
+            {
+                return Result.Failure(ReservationRequestErrors.ReservationRequestAlreadyCanceled);
+            }
+
+            if (Status == ReservationRequestStatus.Accepted)
+            {
+                return Result.Failure(ReservationRequestErrors.ReservationRequestIsAlreadyAccepted);
+            }
+
+            Status = ReservationRequestStatus.Accepted;
+            return Result.Success();
+        }
     }
 }

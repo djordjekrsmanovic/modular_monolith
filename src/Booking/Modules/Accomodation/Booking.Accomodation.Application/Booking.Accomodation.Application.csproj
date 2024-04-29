@@ -13,9 +13,4 @@
     <ProjectReference Include="..\Booking.Accomodation.Domain\Booking.Accomodation.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Features\Reservations\CreateReservationRequest\" />
-    <Folder Include="Features\Reservations\CancelReservationRequest\" />
-  </ItemGroup>
-
 </Project>

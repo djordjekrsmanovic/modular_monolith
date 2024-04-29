@@ -71,7 +71,7 @@ namespace Booking.Booking.Domain.Entities
             bool availibilityPeriodsExists = AvailabilityPeriods.Where(x => x.Slot.IsSlotInProvidedRange(startDate, endDate)).ToList().Count != 0;
             if (Reservations.Count != 0)
             {
-                currentReservationNotExist = Reservations.Where(x => x.Slot.IsSlotInProvidedRange(startDate, endDate)).ToList().Count == 0;
+                currentReservationNotExist = Reservations.Where(x => x.Slot.IsDateInSlot(startDate) || x.Slot.IsDateInSlot(endDate)).ToList().Count == 0;
             }
 
             return availibilityPeriodsExists && currentReservationNotExist;
@@ -141,17 +141,17 @@ namespace Booking.Booking.Domain.Entities
             Images.AddRange(images);
         }
 
-        public Result AddReservation(DateTimeSlot slot, int guestNumber, Guid guestId, Guid reservationRequestId)
+        public Result<Reservation> AddReservation(DateTimeSlot slot, int guestNumber, Guid guestId, Guid? reservationRequestId)
         {
             if (!IsAvailableForBooking(slot.Start, slot.End))
             {
-                return Result.Failure(AccommodationErrors.ReservationWithSameDateAlreadyExist);
+                return Result.Failure<Reservation>(AccommodationErrors.ReservationWithSameDateAlreadyExist);
             }
 
             var reservationResponse = Reservation.Create(slot, guestNumber, AvailabilityPeriods.Where(x => x.Slot.IsDateInSlot(slot.Start)).FirstOrDefault().Price, guestId, Id, reservationRequestId);
             Reservations.Add(reservationResponse.Value);
             //throw domain event to delete all waiting reservation requests in current time slot
-            return Result.Success();
+            return Result.Success(reservationResponse.Value);
         }
     }
 }

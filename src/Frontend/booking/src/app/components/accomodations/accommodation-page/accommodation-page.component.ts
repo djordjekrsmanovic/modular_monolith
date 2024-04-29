@@ -49,6 +49,19 @@ export class AccommodationPageComponent implements OnInit {
 
 
   bookNowButton() {
+    window.location.href='add-reservation/'+this.id
+  }
+
+  openModalTab():void{
+
+    document.getElementById('modal')?.classList.toggle('is-active');
+  }
+
+  closeModalTab():void{
+    document.getElementById('modal')?.classList.toggle('is-active');
+  }
+
+  confirm(){
 
   }
 

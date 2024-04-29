@@ -28,6 +28,8 @@ namespace Booking.Booking.Domain.Entities
             ReservationRequestId = reservationRequestId;
         }
 
+        private Reservation() { }
+
         public static Result<Reservation> Create(DateTimeSlot slot, int guestNumber, Money pricePerGuest, Guid guestId, Guid accommodationId, Guid? reservationRequestId)
         {
 

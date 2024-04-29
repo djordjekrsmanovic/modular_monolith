@@ -57,6 +57,7 @@ import { HostSubscriptionsPageComponent } from './components/host/host-subscript
 import { SubscriptionComponent } from './components/host/subscription/subscription.component';
 import { EditAccommodationComponent } from './components/host/edit-accommodation/edit-accommodation.component';
 import { MyAccommodationsComponent } from './components/host/my-accommodations/my-accommodations.component';
+import { AddReservationComponent } from './components/pages/add-reservation/add-reservation.component';
 
 @NgModule({
   declarations: [
@@ -107,7 +108,8 @@ import { MyAccommodationsComponent } from './components/host/my-accommodations/m
     HostSubscriptionsPageComponent,
     SubscriptionComponent,
     EditAccommodationComponent,
-    MyAccommodationsComponent
+    MyAccommodationsComponent,
+    AddReservationComponent
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule,NgbModalModule,
     FlatpickrModule.forRoot(),

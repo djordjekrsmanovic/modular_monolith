@@ -7,11 +7,14 @@ import { SearchFilter } from '../model/search-filter';
 import { ChangeTimeSlot } from '../model/calendar/change-time-slot';
 import { AddAvilableTimePeriod } from '../model/calendar/add-available-time-period';
 import { DeleteAvailabilityPeriod } from '../model/delete-availability-period';
+import { CalculatePrice } from '../model/calculate-price';
+import { CreateReservation } from '../model/create-reservation';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AccommodationService {
+
 
 
   url = server + 'api/accommodations';
@@ -117,5 +120,17 @@ export class AccommodationService {
     const headers = this.loginService.getHeaders();
     const url=`${this.url}/additional-services`;
     return this._http.get<any>(url,{ headers: headers });
+  }
+
+  calculatePrice(calculatePrice: CalculatePrice) {
+    const headers = this.loginService.getHeaders();
+    const url=`${server}api/reservations/calculate-price`;
+    return this._http.post<any>(url,calculatePrice,{headers});
+  }
+
+  createReservation(createReservation:CreateReservation){
+    const headers = this.loginService.getHeaders();
+    const url=`${server}api/reservations`;
+    return this._http.post<any>(url,createReservation,{headers});
   }
 }

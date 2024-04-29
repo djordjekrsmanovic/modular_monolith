@@ -31,6 +31,8 @@ namespace Booking.Booking.Domain.Entities
             Status = ReservationRequestStatus.Waiting;
         }
 
+        private ReservationRequest() { }
+
 
         public static Result<ReservationRequest> Create(DateTimeSlot slot, int guestNumber, string message, Guid guestId, Guid accommodationId)
         {

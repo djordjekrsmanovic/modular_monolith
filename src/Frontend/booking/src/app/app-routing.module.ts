@@ -22,13 +22,11 @@ const routes: Routes = [
   { path: 'host-db', component: HostDashboardComponent },
   { path: 'thank-you-registration', component: ThankYouRegistrationComponent },
   { path: 'accomodations', component: BrowseAccommodationsComponent },
-  { path: 'reviews', component: ReviewsPageComponent },
   { path: 'guest-db', component: GuestDashboardComponent },
   { path: 'accomodation-owner-db', component: AccomodationOwnerDashboardComponent },
   { path: 'accomodation/:id', component: AccommodationPageComponent },
   { path: 'add-accommodation',component: AddAccommodationComponent},
   { path: 'edit-accomodation/:id', component: EditAccommodationComponent },
-  { path: 'subscriptions',component: HostSubscriptionsPageComponent},
   { path: '', component: HomeComponent },
   { path: '**', component: NotFoundComponent },
 

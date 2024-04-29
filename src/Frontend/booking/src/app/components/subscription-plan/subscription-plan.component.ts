@@ -39,7 +39,7 @@ export class SubscriptionPlanComponent implements OnInit {
   confirm(){
     let subscribeOnPlan=new SubscribeOnPlan(this.userService.getCurrentUser().id,this.plan.id,this.paymentMethod);
     console.log(subscribeOnPlan);
-    this.subscriptionService.subscribeOnPlan(subscribeOnPlan).subscribe();
+    this.subscriptionService.subscribeOnPlan(subscribeOnPlan).subscribe(data=>{},error=>{alert('User is already subscribed on plan')});
   }
 
 }

@@ -59,6 +59,13 @@ export class AccommodationService {
     return this._http.post<any>(url,request,{headers:headers});
   }
 
+  getHostAccommodations(){
+    const headers = this.loginService.getHeaders();
+    const id=this.loginService.getCurrentUser().id;
+    const url=`${this.url}/host/${id}`
+    return this._http.get<any>(url,{headers})
+  }
+
   searchAccommodations(searchFilter:SearchFilter){
 
     const queryParams = [];

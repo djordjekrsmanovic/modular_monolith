@@ -15,6 +15,7 @@ export class BrowseCardComponent implements OnInit {
   @Input() rating: number = 0;
   @Input() utilities: string[] = [];
   @Input() image: any;
+  @Input() showEdit:boolean=false;
 
   @Input() id: number = 0;
   @Input() type: string = 'entity';
@@ -25,5 +26,9 @@ export class BrowseCardComponent implements OnInit {
 
   readMore() {
     window.location.href = this.type + '/' + this.id;
+  }
+
+  edit() {
+    window.location.href = 'edit-accommodation' + '/' + this.id;
   }
 }

@@ -92,5 +92,12 @@ namespace Booking.Accomodation.Infrastructure.Database.Repositories
         {
             return _context.Set<Accommodation>().Where(x => x.Id == Id).FirstOrDefault();
         }
+
+        public async Task<List<Accommodation>> GetHostAccommodations(Guid hostId)
+        {
+            return await _context.Set<Accommodation>().Where(accommodation => accommodation.HostId == hostId)
+                .Include(x => x.AdditionalServices)
+                .Include(x => x.Images).ToListAsync();
+        }
     }
 }

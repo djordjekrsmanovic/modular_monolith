@@ -6,6 +6,7 @@ using Booking.Accomodation.Application.Features.Accommodations.GetAccommodation;
 using Booking.Accomodation.Application.Features.Accommodations.GetAccommodationAvailabilityPeriod;
 using Booking.Accomodation.Application.Features.Accommodations.GetAccommodationById;
 using Booking.Accomodation.Application.Features.Accommodations.GetAdditionalServices;
+using Booking.Accomodation.Application.Features.Accommodations.GetHostAccommodations;
 using Booking.Accomodation.Presentation.Contracts;
 using Booking.Booking.Domain.Entities;
 using Booking.BuildingBlocks.Domain;
@@ -63,6 +64,20 @@ namespace Booking.Booking.Presentation
         {
 
             var response = await Sender.Send(query, cancellationToken);
+
+            if (response.IsFailure)
+            {
+                return HandleFailure(response);
+            }
+            return Ok(response.Value);
+
+        }
+
+        [HttpGet("host/{id}")]
+        public async Task<IActionResult> GetHostAccommodations(Guid id, CancellationToken cancellationToken)
+        {
+
+            var response = await Sender.Send(new GetHostAccommodationsQuery(id), cancellationToken);
 
             if (response.IsFailure)
             {

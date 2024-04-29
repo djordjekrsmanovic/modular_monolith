@@ -21,6 +21,6 @@ namespace Booking.Accomodation.Domain.Repositories
         public int GetNumberOfHostAccommodations(Guid hostId);
 
         void Update(Accommodation accommodation);
-
+        Task<List<Accommodation>> GetHostAccommodations(Guid hostId);
     }
 }

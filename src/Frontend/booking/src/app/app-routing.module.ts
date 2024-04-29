@@ -22,9 +22,9 @@ const routes: Routes = [
   { path: 'thank-you-registration', component: ThankYouRegistrationComponent },
   { path: 'accomodations', component: BrowseAccommodationsComponent },
   { path: 'guest-db', component: GuestDashboardComponent },
-  { path: 'accomodation/:id', component: AccommodationPageComponent },
+  { path: 'accommodation/:id', component: AccommodationPageComponent },
   { path: 'add-accommodation',component: AddAccommodationComponent},
-  { path: 'edit-accomodation/:id', component: EditAccommodationComponent },
+  { path: 'edit-accommodation/:id', component: EditAccommodationComponent },
   { path: '', component: HomeComponent },
   { path: '**', component: NotFoundComponent },
 

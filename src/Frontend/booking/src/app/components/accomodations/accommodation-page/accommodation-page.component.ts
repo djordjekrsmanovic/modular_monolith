@@ -52,6 +52,10 @@ export class AccommodationPageComponent implements OnInit {
     window.location.href='add-reservation/'+this.id
   }
 
+  sendReservationRequest(){
+    window.location.href='create-reservation-request/'+this.id
+  }
+
   openModalTab():void{
 
     document.getElementById('modal')?.classList.toggle('is-active');

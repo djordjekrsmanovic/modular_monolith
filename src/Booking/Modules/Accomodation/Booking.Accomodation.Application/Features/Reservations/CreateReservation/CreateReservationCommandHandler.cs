@@ -1,4 +1,5 @@
 ﻿using Booking.Accomodation.Domain;
+using Booking.Accomodation.Domain.Errors;
 using Booking.Accomodation.Domain.Repositories;
 using Booking.Booking.Domain.Entities;
 using Booking.BuildingBlocks.Application.CQRS;
@@ -26,6 +27,11 @@ namespace Booking.Accomodation.Application.Features.Reservations.CreateReservati
         public async Task<Result> Handle(CreateReservationCommand request, CancellationToken cancellationToken)
         {
             Accommodation accommodation = await _accommodationRepository.GetAsync(request.AccommodationId);
+
+            if (accommodation.ReservationApprovalRequired)
+            {
+                return Result.Failure(AccommodationErrors.ReservationRequiresApproval);
+            }
 
             var slot = DateTimeSlot.Create(request.Start, request.End);
 

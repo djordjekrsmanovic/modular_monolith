@@ -1,5 +1,6 @@
 ﻿using Booking.Accomodation.Application.Features.Reservations.CalculateReservationPrice;
 using Booking.Accomodation.Application.Features.Reservations.CreateReservation;
+using Booking.Accomodation.Application.Features.Reservations.CreateReservationRequest;
 using Booking.Accomodation.Presentation.Contracts;
 using Booking.BuildingBlocks.Presentation;
 using MediatR;
@@ -31,6 +32,19 @@ namespace Booking.Accomodation.Presentation
         public async Task<IActionResult> CalculatePrice([FromBody] CalculateReservationPriceRequest request, CancellationToken cancellationToken)
         {
             var response = await Sender.Send(new CalculateReservationPriceCommand(request.AccommodationId, request.Start, request.End, request.GuestNumber), cancellationToken);
+
+            if (response.IsFailure)
+            {
+                return HandleFailure(response);
+            }
+            return Ok(response);
+        }
+
+        [HttpPost("request")]
+        public async Task<IActionResult> CreateReservationRequest([FromBody] CreateReservationRequestRequest request, CancellationToken cancellationToken)
+        {
+            var response = await Sender.Send(new CreateReservationRequestCommand(request.AccommodationId, request.GuestId,
+                request.Message, request.GuestNumber, request.Start, request.End), cancellationToken);
 
             if (response.IsFailure)
             {

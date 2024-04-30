@@ -40,7 +40,8 @@ namespace Booking.Accomodation.Application.Features.Accommodations.GetAccommodat
                 Reservations: accommodation.Reservations.Select(a => { return DateTimeSlot.Create(a.Slot.Start, a.Slot.End).Value; }).ToList(),
                 HostId: accommodation.HostId,
                 MinGuest: accommodation.Capacity.MinGuestNumber,
-                MaxGuest: accommodation.Capacity.MaxGuestNumber
+                MaxGuest: accommodation.Capacity.MaxGuestNumber,
+                RequiredReservationRequest: accommodation.ReservationApprovalRequired
 
             );
         }

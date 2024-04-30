@@ -12,5 +12,7 @@ namespace Booking.Accomodation.Domain.Errors
         public static readonly Error AccommodationLimitExceeded = new("Accommodation.LimitExceeded", "Your subscription does not allow to create more accommodations", ErrorType.BadRequest);
 
         public static readonly Error ReservationWithSameDateAlreadyExist = new("Accommodation.ReservationWithSameDateAlreadyExist", "A reservation with the same data already exists.", ErrorType.BadRequest);
+
+        public static readonly Error ReservationRequiresApproval = new Error("Accommodation.ReservationRequiresApproval", "Reservation requires approval of host, reservation request must be send.");
     }
 }

@@ -9,6 +9,7 @@ import { AddAvilableTimePeriod } from '../model/calendar/add-available-time-peri
 import { DeleteAvailabilityPeriod } from '../model/delete-availability-period';
 import { CalculatePrice } from '../model/calculate-price';
 import { CreateReservation } from '../model/create-reservation';
+import { CreateReservationRequest } from '../model/create-reservation-request';
 
 @Injectable({
   providedIn: 'root',
@@ -132,5 +133,11 @@ export class AccommodationService {
     const headers = this.loginService.getHeaders();
     const url=`${server}api/reservations`;
     return this._http.post<any>(url,createReservation,{headers});
+  }
+
+  createReservationRequest(createReservationRequest:CreateReservationRequest){
+    const headers = this.loginService.getHeaders();
+    const url=`${server}api/reservations/request`;
+    return this._http.post<any>(url,createReservationRequest,{headers});
   }
 }

@@ -36,7 +36,7 @@ export class AddReservationComponent implements OnInit {
     this.createReservation.start=this.calculatePrice.start;
     this.createReservation.end=this.calculatePrice.end;
     this.accommodationService.createReservation(this.createReservation).subscribe(data=>{alert('Reservation Created')},
-    err=>{alert('Unable to create reservation')})
+    err=>{console.log(err);alert(err.error.detail)})
   }
 
 }

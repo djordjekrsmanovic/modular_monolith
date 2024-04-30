@@ -12,6 +12,8 @@ namespace Booking.Accomodation.Infrastructure.Database.Configuration
 
             builder.ComplexProperty(x => x.Slot);
 
+            builder.ComplexProperty(x => x.Price);
+
             builder.HasOne<Accommodation>().WithMany().HasForeignKey(x => x.AccomodationId);
 
         }

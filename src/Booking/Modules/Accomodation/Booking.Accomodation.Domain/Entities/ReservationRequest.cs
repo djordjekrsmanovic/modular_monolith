@@ -20,7 +20,9 @@ namespace Booking.Booking.Domain.Entities
 
         public Guid AccomodationId { get; set; }
 
-        private ReservationRequest(DateTimeSlot slot, int guestNumber, string message, Guid guestId, Guid accommodationId)
+        public Money Price { get; set; }
+
+        private ReservationRequest(DateTimeSlot slot, int guestNumber, string message, Guid guestId, Guid accommodationId, Money price)
         {
             Id = Guid.NewGuid();
             Slot = slot;
@@ -29,14 +31,16 @@ namespace Booking.Booking.Domain.Entities
             GuestId = guestId;
             AccomodationId = accommodationId;
             Status = ReservationRequestStatus.Waiting;
+            Price = price;
         }
 
         private ReservationRequest() { }
 
 
-        public static Result<ReservationRequest> Create(DateTimeSlot slot, int guestNumber, string message, Guid guestId, Guid accommodationId)
+        public static Result<ReservationRequest> Create(DateTimeSlot slot, int guestNumber, string message, Guid guestId, Guid accommodationId, Money pricePerGuest)
         {
-            return Result.Success(new ReservationRequest(slot, guestNumber, message, guestId, accommodationId));
+
+            return Result.Success(new ReservationRequest(slot, guestNumber, message, guestId, accommodationId, Money.CalculateSumPriceForReservation(pricePerGuest, guestNumber, slot.GetNumberOfDays())));
         }
 
         public Result Accept()

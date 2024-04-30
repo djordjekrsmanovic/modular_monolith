@@ -17,6 +17,7 @@ export class AccomodationView {
       public reservations:Reservation[]=[],
       public minGuest:number=0,
       public maxGuest:number=0,
+      public requiredReservationRequest:boolean=false
     ) {}
   }
 

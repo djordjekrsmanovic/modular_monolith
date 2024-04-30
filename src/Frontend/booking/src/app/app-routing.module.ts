@@ -15,6 +15,7 @@ import { SubscriptionPlanComponent } from './components/subscription-plan/subscr
 import { HostSubscriptionsPageComponent } from './components/host/host-subscriptions-page/host-subscriptions-page.component';
 import { EditAccommodationComponent } from './components/host/edit-accommodation/edit-accommodation.component';
 import { AddReservationComponent } from './components/pages/add-reservation/add-reservation.component';
+import { CreateReservationResquestComponent } from './components/pages/create-reservation-resquest/create-reservation-resquest.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: 'add-accommodation',component: AddAccommodationComponent},
   { path: 'edit-accommodation/:id', component: EditAccommodationComponent },
   {path: 'add-reservation/:id',component: AddReservationComponent},
+  {path: 'create-reservation-request/:id',component: CreateReservationResquestComponent},
   { path: '', component: HomeComponent },
   { path: '**', component: NotFoundComponent },
 

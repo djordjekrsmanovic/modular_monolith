@@ -16,6 +16,7 @@ import { HostSubscriptionsPageComponent } from './components/host/host-subscript
 import { EditAccommodationComponent } from './components/host/edit-accommodation/edit-accommodation.component';
 import { AddReservationComponent } from './components/pages/add-reservation/add-reservation.component';
 import { CreateReservationResquestComponent } from './components/pages/create-reservation-resquest/create-reservation-resquest.component';
+import { ReservationRequestComponent } from './components/reservation-request/reservation-request.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -29,6 +30,7 @@ const routes: Routes = [
   { path: 'edit-accommodation/:id', component: EditAccommodationComponent },
   {path: 'add-reservation/:id',component: AddReservationComponent},
   {path: 'create-reservation-request/:id',component: CreateReservationResquestComponent},
+  {path: 'reservation-request',component:ReservationRequestComponent},
   { path: '', component: HomeComponent },
   { path: '**', component: NotFoundComponent },
 

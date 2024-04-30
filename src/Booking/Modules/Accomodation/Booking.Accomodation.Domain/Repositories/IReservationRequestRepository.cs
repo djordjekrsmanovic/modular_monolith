@@ -7,5 +7,9 @@ namespace Booking.Accomodation.Domain.Repositories
         Task Add(ReservationRequest value);
 
         Task<ReservationRequest> GetAsync(Guid Id);
+
+        Task<List<ReservationRequest>> GetHostReservationRequests(Guid hostId);
+
+        Task<List<ReservationRequest>> GetGuestReservationRequests(Guid guestId);
     }
 }

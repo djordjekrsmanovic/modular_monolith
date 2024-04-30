@@ -32,7 +32,7 @@ namespace Booking.Accomodation.Application.Features.Reservations.CreateReservati
 
                 DateTimeSlot slot = DateTimeSlot.Create(request.Start, request.End).Value;
                 var period = accommodation.AvailabilityPeriods.Where(x => x.Slot.IsDateInSlot(request.Start)).FirstOrDefault();
-                var reservationRequestResponse = ReservationRequest.Create(slot, request.GuestNumber, request.Messsage, request.GuestId, request.AccommodationId, period.Price);
+                var reservationRequestResponse = ReservationRequest.Create(slot, request.GuestNumber, request.Messsage, request.GuestId, request.AccommodationId, period.Price, accommodation.HostId);
                 await _reservationRequestRepository.Add(reservationRequestResponse.Value);
                 await _unitOfWork.SaveChangesAsync();
                 return Result.Success();

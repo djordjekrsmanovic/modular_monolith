@@ -1,6 +1,10 @@
-﻿using Booking.Accomodation.Application.Features.Reservations.CalculateReservationPrice;
+﻿using Booking.Accomodation.Application.Features.Reservations.AcceptReservationRequest;
+using Booking.Accomodation.Application.Features.Reservations.CalculateReservationPrice;
+using Booking.Accomodation.Application.Features.Reservations.CancelReservationRequest;
 using Booking.Accomodation.Application.Features.Reservations.CreateReservation;
 using Booking.Accomodation.Application.Features.Reservations.CreateReservationRequest;
+using Booking.Accomodation.Application.Features.Reservations.GetGuestReservationRequests;
+using Booking.Accomodation.Application.Features.Reservations.GetHostReservationRequests;
 using Booking.Accomodation.Presentation.Contracts;
 using Booking.BuildingBlocks.Presentation;
 using MediatR;
@@ -40,7 +44,7 @@ namespace Booking.Accomodation.Presentation
             return Ok(response);
         }
 
-        [HttpPost("request")]
+        [HttpPost("requests")]
         public async Task<IActionResult> CreateReservationRequest([FromBody] CreateReservationRequestRequest request, CancellationToken cancellationToken)
         {
             var response = await Sender.Send(new CreateReservationRequestCommand(request.AccommodationId, request.GuestId,
@@ -50,6 +54,56 @@ namespace Booking.Accomodation.Presentation
             {
                 return HandleFailure(response);
             }
+            return Ok(response);
+        }
+
+        [HttpGet("requests/host/{id}")]
+        public async Task<IActionResult> GetHostRequests(Guid id, CancellationToken cancellationToken)
+        {
+            var response = await Sender.Send(new GetHostReservationRequestsQuery(id));
+
+            if (response.IsFailure)
+            {
+                return HandleFailure(response);
+            }
+            return Ok(response);
+        }
+
+        [HttpGet("requests/guest/{id}")]
+        public async Task<IActionResult> GetGuestRequests(Guid id, CancellationToken cancellationToken)
+        {
+            var response = await Sender.Send(new GetGuestReservationRequestsQuery(id));
+
+            if (response.IsFailure)
+            {
+                return HandleFailure(response);
+            }
+            return Ok(response);
+        }
+
+        [HttpPut("requests/accept/{id}")]
+        public async Task<IActionResult> AcceptReservationRequest(Guid id, CancellationToken cancellationToken)
+        {
+            var response = await Sender.Send(new AcceptReservationRequestCommand(id));
+
+            if (response.IsFailure)
+            {
+                return HandleFailure(response);
+            }
+
+            return Ok(response);
+        }
+
+        [HttpPut("requests/cancel/{id}")]
+        public async Task<IActionResult> CancelReservationRequest(Guid id, CancellationToken cancellationToken)
+        {
+            var response = await Sender.Send(new CancelReservationRequestCommand(id));
+
+            if (response.IsFailure)
+            {
+                return HandleFailure(response);
+            }
+
             return Ok(response);
         }
     }

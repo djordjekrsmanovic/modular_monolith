@@ -12,18 +12,22 @@ namespace Booking.Accomodation.Application.Features.Reservations.CreateReservati
 
         private readonly IUnitOfWork _unitOfWork;
 
-        public ReservationRequestAcceptedDomainEventHandler(IAccommodationRepository accommodationRepository, IUnitOfWork unitOfWork)
+        private readonly IReservationRepository _reservationRepository;
+
+        public ReservationRequestAcceptedDomainEventHandler(IAccommodationRepository accommodationRepository, IUnitOfWork unitOfWork, IReservationRepository reservationRepository)
         {
             _accommodationRepository = accommodationRepository;
             _unitOfWork = unitOfWork;
+            _reservationRepository = reservationRepository;
         }
 
         public async Task Handle(ReservationRequestAcceptedDomainEvent notification, CancellationToken cancellationToken)
         {
             Accommodation accommodation = await _accommodationRepository.GetAsync(notification.AccommodationId);
 
-            accommodation.AddReservation(notification.Slot, notification.GuestNumber, notification.GuestId, notification.ReservationRequestId);
+            var reservation = accommodation.AddReservation(notification.Slot, notification.GuestNumber, notification.GuestId, notification.ReservationRequestId);
 
+            await _reservationRepository.Add(reservation.Value);
             await _unitOfWork.SaveChangesAsync();
         }
     }

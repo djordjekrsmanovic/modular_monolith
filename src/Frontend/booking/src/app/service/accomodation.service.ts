@@ -16,8 +16,6 @@ import { CreateReservationRequest } from '../model/create-reservation-request';
 })
 export class AccommodationService {
 
-
-
   url = server + 'api/accommodations';
 
   constructor(private _http: HttpClient,private loginService: UserService) {}
@@ -137,7 +135,25 @@ export class AccommodationService {
 
   createReservationRequest(createReservationRequest:CreateReservationRequest){
     const headers = this.loginService.getHeaders();
-    const url=`${server}api/reservations/request`;
+    const url=`${server}api/reservations/requests`;
     return this._http.post<any>(url,createReservationRequest,{headers});
+  }
+
+  getHostReservationRequest(hostId:string){
+    const headers = this.loginService.getHeaders();
+    const url=`${server}api/reservations/requests/host/${hostId}`;
+    return this._http.get<any>(url,{headers});
+  }
+
+  acceptReservationRequest(id: string) {
+    const headers = this.loginService.getHeaders();
+    const url=`${server}api/reservations/requests/accept/${id}`;
+    return this._http.put<any>(url,{headers});
+  }
+
+  cancelReservationRequest(id: string) {
+    const headers = this.loginService.getHeaders();
+    const url=`${server}api/reservations/requests/cancel/${id}`;
+    return this._http.put<any>(url,{headers});
   }
 }

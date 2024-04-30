@@ -14,6 +14,7 @@ namespace Booking.Accomodation.Domain.Repositories
 
         public Task<Accommodation> GetAsync(Guid Id);
 
+
         public Task<Accommodation> Get(Guid Id);
 
         public Task<Accommodation> GetFirstAccommodation(Guid hostId);

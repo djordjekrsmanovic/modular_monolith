@@ -149,6 +149,10 @@ namespace Booking.Booking.Domain.Entities
             }
 
             var reservationResponse = Reservation.Create(slot, guestNumber, AvailabilityPeriods.Where(x => x.Slot.IsDateInSlot(slot.Start)).FirstOrDefault().Price, guestId, Id, reservationRequestId);
+            if (reservationResponse.IsFailure)
+            {
+                return Result.Failure<Reservation>(reservationResponse.Error);
+            }
             Reservations.Add(reservationResponse.Value);
             //throw domain event to delete all waiting reservation requests in current time slot
             return Result.Success(reservationResponse.Value);

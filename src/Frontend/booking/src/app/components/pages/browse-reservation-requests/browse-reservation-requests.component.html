@@ -1,0 +1,5 @@
+<div *ngIf="dataLoaded">
+    <div *ngFor="let request of reservationRequests">
+        <app-reservation-request [requestView]="request"></app-reservation-request>
+    </div>
+</div>

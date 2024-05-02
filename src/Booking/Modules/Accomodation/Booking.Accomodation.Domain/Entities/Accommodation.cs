@@ -24,8 +24,6 @@ namespace Booking.Booking.Domain.Entities
 
         public List<Reservation> Reservations { get; set; } = new List<Reservation>();
 
-
-
         public List<AvailabilityPeriod> AvailabilityPeriods { get; set; } = new List<AvailabilityPeriod>();
 
         public List<Image> Images { get; set; }

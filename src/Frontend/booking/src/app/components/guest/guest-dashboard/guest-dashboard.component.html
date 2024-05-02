@@ -50,6 +50,13 @@
             >Past Reservations</a
           >
         </li>
+        <li>
+          <a
+            [ngClass]="{ 'is-active': activeTab === 'RESERVATION_REQUESTS' }"
+            (click)="changeTab('RESERVATION_REQUESTS')"
+            >Reservation Requests</a
+          >
+        </li>
       </ul>
       <p class="menu-label">Transactions</p>
       <ul class="menu-list">
@@ -98,24 +105,9 @@
 
         ></client-guest-reservations>
       </div>
-      <!-- <div *ngIf="activeTab == 'SUBSCRIPTIONS'">
-        <app-subscriptions [user]="client"></app-subscriptions>
+      <div *ngIf="activeTab == 'RESERVATION_REQUESTS'">
+        <app-browse-reservation-requests></app-browse-reservation-requests>
       </div>
-
-      <div *ngIf="activeTab == 'SPECIAL_OFFERS'">
-        <client-special-offers [user]="client"></client-special-offers>
-      </div>
-      <div *ngIf="activeTab == 'UPCOMING'">
-        <client-upcoming-reservations
-          [user]="client"
-        ></client-upcoming-reservations>
-      </div>
-      <div *ngIf="activeTab == 'PAST_COTTAGE'">
-
-      </div>
-      <div *ngIf="activeTab == 'REVIEW'">
-        <guest-reviews [user]="userPersonalInfo"></guest-reviews>
-      </div> -->
 
 
     </div>

@@ -16,6 +16,7 @@ import { CreateReservationRequest } from '../model/create-reservation-request';
 })
 export class AccommodationService {
 
+
   url = server + 'api/accommodations';
 
   constructor(private _http: HttpClient,private loginService: UserService) {}
@@ -142,6 +143,12 @@ export class AccommodationService {
   getHostReservationRequest(hostId:string){
     const headers = this.loginService.getHeaders();
     const url=`${server}api/reservations/requests/host/${hostId}`;
+    return this._http.get<any>(url,{headers});
+  }
+
+  getGuestReservationRequest(guestId: string) {
+    const headers = this.loginService.getHeaders();
+    const url=`${server}api/reservations/requests/guest/${guestId}`;
     return this._http.get<any>(url,{headers});
   }
 

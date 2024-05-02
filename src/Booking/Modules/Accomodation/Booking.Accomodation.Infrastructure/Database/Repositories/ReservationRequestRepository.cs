@@ -31,7 +31,7 @@ namespace Booking.Accomodation.Infrastructure.Database.Repositories
 
         public async Task<List<ReservationRequest>> GetHostReservationRequests(Guid hostId)
         {
-            return await _context.Set<ReservationRequest>().Where(x => x.HostId == hostId).ToListAsync();
+            return await _context.Set<ReservationRequest>().Where(x => x.HostId == hostId).OrderBy(x => x.Slot.Start).ToListAsync();
         }
     }
 }

@@ -76,7 +76,7 @@ namespace Booking.Booking.Domain.Entities
                 return Result.Failure(ReservationRequestErrors.ReservationRequestIsAlreadyAccepted);
             }
 
-            Status = ReservationRequestStatus.Accepted;
+            Status = ReservationRequestStatus.Canceled;
             return Result.Success();
         }
     }

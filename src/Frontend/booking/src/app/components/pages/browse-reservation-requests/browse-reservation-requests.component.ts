@@ -25,6 +25,13 @@ export class BrowseReservationRequestsComponent implements OnInit {
         this.dataLoaded=true;
         console.log(this.reservationRequests);
       })
+    }else{
+      this.accommodationService.getGuestReservationRequest(this.userId).subscribe(data=>{
+        console.log(data);
+        this.reservationRequests=data.value;
+        this.dataLoaded=true;
+        console.log(this.reservationRequests);
+      })
     }
   }
 

@@ -10,11 +10,15 @@ import { DeleteAvailabilityPeriod } from '../model/delete-availability-period';
 import { CalculatePrice } from '../model/calculate-price';
 import { CreateReservation } from '../model/create-reservation';
 import { CreateReservationRequest } from '../model/create-reservation-request';
+import { ExecuteReservationPayment } from '../model/execute-reservation-payment';
+import { ReservationPaymentStatusesRequest } from '../model/reservation';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AccommodationService {
+
+
 
 
   url = server + 'api/accommodations';
@@ -162,5 +166,34 @@ export class AccommodationService {
     const headers = this.loginService.getHeaders();
     const url=`${server}api/reservations/requests/cancel/${id}`;
     return this._http.put<any>(url,{headers});
+  }
+
+  getGuestReservations(id: string) {
+    const headers = this.loginService.getHeaders();
+    const url=`${server}api/reservations/guest/${id}`;
+    return this._http.get<any>(url,{headers});
+  }
+  getHostReservations(id: string) {
+    const headers = this.loginService.getHeaders();
+    const url=`${server}api/reservations/host/${id}`;
+    return this._http.get<any>(url,{headers});
+  }
+
+  executeReservationPayment(request:ExecuteReservationPayment){
+    const headers = this.loginService.getHeaders();
+    const url=`${server}api/commerce/reservations/execute-payment`;
+    return this._http.post<any>(url,request,{headers});
+  }
+
+  confirmReservationPayment(request: ExecuteReservationPayment) {
+    const headers = this.loginService.getHeaders();
+    const url=`${server}api/commerce/reservations/confirm-payment`;
+    return this._http.post<any>(url,request,{headers});
+  }
+
+  getReservationPaymentStatus(reservationId:string){
+    const headers = this.loginService.getHeaders();
+    const url=`${server}api/commerce/reservations/payment-status/${reservationId}`;
+    return this._http.get<any>(url,{headers});
   }
 }

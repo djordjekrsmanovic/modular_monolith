@@ -10,6 +10,7 @@ using Booking.Accomodation.Application.Features.Accommodations.GetHostAccommodat
 using Booking.Accomodation.Presentation.Contracts;
 using Booking.Booking.Domain.Entities;
 using Booking.BuildingBlocks.Domain;
+using Booking.BuildingBlocks.Domain.Enums;
 using Booking.BuildingBlocks.Presentation;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -27,6 +28,7 @@ namespace Booking.Booking.Presentation
         }
 
         [HttpPost("")]
+        [HasPermission(Permission.HostAccommodationOperations)]
         public async Task<IActionResult> AddAccommodation([FromBody] AddAccommodationRequest request, CancellationToken cancellationToken)
         {
 
@@ -101,6 +103,7 @@ namespace Booking.Booking.Presentation
         }
 
         [HttpPut("")]
+        [HasPermission(Permission.HostAccommodationOperations)]
         public async Task<IActionResult> UpdateAccommodation([FromBody] EditAccommodationRequest request, CancellationToken cancellationToken)
         {
             List<Result<Image>> createImagesResponse = request.Images.Select(image =>
@@ -133,6 +136,7 @@ namespace Booking.Booking.Presentation
 
 
         [HttpPost("add-availability-period")]
+        [HasPermission(Permission.HostAccommodationOperations)]
         public async Task<IActionResult> AddAvailabilityPeriod([FromBody] AddAvailabilityPeriodRequest request, CancellationToken cancellationToken)
         {
             var command = new AddAvailabilityPeriodCommand(request.AccommodationId, request.Start, request.End, request.PricePerGuest);
@@ -162,6 +166,7 @@ namespace Booking.Booking.Presentation
         }
 
         [HttpPost("delete-availability-period")]
+        [HasPermission(Permission.HostAccommodationOperations)]
         public async Task<IActionResult> DeleteAccommodationAvailabilityPeriod([FromBody] DeleteAvailabilityPeriodRequest request, CancellationToken cancellationToken)
         {
             var command = new DeleteAvailabilityPeriodCommand(request.AccommodationId, request.AvailabilityPeriodId);

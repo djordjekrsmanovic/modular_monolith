@@ -4,7 +4,7 @@ using Booking.Commerce.Domain.Entities;
 using Booking.Commerce.Domain.Repositories;
 using Booking.UserAccess.IntegrationEvents.Commerce;
 
-namespace Booking.Commerce.Application
+namespace Booking.Commerce.Application.Features.IntegrationEventHandlers
 {
     public class SubscriberRegisteredIntegrationEventHandler : IntegrationEventHandler<SubscriberRegisteredIntegrationEvent>
     {

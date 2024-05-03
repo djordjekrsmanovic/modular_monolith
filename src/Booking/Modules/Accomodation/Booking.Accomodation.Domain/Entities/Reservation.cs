@@ -1,4 +1,5 @@
-﻿using Booking.BuildingBlocks.Domain;
+﻿using Booking.Accomodation.Domain.Events;
+using Booking.BuildingBlocks.Domain;
 using Booking.BuildingBlocks.Domain.SharedKernel.ValueObjects;
 
 namespace Booking.Booking.Domain.Entities
@@ -17,6 +18,7 @@ namespace Booking.Booking.Domain.Entities
 
         public Guid? ReservationRequestId { get; set; }
 
+
         private Reservation(DateTimeSlot slot, int guestNumber, Money price, Guid gustId, Guid accomodationId, Guid? reservationRequestId)
         {
             Id = Guid.NewGuid();
@@ -32,8 +34,18 @@ namespace Booking.Booking.Domain.Entities
 
         public static Result<Reservation> Create(DateTimeSlot slot, int guestNumber, Money pricePerGuest, Guid guestId, Guid accommodationId, Guid? reservationRequestId)
         {
+            var reservation = new Reservation(slot, guestNumber, Money.CalculateSumPriceForReservation(pricePerGuest, guestNumber, slot.GetNumberOfDays()), guestId, accommodationId, reservationRequestId);
+            reservation.RaiseDomainEvent(new ReservationCreatedDomainEvent(reservation.Id, reservation.TotalPrice));
+            return Result.Success(reservation);
+        }
 
-            return Result.Success(new Reservation(slot, guestNumber, Money.CalculateSumPriceForReservation(pricePerGuest, guestNumber, slot.GetNumberOfDays()), guestId, accommodationId, reservationRequestId));
+        public bool IsPossibleToCancel()
+        {
+            if (Slot.Start <= DateTime.UtcNow)
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

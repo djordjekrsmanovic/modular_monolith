@@ -1,4 +1,5 @@
 ﻿using Booking.BuildingBlocks.Domain;
+using Booking.BuildingBlocks.Domain.Enums;
 using Booking.BuildingBlocks.Domain.SharedKernel.ValueObjects;
 using Booking.BuildingBlocks.Presentation;
 using Booking.UserAccess.Application.Features.Login;
@@ -48,6 +49,7 @@ namespace Booking.UserAccess.Presentation
         }
 
         [HttpPut("")]
+        [HasPermission(Permission.ChangeUserInfo)]
         public async Task<IActionResult> UpdateUserInfo([FromBody] UpdateUserInfoRequest request, CancellationToken cancellationToken)
         {
 

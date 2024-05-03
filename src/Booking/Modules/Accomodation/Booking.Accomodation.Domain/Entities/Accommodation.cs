@@ -155,5 +155,25 @@ namespace Booking.Booking.Domain.Entities
             //throw domain event to delete all waiting reservation requests in current time slot
             return Result.Success(reservationResponse.Value);
         }
+
+        public Result CancelReservation(Guid reservationId)
+        {
+            Reservation reservation = Reservations.Where(x => x.Id == reservationId).FirstOrDefault();
+
+            if (reservation is null)
+            {
+                return Result.Failure(ReservationErrors.ReservationNotExist);
+            }
+
+            if (!reservation.IsPossibleToCancel())
+            {
+                return Result.Failure(ReservationErrors.UnableToCancelInProgressReservation);
+            }
+
+            Reservations.Remove(reservation);
+            //throw domain event to send mail to host that reservation is canceled
+            return Result.Success();
+
+        }
     }
 }

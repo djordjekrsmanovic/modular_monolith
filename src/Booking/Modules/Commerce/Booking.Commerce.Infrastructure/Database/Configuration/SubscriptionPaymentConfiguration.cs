@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Booking.Commerce.Infrastructure.Database.Configuration
 {
-    internal class PaymentConfiguration : IEntityTypeConfiguration<Payment>
+    internal class SubscriptionPaymentConfiguration : IEntityTypeConfiguration<SubscriptionPayment>
     {
-        public void Configure(EntityTypeBuilder<Payment> builder)
+        public void Configure(EntityTypeBuilder<SubscriptionPayment> builder)
         {
             builder.HasKey(p => p.Id);
 

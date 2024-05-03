@@ -14,7 +14,7 @@ namespace Booking.Commerce.Infrastructure.Database.Configuration
 
             builder.HasOne(x => x.Plan);
 
-            builder.HasMany(x => x.Payments).WithOne().HasForeignKey(x => x.ProductId);
+            builder.HasMany(x => x.Payments).WithOne().HasForeignKey(x => x.SubscriptionId);
         }
     }
 }

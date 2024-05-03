@@ -1,5 +1,5 @@
 ﻿using Booking.BuildingBlocks.Infrastructure.Extensions;
-using Booking.Commerce.Application;
+using Booking.Commerce.Application.Features.IntegrationEventHandlers;
 using MassTransit;
 
 namespace Booking.Commerce.Infrastructure
@@ -10,6 +10,7 @@ namespace Booking.Commerce.Infrastructure
         {
             registrationConfigurator.AddConsumer<SubscriberRegisteredIntegrationEventHandler>();
             registrationConfigurator.AddConsumer<PayerRegisteredIntegrationEventHandler>();
+            registrationConfigurator.AddConsumer<ReservationCreatedIntegrationEventHandler>();
         }
     }
 }

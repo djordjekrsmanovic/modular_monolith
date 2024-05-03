@@ -100,13 +100,14 @@
       <div *ngIf="activeTab == 'SETTINGS'">
         <app-settings [userId]="userPersonalInfo.id"></app-settings>
       </div>
-      <div *ngIf="activeTab == 'ACCOMODATION_RESERVATIONS'">
-        <client-guest-reservations
 
-        ></client-guest-reservations>
-      </div>
+
       <div *ngIf="activeTab == 'RESERVATION_REQUESTS'">
         <app-browse-reservation-requests></app-browse-reservation-requests>
+      </div>
+
+      <div *ngIf="activeTab == 'ACCOMODATION_RESERVATIONS'">
+        <app-browse-reservations></app-browse-reservations>
       </div>
 
 

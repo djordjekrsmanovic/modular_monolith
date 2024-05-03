@@ -97,9 +97,9 @@
           <app-settings [userId]="userPersonalInfo.id"></app-settings>
         </div>
         <div *ngIf="activeTab == 'ACCOMODATION_RESERVATIONS'">
-          <client-guest-reservations
+          <app-browse-reservations
 
-          ></client-guest-reservations>
+          ></app-browse-reservations>
         </div>
 
         <div *ngIf="activeTab == 'ADD ACCOMMODATION'">

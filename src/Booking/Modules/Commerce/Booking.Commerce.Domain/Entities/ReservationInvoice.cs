@@ -12,7 +12,7 @@ namespace Booking.Commerce.Domain.Entities
 
         public BookingFee BookingFee { get; set; }
 
-        public Payment Payment { get; set; }
+        public SubscriptionPayment Payment { get; set; }
 
         public Guid ReservationId { get; set; }
 

@@ -11,6 +11,7 @@
     <ProjectReference Include="..\..\Commerce\Booking.Commerce.IntegrationEvents\Booking.Commerce.IntegrationEvents.csproj" />
     <ProjectReference Include="..\..\UserAccess\Booking.UserAccess.IntegrationEvents\Booking.UserAccess.IntegrationEvents.csproj" />
     <ProjectReference Include="..\Booking.Accomodation.Domain\Booking.Accomodation.Domain.csproj" />
+    <ProjectReference Include="..\Booking.Accomodation.IntegrationEvents\Booking.Accomodation.IntegrationEvents.csproj" />
   </ItemGroup>
 
 </Project>

@@ -2,7 +2,7 @@
 
 namespace Booking.Accomodation.Application.Features.Reservations.CancelReservation
 {
-    public record CancelReservationCommand(Guid ReservationId) : ICommand
+    public record CancelReservationCommand(Guid AccommodationId, Guid ReservationId) : ICommand
     {
     }
 }

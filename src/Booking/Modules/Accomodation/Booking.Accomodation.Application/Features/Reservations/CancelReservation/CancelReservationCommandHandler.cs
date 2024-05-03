@@ -1,4 +1,7 @@
-﻿using Booking.BuildingBlocks.Application.CQRS;
+﻿using Booking.Accomodation.Domain;
+using Booking.Accomodation.Domain.Repositories;
+using Booking.Booking.Domain.Entities;
+using Booking.BuildingBlocks.Application.CQRS;
 using Booking.BuildingBlocks.Domain;
 
 namespace Booking.Accomodation.Application.Features.Reservations.CancelReservation
@@ -6,9 +9,25 @@ namespace Booking.Accomodation.Application.Features.Reservations.CancelReservati
     public class CancelReservationCommandHandler : ICommandHandler<CancelReservationCommand>
     {
 
-        public Task<Result> Handle(CancelReservationCommand request, CancellationToken cancellationToken)
+        private readonly IAccommodationRepository _accommodationRepository;
+
+        private readonly IUnitOfWork _unitOfWork;
+
+        public CancelReservationCommandHandler(IAccommodationRepository accommodationRepository, IUnitOfWork unitOfWork)
         {
-            throw new NotImplementedException();
+            _accommodationRepository = accommodationRepository;
+            _unitOfWork = unitOfWork;
+        }
+
+        public async Task<Result> Handle(CancelReservationCommand request, CancellationToken cancellationToken)
+        {
+            Accommodation accommodation = await _accommodationRepository.GetAsync(request.AccommodationId);
+
+            var response = accommodation.CancelReservation(request.ReservationId);
+
+            await _unitOfWork.SaveChangesAsync();
+
+            return response;
         }
     }
 }

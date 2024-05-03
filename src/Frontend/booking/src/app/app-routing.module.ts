@@ -17,6 +17,7 @@ import { EditAccommodationComponent } from './components/host/edit-accommodation
 import { AddReservationComponent } from './components/pages/add-reservation/add-reservation.component';
 import { CreateReservationResquestComponent } from './components/pages/create-reservation-resquest/create-reservation-resquest.component';
 import { ReservationRequestComponent } from './components/reservation-request/reservation-request.component';
+import { ReservationComponent } from './components/guest/guest-dashboard/reservation/reservation.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },

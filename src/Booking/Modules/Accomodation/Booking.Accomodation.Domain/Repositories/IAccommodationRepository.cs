@@ -23,5 +23,7 @@ namespace Booking.Accomodation.Domain.Repositories
 
         void Update(Accommodation accommodation);
         Task<List<Accommodation>> GetHostAccommodations(Guid hostId);
+
+        Accommodation GetWithoutRelations(Guid Id);
     }
 }

@@ -35,28 +35,13 @@ namespace Booking.Commerce.Infrastructure.Migrations
                     b.ToTable("Payer", "commerce");
                 });
 
-            modelBuilder.Entity("Booking.Commerce.Domain.Entities.Payment", b =>
+            modelBuilder.Entity("Booking.Commerce.Domain.Entities.Reservation", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("ExecutonTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("Method")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PaymentType")
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("ProductId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.ComplexProperty<Dictionary<string, object>>("Amount", "Booking.Commerce.Domain.Entities.Payment.Amount#Money", b1 =>
+                    b.ComplexProperty<Dictionary<string, object>>("Price", "Booking.Commerce.Domain.Entities.Reservation.Price#Money", b1 =>
                         {
                             b1.IsRequired();
 
@@ -66,19 +51,6 @@ namespace Booking.Commerce.Infrastructure.Migrations
                             b1.Property<int>("Currency")
                                 .HasColumnType("int");
                         });
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("Payment", "commerce");
-                });
-
-            modelBuilder.Entity("Booking.Commerce.Domain.Entities.Reservation", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -113,6 +85,42 @@ namespace Booking.Commerce.Infrastructure.Migrations
                         .IsUnique();
 
                     b.ToTable("ReservationInvoice", "commerce");
+                });
+
+            modelBuilder.Entity("Booking.Commerce.Domain.Entities.ReservationPayment", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("ExecutonTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Method")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("ReservationId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.ComplexProperty<Dictionary<string, object>>("Amount", "Booking.Commerce.Domain.Entities.ReservationPayment.Amount#Money", b1 =>
+                        {
+                            b1.IsRequired();
+
+                            b1.Property<double>("Ammount")
+                                .HasColumnType("float");
+
+                            b1.Property<int>("Currency")
+                                .HasColumnType("int");
+                        });
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ReservationId");
+
+                    b.ToTable("ReservationPayment", "commerce");
                 });
 
             modelBuilder.Entity("Booking.Commerce.Domain.Entities.Subscriber", b =>
@@ -188,6 +196,42 @@ namespace Booking.Commerce.Infrastructure.Migrations
                     b.ToTable("SubscriptionInvoice", "commerce");
                 });
 
+            modelBuilder.Entity("Booking.Commerce.Domain.Entities.SubscriptionPayment", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("ExecutonTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Method")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("SubscriptionId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.ComplexProperty<Dictionary<string, object>>("Amount", "Booking.Commerce.Domain.Entities.SubscriptionPayment.Amount#Money", b1 =>
+                        {
+                            b1.IsRequired();
+
+                            b1.Property<double>("Ammount")
+                                .HasColumnType("float");
+
+                            b1.Property<int>("Currency")
+                                .HasColumnType("int");
+                        });
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SubscriptionId");
+
+                    b.ToTable("SubscriptionPayment", "commerce");
+                });
+
             modelBuilder.Entity("Booking.Commerce.Domain.Entities.SubscriptionPlan", b =>
                 {
                     b.Property<Guid>("Id")
@@ -213,22 +257,13 @@ namespace Booking.Commerce.Infrastructure.Migrations
                     b.ToTable("SubscriptionPlan", "commerce");
                 });
 
-            modelBuilder.Entity("Booking.Commerce.Domain.Entities.Payment", b =>
-                {
-                    b.HasOne("Booking.Commerce.Domain.Entities.Subscription", null)
-                        .WithMany("Payments")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("Booking.Commerce.Domain.Entities.ReservationInvoice", b =>
                 {
                     b.HasOne("Booking.Commerce.Domain.Entities.Payer", null)
                         .WithMany("Invoices")
                         .HasForeignKey("PayerId");
 
-                    b.HasOne("Booking.Commerce.Domain.Entities.Payment", "Payment")
+                    b.HasOne("Booking.Commerce.Domain.Entities.SubscriptionPayment", "Payment")
                         .WithMany()
                         .HasForeignKey("PaymentId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -282,6 +317,15 @@ namespace Booking.Commerce.Infrastructure.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Booking.Commerce.Domain.Entities.ReservationPayment", b =>
+                {
+                    b.HasOne("Booking.Commerce.Domain.Entities.Reservation", null)
+                        .WithMany("Payments")
+                        .HasForeignKey("ReservationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Booking.Commerce.Domain.Entities.Subscription", b =>
                 {
                     b.HasOne("Booking.Commerce.Domain.Entities.SubscriptionPlan", "Plan")
@@ -301,7 +345,7 @@ namespace Booking.Commerce.Infrastructure.Migrations
 
             modelBuilder.Entity("Booking.Commerce.Domain.Entities.SubscriptionInvoice", b =>
                 {
-                    b.HasOne("Booking.Commerce.Domain.Entities.Payment", "Payment")
+                    b.HasOne("Booking.Commerce.Domain.Entities.SubscriptionPayment", "Payment")
                         .WithMany()
                         .HasForeignKey("PaymentId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -336,6 +380,15 @@ namespace Booking.Commerce.Infrastructure.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Booking.Commerce.Domain.Entities.SubscriptionPayment", b =>
+                {
+                    b.HasOne("Booking.Commerce.Domain.Entities.Subscription", null)
+                        .WithMany("Payments")
+                        .HasForeignKey("SubscriptionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Booking.Commerce.Domain.Entities.SubscriptionPlan", b =>
                 {
                     b.OwnsOne("Booking.BuildingBlocks.Domain.SharedKernel.ValueObjects.Money", "Price", b1 =>
@@ -364,6 +417,11 @@ namespace Booking.Commerce.Infrastructure.Migrations
             modelBuilder.Entity("Booking.Commerce.Domain.Entities.Payer", b =>
                 {
                     b.Navigation("Invoices");
+                });
+
+            modelBuilder.Entity("Booking.Commerce.Domain.Entities.Reservation", b =>
+                {
+                    b.Navigation("Payments");
                 });
 
             modelBuilder.Entity("Booking.Commerce.Domain.Entities.Subscriber", b =>

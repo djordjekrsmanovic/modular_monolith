@@ -5,7 +5,7 @@ using Booking.Commerce.Domain.Errors;
 
 namespace Booking.Commerce.Domain.Entities
 {
-    public class Payment : Entity<Guid>
+    public class SubscriptionPayment : Entity<Guid>
     {
         public Money Amount { get; set; }
 
@@ -15,28 +15,27 @@ namespace Booking.Commerce.Domain.Entities
 
         public PaymentMethod Method { get; set; }
 
-        public Guid ProductId { get; set; }
 
-        public PaymentType PaymentType { get; set; }
+        public Guid SubscriptionId { get; set; }
 
-        private Payment() { }
 
-        private Payment(Money amount, DateTime executonTime, PaymentStatus status, PaymentMethod method, Guid productId, PaymentType type)
+        private SubscriptionPayment() { }
+
+        private SubscriptionPayment(Money amount, DateTime executonTime, PaymentStatus status, PaymentMethod method, Guid productId)
         {
             Amount = amount;
             ExecutonTime = executonTime;
             Status = status;
             Method = method;
-            ProductId = productId;
-            PaymentType = type;
+            SubscriptionId = productId;
         }
 
-        public static Result<Payment> Create(Money amount, PaymentMethod method, Guid productId, PaymentType type)
+        public static Result<SubscriptionPayment> Create(Money amount, PaymentMethod method, Guid productId)
         {
-            return Result.Success(new Payment(amount, DateTime.UtcNow, PaymentStatus.InProgress, method, productId, type));
+            return Result.Success(new SubscriptionPayment(amount, DateTime.UtcNow, PaymentStatus.InProgress, method, productId));
         }
 
-        public Result ConfirmPayment()
+        public Result ConfirmSubscriptionPayment()
         {
             if (Status == PaymentStatus.InProgress)
             {
@@ -49,5 +48,7 @@ namespace Booking.Commerce.Domain.Entities
                 return Result.Failure(PaymentErrors.InvalidPaymentState);
             }
         }
+
+
     }
 }

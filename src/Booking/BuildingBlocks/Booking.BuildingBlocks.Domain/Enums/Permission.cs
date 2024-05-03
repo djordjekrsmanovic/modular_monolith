@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Booking.BuildingBlocks.Domain.Enums
+﻿namespace Booking.BuildingBlocks.Domain.Enums
 {
     public enum Permission
     {
-        ReadMember = 1,
-        UpdateMember = 2,
+        GetHostReservations = 1,
+        GetGuestReservations = 2,
+        GuestReservationOperations = 3,
+        HostReservationOperations = 4,
+        HostAccommodationOperations = 5,
+        ChangeUserInfo = 6
     }
 }

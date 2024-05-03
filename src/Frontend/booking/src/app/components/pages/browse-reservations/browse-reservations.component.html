@@ -1,0 +1,5 @@
+<div *ngIf="dataLoaded">
+    <div *ngFor="let reservation of reservations">
+        <client-reservation [reservation]="reservation"></client-reservation>
+      </div>
+</div>

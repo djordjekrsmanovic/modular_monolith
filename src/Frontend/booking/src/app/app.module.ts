@@ -21,7 +21,7 @@ import { GuestDashboardComponent } from './components/guest/guest-dashboard/gues
 import { PersonalInfoComponent } from './components/guest/guest-dashboard/personal-info/personal-info.component';
 import { SettingsComponent } from './components/guest/guest-dashboard/settings/settings.component';
 import { SubscriptionsComponent } from './components/guest/guest-dashboard/subscriptions/subscriptions.component';
-import { GuestReservationsComponent } from './components/guest/guest-dashboard/guest-reservations/guest-reservations.component';
+import { ReservationComponent } from './components/guest/guest-dashboard/reservation/reservation.component';
 import { SpecialOffersComponent } from './components/guest/guest-dashboard/special-offers/special-offers.component';
 import { PastAccomodationComponent } from './components/guest/guest-dashboard/past-accomodation/past-accomodation.component';
 import { GuestReviewsComponent } from './components/guest/guest-dashboard/guest-reviews/guest-reviews.component';
@@ -61,6 +61,7 @@ import { AddReservationComponent } from './components/pages/add-reservation/add-
 import { CreateReservationResquestComponent } from './components/pages/create-reservation-resquest/create-reservation-resquest.component';
 import { ReservationRequestComponent } from './components/reservation-request/reservation-request.component';
 import { BrowseReservationRequestsComponent } from './components/pages/browse-reservation-requests/browse-reservation-requests.component';
+import { BrowseReservationsComponent } from './components/pages/browse-reservations/browse-reservations.component';
 
 @NgModule({
   declarations: [
@@ -82,7 +83,7 @@ import { BrowseReservationRequestsComponent } from './components/pages/browse-re
     PersonalInfoComponent,
     SettingsComponent,
     SubscriptionsComponent,
-    GuestReservationsComponent,
+    ReservationComponent,
     SpecialOffersComponent,
     PastAccomodationComponent,
     GuestReviewsComponent,
@@ -115,7 +116,8 @@ import { BrowseReservationRequestsComponent } from './components/pages/browse-re
     AddReservationComponent,
     CreateReservationResquestComponent,
     ReservationRequestComponent,
-    BrowseReservationRequestsComponent
+    BrowseReservationRequestsComponent,
+    BrowseReservationsComponent
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule,NgbModalModule,
     FlatpickrModule.forRoot(),

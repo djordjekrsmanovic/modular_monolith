@@ -1,0 +1,10 @@
+<div *ngIf="invoices.length==0">
+    No Invoices Found!
+</div>
+
+<div *ngIf="dataLoaded" class="columns is-multiline">
+    <div *ngFor="let invoice of invoices" class="column is-half">
+        <app-subscription-invoice [invoice]="invoice"></app-subscription-invoice>
+
+    </div>
+</div>

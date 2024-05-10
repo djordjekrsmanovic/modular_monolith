@@ -46,6 +46,8 @@ namespace Booking.Commerce.Infrastructure
             services.AddScoped<ISubscriptionRepository, SubscriptionRepository>();
             services.AddScoped<IReservationRepository, ReservationRepository>();
             services.AddScoped<IReservationPaymentRepository, ReservationPaymentRepository>();
+            services.AddScoped<IReservationInvoiceRepository, ReservationInvoiceRepository>();
+            services.AddScoped<ISubscriptionInvoiceRepository, SubscriptionInvoiceRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
         }
     }

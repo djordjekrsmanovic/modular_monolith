@@ -15,10 +15,10 @@ namespace Booking.UserAccess.Infrastructure.Database.Configuration
             builder.HasData(Create(Role.Host, Permission.GetHostReservations),
                 Create(Role.Guest, Permission.GetGuestReservations),
                 Create(Role.Host, Permission.HostReservationOperations),
-                Create(Role.Host, Permission.GuestReservationOperations),
                 Create(Role.Host, Permission.HostAccommodationOperations),
                 Create(Role.Host, Permission.ChangeUserInfo),
-                Create(Role.Guest, Permission.ChangeUserInfo));
+                Create(Role.Guest, Permission.ChangeUserInfo),
+                Create(Role.Guest, Permission.GuestReservationOperations));
         }
 
         private RolePermission Create(Role role, Permission permission)

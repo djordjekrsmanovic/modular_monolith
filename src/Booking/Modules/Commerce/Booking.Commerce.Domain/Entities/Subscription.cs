@@ -67,7 +67,7 @@ namespace Booking.Commerce.Domain.Entities
             if (paymentResponse.IsSuccess)
             {
                 Status = SubscriptionStatus.Active;
-                RaiseDomainEvent(new PaymentConfirmedDomainEvent(SubscriptionPeriod.Start, Plan.DurationInMonths, Plan.AccomodationLimit, SubscriberId));
+                RaiseDomainEvent(new SubscriptionPaymentConfirmedDomainEvent(payment, SubscriptionPeriod.Start, Plan.DurationInMonths, Plan.AccomodationLimit, SubscriberId));
             }
 
             return paymentResponse;

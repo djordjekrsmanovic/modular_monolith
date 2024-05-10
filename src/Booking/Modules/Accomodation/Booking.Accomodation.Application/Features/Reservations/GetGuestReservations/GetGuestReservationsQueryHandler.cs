@@ -12,10 +12,13 @@ namespace Booking.Accomodation.Application.Features.Reservations.GetGuestReserva
 
         private readonly IAccommodationRepository _accommodationRepository;
 
-        public GetGuestReservationsQueryHandler(IReservationRepository reservationRepository, IAccommodationRepository accommodationRepository)
+        private readonly IReviewRepository _reviewRepository;
+
+        public GetGuestReservationsQueryHandler(IReservationRepository reservationRepository, IAccommodationRepository accommodationRepository, IReviewRepository reviewRepository)
         {
             _reservationRepository = reservationRepository;
             _accommodationRepository = accommodationRepository;
+            _reviewRepository = reviewRepository;
         }
 
         public async Task<Result<List<ReservationResponse>>> Handle(GetGuestReservationsQuery request, CancellationToken cancellationToken)
@@ -25,19 +28,21 @@ namespace Booking.Accomodation.Application.Features.Reservations.GetGuestReserva
 
             List<ReservationResponse> responses = new List<ReservationResponse>();
 
-            reservations.ForEach(r =>
+            foreach (var r in reservations)
             {
                 Accommodation accommodation = _accommodationRepository.GetWithoutRelations(r.AccomodationId);
+                Review review = await _reviewRepository.GetReservationReviewAsync(r.Id);
+                bool reviewExist = review is not null ? true : false;
                 responses.Add(new ReservationResponse(
                         AccommodationId: accommodation.Id,
                         Accommodation: accommodation.Name,
                         Address: accommodation.Address.ConvertToString(),
                         Price: r.TotalPrice.ConvertToString(),
                         ReservationId: r.Id,
-                        Slot: r.Slot
+                        Slot: r.Slot,
+                        ReviewExist: reviewExist
                     ));
-            });
-
+            }
             return responses;
         }
     }

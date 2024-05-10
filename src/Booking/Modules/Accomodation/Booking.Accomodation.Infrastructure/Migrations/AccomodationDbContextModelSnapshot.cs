@@ -379,6 +379,36 @@ namespace Booking.Accomodation.Infrastructure.Migrations
                     b.ToTable("ReservationRequest", "accomodaton");
                 });
 
+            modelBuilder.Entity("Booking.Booking.Domain.Entities.Review", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("AccommodationId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Comment")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("GuestId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Rating")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("ReservationId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Review", "accomodaton");
+                });
+
             modelBuilder.Entity("AccommodationAdditionalService", b =>
                 {
                     b.HasOne("Booking.Booking.Domain.Entities.Accommodation", null)

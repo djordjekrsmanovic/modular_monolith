@@ -62,6 +62,12 @@ import { CreateReservationResquestComponent } from './components/pages/create-re
 import { ReservationRequestComponent } from './components/reservation-request/reservation-request.component';
 import { BrowseReservationRequestsComponent } from './components/pages/browse-reservation-requests/browse-reservation-requests.component';
 import { BrowseReservationsComponent } from './components/pages/browse-reservations/browse-reservations.component';
+import { ReservationInvoiceComponent } from './components/reservation-invoice/reservation-invoice.component';
+import { BrowseReservationInvoicesComponent } from './components/guest/guest-dashboard/browse-reservation-invoices/browse-reservation-invoices.component';
+import { SubscriptionInvoiceComponent } from './components/subscription-invoice/subscription-invoice.component';
+import { BrowseSubscriptionInvoicesComponent } from './components/host/browse-subscription-invoices/browse-subscription-invoices.component';
+import { AddReviewComponent } from './components/add-review/add-review.component';
+
 
 @NgModule({
   declarations: [
@@ -117,7 +123,12 @@ import { BrowseReservationsComponent } from './components/pages/browse-reservati
     CreateReservationResquestComponent,
     ReservationRequestComponent,
     BrowseReservationRequestsComponent,
-    BrowseReservationsComponent
+    BrowseReservationsComponent,
+    ReservationInvoiceComponent,
+    BrowseReservationInvoicesComponent,
+    SubscriptionInvoiceComponent,
+    BrowseSubscriptionInvoicesComponent,
+    AddReviewComponent
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule,NgbModalModule,
     FlatpickrModule.forRoot(),

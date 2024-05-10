@@ -181,12 +181,14 @@ export class AccommodationService {
 
   executeReservationPayment(request:ExecuteReservationPayment){
     const headers = this.loginService.getHeaders();
+    request.payerId=this.loginService.getCurrentUser().id;
     const url=`${server}api/commerce/reservations/execute-payment`;
     return this._http.post<any>(url,request,{headers});
   }
 
   confirmReservationPayment(request: ExecuteReservationPayment) {
     const headers = this.loginService.getHeaders();
+    request.payerId=this.loginService.getCurrentUser().id;
     const url=`${server}api/commerce/reservations/confirm-payment`;
     return this._http.post<any>(url,request,{headers});
   }

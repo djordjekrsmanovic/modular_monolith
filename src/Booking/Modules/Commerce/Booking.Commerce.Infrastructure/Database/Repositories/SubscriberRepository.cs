@@ -16,7 +16,6 @@ namespace Booking.Commerce.Infrastructure.Database.Repositories
         public void Add(Subscriber subscriber)
         {
             _subscribers.Add(subscriber);
-            Console.WriteLine("Command add subscriber executed");
         }
 
         public async Task<Subscriber> GetAsync(Guid id)
@@ -24,7 +23,9 @@ namespace Booking.Commerce.Infrastructure.Database.Repositories
             return _subscribers.Include(s => s.Subscriptions)
                 .ThenInclude(s => s.Plan)
                 .Include(s => s.Subscriptions)
-                .ThenInclude(sub => sub.Payments).FirstOrDefault(s => s.Id == id);
+                .ThenInclude(sub => sub.Payments)
+                .Include(x => x.Invoices)
+                .FirstOrDefault(s => s.Id == id);
         }
     }
 }

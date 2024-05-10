@@ -34,6 +34,14 @@
             >
           </li>
 
+          <li>
+            <a
+              [ngClass]="{ 'is-active': activeTab === 'DELETE_ACCOUNT' }"
+              (click)="changeTab('DELETE_ACCOUNT')"
+              >Delete my Account</a
+            >
+          </li>
+
         </ul>
         <p class="menu-label">Find Reservations</p>
         <ul class="menu-list">
@@ -58,24 +66,9 @@
 
           <li>
             <a
-              [ngClass]="{ 'is-active': activeTab === 'TRANSACTIONS' }"
-              (click)="changeTab('TRANSACTIONS')"
-              >All Transactions</a
-            >
-          </li>
-
-          <li>
-            <a
               [ngClass]="{ 'is-active': activeTab === 'INVOICES' }"
               (click)="changeTab('INVOICES')"
               >Subscription Invoices</a
-            >
-          </li>
-          <li>
-            <a
-              [ngClass]="{ 'is-active': activeTab === 'DELETE_ACCOUNT' }"
-              (click)="changeTab('DELETE_ACCOUNT')"
-              >Delete my Account</a
             >
           </li>
         </ul>
@@ -115,6 +108,10 @@
 
         <div *ngIf="activeTab == 'RESERVATION_REQUESTS'">
           <app-browse-reservation-requests></app-browse-reservation-requests>
+        </div>
+
+        <div *ngIf="activeTab == 'INVOICES'">
+          <app-browse-subscription-invoices></app-browse-subscription-invoices>
         </div>
 
       </div>

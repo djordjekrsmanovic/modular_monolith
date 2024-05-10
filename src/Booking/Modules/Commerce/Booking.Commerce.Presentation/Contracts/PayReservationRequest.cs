@@ -2,7 +2,7 @@
 
 namespace Booking.Commerce.Presentation.Contracts
 {
-    public record PayReservationRequest(Guid ReservationId, PaymentMethod Method)
+    public record PayReservationRequest(Guid ReservationId, PaymentMethod Method, Guid PayerId)
     {
     }
 }

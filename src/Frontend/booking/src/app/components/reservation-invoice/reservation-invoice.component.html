@@ -1,0 +1,32 @@
+<div class="div-size">
+    <div class="card">
+        <header class="card-header">
+          <p class="card-header-title">Reservation Invoice</p>
+          <button class="card-header-icon" aria-label="more options">
+            <span class="icon">
+              <i class="fas fa-angle-down" aria-hidden="true"></i>
+            </span>
+          </button>
+        </header>
+        <div class="card-content">
+          <div class="content">
+            <div>
+                <b>Reservation Id: {{invoice.reservationId}}</b>
+            </div>
+            <div>
+                <b>Price: {{invoice.price}}</b>
+            </div>
+            <div>
+                <b>Payment Method: {{invoice.method}}</b>
+            </div>
+
+            <div>
+                <b>Date: {{invoice.createdAt}}</b>
+            </div>
+
+          </div>
+        </div>
+        <footer class="card-footer">
+        </footer>
+    </div>
+</div>

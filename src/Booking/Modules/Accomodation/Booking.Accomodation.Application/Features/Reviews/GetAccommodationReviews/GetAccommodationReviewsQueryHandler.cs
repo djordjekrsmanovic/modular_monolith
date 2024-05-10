@@ -20,8 +20,12 @@ namespace Booking.Accomodation.Application.Features.Reviews.GetAccommodationRevi
 
             return reviews.Select(review =>
             {
-                return new ReviewResponse(GuestId: review.GuestId, CreatedAt: review.CreatedAt, Rating: review.Rating, AccommodationId: review.AccomodationId, Comment: review.Comment
-                    );
+                return new ReviewResponse(GuestId: review.GuestId,
+                    CreatedAt: review.CreatedAt,
+                    Rating: review.Rating,
+                    AccommodationId: review.AccommodationId,
+                    Comment: review.Comment
+               );
             }).ToList();
         }
     }

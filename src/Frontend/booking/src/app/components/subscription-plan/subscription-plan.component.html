@@ -1,18 +1,6 @@
-<div [ngClass]="cardClass">
-    <h2>{{plan.name}}</h2>
-    <div class="plan-details">
-      <p class="price">Price: {{plan.price}}/month</p>
-      <p class="max-accommodations">Maximum Accommodations: {{plan.accommodationLimit}}</p>
-      <p class="max-accommodations">Duration: {{plan.duration}}</p>
-    </div>
-    <div class="description">
-      <p>{{plan.description}}</p>
-    </div>
-    <button class="button is-success" (click)="openModalTab()">Subscribe</button>
-    <p class="terms">By subscribing, you agree to our terms and conditions.</p>
-</div>
 
-<div class="modal" id='modal'>
+
+<div class="modal" id='{{plan.id}}'>
   <div class="modal-background"></div>
   <div class="modal-card">
     <header class="modal-card-head">
@@ -43,4 +31,56 @@
 
     </footer>
   </div>
+</div>
+
+
+
+<!-- Price Display --><!-- Price Display --><!-- Price Display --><!-- Price Display --><!-- Price Display -->
+<div class="card">
+  <div class="card-image">
+    <figure class="image is-4by3">
+      <img
+        src={{imageSrc}}
+        alt="Placeholder image"
+      />
+    </figure>
+  </div>
+  <div class="card-content">
+    <div class="media">
+      <div class="media-content">
+        <p class="title is-4">{{plan.name}}</p>
+
+      </div>
+    </div>
+
+    <div class="content">
+      <div>
+        <div>
+          <b>Price: </b> {{plan.price}}/month
+        </div>
+        <div>
+          <b>Maximum Accommodations: </b>{{plan.accommodationLimit}}
+        </div>
+        <div>
+          <b>Duration: </b>{{plan.duration}}
+        </div>
+
+
+      </div>
+      <div class="description">
+        <b>Description: </b>{{plan.description}}
+      </div>
+
+
+
+    </div>
+    <div class="columns is-mobile is-centered">
+      <div >
+        <button class="button is-success" (click)="openModalTab()">Subscribe</button>
+      </div>
+    </div>
+  </div>
+
+
+
 </div>

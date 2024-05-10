@@ -17,5 +17,10 @@ namespace Booking.Commerce.Domain.Entities
         {
             return new Payer(id);
         }
+
+        public void AddInvoice(ReservationInvoice invoice)
+        {
+            Invoices.Add(invoice);
+        }
     }
 }

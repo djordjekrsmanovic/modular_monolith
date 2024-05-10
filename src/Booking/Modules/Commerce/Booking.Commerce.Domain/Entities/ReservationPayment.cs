@@ -2,6 +2,7 @@
 using Booking.BuildingBlocks.Domain.SharedKernel.ValueObjects;
 using Booking.Commerce.Domain.Enums;
 using Booking.Commerce.Domain.Errors;
+using Booking.Commerce.Domain.Events;
 
 namespace Booking.Commerce.Domain.Entities
 {
@@ -17,20 +18,23 @@ namespace Booking.Commerce.Domain.Entities
 
         public Guid ReservationId { get; set; }
 
+        public Guid PayerId { get; set; }
+
         private ReservationPayment() { }
 
-        private ReservationPayment(Money amount, DateTime executonTime, PaymentStatus status, PaymentMethod method, Guid reservationId)
+        private ReservationPayment(Money amount, DateTime executonTime, PaymentStatus status, PaymentMethod method, Guid reservationId, Guid payerId)
         {
             Amount = amount;
             ExecutonTime = executonTime;
             Status = status;
             Method = method;
             ReservationId = reservationId;
+            PayerId = payerId;
         }
 
-        public static Result<ReservationPayment> Create(Money amount, PaymentMethod method, Guid productId)
+        public static Result<ReservationPayment> Create(Money amount, PaymentMethod method, Guid productId, Guid payerId)
         {
-            return Result.Success(new ReservationPayment(amount, DateTime.UtcNow, PaymentStatus.InProgress, method, productId));
+            return Result.Success(new ReservationPayment(amount, DateTime.UtcNow, PaymentStatus.InProgress, method, productId, payerId));
         }
 
         public Result<ReservationPayment> Confirm()
@@ -41,7 +45,7 @@ namespace Booking.Commerce.Domain.Entities
             }
 
             Status = PaymentStatus.Confirmed;
-            // throw domain event to create invoice
+            RaiseDomainEvent(new ReservationPaymentConfirmed(this));
             return this;
         }
 

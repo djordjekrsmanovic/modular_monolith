@@ -3,7 +3,7 @@
 namespace Booking.Accomodation.Application.Features.Reservations.GetHostReservations
 {
     public record ReservationResponse(Guid AccommodationId, string Accommodation,
-        string Address, string Price, Guid ReservationId, DateTimeSlot Slot)
+        string Address, string Price, Guid ReservationId, DateTimeSlot Slot, Boolean ReviewExist)
     {
     }
 }

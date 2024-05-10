@@ -6,6 +6,6 @@ namespace Booking.Commerce.Domain.Repositories
     {
         Task Add(Reservation reservation);
 
-        public Task<Reservation> Get(Guid id);
+        Task<Reservation> Get(Guid id);
     }
 }

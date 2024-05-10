@@ -15,7 +15,8 @@ export class ReservationView{
         public address:string='',
         public price:string='',
         public reservationId:string='',
-        public slot:DateTimeSlot=new DateTimeSlot()
+        public slot:DateTimeSlot=new DateTimeSlot(),
+        public reviewExist:boolean=false
     ){}
 }
 

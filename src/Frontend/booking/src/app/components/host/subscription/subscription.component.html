@@ -1,12 +1,12 @@
 <div [ngClass]="cardClass">
     <h2></h2>
     <div class="plan-details">
-      <p class="price">Price: {{subscription.plan.price}} /month</p>
-      <p class="max-accommodations">Maximum Accommodations:{{subscription.plan.accommodationLimit}}</p>
-      <p class="max-accommodations">Duration: {{subscription.subscriptionPeriod.start}}-{{subscription.subscriptionPeriod.end}}</p>
+      <p class="price"><b>Price: </b>{{subscription.plan.price}} /month</p>
+      <p class="max-accommodations"><b>Maximum Accommodations: </b>{{subscription.plan.accommodationLimit}}</p>
+      <p class="max-accommodations"><b>Duration: </b>{{subscription.subscriptionPeriod.start | date:'yyyy-MM-dd'}}  -  {{subscription.subscriptionPeriod.end | date:'yyyy-MM-dd'}}</p>
     </div>
     <div class="description">
-      <p>{{subscription.plan.price}}</p>
+      <p><b>Description:</b>{{subscription.plan.description}}</p>
     </div>
     <h3>Subscription Status:{{subscription.status}}</h3>
 

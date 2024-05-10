@@ -10,9 +10,12 @@ namespace Booking.Accomodation.Application.Features.Reservations.GetHostReservat
 
         private readonly IAccommodationRepository _accommodationRepository;
 
-        public GetHostReservationsQueryHandler(IAccommodationRepository accommodationRepository)
+        private readonly IReviewRepository _reviewRepository;
+
+        public GetHostReservationsQueryHandler(IAccommodationRepository accommodationRepository, IReviewRepository reviewRepository)
         {
             _accommodationRepository = accommodationRepository;
+            _reviewRepository = reviewRepository;
         }
 
         public async Task<Result<List<ReservationResponse>>> Handle(GetHostReservationsQuery request, CancellationToken cancellationToken)
@@ -23,17 +26,20 @@ namespace Booking.Accomodation.Application.Features.Reservations.GetHostReservat
 
             foreach (Accommodation accommodation in accommodations)
             {
-                accommodation.Reservations.ForEach(r =>
+                foreach (Reservation r in accommodation.Reservations)
                 {
+                    Review review = await _reviewRepository.GetReservationReviewAsync(r.Id);
+                    bool reviewExist = review is not null ? true : false;
                     responses.Add(new ReservationResponse(
                         AccommodationId: accommodation.Id,
                         Accommodation: accommodation.Name,
                         Address: accommodation.Address.ConvertToString(),
                         Price: r.TotalPrice.ConvertToString(),
                         ReservationId: r.Id,
-                        Slot: r.Slot
+                        Slot: r.Slot,
+                        ReviewExist: reviewExist
                     ));
-                });
+                }
             }
 
             return responses;

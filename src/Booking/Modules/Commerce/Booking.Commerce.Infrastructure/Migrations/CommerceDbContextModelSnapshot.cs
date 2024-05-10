@@ -72,17 +72,11 @@ namespace Booking.Commerce.Infrastructure.Migrations
                     b.Property<Guid>("PaymentId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("ReservationId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("Id");
 
                     b.HasIndex("PayerId");
 
                     b.HasIndex("PaymentId");
-
-                    b.HasIndex("ReservationId")
-                        .IsUnique();
 
                     b.ToTable("ReservationInvoice", "commerce");
                 });
@@ -98,6 +92,9 @@ namespace Booking.Commerce.Infrastructure.Migrations
 
                     b.Property<int>("Method")
                         .HasColumnType("int");
+
+                    b.Property<Guid>("PayerId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("ReservationId")
                         .HasColumnType("uniqueidentifier");
@@ -184,9 +181,6 @@ namespace Booking.Commerce.Infrastructure.Migrations
                     b.Property<Guid?>("SubscriberId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("SubscriptionId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("Id");
 
                     b.HasIndex("PaymentId");
@@ -263,13 +257,13 @@ namespace Booking.Commerce.Infrastructure.Migrations
                         .WithMany("Invoices")
                         .HasForeignKey("PayerId");
 
-                    b.HasOne("Booking.Commerce.Domain.Entities.SubscriptionPayment", "Payment")
+                    b.HasOne("Booking.Commerce.Domain.Entities.ReservationPayment", "Payment")
                         .WithMany()
                         .HasForeignKey("PaymentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.OwnsOne("Booking.BuildingBlocks.Domain.SharedKernel.ValueObjects.Money", "Price", b1 =>
+                    b.OwnsOne("Booking.BuildingBlocks.Domain.SharedKernel.ValueObjects.Money", "SumPrice", b1 =>
                         {
                             b1.Property<Guid>("ReservationInvoiceId")
                                 .HasColumnType("uniqueidentifier");
@@ -296,7 +290,7 @@ namespace Booking.Commerce.Infrastructure.Migrations
                             b1.Property<double>("BookingFeePercent")
                                 .HasColumnType("float");
 
-                            b1.Property<string>("MoneyToKeepByPlatfomr")
+                            b1.Property<string>("MoneyToKeepByPlatform")
                                 .IsRequired()
                                 .HasColumnType("nvarchar(max)");
 
@@ -313,7 +307,7 @@ namespace Booking.Commerce.Infrastructure.Migrations
 
                     b.Navigation("Payment");
 
-                    b.Navigation("Price")
+                    b.Navigation("SumPrice")
                         .IsRequired();
                 });
 

@@ -202,11 +202,6 @@ namespace Booking.UserAccess.Infrastructure.Migrations
                         new
                         {
                             RoleId = 1,
-                            PermissionId = 3
-                        },
-                        new
-                        {
-                            RoleId = 1,
                             PermissionId = 5
                         },
                         new
@@ -218,6 +213,11 @@ namespace Booking.UserAccess.Infrastructure.Migrations
                         {
                             RoleId = 2,
                             PermissionId = 6
+                        },
+                        new
+                        {
+                            RoleId = 2,
+                            PermissionId = 3
                         });
                 });
 

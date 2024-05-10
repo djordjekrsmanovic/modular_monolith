@@ -1,0 +1,37 @@
+<div class="body-wrapper">
+
+    <gap></gap>
+    <div class="is-flex content is-large my-5 is-justify-content-center">
+      <div class="box p-6 min-width-800">
+        <h1>Add Review</h1>
+
+        <div class="field">
+            <label class="label">Select Raiting</label>
+            <div class="control">
+                <div class="select is-link">
+                    <select name="pets" [(ngModel)]="addReview.rating" id="pet-select">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+
+            </div>
+            <p class="help">Chose rating</p>
+        </div>
+
+        <div class="field">
+            <label class="label">Comment</label>
+            <div class="control">
+               <textarea [(ngModel)]="addReview.comment" class="textarea"></textarea>
+            </div>
+            <p class="help">Insert Your Comment</p>
+        </div>
+
+        <button class="button is-success" (click)="confirm()">Confirm</button>
+      </div>
+    </div>
+  </div>
+  <app-footer></app-footer>

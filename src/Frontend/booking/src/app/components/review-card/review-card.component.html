@@ -7,10 +7,10 @@
   <div class="media-content">
     <div class="content">
       <p>
-        <b>John Smith </b> |
+        <b>{{userInfo.firstName}}  {{userInfo.lastName}} </b>
         <small
           >
-          >{{ review.createdAt | date: "short" }} |
+          {{ review.createdAt | date: "short" }} |
         </small>
         <i class="fa fa-star" *ngFor="let n of numSequence(review.rating)"></i>
 

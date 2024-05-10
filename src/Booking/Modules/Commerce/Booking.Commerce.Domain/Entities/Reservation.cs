@@ -5,7 +5,7 @@ using Booking.Commerce.Domain.Errors;
 
 namespace Booking.Commerce.Domain.Entities
 {
-    public class Reservation : Entity<Guid>
+    public class Reservation : AgregateRoot<Guid>
     {
         public List<ReservationPayment> Payments { get; set; }
 
@@ -28,14 +28,14 @@ namespace Booking.Commerce.Domain.Entities
             return Result.Success(new Reservation(id, price));
         }
 
-        public Result<ReservationPayment> Pay(PaymentMethod method)
+        public Result<ReservationPayment> Pay(PaymentMethod method, Guid payerId)
         {
             if (Payments.Where(x => x.Status == PaymentStatus.Confirmed || x.Status == PaymentStatus.InProgress).Any())
             {
                 return Result.Failure<ReservationPayment>(ReservationErrors.ReservationAlreadyPaidOrInProgress);
             }
 
-            return ReservationPayment.Create(Price, method, Id);
+            return ReservationPayment.Create(Price, method, Id, payerId);
         }
 
         public Result<ReservationPayment> ConfirmPayment()

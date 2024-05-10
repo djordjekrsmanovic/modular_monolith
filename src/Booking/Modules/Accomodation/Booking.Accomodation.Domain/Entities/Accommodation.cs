@@ -171,9 +171,14 @@ namespace Booking.Booking.Domain.Entities
             }
 
             Reservations.Remove(reservation);
-            //throw domain event to send mail to host that reservation is canceled
-            return Result.Success();
 
+            return Result.Success();
+        }
+
+        public void RecalculateRating(List<Review> reviews)
+        {
+            double sum = reviews.Sum(x => x.Rating);
+            Raiting = sum / reviews.Count();
         }
     }
 }

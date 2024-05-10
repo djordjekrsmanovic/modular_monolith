@@ -42,6 +42,9 @@ namespace Booking.Commerce.Domain.Entities
             return Subscriptions.Any(subscription => subscription.Plan.Id == plan.Id && subscription.Status == SubscriptionStatus.Active);
         }
 
-
+        public void AddInvoice(SubscriptionInvoice invoice)
+        {
+            Invoices.Add(invoice);
+        }
     }
 }

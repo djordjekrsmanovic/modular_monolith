@@ -26,7 +26,7 @@ namespace Booking.Commerce.Application.Features.Reservations.PayReservation
         {
             Reservation reservation = await _reservationRepository.Get(request.ReservationId);
 
-            var response = reservation.Pay(request.Method);
+            var response = reservation.Pay(request.Method, request.PayerId);
 
             if (response.IsSuccess)
             {

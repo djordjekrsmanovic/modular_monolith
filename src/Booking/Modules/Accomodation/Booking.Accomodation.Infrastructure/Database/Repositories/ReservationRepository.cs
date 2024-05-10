@@ -19,6 +19,11 @@ namespace Booking.Accomodation.Infrastructure.Database.Repositories
             _context.Set<Reservation>().Add(value);
         }
 
+        public async Task<Reservation> GetAsync(Guid reservationId)
+        {
+            return await _context.Set<Reservation>().Where(x => x.Id == reservationId).FirstOrDefaultAsync();
+        }
+
         public async Task<List<Reservation>> GetGuestReservations(Guid guestId)
         {
             return await _context.Set<Reservation>().Where(x => x.GustId == guestId).ToListAsync();

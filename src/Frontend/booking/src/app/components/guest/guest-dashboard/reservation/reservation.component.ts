@@ -25,6 +25,7 @@ export class ReservationComponent implements OnInit {
   constructor(private accommodationService:AccommodationService,private userService:UserService) {}
 
   ngOnInit(): void {
+    console.log(this.reservation);
     this.accommodationService.getReservationPaymentStatus(this.reservation.reservationId).subscribe((data)=>{this.status=data.status; console.log(data);this.dataLoaded=true;})
     this.isGuest=this.userService.getCurrentUser().role=='Guest';
   }
@@ -37,22 +38,24 @@ export class ReservationComponent implements OnInit {
 
   }
 
-  confirm(){
+  confirm(reservation:ReservationView){
+    console.log(reservation)
     var executePayment:ExecuteReservationPayment=new ExecuteReservationPayment();
-    executePayment.reservationId=this.reservation.reservationId;
+    executePayment.reservationId=reservation.reservationId;
     executePayment.method=this.paymentMethod;
     this.accommodationService.executeReservationPayment(executePayment).subscribe(data=>{alert('Payment Created');},err=>{
       alert(err.error.detail);
     })
   }
 
-  openModalTab():void{
+  openModalTab(reservation:ReservationView):void{
 
-    document.getElementById('modal')?.classList.toggle('is-active');
+    document.getElementById(reservation.reservationId)?.classList.toggle('is-active');
+    console.log(reservation);
   }
 
-  closeModalTab():void{
-    document.getElementById('modal')?.classList.toggle('is-active');
+  closeModalTab(reservation:ReservationView):void{
+    document.getElementById(reservation.reservationId)?.classList.toggle('is-active');
   }
 
   confirmGuestPayment(){
@@ -63,6 +66,10 @@ export class ReservationComponent implements OnInit {
     this.accommodationService.confirmReservationPayment(executePayment).subscribe(data=>{alert('Payment Confirmed');},err=>{
       alert(err.error.detail);
     })
+  }
+
+  leaveFeedback(){
+    window.location.href='add-review/'+this.reservation.reservationId;
   }
 
 }

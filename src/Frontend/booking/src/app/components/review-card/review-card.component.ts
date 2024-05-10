@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Review } from 'src/app/model/review';
+import { UserPersonalInfo } from '../../model/personal-info-model';
+import { UserService } from '../../service/user.service';
 
 @Component({
   selector: 'review-card',
@@ -9,9 +11,15 @@ import { Review } from 'src/app/model/review';
 export class ReviewCardComponent implements OnInit {
   @Input()
   review!: Review;
-  constructor() {}
+  constructor(private userService:UserService) {}
 
-  ngOnInit(): void {}
+  userInfo:UserPersonalInfo=new UserPersonalInfo();
+
+  ngOnInit(): void {
+    this.userService.getUserInfo(this.review.guestId).subscribe(data=>{
+      this.userInfo=data;
+    })
+  }
   numSequence(n: number): Array<number> {
     return Array(n);
   }

@@ -31,7 +31,7 @@ namespace Booking.Commerce.Presentation
         [HttpPost("execute-payment")]
         public async Task<IActionResult> ExecutePayment([FromBody] PayReservationRequest request, CancellationToken token)
         {
-            var response = await Sender.Send(new PayReservationCommand(request.ReservationId, request.Method), token);
+            var response = await Sender.Send(new PayReservationCommand(request.ReservationId, request.Method, request.PayerId), token);
             if (response.IsSuccess)
             {
                 return Ok(response);

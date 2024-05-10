@@ -14,6 +14,12 @@ import { AccommodationPageComponent } from './components/accomodations/accommoda
 import { SubscriptionPlanComponent } from './components/subscription-plan/subscription-plan.component';
 import { HostSubscriptionsPageComponent } from './components/host/host-subscriptions-page/host-subscriptions-page.component';
 import { EditAccommodationComponent } from './components/host/edit-accommodation/edit-accommodation.component';
+import { AddReservationComponent } from './components/pages/add-reservation/add-reservation.component';
+import { CreateReservationResquestComponent } from './components/pages/create-reservation-resquest/create-reservation-resquest.component';
+import { ReservationRequestComponent } from './components/reservation-request/reservation-request.component';
+import { ReservationComponent } from './components/guest/guest-dashboard/reservation/reservation.component';
+import { AddReviewComponent } from './components/add-review/add-review.component';
+
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -25,6 +31,9 @@ const routes: Routes = [
   { path: 'accommodation/:id', component: AccommodationPageComponent },
   { path: 'add-accommodation',component: AddAccommodationComponent},
   { path: 'edit-accommodation/:id', component: EditAccommodationComponent },
+  {path: 'add-reservation/:id',component: AddReservationComponent},
+  {path: 'create-reservation-request/:id',component: CreateReservationResquestComponent},
+  {path:'add-review/:id',component: AddReviewComponent},
   { path: '', component: HomeComponent },
   { path: '**', component: NotFoundComponent },
 

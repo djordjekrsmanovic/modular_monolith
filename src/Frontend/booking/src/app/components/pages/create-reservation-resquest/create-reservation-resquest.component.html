@@ -1,0 +1,49 @@
+<div class="body-wrapper">
+
+    <gap></gap>
+    <div class="is-flex content is-large my-5 is-justify-content-center">
+      <div class="box p-6 min-width-800">
+        <h1>Create Reservation Request</h1>
+        <div class="field">
+            <label class="label">Start Date</label>
+            <div class="control">
+              <input class="input" type="date" [(ngModel)]="reservationRequest.start" placeholder="Start Date">
+            </div>
+            <p class="help">Insert start date</p>
+        </div>
+
+        <div class="field">
+            <label class="label">End Date</label>
+            <div class="control">
+              <input class="input" type="date" [(ngModel)]="reservationRequest.end" placeholder="End Date">
+            </div>
+            <p class="help">Insert end date</p>
+        </div>
+
+        <div class="field">
+            <label class="label">Guest number</label>
+            <div class="control">
+              <input class="input" type="number" [(ngModel)]="reservationRequest.guestNumber" placeholder="Guest number">
+            </div>
+            <p class="help">Insert guest number</p>
+        </div>
+
+        <div class="field">
+            <label class="label">Insert optional message</label>
+            <div class="control">
+                <textarea class="textarea" [(ngModel)]="reservationRequest.message" placeholder="Insert Message"></textarea>
+            </div>
+            <p class="help">Insert optional message</p>
+        </div>
+
+        <div class="field">
+            <button class="button is-info is-light" (click)="recalculatePrice()">Recalculate Price</button>
+            Sum price: {{price}}
+        </div>
+
+
+        <button class="button is-success" (click)="confirm()">Confirm</button>
+      </div>
+    </div>
+  </div>
+  <app-footer></app-footer>

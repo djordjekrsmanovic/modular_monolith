@@ -1,0 +1,79 @@
+<div class="my-5">
+  <article class="media shadow p-4">
+    <figure class="media-left">
+      <p class="image">
+        <img class="image center-cropped" src="../../../../../assets/images/reservation.jpg" />
+      </p>
+    </figure>
+    <div class="media-content">
+      <div class="content">
+        <div>
+          <p>
+            <strong
+              ><a href="">{{reservation.accommodation}}</a></strong
+            ><small></small>
+            <br />
+            {{reservation.slot.start}} - {{reservation.slot.end}}
+          </p>
+
+          <div>
+            <strong><i class="fa fa-map-marker"></i> {{reservation.address}}</strong>
+            <h4>{{reservation.price}}</h4>
+          </div>
+          <div>
+            <strong>Reservation Payment Status:</strong> {{status}}
+          </div>
+        </div>
+        <div class="columns is-vcentered">
+
+          <div
+            class="
+              column
+              is-flex is-justify-content-flex-end is-align-items-center
+            "
+
+          >
+
+            <div class="buttons ml-5">
+              <button class="button is-danger" *ngIf="isGuest && status=='NotExist'"(click)="cancel()">Cancel Reservation</button>
+              <button class="button is-danger" *ngIf="!isGuest && status=='InProgress'"(click)="cancel()">Cancel Payment</button>
+              <button class="button is-success" *ngIf="(isGuest && status=='NotExist')" (click)="openModalTab(reservation)">Pay Reservation</button>
+              <button *ngIf="!isGuest && status=='InProgress'" class="button is-success" (click)="confirmGuestPayment()" >Confirm Guest Payment</button>
+              <button class="button is-success" *ngIf="(isGuest && status=='Confirmed' && reservation.reviewExist==false)" (click)="leaveFeedback()">Leave Feedback</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+</div>
+
+
+<div class="modal" id={{reservation.reservationId}}>
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Reservation payment</p>
+      <button class="delete" aria-label="close" (click)="closeModalTab(reservation)"></button>
+    </header>
+    <section class="modal-card-body">
+      <div>
+        <label for="paymentMethod">Payment Method:</label>
+        <select id="paymentMethod" name="paymentMethod" [(ngModel)]="paymentMethod">
+          <option value="Cash">Cash</option>
+          <option value="CreditCard">Credit Card</option>
+          <option value="PayPal">PayPal</option>
+          <option value="BankTransfer">Bank Transfer</option>
+        </select>
+      </div>
+    </section>
+    <footer class="modal-card-foot">
+      <div class="field">
+        <div class="control">
+          <button class="button is-link" (click)="confirm(reservation)">Confirm</button>
+        </div>
+      </div>
+
+    </footer>
+  </div>
+</div>

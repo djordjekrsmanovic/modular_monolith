@@ -10,9 +10,9 @@ namespace Booking.Accomodation.Infrastructure.Database.Configuration
         {
             builder.HasKey(x => x.Id);
 
-            builder.OwnsOne(x => x.Price);
+            builder.OwnsOne(x => x.TotalPrice);
 
-            builder.OwnsOne(x => x.DateTimeSlot);
+            builder.OwnsOne(x => x.Slot);
         }
     }
 }

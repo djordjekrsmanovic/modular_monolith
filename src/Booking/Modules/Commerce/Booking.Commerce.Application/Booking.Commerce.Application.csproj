@@ -9,6 +9,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\BuildingBlocks\Booking.BuildingBlocks.Application\Booking.BuildingBlocks.Application.csproj" />
     <ProjectReference Include="..\..\..\BuildingBlocks\Booking.BuildingBlocks.Domain\Booking.BuildingBlocks.Domain.csproj" />
+    <ProjectReference Include="..\..\Accomodation\Booking.Accomodation.IntegrationEvents\Booking.Accomodation.IntegrationEvents.csproj" />
     <ProjectReference Include="..\..\UserAccess\Booking.UserAccess.IntegrationEvents\Booking.UserAccess.IntegrationEvents.csproj" />
     <ProjectReference Include="..\Booking.Commerce.Domain\Booking.Commerce.Domain.csproj" />
     <ProjectReference Include="..\Booking.Commerce.IntegrationEvents\Booking.Commerce.IntegrationEvents.csproj" />

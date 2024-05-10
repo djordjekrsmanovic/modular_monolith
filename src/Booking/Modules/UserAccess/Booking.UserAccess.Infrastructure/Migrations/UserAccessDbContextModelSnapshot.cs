@@ -44,12 +44,32 @@ namespace Booking.UserAccess.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            Name = "ReadMember"
+                            Name = "GetHostReservations"
                         },
                         new
                         {
                             Id = 2,
-                            Name = "UpdateMember"
+                            Name = "GetGuestReservations"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "GuestReservationOperations"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "HostReservationOperations"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "HostAccommodationOperations"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Name = "ChangeUserInfo"
                         });
                 });
 
@@ -172,7 +192,32 @@ namespace Booking.UserAccess.Infrastructure.Migrations
                         new
                         {
                             RoleId = 2,
-                            PermissionId = 1
+                            PermissionId = 2
+                        },
+                        new
+                        {
+                            RoleId = 1,
+                            PermissionId = 4
+                        },
+                        new
+                        {
+                            RoleId = 1,
+                            PermissionId = 5
+                        },
+                        new
+                        {
+                            RoleId = 1,
+                            PermissionId = 6
+                        },
+                        new
+                        {
+                            RoleId = 2,
+                            PermissionId = 6
+                        },
+                        new
+                        {
+                            RoleId = 2,
+                            PermissionId = 3
                         });
                 });
 

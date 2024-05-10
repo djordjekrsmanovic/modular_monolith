@@ -8,7 +8,7 @@ namespace Booking.Commerce.Domain.ValueObjects
 
         public Double BookingFeePercent { get; set; }
 
-        public Money MoneyToKeepByPlatfomr { get; set; }
+        public Money MoneyToKeepByPlatform { get; set; }
 
         private BookingFee() { }
 
@@ -16,7 +16,7 @@ namespace Booking.Commerce.Domain.ValueObjects
         {
             BookingFeePercent = BookingFeeRate;
 
-            MoneyToKeepByPlatfomr = totalPrice.CalculatePercent(BookingFeePercent);
+            MoneyToKeepByPlatform = totalPrice.CalculatePercent(BookingFeePercent);
         }
 
         public static BookingFee Create(Money totalPrice)

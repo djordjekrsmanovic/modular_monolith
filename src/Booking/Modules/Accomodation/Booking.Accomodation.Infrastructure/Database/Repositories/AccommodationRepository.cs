@@ -73,6 +73,12 @@ namespace Booking.Accomodation.Infrastructure.Database.Repositories
                 .Include(x => x.Images).FirstOrDefaultAsync();
         }
 
+        public Accommodation GetWithoutRelations(Guid Id)
+        {
+
+            return _context.Set<Accommodation>().Where(accommodation => accommodation.Id == Id).FirstOrDefault();
+        }
+
         public async Task<Accommodation> GetFirstAccommodation(Guid hostId)
         {
             return await _context.Set<Accommodation>().OrderBy(x => x.CreatedAt).FirstAsync();
@@ -97,6 +103,7 @@ namespace Booking.Accomodation.Infrastructure.Database.Repositories
         {
             return await _context.Set<Accommodation>().Where(accommodation => accommodation.HostId == hostId)
                 .Include(x => x.AdditionalServices)
+                .Include(x => x.Reservations)
                 .Include(x => x.Images).ToListAsync();
         }
     }

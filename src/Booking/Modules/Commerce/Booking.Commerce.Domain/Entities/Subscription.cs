@@ -14,7 +14,7 @@ namespace Booking.Commerce.Domain.Entities
 
         public SubscriptionPlan Plan { get; set; }
 
-        public List<Payment> Payments { get; set; } = new List<Payment>();
+        public List<SubscriptionPayment> Payments { get; set; } = new List<SubscriptionPayment>();
 
         public Guid SubscriberId { get; set; }
 
@@ -40,7 +40,7 @@ namespace Booking.Commerce.Domain.Entities
             return Result.Success(subscription);
         }
 
-        public Result AddPayment(Payment payment)
+        public Result AddPayment(SubscriptionPayment payment)
         {
             if (paymentAlreadyExist(payment))
             {
@@ -50,24 +50,24 @@ namespace Booking.Commerce.Domain.Entities
             return Result.Success();
         }
 
-        private bool paymentAlreadyExist(Payment payment)
+        private bool paymentAlreadyExist(SubscriptionPayment payment)
         {
             return Payments.Any(p => p.Id == payment.Id);
         }
 
         public Result ConfirmPayment(Guid paymentId)
         {
-            Payment payment = Payments.Where(p => p.Id == paymentId).FirstOrDefault();
+            SubscriptionPayment payment = Payments.Where(p => p.Id == paymentId).FirstOrDefault();
             if (payment is null)
             {
                 return Result.Failure(PaymentErrors.PaymentNotExist);
             }
 
-            var paymentResponse = payment.ConfirmPayment();
+            var paymentResponse = payment.ConfirmSubscriptionPayment();
             if (paymentResponse.IsSuccess)
             {
                 Status = SubscriptionStatus.Active;
-                RaiseDomainEvent(new PaymentConfirmedDomainEvent(SubscriptionPeriod.Start, Plan.DurationInMonths, Plan.AccomodationLimit, SubscriberId));
+                RaiseDomainEvent(new SubscriptionPaymentConfirmedDomainEvent(payment, SubscriptionPeriod.Start, Plan.DurationInMonths, Plan.AccomodationLimit, SubscriberId));
             }
 
             return paymentResponse;

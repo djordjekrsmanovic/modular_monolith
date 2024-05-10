@@ -7,3 +7,12 @@ export class Review{
         public comment:string
     ){}
 }
+
+export class AddReviewRequest{
+    constructor(
+        public reservationId:string='',
+        public guestId:string='',
+        public rating:number=1,
+        public comment:string=''
+    ){}
+}

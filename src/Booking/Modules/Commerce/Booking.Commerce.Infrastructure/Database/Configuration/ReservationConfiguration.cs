@@ -9,6 +9,10 @@ namespace Booking.Commerce.Infrastructure.Database.Configuration
         public void Configure(EntityTypeBuilder<Reservation> builder)
         {
             builder.HasKey(x => x.Id);
+
+            builder.ComplexProperty(x => x.Price);
+
+            builder.HasMany(x => x.Payments).WithOne().HasForeignKey(x => x.ReservationId);
         }
     }
 }

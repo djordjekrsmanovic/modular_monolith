@@ -37,10 +37,11 @@ namespace Booking.Accomodation.Application.Features.Accommodations.GetAccommodat
                 Raiting: accommodation.Raiting,
                 Images: accommodation.Images.Select(img => { return new ImageResponse(Id: img.Id, Name: img.Name, Extension: img.Extension, Content: img.ToBase64(), Hash: img.Hash); }).ToList(),
                 AvailabilityPeriods: accommodation.AvailabilityPeriods.Select(a => { return new AvailabilityPeriodResponse(a.Id, a.AccommodationId, DateTimeSlot.Create(a.Slot.Start, a.Slot.End).Value, a.Price.ConvertToString()); }).ToList(),
-                Reservations: accommodation.Reservations.Select(a => { return DateTimeSlot.Create(a.DateTimeSlot.Start, a.DateTimeSlot.End).Value; }).ToList(),
+                Reservations: accommodation.Reservations.Select(a => { return DateTimeSlot.Create(a.Slot.Start, a.Slot.End).Value; }).ToList(),
                 HostId: accommodation.HostId,
                 MinGuest: accommodation.Capacity.MinGuestNumber,
-                MaxGuest: accommodation.Capacity.MaxGuestNumber
+                MaxGuest: accommodation.Capacity.MaxGuestNumber,
+                RequiredReservationRequest: accommodation.ReservationApprovalRequired
 
             );
         }

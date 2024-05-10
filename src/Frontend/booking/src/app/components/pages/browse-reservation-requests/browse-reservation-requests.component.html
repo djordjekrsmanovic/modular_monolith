@@ -1,0 +1,8 @@
+<div *ngIf="dataLoaded" class="scrollable-div">
+    <div class="columns is-multiline">
+        <div *ngFor="let request of reservationRequests" class="column is-half">
+            <app-reservation-request [requestView]="request"></app-reservation-request>
+        </div>
+    </div>
+
+</div>

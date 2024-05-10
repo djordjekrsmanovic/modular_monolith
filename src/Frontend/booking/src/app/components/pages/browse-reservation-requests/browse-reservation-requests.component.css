@@ -1,0 +1,8 @@
+.scrollable-div {
+    height: 500px; /* Set height as per your requirement */
+    overflow-y: scroll; /* Enable vertical scrolling */
+}
+
+.scrollable-div::-webkit-scrollbar {
+    display: none;
+  }

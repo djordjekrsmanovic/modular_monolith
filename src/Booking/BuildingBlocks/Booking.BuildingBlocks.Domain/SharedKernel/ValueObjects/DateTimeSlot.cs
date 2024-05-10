@@ -40,5 +40,12 @@ namespace Booking.BuildingBlocks.Domain.SharedKernel.ValueObjects
         {
             return date >= Start && date <= End;
         }
+
+        public int GetNumberOfDays()
+        {
+            TimeSpan difference = End - Start;
+
+            return (int)difference.TotalDays;
+        }
     }
 }

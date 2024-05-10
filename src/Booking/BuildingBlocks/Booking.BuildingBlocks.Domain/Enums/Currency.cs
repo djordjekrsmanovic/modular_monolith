@@ -1,5 +1,8 @@
-﻿namespace Booking.BuildingBlocks.Domain.Enums
+﻿using System.Text.Json.Serialization;
+
+namespace Booking.BuildingBlocks.Domain.Enums
 {
+    [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum Currency
     {
         USD,

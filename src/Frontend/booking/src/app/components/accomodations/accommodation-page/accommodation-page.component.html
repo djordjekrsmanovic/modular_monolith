@@ -30,12 +30,20 @@
               <div class="mb-5">
 
               </div>
-              <div>
+              <div *ngIf="!accommodation.requiredReservationRequest">
                 <button
                   class="button is-success is-large"
                   (click)="bookNowButton()"
                 >
                   Book now
+                </button>
+              </div>
+              <div *ngIf="accommodation.requiredReservationRequest">
+                <button
+                  class="button is-success is-large"
+                  (click)="sendReservationRequest()"
+                >
+                  Send Reservation Request
                 </button>
               </div>
             </div>
@@ -91,3 +99,5 @@
   </div>
 
   <app-footer></app-footer>
+
+

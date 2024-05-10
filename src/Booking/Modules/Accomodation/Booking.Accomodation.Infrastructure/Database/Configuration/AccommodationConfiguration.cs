@@ -5,10 +5,10 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Booking.Booking.Infrastructure.Database.Configuration
 {
-    internal class AccommodationConfiguration : IEntityTypeConfiguration<Domain.Entities.Accommodation>
+    internal class AccommodationConfiguration : IEntityTypeConfiguration<Accommodation>
     {
 
-        public void Configure(EntityTypeBuilder<Domain.Entities.Accommodation> builder)
+        public void Configure(EntityTypeBuilder<Accommodation> builder)
         {
             builder.HasKey(x => x.Id);
 
@@ -26,10 +26,7 @@ namespace Booking.Booking.Infrastructure.Database.Configuration
                 .HasForeignKey(x => x.AccomodationId)
                 .IsRequired(true);
 
-            builder.HasMany(x => x.ReservationRequests)
-                .WithOne()
-                .HasForeignKey(x => x.AccomodationId)
-                .IsRequired(true);
+
 
             builder.HasMany(x => x.AvailabilityPeriods)
                 .WithOne()

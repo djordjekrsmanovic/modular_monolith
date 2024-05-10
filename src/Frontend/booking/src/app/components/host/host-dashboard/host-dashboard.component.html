@@ -34,6 +34,14 @@
             >
           </li>
 
+          <li>
+            <a
+              [ngClass]="{ 'is-active': activeTab === 'DELETE_ACCOUNT' }"
+              (click)="changeTab('DELETE_ACCOUNT')"
+              >Delete my Account</a
+            >
+          </li>
+
         </ul>
         <p class="menu-label">Find Reservations</p>
         <ul class="menu-list">
@@ -44,30 +52,23 @@
               >Accommodation Reservations</a
             >
           </li>
+
+          <li>
+            <a
+              [ngClass]="{ 'is-active': activeTab === 'RESERVATION_REQUESTS' }"
+              (click)="changeTab('RESERVATION_REQUESTS')"
+              >Reservation Requests</a
+            >
+          </li>
         </ul>
         <p class="menu-label">Commerce</p>
         <ul class="menu-list">
 
           <li>
             <a
-              [ngClass]="{ 'is-active': activeTab === 'TRANSACTIONS' }"
-              (click)="changeTab('TRANSACTIONS')"
-              >All Transactions</a
-            >
-          </li>
-
-          <li>
-            <a
               [ngClass]="{ 'is-active': activeTab === 'INVOICES' }"
               (click)="changeTab('INVOICES')"
               >Subscription Invoices</a
-            >
-          </li>
-          <li>
-            <a
-              [ngClass]="{ 'is-active': activeTab === 'DELETE_ACCOUNT' }"
-              (click)="changeTab('DELETE_ACCOUNT')"
-              >Delete my Account</a
             >
           </li>
         </ul>
@@ -89,9 +90,9 @@
           <app-settings [userId]="userPersonalInfo.id"></app-settings>
         </div>
         <div *ngIf="activeTab == 'ACCOMODATION_RESERVATIONS'">
-          <client-guest-reservations
+          <app-browse-reservations
 
-          ></client-guest-reservations>
+          ></app-browse-reservations>
         </div>
 
         <div *ngIf="activeTab == 'ADD ACCOMMODATION'">
@@ -103,6 +104,14 @@
 
         <div *ngIf="activeTab == 'MY ACCOMMODATIONS'">
           <app-my-accommodations></app-my-accommodations>
+        </div>
+
+        <div *ngIf="activeTab == 'RESERVATION_REQUESTS'">
+          <app-browse-reservation-requests></app-browse-reservation-requests>
+        </div>
+
+        <div *ngIf="activeTab == 'INVOICES'">
+          <app-browse-subscription-invoices></app-browse-subscription-invoices>
         </div>
 
       </div>

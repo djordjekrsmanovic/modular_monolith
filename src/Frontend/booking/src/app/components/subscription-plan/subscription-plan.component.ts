@@ -11,7 +11,7 @@ import { SubscriptionService } from '../../service/subscription.service';
 })
 export class SubscriptionPlanComponent implements OnInit {
   @Input() plan: SubscriptionPlan=new SubscriptionPlan();
-  cardClass:string='';
+  imageSrc:string='';
   constructor(private userService:UserService,private subscriptionService:SubscriptionService) { }
 
   paymentMethod:string='';
@@ -19,21 +19,21 @@ export class SubscriptionPlanComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.plan)
     if(this.plan.name=='Gold'){
-      this.cardClass='subscription-card-gold'
-    }else if(this.plan.name='Silver'){
-      this.cardClass='subscription-card-silver'
+      this.imageSrc="../../../assets/images/gold.png"
+    }else if(this.plan.name=='Silver'){
+      this.imageSrc="../../../assets/images/silver.png"
     }else{
-      this.cardClass='subscription-card'
+      this.imageSrc="../../../assets/images/gold.png"
     }
   }
 
   openModalTab():void{
 
-    document.getElementById('modal')?.classList.toggle('is-active');
+    document.getElementById(this.plan.id)?.classList.toggle('is-active');
   }
 
   closeModalTab():void{
-    document.getElementById('modal')?.classList.toggle('is-active');
+    document.getElementById(this.plan.id)?.classList.toggle('is-active');
   }
 
   confirm(){

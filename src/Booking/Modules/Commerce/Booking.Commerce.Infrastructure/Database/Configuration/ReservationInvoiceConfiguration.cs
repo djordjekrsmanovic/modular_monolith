@@ -15,7 +15,7 @@ namespace Booking.Commerce.Infrastructure.Database.Configuration
             builder.OwnsOne(reservation => reservation.BookingFee, bookingFee =>
             {
                 // Assuming MoneyToKeepByPlatform is a property of type Money in BookingFee
-                bookingFee.Property(x => x.MoneyToKeepByPlatfomr).HasConversion(
+                bookingFee.Property(x => x.MoneyToKeepByPlatform).HasConversion(
                     v => $"{v.Ammount},{v.Currency}",
                     v => Money.Create(ConvertStringToEnum(split(v, 1)), double.Parse(split(v, 0))).Value
                     );
@@ -23,11 +23,10 @@ namespace Booking.Commerce.Infrastructure.Database.Configuration
 
 
 
-            builder.OwnsOne(x => x.Price);
+            builder.OwnsOne(x => x.SumPrice);
 
             builder.HasOne(x => x.Payment);
 
-            builder.HasIndex(x => x.ReservationId).IsUnique(true);
         }
 
         private string split(string v, int indexToReturn)

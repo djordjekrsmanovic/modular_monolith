@@ -20,11 +20,13 @@
 
         <li>
           <a
-            [ngClass]="{ 'is-active': activeTab === 'REVIEW' }"
-            (click)="changeTab('REVIEW')"
-            >Leave a Review</a
+            [ngClass]="{ 'is-active': activeTab === 'DELETE_ACCOUNT' }"
+            (click)="changeTab('DELETE_ACCOUNT')"
+            >Delete my Account</a
           >
         </li>
+
+
 
       </ul>
       <p class="menu-label">Find Reservations</p>
@@ -36,29 +38,30 @@
             >Accommodation Reservations</a
           >
         </li>
+
         <li>
           <a
-            [ngClass]="{ 'is-active': activeTab === 'UPCOMING' }"
-            (click)="changeTab('UPCOMING')"
-            >Upcoming Reservations</a
+            [ngClass]="{ 'is-active': activeTab === 'RESERVATION_REQUESTS' }"
+            (click)="changeTab('RESERVATION_REQUESTS')"
+            >Reservation Requests</a
           >
         </li>
         <li>
           <a
-            [ngClass]="{ 'is-active': activeTab === 'PAST_ACCOMMODATION' }"
-            (click)="changeTab('PAST_ACCOMMODATION')"
-            >Past Reservations</a
+            [ngClass]="{ 'is-active': activeTab === 'REVIEW' }"
+            (click)="changeTab('REVIEW')"
+            >Leave a Review</a
           >
         </li>
       </ul>
-      <p class="menu-label">Transactions</p>
+      <p class="menu-label">Commerce</p>
       <ul class="menu-list">
 
         <li>
           <a
-            [ngClass]="{ 'is-active': activeTab === 'COMPLAINT' }"
-            (click)="changeTab('COMPLAINT')"
-            >My Transactions</a
+            [ngClass]="{ 'is-active': activeTab === 'INVOICES' }"
+            (click)="changeTab('INVOICES')"
+            >My Invoices</a
           >
         </li>
         <li>
@@ -68,13 +71,7 @@
             >Transactions In Progress</a
           >
         </li>
-        <li>
-          <a
-            [ngClass]="{ 'is-active': activeTab === 'DELETE_ACCOUNT' }"
-            (click)="changeTab('DELETE_ACCOUNT')"
-            >Delete my Account</a
-          >
-        </li>
+
       </ul>
     </aside>
   </div>
@@ -93,31 +90,19 @@
       <div *ngIf="activeTab == 'SETTINGS'">
         <app-settings [userId]="userPersonalInfo.id"></app-settings>
       </div>
+
+
+      <div *ngIf="activeTab == 'RESERVATION_REQUESTS'">
+        <app-browse-reservation-requests></app-browse-reservation-requests>
+      </div>
+
       <div *ngIf="activeTab == 'ACCOMODATION_RESERVATIONS'">
-        <client-guest-reservations
-
-        ></client-guest-reservations>
-      </div>
-      <!-- <div *ngIf="activeTab == 'SUBSCRIPTIONS'">
-        <app-subscriptions [user]="client"></app-subscriptions>
+        <app-browse-reservations></app-browse-reservations>
       </div>
 
-      <div *ngIf="activeTab == 'SPECIAL_OFFERS'">
-        <client-special-offers [user]="client"></client-special-offers>
+      <div *ngIf="activeTab == 'INVOICES'">
+        <app-browse-reservation-invoices></app-browse-reservation-invoices>
       </div>
-      <div *ngIf="activeTab == 'UPCOMING'">
-        <client-upcoming-reservations
-          [user]="client"
-        ></client-upcoming-reservations>
-      </div>
-      <div *ngIf="activeTab == 'PAST_COTTAGE'">
-
-      </div>
-      <div *ngIf="activeTab == 'REVIEW'">
-        <guest-reviews [user]="userPersonalInfo"></guest-reviews>
-      </div> -->
-
-
     </div>
   </div>
 </div>

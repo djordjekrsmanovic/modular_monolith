@@ -56,5 +56,10 @@ namespace Booking.BuildingBlocks.Domain.SharedKernel.ValueObjects
         {
             return $"{Ammount} {Currency.ToString()}";
         }
+
+        public static Money CalculateSumPriceForReservation(Money money, int guestNumber, int numberOfDays)
+        {
+            return new Money(money.Currency, money.Ammount * guestNumber * numberOfDays);
+        }
     }
 }

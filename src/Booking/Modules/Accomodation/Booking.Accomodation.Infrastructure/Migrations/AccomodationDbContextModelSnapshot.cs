@@ -339,11 +339,36 @@ namespace Booking.Accomodation.Infrastructure.Migrations
                     b.Property<int>("GuestNumber")
                         .HasColumnType("int");
 
+                    b.Property<Guid>("HostId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Message")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
+
+                    b.ComplexProperty<Dictionary<string, object>>("Price", "Booking.Booking.Domain.Entities.ReservationRequest.Price#Money", b1 =>
+                        {
+                            b1.IsRequired();
+
+                            b1.Property<double>("Ammount")
+                                .HasColumnType("float");
+
+                            b1.Property<int>("Currency")
+                                .HasColumnType("int");
+                        });
+
+                    b.ComplexProperty<Dictionary<string, object>>("Slot", "Booking.Booking.Domain.Entities.ReservationRequest.Slot#DateTimeSlot", b1 =>
+                        {
+                            b1.IsRequired();
+
+                            b1.Property<DateTime>("End")
+                                .HasColumnType("datetime2");
+
+                            b1.Property<DateTime>("Start")
+                                .HasColumnType("datetime2");
+                        });
 
                     b.HasKey("Id");
 
@@ -352,6 +377,36 @@ namespace Booking.Accomodation.Infrastructure.Migrations
                     b.HasIndex("GuestId");
 
                     b.ToTable("ReservationRequest", "accomodaton");
+                });
+
+            modelBuilder.Entity("Booking.Booking.Domain.Entities.Review", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("AccommodationId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Comment")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("GuestId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Rating")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("ReservationId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Review", "accomodaton");
                 });
 
             modelBuilder.Entity("AccommodationAdditionalService", b =>
@@ -572,7 +627,7 @@ namespace Booking.Accomodation.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.OwnsOne("Booking.BuildingBlocks.Domain.SharedKernel.ValueObjects.DateTimeSlot", "DateTimeSlot", b1 =>
+                    b.OwnsOne("Booking.BuildingBlocks.Domain.SharedKernel.ValueObjects.DateTimeSlot", "Slot", b1 =>
                         {
                             b1.Property<Guid>("ReservationId")
                                 .HasColumnType("uniqueidentifier");
@@ -591,7 +646,7 @@ namespace Booking.Accomodation.Infrastructure.Migrations
                                 .HasForeignKey("ReservationId");
                         });
 
-                    b.OwnsOne("Booking.BuildingBlocks.Domain.SharedKernel.ValueObjects.Money", "Price", b1 =>
+                    b.OwnsOne("Booking.BuildingBlocks.Domain.SharedKernel.ValueObjects.Money", "TotalPrice", b1 =>
                         {
                             b1.Property<Guid>("ReservationId")
                                 .HasColumnType("uniqueidentifier");
@@ -610,17 +665,17 @@ namespace Booking.Accomodation.Infrastructure.Migrations
                                 .HasForeignKey("ReservationId");
                         });
 
-                    b.Navigation("DateTimeSlot")
+                    b.Navigation("Slot")
                         .IsRequired();
 
-                    b.Navigation("Price")
+                    b.Navigation("TotalPrice")
                         .IsRequired();
                 });
 
             modelBuilder.Entity("Booking.Booking.Domain.Entities.ReservationRequest", b =>
                 {
                     b.HasOne("Booking.Booking.Domain.Entities.Accommodation", null)
-                        .WithMany("ReservationRequests")
+                        .WithMany()
                         .HasForeignKey("AccomodationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -630,28 +685,6 @@ namespace Booking.Accomodation.Infrastructure.Migrations
                         .HasForeignKey("GuestId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.OwnsOne("Booking.BuildingBlocks.Domain.SharedKernel.ValueObjects.DateTimeSlot", "DateTimeSlot", b1 =>
-                        {
-                            b1.Property<Guid>("ReservationRequestId")
-                                .HasColumnType("uniqueidentifier");
-
-                            b1.Property<DateTime>("End")
-                                .HasColumnType("datetime2");
-
-                            b1.Property<DateTime>("Start")
-                                .HasColumnType("datetime2");
-
-                            b1.HasKey("ReservationRequestId");
-
-                            b1.ToTable("ReservationRequest", "accomodaton");
-
-                            b1.WithOwner()
-                                .HasForeignKey("ReservationRequestId");
-                        });
-
-                    b.Navigation("DateTimeSlot")
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Booking.Booking.Domain.Entities.Accommodation", b =>
@@ -659,8 +692,6 @@ namespace Booking.Accomodation.Infrastructure.Migrations
                     b.Navigation("AvailabilityPeriods");
 
                     b.Navigation("Images");
-
-                    b.Navigation("ReservationRequests");
 
                     b.Navigation("Reservations");
                 });

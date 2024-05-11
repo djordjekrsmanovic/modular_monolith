@@ -1,8 +1,10 @@
-﻿using Booking.Booking.Domain.Entities;
+﻿
+using Booking.Accomodation.Domain.Entities;
+using Booking.AccommodationNS.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Booking.Booking.Infrastructure.Database.Configuration
+namespace Booking.AccommodationNS.Infrastructure.Database.Configuration
 {
     internal class GuestConfiguration : IEntityTypeConfiguration<Guest>
     {

@@ -1,4 +1,4 @@
-﻿using Booking.Booking.Domain.Entities;
+﻿using Booking.AccommodationNS.Domain.Entities;
 
 namespace Booking.Accomodation.Application.Features.Reservations.GetHostReservationRequests
 {

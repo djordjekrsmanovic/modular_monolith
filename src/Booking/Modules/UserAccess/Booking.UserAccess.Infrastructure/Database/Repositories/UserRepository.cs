@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Booking.UserAccess.Infrastructure.Database.Repositories
 {
-    public sealed class UserRepository : IUserRepository
+    internal sealed class UserRepository : IUserRepository
     {
 
         private readonly UserAccessDbContext _context;

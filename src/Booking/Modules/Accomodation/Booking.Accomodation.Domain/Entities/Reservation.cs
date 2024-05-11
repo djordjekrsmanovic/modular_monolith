@@ -2,7 +2,7 @@
 using Booking.BuildingBlocks.Domain;
 using Booking.BuildingBlocks.Domain.SharedKernel.ValueObjects;
 
-namespace Booking.Booking.Domain.Entities
+namespace Booking.AccommodationNS.Domain.Entities
 {
     public class Reservation : Entity<Guid>
     {

@@ -1,6 +1,6 @@
 ﻿using Booking.Accomodation.Domain.Repositories;
-using Booking.Booking.Domain.Entities;
-using Booking.Booking.Infrastructure.Database;
+using Booking.AccommodationNS.Domain.Entities;
+using Booking.AccommodationNS.Infrastructure.Database;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 

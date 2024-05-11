@@ -2,7 +2,7 @@
 using Booking.Accomodation.Domain.Errors;
 using Booking.Accomodation.Domain.Repositories;
 using Booking.Accomodation.Domain.ValueObjects;
-using Booking.Booking.Domain.Entities;
+using Booking.AccommodationNS.Domain.Entities;
 using Booking.BuildingBlocks.Application.CQRS;
 using Booking.BuildingBlocks.Domain;
 using Booking.BuildingBlocks.Domain.Enums;

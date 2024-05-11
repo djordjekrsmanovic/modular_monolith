@@ -10,7 +10,7 @@ namespace Booking.UserAccess.Domain.Entities
 {
     public class RegistrationRequest : Entity<Guid>
     {
-        public string Email { get; init; }
+        public string Email { get; private set; }
 
         public string Password { get; private set; }
 

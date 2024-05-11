@@ -1,6 +1,6 @@
 ﻿namespace Booking.UserAccess.Presentation.Contracts.Request
 {
-    public record RegistrationRequest(
+    public sealed record RegistrationRequest(
         string Email,
         string Password,
         string FirstName,

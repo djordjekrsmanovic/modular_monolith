@@ -1,5 +1,5 @@
 ﻿using Booking.Accomodation.Domain.Repositories;
-using Booking.Booking.Domain.Entities;
+using Booking.AccommodationNS.Domain.Entities;
 using Booking.BuildingBlocks.Application.CQRS;
 using Booking.BuildingBlocks.Domain;
 

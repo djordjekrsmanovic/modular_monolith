@@ -5,7 +5,7 @@ namespace Booking.BuildingBlocks.Domain
     {
 
         private readonly List<IDomainEvent> _domainEvents = new();
-        public TEntity Id { get; init; }
+        public TEntity Id { get; protected set; }
 
         protected Entity() { }
 

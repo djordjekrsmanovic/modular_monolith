@@ -1,5 +1,5 @@
 ﻿using Booking.Accomodation.Domain;
-using Booking.Booking.Infrastructure.Database;
+using Booking.AccommodationNS.Infrastructure.Database;
 using Booking.BuildingBlocks.Infrastructure.Database;
 using MediatR;
 

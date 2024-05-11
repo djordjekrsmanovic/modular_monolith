@@ -1,5 +1,5 @@
 ﻿using Booking.Accomodation.Domain.Events;
-using Booking.Booking.IntegrationEvents;
+using Booking.AccommodationNS.IntegrationEvents;
 using Booking.BuildingBlocks.Application.EventBus;
 using Booking.BuildingBlocks.Domain;
 

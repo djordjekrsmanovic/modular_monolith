@@ -37,7 +37,7 @@ builder.Services.ConfigureOptions<MassTransitHostOptionsSetup>()
     .AddMassTransit(x =>
 {
     x.AddConsumersFromAssemblies([
-        Booking.Booking.Infrastructure.AssemblyReference.Assembly,
+        Booking.AccommodationNS.Infrastructure.AssemblyReference.Assembly,
         Booking.Commerce.Infrastructure.AssemblyReference.Assembly,
         Booking.UserAccess.Infrastructure.AssemblyReference.Assembly,
     ]);

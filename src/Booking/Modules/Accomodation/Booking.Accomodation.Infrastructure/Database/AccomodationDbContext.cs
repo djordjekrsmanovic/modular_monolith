@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace Booking.Booking.Infrastructure.Database
+namespace Booking.AccommodationNS.Infrastructure.Database
 {
     public class AccomodationDbContext : DbContext
     {

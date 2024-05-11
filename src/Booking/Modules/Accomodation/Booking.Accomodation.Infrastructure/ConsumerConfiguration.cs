@@ -3,7 +3,7 @@ using Booking.Accomodation.Application.Features.Hosts;
 using Booking.BuildingBlocks.Infrastructure.Extensions;
 using MassTransit;
 
-namespace Booking.Booking.Infrastructure
+namespace Booking.AccommodationNS.Infrastructure
 {
     internal class ConsumerConfiguration : IConsumerConfiguration
     {

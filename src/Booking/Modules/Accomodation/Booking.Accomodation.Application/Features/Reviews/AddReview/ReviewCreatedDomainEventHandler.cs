@@ -1,7 +1,7 @@
 ﻿using Booking.Accomodation.Domain;
 using Booking.Accomodation.Domain.Events;
 using Booking.Accomodation.Domain.Repositories;
-using Booking.Booking.Domain.Entities;
+using Booking.AccommodationNS.Domain.Entities;
 using Booking.BuildingBlocks.Domain;
 
 namespace Booking.Accomodation.Application.Features.Reviews.AddReview

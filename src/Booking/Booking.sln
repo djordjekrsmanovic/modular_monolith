@@ -53,7 +53,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Booking.Commerce.Applicatio
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Booking.Commerce.Presentation", "Modules\Commerce\Booking.Commerce.Presentation\Booking.Commerce.Presentation.csproj", "{1C428E92-63C4-4C02-BB19-05D76500F6DC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Booking.Commerce.IntegrationEvents", "Modules\Commerce\Booking.Commerce.IntegrationEvents\Booking.Commerce.IntegrationEvents.csproj", "{782F53CB-A16C-4D23-B183-BC5695281F5F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Booking.Commerce.IntegrationEvents", "Modules\Commerce\Booking.Commerce.IntegrationEvents\Booking.Commerce.IntegrationEvents.csproj", "{782F53CB-A16C-4D23-B183-BC5695281F5F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{DC9E8169-F3AE-4E0E-BF0C-1F28C2DC0226}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserAccesssModuleArchitectureTests", "Tests\UserAccesssModuleArchitectureTests\UserAccesssModuleArchitectureTests.csproj", "{00FE3E17-E97C-4A3C-8705-C62B2E76ADC9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -141,6 +145,10 @@ Global
 		{782F53CB-A16C-4D23-B183-BC5695281F5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{782F53CB-A16C-4D23-B183-BC5695281F5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{782F53CB-A16C-4D23-B183-BC5695281F5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00FE3E17-E97C-4A3C-8705-C62B2E76ADC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00FE3E17-E97C-4A3C-8705-C62B2E76ADC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00FE3E17-E97C-4A3C-8705-C62B2E76ADC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00FE3E17-E97C-4A3C-8705-C62B2E76ADC9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -169,6 +177,7 @@ Global
 		{F5646720-6C0E-4E7D-9E88-270FC849F951} = {887E67C2-9A36-4464-AD34-E377BFA369BB}
 		{1C428E92-63C4-4C02-BB19-05D76500F6DC} = {887E67C2-9A36-4464-AD34-E377BFA369BB}
 		{782F53CB-A16C-4D23-B183-BC5695281F5F} = {887E67C2-9A36-4464-AD34-E377BFA369BB}
+		{00FE3E17-E97C-4A3C-8705-C62B2E76ADC9} = {DC9E8169-F3AE-4E0E-BF0C-1F28C2DC0226}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8C6AFA6A-1292-4CA1-9D82-68E9F9BB969C}

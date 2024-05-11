@@ -1,7 +1,7 @@
 ﻿using Booking.Accomodation.Domain.Events;
 using Booking.BuildingBlocks.Domain;
 
-namespace Booking.Booking.Domain.Entities
+namespace Booking.AccommodationNS.Domain.Entities
 {
     public class Review : Entity<Guid>
     {

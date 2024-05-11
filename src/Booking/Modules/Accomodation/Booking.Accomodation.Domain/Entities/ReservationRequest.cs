@@ -1,10 +1,10 @@
-﻿using Booking.Accomodation.Domain.Errors;
+﻿using Booking.AccommodationNS.Domain.Enums;
+using Booking.Accomodation.Domain.Errors;
 using Booking.Accomodation.Domain.Events;
-using Booking.Booking.Domain.Enums;
 using Booking.BuildingBlocks.Domain;
 using Booking.BuildingBlocks.Domain.SharedKernel.ValueObjects;
 
-namespace Booking.Booking.Domain.Entities
+namespace Booking.AccommodationNS.Domain.Entities
 {
     public class ReservationRequest : Entity<Guid>
     {

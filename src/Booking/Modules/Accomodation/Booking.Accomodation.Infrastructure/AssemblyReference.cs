@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace Booking.Booking.Infrastructure
+namespace Booking.AccommodationNS.Infrastructure
 {
     public static class AssemblyReference
     {

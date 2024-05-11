@@ -1,4 +1,4 @@
-﻿using Booking.Booking.Domain.Entities;
+﻿using Booking.AccommodationNS.Domain.Entities;
 using Booking.BuildingBlocks.Application.CQRS;
 
 namespace Booking.Accomodation.Application.Features.Accommodations.EditAccommodation

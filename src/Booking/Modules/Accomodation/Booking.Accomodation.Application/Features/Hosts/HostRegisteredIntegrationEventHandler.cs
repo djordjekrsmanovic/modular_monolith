@@ -1,6 +1,6 @@
 ﻿using Booking.Accomodation.Domain;
 using Booking.Accomodation.Domain.Repositories;
-using Booking.Booking.Domain.Entities;
+using Booking.AccommodationNS.Domain.Entities;
 using Booking.BuildingBlocks.Application.EventBus;
 using Booking.UserAccess.IntegrationEvents.Accomodation;
 using Booking.UserAccess.IntegrationEvents.Commerce;

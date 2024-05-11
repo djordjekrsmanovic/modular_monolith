@@ -1,4 +1,5 @@
-﻿using Booking.Accomodation.Application.Features.AccommodationNS.AddAccommodation;
+﻿using Booking.AccommodationNS.Domain.Entities;
+using Booking.Accomodation.Application.Features.AccommodationNS.AddAccommodation;
 using Booking.Accomodation.Application.Features.Accommodations.AddAvailabilityPeriod;
 using Booking.Accomodation.Application.Features.Accommodations.DeleteAvailabilityPeriod;
 using Booking.Accomodation.Application.Features.Accommodations.EditAccommodation;
@@ -8,14 +9,13 @@ using Booking.Accomodation.Application.Features.Accommodations.GetAccommodationB
 using Booking.Accomodation.Application.Features.Accommodations.GetAdditionalServices;
 using Booking.Accomodation.Application.Features.Accommodations.GetHostAccommodations;
 using Booking.Accomodation.Presentation.Contracts;
-using Booking.Booking.Domain.Entities;
 using Booking.BuildingBlocks.Domain;
 using Booking.BuildingBlocks.Domain.Enums;
 using Booking.BuildingBlocks.Presentation;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Booking.Booking.Presentation
+namespace Booking.AccommodationNS.Presentation
 {
 
     [Route("api/accommodations")]

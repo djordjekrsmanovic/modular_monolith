@@ -4,7 +4,19 @@ namespace Booking.UserAccess.Domain.Entities
 {
     public class Permission : Entity<int>
     {
-        public string Name { get; init; } = string.Empty;
+        private Permission() { }
+
+        private Permission(int id, string name)
+        {
+            Id = id;
+            Name = name;
+        }
+
+        public static Result<Permission> Create(int id, string name)
+        {
+            return Result.Success(new Permission(id, name));
+        }
+        public string Name { get; private set; } = string.Empty;
 
     }
 }

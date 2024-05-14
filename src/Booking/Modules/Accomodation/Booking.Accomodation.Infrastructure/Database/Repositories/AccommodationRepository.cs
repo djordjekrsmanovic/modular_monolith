@@ -1,16 +1,16 @@
-﻿using Booking.Accomodation.Domain.Repositories;
+﻿using Booking.AccommodationNS.Domain.Repositories;
 using Booking.AccommodationNS.Domain.Entities;
 using Booking.AccommodationNS.Infrastructure.Database;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
-namespace Booking.Accomodation.Infrastructure.Database.Repositories
+namespace Booking.AccommodationNS.Infrastructure.Database.Repositories
 {
     internal class AccommodationRepository : IAccommodationRepository
     {
-        private readonly AccomodationDbContext _context;
+        private readonly AccommodationDbContext _context;
 
-        public AccommodationRepository(AccomodationDbContext context)
+        public AccommodationRepository(AccommodationDbContext context)
         {
             _context = context;
         }

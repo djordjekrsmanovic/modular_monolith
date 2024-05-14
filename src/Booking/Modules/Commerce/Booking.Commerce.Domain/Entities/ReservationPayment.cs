@@ -45,7 +45,7 @@ namespace Booking.Commerce.Domain.Entities
             }
 
             Status = PaymentStatus.Confirmed;
-            RaiseDomainEvent(new ReservationPaymentConfirmed(this));
+            RaiseDomainEvent(new ReservationPaymentConfirmedDomainEvent(this));
             return this;
         }
 

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -19,10 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Modules\UserAccess\Booking.UserAccess.Application\Booking.UserAccess.Application.csproj" />
-    <ProjectReference Include="..\..\Modules\UserAccess\Booking.UserAccess.Domain\Booking.UserAccess.Domain.csproj" />
-    <ProjectReference Include="..\..\Modules\UserAccess\Booking.UserAccess.Infrastructure\Booking.UserAccess.Infrastructure.csproj" />
-    <ProjectReference Include="..\..\Modules\UserAccess\Booking.UserAccess.Presentation\Booking.UserAccess.Presentation.csproj" />
+    <ProjectReference Include="..\ArchitectureTests.Shared\ArchitectureTests.Shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>

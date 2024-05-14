@@ -1,10 +1,10 @@
-﻿using Booking.Accomodation.Application.Features.Accommodations.AddAvailabilityPeriod;
-using Booking.Accomodation.Domain.Repositories;
+﻿using Booking.AccommodationNS.Application.Features.Accommodations.AddAvailabilityPeriod;
+using Booking.AccommodationNS.Domain.Repositories;
 using Booking.AccommodationNS.Domain.Entities;
 using Booking.BuildingBlocks.Application.CQRS;
 using Booking.BuildingBlocks.Domain;
 
-namespace Booking.Accomodation.Application.Features.Accommodations.GetAccommodationAvailabilityPeriod
+namespace Booking.AccommodationNS.Application.Features.Accommodations.GetAccommodationAvailabilityPeriod
 {
     internal class GetAccommodationAvailabilityPeriodQueryHandler : IQueryHandler<GetAccommodationAvailabilityPeriodQuery, List<AvailabilityPeriodResponse>>
     {

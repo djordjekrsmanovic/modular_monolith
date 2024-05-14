@@ -1,10 +1,10 @@
-﻿using Booking.Accomodation.Domain;
-using Booking.Accomodation.Domain.Repositories;
+﻿using Booking.AccommodationNS.Domain;
+using Booking.AccommodationNS.Domain.Repositories;
 using Booking.AccommodationNS.Domain.Entities;
 using Booking.BuildingBlocks.Application.EventBus;
 using Booking.Commerce.IntegrationEvents;
 
-namespace Booking.Accomodation.Application.Features.Hosts
+namespace Booking.AccommodationNS.Application.Features.Hosts
 {
     public class SubscribedOnPlanIntegrationEventHandler : IntegrationEventHandler<SubscribedOnPlanIntegrationEvent>
     {

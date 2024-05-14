@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Booking.Accomodation.Infrastructure.Database.Configuration
+namespace Booking.AccommodationNS.Infrastructure.Database.Configuration
 {
     internal class ReservationRequestConfiguration : IEntityTypeConfiguration<ReservationRequest>
     {

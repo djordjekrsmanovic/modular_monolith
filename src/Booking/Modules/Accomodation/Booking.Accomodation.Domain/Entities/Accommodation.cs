@@ -1,5 +1,5 @@
-﻿using Booking.Accomodation.Domain.Errors;
-using Booking.Accomodation.Domain.ValueObjects;
+﻿using Booking.AccommodationNS.Domain.Errors;
+using Booking.AccommodationNS.Domain.ValueObjects;
 using Booking.BuildingBlocks.Domain;
 using Booking.BuildingBlocks.Domain.SharedKernel.ValueObjects;
 
@@ -20,7 +20,7 @@ namespace Booking.AccommodationNS.Domain.Entities
 
         public List<AdditionalService> AdditionalServices { get; private set; } = new List<AdditionalService>();
 
-        public Money PricePerGuest { get; set; }
+        public Money PricePerGuest { get; private set; }
 
         public List<Reservation> Reservations { get; private set; } = new List<Reservation>();
 

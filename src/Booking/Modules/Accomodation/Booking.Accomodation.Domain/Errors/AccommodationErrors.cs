@@ -1,7 +1,7 @@
 ﻿using Booking.BuildingBlocks.Domain;
 using Booking.BuildingBlocks.Domain.Enums;
 
-namespace Booking.Accomodation.Domain.Errors
+namespace Booking.AccommodationNS.Domain.Errors
 {
     public class AccommodationErrors
     {

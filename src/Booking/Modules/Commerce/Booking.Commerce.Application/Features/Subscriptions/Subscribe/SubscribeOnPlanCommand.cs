@@ -3,7 +3,7 @@ using Booking.Commerce.Domain.Enums;
 
 namespace Booking.Commerce.Application.Features.Subscriptions.Subscribe
 {
-    public record SubscribeOnPlanCommand(Guid SubscriberId, Guid PlanId, PaymentMethod Method) : ICommand<Guid>
+    public sealed record SubscribeOnPlanCommand(Guid SubscriberId, Guid PlanId, PaymentMethod Method) : ICommand<Guid>
     {
     }
 }

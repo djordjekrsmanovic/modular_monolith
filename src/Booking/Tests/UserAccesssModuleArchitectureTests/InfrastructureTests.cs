@@ -11,7 +11,7 @@ namespace UserAccesssModuleArchitectureTests
         [Fact]
         public void Infrastructure_ShoulNotHave_Dependencis_OnOtherProjects()
         {
-            //Arrange
+
             var otherProjects = new[] {
                 UserAccessPresentationNamespace,
                 AccommodationApplicationNamespace ,
@@ -26,10 +26,9 @@ namespace UserAccesssModuleArchitectureTests
                 StartupProjectNamespace
             };
 
-            //Act
+
             var testResult = Types.InAssembly(UserAccessInfrastructureAssembly).ShouldNot().HaveDependencyOnAny(otherProjects).GetResult();
 
-            // Assert 
             testResult.IsSuccessful.Should().BeTrue();
         }
 
@@ -37,7 +36,7 @@ namespace UserAccesssModuleArchitectureTests
         public void Repositories_ShoulBe_In_RepositoriesNamespace()
         {
 
-            //Act
+
             var testResult = Types
                 .InAssembly(UserAccessInfrastructureAssembly)
                 .That()
@@ -46,7 +45,7 @@ namespace UserAccesssModuleArchitectureTests
                 .ResideInNamespace(RepositoryNamespace)
                 .GetResult();
 
-            // Assert 
+
             testResult.IsSuccessful.Should().BeTrue();
         }
 
@@ -56,7 +55,7 @@ namespace UserAccesssModuleArchitectureTests
         public void Repositories_Should_HaveRepositoryPostfix()
         {
 
-            //Act
+
             var testResult = Types
                 .InAssembly(UserAccessInfrastructureAssembly)
                 .That()
@@ -65,7 +64,6 @@ namespace UserAccesssModuleArchitectureTests
                 .HaveNameEndingWith("Repository")
                 .GetResult();
 
-            // Assert 
             testResult.IsSuccessful.Should().BeTrue();
         }
     }

@@ -2,7 +2,7 @@
 
 namespace Booking.Commerce.Application.Features.Invoices.SubscriptionInvoices
 {
-    public record GetSubscriberInvoicesQuery(Guid SubscriberId) : IQuery<List<SubscriptionInvoiceResponse>>
+    public sealed record GetSubscriberInvoicesQuery(Guid SubscriberId) : IQuery<List<SubscriptionInvoiceResponse>>
     {
     }
 }

@@ -1,6 +1,6 @@
 ﻿using Booking.BuildingBlocks.Domain;
 
-namespace Booking.Accomodation.Domain.Events
+namespace Booking.AccommodationNS.Domain.Events
 {
     public sealed record ReviewCreatedDomainEvent(Guid AccommodationId) : DomainEvent
     {

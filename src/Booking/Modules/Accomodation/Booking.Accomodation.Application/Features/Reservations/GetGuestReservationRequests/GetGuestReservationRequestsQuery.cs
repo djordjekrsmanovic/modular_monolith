@@ -1,7 +1,7 @@
-﻿using Booking.Accomodation.Application.Features.Reservations.GetHostReservationRequests;
+﻿using Booking.AccommodationNS.Application.Features.Reservations.GetHostReservationRequests;
 using Booking.BuildingBlocks.Application.CQRS;
 
-namespace Booking.Accomodation.Application.Features.Reservations.GetGuestReservationRequests
+namespace Booking.AccommodationNS.Application.Features.Reservations.GetGuestReservationRequests
 {
     public sealed record GetGuestReservationRequestsQuery(Guid GuestId) : IQuery<List<ReservationRequestResponse>>
     {

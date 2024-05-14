@@ -9,7 +9,7 @@ namespace UserAccesssModuleArchitectureTests
         [Fact]
         public void Presentation_ShoulNotHave_Dependencis_OnOtherProjects()
         {
-            //Arrange
+
             var otherProjects = new[] {
                 UserAccessInfrastructureNamespace,
                 AccommodationApplicationNamespace ,
@@ -24,10 +24,13 @@ namespace UserAccesssModuleArchitectureTests
                 StartupProjectNamespace
             };
 
-            //Act
-            var testResult = Types.InAssembly(UserAccessPresentationAssembly).ShouldNot().HaveDependencyOnAny(otherProjects).GetResult();
+            var testResult = Types
+                .InAssembly(UserAccessPresentationAssembly)
+                .ShouldNot()
+                .HaveDependencyOnAny(otherProjects)
+                .GetResult();
 
-            // Assert 
+
             testResult.IsSuccessful.Should().BeTrue();
 
         }
@@ -35,10 +38,15 @@ namespace UserAccesssModuleArchitectureTests
         [Fact]
         public void Requests_ShouldBe_Sealed()
         {
-            //Arrange
 
-            var testResult = Types.InAssembly(UserAccessPresentationAssembly).That().HaveNameEndingWith("Request").Should().BeSealed().GetResult();
-            // Assert 
+            var testResult = Types
+                .InAssembly(UserAccessPresentationAssembly)
+                .That()
+                .HaveNameEndingWith("Request")
+                .Should()
+                .BeSealed()
+                .GetResult();
+
             testResult.IsSuccessful.Should().BeTrue();
 
         }
@@ -47,10 +55,15 @@ namespace UserAccesssModuleArchitectureTests
         [Fact]
         public void Controllers_ShouldHave_ControllerPostfix()
         {
-            //Arrange
 
-            var testResult = Types.InAssembly(UserAccessPresentationAssembly).That().Inherit(typeof(ApiController)).Should().HaveNameEndingWith("Controller").GetResult();
-            // Assert 
+            var testResult = Types
+                .InAssembly(UserAccessPresentationAssembly)
+                .That()
+                .Inherit(typeof(ApiController))
+                .Should()
+                .HaveNameEndingWith("Controller")
+                .GetResult();
+
             testResult.IsSuccessful.Should().BeTrue();
 
         }
@@ -58,10 +71,15 @@ namespace UserAccesssModuleArchitectureTests
         [Fact]
         public void Controllers_ShouldHaveDependency_OnMediator()
         {
-            //Arrange
-            var testResult = Types.InAssembly(UserAccessPresentationAssembly).That().Inherit(typeof(ApiController)).Should().HaveDependencyOn("MediatR").GetResult();
 
-            // Assert 
+            var testResult = Types
+                .InAssembly(UserAccessPresentationAssembly)
+                .That()
+                .Inherit(typeof(ApiController))
+                .Should()
+                .HaveDependencyOn("MediatR")
+                .GetResult();
+
             testResult.IsSuccessful.Should().BeTrue();
 
         }

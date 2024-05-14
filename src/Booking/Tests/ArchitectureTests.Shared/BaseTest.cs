@@ -12,6 +12,23 @@ namespace UserAccesssModuleArchitectureTests
 
         protected static readonly Assembly UserAccessPresentationAssembly = typeof(Booking.UserAccess.Presentation.AssemblyReference).Assembly;
 
+        protected static readonly Assembly AccommodationDomainAssembly = typeof(Booking.AccommodationNS.Domain.AssemblyReference).Assembly;
+
+        protected static readonly Assembly AccommodationApplicationAssembly = typeof(Booking.AccommodationNS.Application.AssemblyReference).Assembly;
+
+        protected static readonly Assembly AccommodationInfrastructureAssembly = typeof(Booking.AccommodationNS.Infrastructure.AssemblyReference).Assembly;
+
+        protected static readonly Assembly AccommodationPresentationAssembly = typeof(Booking.AccommodationNS.Presentation.AssemblyReference).Assembly;
+
+
+        protected static readonly Assembly CommerceDomainAssembly = typeof(Booking.Commerce.Domain.AssemblyReference).Assembly;
+
+        protected static readonly Assembly CommerceApplicationAssembly = typeof(Booking.Commerce.Application.AssemblyReference).Assembly;
+
+        protected static readonly Assembly CommerceInfrastructureAssembly = typeof(Booking.Commerce.Infrastructure.AssemblyReference).Assembly;
+
+        protected static readonly Assembly CommercePresentationAssembly = typeof(Booking.Commerce.Presentation.AssemblyReference).Assembly;
+
         protected const string UserAccessDomainNamespace = "Booking.UserAccess.Domain";
 
         protected const string UserAccessInfrastructureNamespace = "Booking.UserAccess.Infrastructure";

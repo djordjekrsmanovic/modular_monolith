@@ -1,5 +1,5 @@
 ﻿
-using Booking.Accomodation.Domain.Entities;
+using Booking.AccommodationNS.Domain.Entities;
 using Booking.AccommodationNS.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;

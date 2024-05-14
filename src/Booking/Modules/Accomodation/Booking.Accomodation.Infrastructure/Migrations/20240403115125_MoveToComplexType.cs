@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace Booking.Accomodation.Infrastructure.Migrations
+namespace Booking.AccommodationNS.Infrastructure.Migrations
 {
     /// <inheritdoc />
     public partial class MoveToComplexType : Migration

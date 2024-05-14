@@ -2,7 +2,7 @@
 
 namespace Booking.Commerce.Application.Features.Reservations.GetReservationsPaymentStatus
 {
-    public record GetReservationPaymentStatusQuery(Guid ReservationId) : IQuery<ReservationPaymentStatusResponse>
+    public sealed record GetReservationPaymentStatusQuery(Guid ReservationId) : IQuery<ReservationPaymentStatusResponse>
     {
     }
 }

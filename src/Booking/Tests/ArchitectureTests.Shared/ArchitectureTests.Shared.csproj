@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="coverlet.collector" Version="6.0.0" />
+    <PackageReference Include="FluentAssertions" Version="6.12.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
+    <PackageReference Include="NetArchTest.Rules" Version="1.3.2" />
+    <PackageReference Include="xunit" Version="2.5.3" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.5.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Modules\Accomodation\Booking.Accomodation.Application\Booking.Accomodation.Application.csproj" />
+    <ProjectReference Include="..\..\Modules\Accomodation\Booking.Accomodation.Domain\Booking.Accomodation.Domain.csproj" />
+    <ProjectReference Include="..\..\Modules\Accomodation\Booking.Accomodation.Infrastructure\Booking.Accomodation.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\Modules\Accomodation\Booking.Accomodation.IntegrationEvents\Booking.Accomodation.IntegrationEvents.csproj" />
+    <ProjectReference Include="..\..\Modules\Accomodation\Booking.Accomodation.Presentation\Booking.Accomodation.Presentation.csproj" />
+    <ProjectReference Include="..\..\Modules\Commerce\Booking.Commerce.Application\Booking.Commerce.Application.csproj" />
+    <ProjectReference Include="..\..\Modules\Commerce\Booking.Commerce.Domain\Booking.Commerce.Domain.csproj" />
+    <ProjectReference Include="..\..\Modules\Commerce\Booking.Commerce.Infrastructure\Booking.Commerce.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\Modules\Commerce\Booking.Commerce.IntegrationEvents\Booking.Commerce.IntegrationEvents.csproj" />
+    <ProjectReference Include="..\..\Modules\Commerce\Booking.Commerce.Presentation\Booking.Commerce.Presentation.csproj" />
+    <ProjectReference Include="..\..\Modules\UserAccess\Booking.UserAccess.Application\Booking.UserAccess.Application.csproj" />
+    <ProjectReference Include="..\..\Modules\UserAccess\Booking.UserAccess.Domain\Booking.UserAccess.Domain.csproj" />
+    <ProjectReference Include="..\..\Modules\UserAccess\Booking.UserAccess.Infrastructure\Booking.UserAccess.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\Modules\UserAccess\Booking.UserAccess.IntegrationEvents\Booking.UserAccess.IntegrationEvents.csproj" />
+    <ProjectReference Include="..\..\Modules\UserAccess\Booking.UserAccess.Presentation\Booking.UserAccess.Presentation.csproj" />
+  </ItemGroup>
+
+</Project>

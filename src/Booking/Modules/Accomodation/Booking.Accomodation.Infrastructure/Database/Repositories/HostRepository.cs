@@ -1,15 +1,15 @@
-﻿using Booking.Accomodation.Domain.Repositories;
+﻿using Booking.AccommodationNS.Domain.Repositories;
 using Booking.AccommodationNS.Domain.Entities;
 using Booking.AccommodationNS.Infrastructure.Database;
 
-namespace Booking.Accomodation.Infrastructure.Database.Repositories
+namespace Booking.AccommodationNS.Infrastructure.Database.Repositories
 {
     internal class HostRepository : IHostRepository
     {
 
-        private readonly AccomodationDbContext _context;
+        private readonly AccommodationDbContext _context;
 
-        public HostRepository(AccomodationDbContext context)
+        public HostRepository(AccommodationDbContext context)
         {
             _context = context;
         }

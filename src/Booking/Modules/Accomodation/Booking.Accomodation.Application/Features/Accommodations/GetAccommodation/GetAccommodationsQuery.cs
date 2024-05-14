@@ -1,9 +1,9 @@
 ﻿using Booking.BuildingBlocks.Application;
 using Booking.BuildingBlocks.Application.CQRS;
 
-namespace Booking.Accomodation.Application.Features.Accommodations.GetAccommodation
+namespace Booking.AccommodationNS.Application.Features.Accommodations.GetAccommodation
 {
-    public record GetAccommodationsQuery(string? SearchTerm,
+    public sealed record GetAccommodationsQuery(string? SearchTerm,
     string? SortColumn,
     string? SortOrder,
     int Page,

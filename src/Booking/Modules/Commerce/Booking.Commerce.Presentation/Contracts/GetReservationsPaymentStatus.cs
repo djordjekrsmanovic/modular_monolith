@@ -1,6 +1,6 @@
 ﻿namespace Booking.Commerce.Presentation.Contracts
 {
-    public record GetReservationsPaymentStatus(Guid ReservationId)
+    public sealed record GetReservationsPaymentStatus(Guid ReservationId)
     {
     }
 }

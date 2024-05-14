@@ -9,7 +9,7 @@ namespace Booking.Commerce.Domain.Entities
     {
         public List<ReservationPayment> Payments { get; private set; }
 
-        public Money Price { get; set; }
+        public Money Price { get; private set; }
 
         private Reservation()
         {

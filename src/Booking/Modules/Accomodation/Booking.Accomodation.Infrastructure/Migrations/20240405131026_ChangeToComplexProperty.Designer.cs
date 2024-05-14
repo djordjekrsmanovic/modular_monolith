@@ -10,9 +10,9 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Booking.Accomodation.Infrastructure.Migrations
+namespace Booking.AccommodationNS.Infrastructure.Migrations
 {
-    [DbContext(typeof(AccomodationDbContext))]
+    [DbContext(typeof(AccommodationDbContext))]
     [Migration("20240405131026_ChangeToComplexProperty")]
     partial class ChangeToComplexProperty
     {

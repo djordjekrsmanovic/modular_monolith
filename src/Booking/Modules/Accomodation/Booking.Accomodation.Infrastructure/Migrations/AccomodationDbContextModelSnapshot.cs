@@ -9,9 +9,9 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Booking.Accomodation.Infrastructure.Migrations
+namespace Booking.AccommodationNS.Infrastructure.Migrations
 {
-    [DbContext(typeof(AccomodationDbContext))]
+    [DbContext(typeof(AccommodationDbContext))]
     partial class AccomodationDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

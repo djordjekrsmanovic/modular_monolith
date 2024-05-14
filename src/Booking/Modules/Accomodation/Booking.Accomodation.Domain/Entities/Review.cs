@@ -1,4 +1,4 @@
-﻿using Booking.Accomodation.Domain.Events;
+﻿using Booking.AccommodationNS.Domain.Events;
 using Booking.BuildingBlocks.Domain;
 
 namespace Booking.AccommodationNS.Domain.Entities

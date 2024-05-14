@@ -1,4 +1,4 @@
-﻿using Booking.Accomodation.Domain.Errors;
+﻿using Booking.AccommodationNS.Domain.Errors;
 using Booking.BuildingBlocks.Domain;
 
 namespace Booking.AccommodationNS.Domain.Entities

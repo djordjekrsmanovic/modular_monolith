@@ -1,9 +1,9 @@
-﻿using Booking.Accomodation.Domain.Events;
+﻿using Booking.AccommodationNS.Domain.Events;
 using Booking.AccommodationNS.IntegrationEvents;
 using Booking.BuildingBlocks.Application.EventBus;
 using Booking.BuildingBlocks.Domain;
 
-namespace Booking.Accomodation.Application.Features.Reservations.CreateReservation
+namespace Booking.AccommodationNS.Application.Features.Reservations.CreateReservation
 {
     internal class ReservationCreatedDomainEventHandler : IDomainEventHandler<ReservationCreatedDomainEvent>
     {

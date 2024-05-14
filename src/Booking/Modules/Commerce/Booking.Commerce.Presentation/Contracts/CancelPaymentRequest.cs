@@ -1,6 +1,6 @@
 ﻿namespace Booking.Commerce.Presentation.Contracts
 {
-    public record CancelPaymentRequest(Guid ReservationId)
+    public sealed record CancelPaymentRequest(Guid ReservationId)
     {
     }
 }

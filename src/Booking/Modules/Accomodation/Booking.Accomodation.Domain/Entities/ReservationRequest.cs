@@ -1,6 +1,6 @@
 ﻿using Booking.AccommodationNS.Domain.Enums;
-using Booking.Accomodation.Domain.Errors;
-using Booking.Accomodation.Domain.Events;
+using Booking.AccommodationNS.Domain.Errors;
+using Booking.AccommodationNS.Domain.Events;
 using Booking.BuildingBlocks.Domain;
 using Booking.BuildingBlocks.Domain.SharedKernel.ValueObjects;
 

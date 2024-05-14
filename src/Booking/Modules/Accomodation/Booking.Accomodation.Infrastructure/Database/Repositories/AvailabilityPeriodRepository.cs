@@ -1,14 +1,14 @@
-﻿using Booking.Accomodation.Domain.Repositories;
+﻿using Booking.AccommodationNS.Domain.Repositories;
 using Booking.AccommodationNS.Domain.Entities;
 using Booking.AccommodationNS.Infrastructure.Database;
 
-namespace Booking.Accomodation.Infrastructure.Database.Repositories
+namespace Booking.AccommodationNS.Infrastructure.Database.Repositories
 {
     internal class AvailabilityPeriodRepository : IAvailabilityPeriodRepository
     {
-        private readonly AccomodationDbContext _context;
+        private readonly AccommodationDbContext _context;
 
-        public AvailabilityPeriodRepository(AccomodationDbContext context)
+        public AvailabilityPeriodRepository(AccommodationDbContext context)
         {
             _context = context;
         }

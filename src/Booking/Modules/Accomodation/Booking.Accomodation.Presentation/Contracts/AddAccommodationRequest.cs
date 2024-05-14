@@ -1,4 +1,4 @@
-﻿namespace Booking.Accomodation.Presentation.Contracts
+﻿namespace Booking.AccommodationNS.Presentation.Contracts
 {
     public record AddAccommodationRequest(string Name, string Description, string Street, string City,
         String Country, int MinGuest, int MaxGuest, Double PricePerGuest, List<AdditionalServiceRequest> additionalServices,

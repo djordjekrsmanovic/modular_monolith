@@ -1,7 +1,7 @@
 ﻿using Booking.AccommodationNS.Domain.Entities;
 using Booking.BuildingBlocks.Application.CQRS;
 
-namespace Booking.Accomodation.Application.Features.Accommodations.EditAccommodation
+namespace Booking.AccommodationNS.Application.Features.Accommodations.EditAccommodation
 {
     public sealed record EditAccommodationCommand(Guid Id, string Name, string Description, string Street, string City,
         String Country, int MinGuest, int MaxGuest, Double PricePerGuest, List<AdditionalService> AdditionalServices,

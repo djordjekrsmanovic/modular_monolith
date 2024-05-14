@@ -11,7 +11,7 @@ namespace UserAccesssModuleArchitectureTests
         [Fact]
         public void Domain_ShoulNotHave_Dependencis_OnOtherProjects()
         {
-            //Arrange
+
             var otherProjects = new[] {
                 UserAccessInfrastructureNamespace ,
                 UserAccessApplicationNamespace ,
@@ -30,10 +30,12 @@ namespace UserAccesssModuleArchitectureTests
                 StartupProjectNamespace
             };
 
-            //Act
-            var testResult = Types.InAssembly(UserAccessDomainAssembly).ShouldNot().HaveDependencyOnAny(otherProjects).GetResult();
+            var testResult = Types
+                .InAssembly(UserAccessDomainAssembly)
+                .ShouldNot()
+                .HaveDependencyOnAny(otherProjects)
+                .GetResult();
 
-            // Assert 
             testResult.IsSuccessful.Should().BeTrue();
 
         }

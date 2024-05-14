@@ -1,20 +1,20 @@
-﻿using Booking.Accomodation.Application.Features.Reservations.AcceptReservationRequest;
-using Booking.Accomodation.Application.Features.Reservations.CalculateReservationPrice;
-using Booking.Accomodation.Application.Features.Reservations.CancelReservation;
-using Booking.Accomodation.Application.Features.Reservations.CancelReservationRequest;
-using Booking.Accomodation.Application.Features.Reservations.CreateReservation;
-using Booking.Accomodation.Application.Features.Reservations.CreateReservationRequest;
-using Booking.Accomodation.Application.Features.Reservations.GetGuestReservationRequests;
-using Booking.Accomodation.Application.Features.Reservations.GetGuestReservations;
-using Booking.Accomodation.Application.Features.Reservations.GetHostReservationRequests;
-using Booking.Accomodation.Application.Features.Reservations.GetHostReservations;
-using Booking.Accomodation.Presentation.Contracts;
+﻿using Booking.AccommodationNS.Application.Features.Reservations.AcceptReservationRequest;
+using Booking.AccommodationNS.Application.Features.Reservations.CalculateReservationPrice;
+using Booking.AccommodationNS.Application.Features.Reservations.CancelReservation;
+using Booking.AccommodationNS.Application.Features.Reservations.CancelReservationRequest;
+using Booking.AccommodationNS.Application.Features.Reservations.CreateReservation;
+using Booking.AccommodationNS.Application.Features.Reservations.CreateReservationRequest;
+using Booking.AccommodationNS.Application.Features.Reservations.GetGuestReservationRequests;
+using Booking.AccommodationNS.Application.Features.Reservations.GetGuestReservations;
+using Booking.AccommodationNS.Application.Features.Reservations.GetHostReservationRequests;
+using Booking.AccommodationNS.Application.Features.Reservations.GetHostReservations;
+using Booking.AccommodationNS.Presentation.Contracts;
 using Booking.BuildingBlocks.Domain.Enums;
 using Booking.BuildingBlocks.Presentation;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Booking.Accomodation.Presentation
+namespace Booking.AccommodationNS.Presentation
 {
     [Route("api/reservations")]
     public class ReservationController : ApiController

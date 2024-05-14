@@ -9,7 +9,7 @@ namespace UserAccesssModuleArchitectureTests
         [Fact]
         public void Application_ShoulNotHave_Dependencis_OnOtherProjects()
         {
-            //Arrange
+
             var otherProjects = new[] {
                 UserAccessInfrastructureNamespace ,
                 UserAccessPresentationNamespace ,
@@ -26,17 +26,21 @@ namespace UserAccesssModuleArchitectureTests
                 StartupProjectNamespace
             };
 
-            //Act
-            var testResult = Types.InAssembly(UserAccessApplicationAssembly).ShouldNot().HaveDependencyOnAny(otherProjects).GetResult();
 
-            // Assert 
+            var testResult = Types
+                .InAssembly(UserAccessApplicationAssembly)
+                .ShouldNot()
+                .HaveDependencyOnAny(otherProjects)
+                .GetResult();
+
+
             testResult.IsSuccessful.Should().BeTrue();
         }
 
         [Fact]
         public void Commands_Should_BeSealed_And_HaveCommandPostfix()
         {
-            //Act
+
             var result = Types.InAssembly(UserAccessApplicationAssembly)
                 .That()
                 .ImplementInterface(typeof(ICommand<>))
@@ -46,14 +50,14 @@ namespace UserAccesssModuleArchitectureTests
                 .HaveNameEndingWith("Command")
                 .GetResult();
 
-            //Asert
+
             result.IsSuccessful.Should().BeTrue();
         }
 
         [Fact]
         public void Queries_Should_BeSealed_And_HaveQueryPostifx()
         {
-            //Act
+
             var result = Types.InAssembly(UserAccessApplicationAssembly)
                 .That()
                 .ImplementInterface(typeof(IQuery<>))
@@ -63,21 +67,21 @@ namespace UserAccesssModuleArchitectureTests
                 .HaveNameEndingWith("Query")
                 .GetResult();
 
-            //Asert
+
             result.IsSuccessful.Should().BeTrue();
         }
 
         [Fact]
         public void Handlers_ShouldHave_Dependency_OnDomain()
         {
-            //Act
+
             var testResult = Types.InAssembly(UserAccessApplicationAssembly)
                 .That().HaveNameEndingWith("Handler")
                 .Should()
                 .HaveDependencyOn(UserAccessDomainNamespace)
                 .GetResult();
 
-            // Assert 
+
             testResult.IsSuccessful.Should().BeTrue();
 
         }

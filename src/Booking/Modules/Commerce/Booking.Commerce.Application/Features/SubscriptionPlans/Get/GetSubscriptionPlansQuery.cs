@@ -2,7 +2,7 @@
 
 namespace Booking.Commerce.Application.Features.SubscriptionPlans.Get
 {
-    public record GetSubscriptionPlansQuery : IQuery<List<SubscriptionPlanResponse>>
+    public sealed record GetSubscriptionPlansQuery : IQuery<List<SubscriptionPlanResponse>>
     {
     }
 }

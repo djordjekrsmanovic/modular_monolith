@@ -1,4 +1,4 @@
-﻿namespace Booking.Accomodation.Presentation.Contracts
+﻿namespace Booking.AccommodationNS.Presentation.Contracts
 {
     public record AdditionalServiceRequest(Guid Id, string Name, bool Selected)
     {

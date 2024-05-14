@@ -2,7 +2,7 @@
 
 namespace Booking.Commerce.Application.Features.Invoices.ReservationInvoices
 {
-    public record GetPayerReservationInvoicesQuery(Guid PayerId) : IQuery<List<ReservationInvoiceResponse>>
+    public sealed record GetPayerReservationInvoicesQuery(Guid PayerId) : IQuery<List<ReservationInvoiceResponse>>
     {
     }
 }

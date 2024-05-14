@@ -1,6 +1,6 @@
 ﻿using Booking.BuildingBlocks.Domain;
 
-namespace Booking.Accomodation.Domain.Errors
+namespace Booking.AccommodationNS.Domain.Errors
 {
     public class HostErrors
     {

@@ -2,7 +2,7 @@
 
 namespace Booking.Accomodation.Domain.Events
 {
-    public record ReviewCreatedDomainEvent(Guid AccommodationId) : DomainEvent
+    public sealed record ReviewCreatedDomainEvent(Guid AccommodationId) : DomainEvent
     {
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Booking.Accomodation.Application.Features.Reviews.AddReview
 {
-    public record AddReviewCommand(Guid ReservationId, Guid GuestId, string Comment, int Rating) : ICommand
+    public sealed record AddReviewCommand(Guid ReservationId, Guid GuestId, string Comment, int Rating) : ICommand
     {
     }
 }

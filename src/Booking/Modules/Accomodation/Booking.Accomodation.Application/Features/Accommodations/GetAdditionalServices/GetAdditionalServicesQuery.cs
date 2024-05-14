@@ -3,7 +3,7 @@ using Booking.BuildingBlocks.Application.CQRS;
 
 namespace Booking.Accomodation.Application.Features.Accommodations.GetAdditionalServices
 {
-    public class GetAdditionalServicesQuery : IQuery<List<AdditionalService>>
+    public sealed class GetAdditionalServicesQuery : IQuery<List<AdditionalService>>
     {
     }
 }

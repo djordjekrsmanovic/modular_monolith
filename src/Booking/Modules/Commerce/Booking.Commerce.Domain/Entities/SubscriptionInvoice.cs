@@ -5,11 +5,11 @@ namespace Booking.Commerce.Domain.Entities
 {
     public class SubscriptionInvoice : Entity<Guid>
     {
-        public Money Price { get; set; }
+        public Money Price { get; private set; }
 
-        public DateTime CreatedAt { get; set; }
+        public DateTime CreatedAt { get; private set; }
 
-        public SubscriptionPayment Payment { get; set; }
+        public SubscriptionPayment Payment { get; private set; }
 
         private SubscriptionInvoice() { }
 

@@ -2,7 +2,7 @@
 
 namespace Booking.Accomodation.Application.Features.Reservations.GetHostReservationRequests
 {
-    public record GetHostReservationRequestsQuery(Guid HostId) : IQuery<List<ReservationRequestResponse>>
+    public sealed record GetHostReservationRequestsQuery(Guid HostId) : IQuery<List<ReservationRequestResponse>>
     {
     }
 }

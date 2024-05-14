@@ -4,7 +4,7 @@ namespace Booking.Booking.Domain.Entities
 {
     public class AdditionalService : Entity<Guid>, IStaticEntity
     {
-        public string Name { get; set; }
+        public string Name { get; private set; }
 
         private AdditionalService() { }
 

@@ -5,15 +5,15 @@ namespace Booking.Accomodation.Domain.Entities
 {
     public class AvailabilityPeriodChangeTrack : Entity<Guid>
     {
-        public DateTimeSlot OldTimeSlot { get; set; }
+        public DateTimeSlot OldTimeSlot { get; private set; }
 
-        public Money OldPrice { get; set; }
+        public Money OldPrice { get; private set; }
 
-        public DateTimeSlot NewTimeSlot { get; set; }
+        public DateTimeSlot NewTimeSlot { get; private set; }
 
-        public Money NewPrice { get; set; }
+        public Money NewPrice { get; private set; }
 
-        public Guid AvailabilityPeriodId { get; set; }
+        public Guid AvailabilityPeriodId { get; private set; }
 
 
     }

@@ -8,20 +8,17 @@ namespace Booking.Commerce.Domain.Entities
 {
     public class Subscription : Entity<Guid>
     {
-        public DateTimeSlot SubscriptionPeriod { get; set; }
+        public DateTimeSlot SubscriptionPeriod { get; private set; }
 
-        public SubscriptionStatus Status { get; set; }
+        public SubscriptionStatus Status { get; private set; }
 
-        public SubscriptionPlan Plan { get; set; }
+        public SubscriptionPlan Plan { get; private set; }
 
-        public List<SubscriptionPayment> Payments { get; set; } = new List<SubscriptionPayment>();
+        public List<SubscriptionPayment> Payments { get; private set; } = new List<SubscriptionPayment>();
 
-        public Guid SubscriberId { get; set; }
+        public Guid SubscriberId { get; private set; }
 
-        public bool IsExpired()
-        {
-            return SubscriptionPeriod.IsDateInSlot(DateTime.UtcNow);
-        }
+
         private Subscription() { }
 
 
@@ -48,6 +45,11 @@ namespace Booking.Commerce.Domain.Entities
             }
             Payments.Add(payment);
             return Result.Success();
+        }
+
+        public bool IsExpired()
+        {
+            return SubscriptionPeriod.IsDateInSlot(DateTime.UtcNow);
         }
 
         private bool paymentAlreadyExist(SubscriptionPayment payment)

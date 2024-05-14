@@ -7,7 +7,7 @@ using Booking.BuildingBlocks.Domain;
 
 namespace Booking.Accomodation.Application.Features.Reservations.AcceptReservationRequest
 {
-    internal class AcceptReservationRequestCommandHandler : ICommandHandler<AcceptReservationRequestCommand>
+    internal sealed class AcceptReservationRequestCommandHandler : ICommandHandler<AcceptReservationRequestCommand>
     {
         private readonly IReservationRequestRepository _reservationRequestRepository;
 

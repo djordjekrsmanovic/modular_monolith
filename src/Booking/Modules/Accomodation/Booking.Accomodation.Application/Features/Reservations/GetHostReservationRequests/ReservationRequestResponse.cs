@@ -2,7 +2,7 @@
 
 namespace Booking.Accomodation.Application.Features.Reservations.GetHostReservationRequests
 {
-    public record ReservationRequestResponse(string accommodation, ReservationRequest Request)
+    public sealed record ReservationRequestResponse(string accommodation, ReservationRequest Request)
     {
     }
 }

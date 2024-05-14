@@ -7,7 +7,7 @@ namespace Booking.Commerce.Domain.Entities
 {
     public class Reservation : AgregateRoot<Guid>
     {
-        public List<ReservationPayment> Payments { get; set; }
+        public List<ReservationPayment> Payments { get; private set; }
 
         public Money Price { get; set; }
 

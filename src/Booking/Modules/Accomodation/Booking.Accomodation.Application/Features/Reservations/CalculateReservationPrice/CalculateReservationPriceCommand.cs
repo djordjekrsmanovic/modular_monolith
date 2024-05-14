@@ -2,7 +2,7 @@
 
 namespace Booking.Accomodation.Application.Features.Reservations.CalculateReservationPrice
 {
-    public record CalculateReservationPriceCommand(Guid AccommodationId, DateTime Start, DateTime End, int GuestNumber) : ICommand<string>
+    public sealed record CalculateReservationPriceCommand(Guid AccommodationId, DateTime Start, DateTime End, int GuestNumber) : ICommand<string>
     {
     }
 }

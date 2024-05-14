@@ -7,16 +7,16 @@ namespace Booking.Commerce.Domain.Entities
 {
     public class SubscriptionPayment : Entity<Guid>
     {
-        public Money Amount { get; set; }
+        public Money Amount { get; private set; }
 
-        public DateTime ExecutonTime { get; set; }
+        public DateTime ExecutonTime { get; private set; }
 
-        public PaymentStatus Status { get; set; }
+        public PaymentStatus Status { get; private set; }
 
-        public PaymentMethod Method { get; set; }
+        public PaymentMethod Method { get; private set; }
 
 
-        public Guid SubscriptionId { get; set; }
+        public Guid SubscriptionId { get; private set; }
 
 
         private SubscriptionPayment() { }

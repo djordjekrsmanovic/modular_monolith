@@ -3,7 +3,7 @@ using Booking.BuildingBlocks.Application.CQRS;
 
 namespace Booking.Accomodation.Application.Features.Accommodations.GetAccommodationAvailabilityPeriod
 {
-    public record GetAccommodationAvailabilityPeriodQuery(Guid AccommodationId) : IQuery<List<AvailabilityPeriodResponse>>
+    public sealed record GetAccommodationAvailabilityPeriodQuery(Guid AccommodationId) : IQuery<List<AvailabilityPeriodResponse>>
     {
     }
 }

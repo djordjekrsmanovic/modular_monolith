@@ -2,7 +2,7 @@
 
 namespace Booking.Accomodation.Application.Features.Accommodations.DeleteAvailabilityPeriod
 {
-    public record DeleteAvailabilityPeriodCommand(Guid AccommodationId, Guid AvailabilityPeriodId) : ICommand
+    public sealed record DeleteAvailabilityPeriodCommand(Guid AccommodationId, Guid AvailabilityPeriodId) : ICommand
     {
     }
 }

@@ -1,4 +1,4 @@
-﻿using Booking.Booking.Infrastructure;
+﻿using Booking.AccommodationNS.Infrastructure;
 using Booking.Commerce.Infrastructure;
 using Booking.UserAccess.Infrastructure;
 

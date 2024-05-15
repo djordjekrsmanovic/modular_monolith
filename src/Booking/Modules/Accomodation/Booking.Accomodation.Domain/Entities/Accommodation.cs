@@ -1,40 +1,40 @@
-﻿using Booking.Accomodation.Domain.Errors;
-using Booking.Accomodation.Domain.ValueObjects;
+﻿using Booking.AccommodationNS.Domain.Errors;
+using Booking.AccommodationNS.Domain.ValueObjects;
 using Booking.BuildingBlocks.Domain;
 using Booking.BuildingBlocks.Domain.SharedKernel.ValueObjects;
 
-namespace Booking.Booking.Domain.Entities
+namespace Booking.AccommodationNS.Domain.Entities
 {
     public class Accommodation : AgregateRoot<Guid>
     {
 
-        public string Name { get; set; }
+        public string Name { get; private set; }
 
-        public string Description { get; set; }
+        public string Description { get; private set; }
 
-        public Address Address { get; set; }
+        public Address Address { get; private set; }
 
-        public GuestCapacity Capacity { get; set; }
+        public GuestCapacity Capacity { get; private set; }
 
-        public bool IsBlocked { get; set; }
+        public bool IsBlocked { get; private set; }
 
-        public List<AdditionalService> AdditionalServices { get; set; } = new List<AdditionalService>();
+        public List<AdditionalService> AdditionalServices { get; private set; } = new List<AdditionalService>();
 
-        public Money PricePerGuest { get; set; }
+        public Money PricePerGuest { get; private set; }
 
-        public List<Reservation> Reservations { get; set; } = new List<Reservation>();
+        public List<Reservation> Reservations { get; private set; } = new List<Reservation>();
 
-        public List<AvailabilityPeriod> AvailabilityPeriods { get; set; } = new List<AvailabilityPeriod>();
+        public List<AvailabilityPeriod> AvailabilityPeriods { get; private set; } = new List<AvailabilityPeriod>();
 
-        public List<Image> Images { get; set; }
+        public List<Image> Images { get; private set; }
 
-        public Guid HostId { get; set; }
+        public Guid HostId { get; private set; }
 
-        public Double Raiting { get; set; }
+        public Double Raiting { get; private set; }
 
-        public bool ReservationApprovalRequired { get; set; }
+        public bool ReservationApprovalRequired { get; private set; }
 
-        public DateTime CreatedAt { get; set; }
+        public DateTime CreatedAt { get; private set; }
 
         private Accommodation() { }
 

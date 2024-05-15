@@ -8,17 +8,17 @@ namespace Booking.Commerce.Domain.Entities
 {
     public class ReservationPayment : Entity<Guid>
     {
-        public Money Amount { get; set; }
+        public Money Amount { get; private set; }
 
-        public DateTime ExecutonTime { get; set; }
+        public DateTime ExecutonTime { get; private set; }
 
-        public PaymentStatus Status { get; set; }
+        public PaymentStatus Status { get; private set; }
 
-        public PaymentMethod Method { get; set; }
+        public PaymentMethod Method { get; private set; }
 
-        public Guid ReservationId { get; set; }
+        public Guid ReservationId { get; private set; }
 
-        public Guid PayerId { get; set; }
+        public Guid PayerId { get; private set; }
 
         private ReservationPayment() { }
 
@@ -45,7 +45,7 @@ namespace Booking.Commerce.Domain.Entities
             }
 
             Status = PaymentStatus.Confirmed;
-            RaiseDomainEvent(new ReservationPaymentConfirmed(this));
+            RaiseDomainEvent(new ReservationPaymentConfirmedDomainEvent(this));
             return this;
         }
 

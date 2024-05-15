@@ -1,9 +1,9 @@
-﻿using Booking.Accomodation.Domain.Errors;
+﻿using Booking.AccommodationNS.Domain.Errors;
 using Booking.BuildingBlocks.Domain;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace Booking.Booking.Domain.Entities
+namespace Booking.AccommodationNS.Domain.Entities
 {
     public class Image : Entity<Guid>
     {

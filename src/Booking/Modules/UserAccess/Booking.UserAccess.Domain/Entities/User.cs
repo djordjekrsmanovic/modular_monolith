@@ -23,7 +23,7 @@ namespace Booking.UserAccess.Domain.Entities
 
         public IReadOnlyCollection<Role> Roles => _roles.ToList().AsReadOnly();
 
-        public User()
+        private User()
         {
 
         }

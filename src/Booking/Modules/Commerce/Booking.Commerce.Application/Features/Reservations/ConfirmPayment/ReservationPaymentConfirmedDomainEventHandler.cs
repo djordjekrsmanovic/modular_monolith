@@ -6,7 +6,7 @@ using Booking.Commerce.Domain.Repositories;
 
 namespace Booking.Commerce.Application.Features.Reservations.ConfirmPayment
 {
-    public class ReservationPaymentConfirmedDomainEventHandler : IDomainEventHandler<ReservationPaymentConfirmed>
+    public class ReservationPaymentConfirmedDomainEventHandler : IDomainEventHandler<ReservationPaymentConfirmedDomainEvent>
     {
         private readonly IUnitOfWork _unitOfWork;
 
@@ -21,7 +21,7 @@ namespace Booking.Commerce.Application.Features.Reservations.ConfirmPayment
             _payerRepository = payerRepository;
         }
 
-        public async Task Handle(ReservationPaymentConfirmed notification, CancellationToken cancellationToken)
+        public async Task Handle(ReservationPaymentConfirmedDomainEvent notification, CancellationToken cancellationToken)
         {
             ReservationInvoice invoice = ReservationInvoice.Create(notification.payment).Value;
 

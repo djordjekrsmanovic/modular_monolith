@@ -1,22 +1,22 @@
-﻿using Booking.Accomodation.Domain.Events;
+﻿using Booking.AccommodationNS.Domain.Events;
 using Booking.BuildingBlocks.Domain;
 using Booking.BuildingBlocks.Domain.SharedKernel.ValueObjects;
 
-namespace Booking.Booking.Domain.Entities
+namespace Booking.AccommodationNS.Domain.Entities
 {
     public class Reservation : Entity<Guid>
     {
-        public DateTimeSlot Slot { get; set; }
+        public DateTimeSlot Slot { get; private set; }
 
-        public int GuestNumber { get; set; }
+        public int GuestNumber { get; private set; }
 
-        public Money TotalPrice { get; set; }
+        public Money TotalPrice { get; private set; }
 
-        public Guid GustId { get; set; }
+        public Guid GustId { get; private set; }
 
-        public Guid AccomodationId { get; set; }
+        public Guid AccomodationId { get; private set; }
 
-        public Guid? ReservationRequestId { get; set; }
+        public Guid? ReservationRequestId { get; private set; }
 
 
         private Reservation(DateTimeSlot slot, int guestNumber, Money price, Guid gustId, Guid accomodationId, Guid? reservationRequestId)

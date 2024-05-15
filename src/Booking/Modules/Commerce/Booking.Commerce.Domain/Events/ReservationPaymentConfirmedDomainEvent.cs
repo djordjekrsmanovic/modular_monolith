@@ -3,7 +3,7 @@ using Booking.Commerce.Domain.Entities;
 
 namespace Booking.Commerce.Domain.Events
 {
-    public record ReservationPaymentConfirmed(ReservationPayment payment) : DomainEvent
+    public sealed record ReservationPaymentConfirmedDomainEvent(ReservationPayment payment) : DomainEvent
     {
     }
 }

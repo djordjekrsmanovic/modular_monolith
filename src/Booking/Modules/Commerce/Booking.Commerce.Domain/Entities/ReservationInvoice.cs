@@ -6,13 +6,13 @@ namespace Booking.Commerce.Domain.Entities
 {
     public class ReservationInvoice : Entity<Guid>
     {
-        public Money SumPrice { get; set; }
+        public Money SumPrice { get; private set; }
 
-        public DateTime CreatedAt { get; set; }
+        public DateTime CreatedAt { get; private set; }
 
-        public BookingFee BookingFee { get; set; }
+        public BookingFee BookingFee { get; private set; }
 
-        public ReservationPayment Payment { get; set; }
+        public ReservationPayment Payment { get; private set; }
 
         private ReservationInvoice() { }
 

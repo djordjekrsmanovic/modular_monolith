@@ -1,7 +1,7 @@
-﻿using Booking.Accomodation.Domain.Errors;
+﻿using Booking.AccommodationNS.Domain.Errors;
 using Booking.BuildingBlocks.Domain;
 
-namespace Booking.Booking.Domain.Entities
+namespace Booking.AccommodationNS.Domain.Entities
 {
     public class Host : Entity<Guid>
     {

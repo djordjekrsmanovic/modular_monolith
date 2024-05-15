@@ -1,12 +1,12 @@
-﻿using Booking.Accomodation.Domain;
-using Booking.Accomodation.Domain.Errors;
-using Booking.Accomodation.Domain.Repositories;
-using Booking.Booking.Domain.Entities;
+﻿using Booking.AccommodationNS.Domain;
+using Booking.AccommodationNS.Domain.Errors;
+using Booking.AccommodationNS.Domain.Repositories;
+using Booking.AccommodationNS.Domain.Entities;
 using Booking.BuildingBlocks.Application.CQRS;
 using Booking.BuildingBlocks.Domain;
 using Booking.BuildingBlocks.Domain.SharedKernel.ValueObjects;
 
-namespace Booking.Accomodation.Application.Features.Accommodations.AddAvailabilityPeriod
+namespace Booking.AccommodationNS.Application.Features.Accommodations.AddAvailabilityPeriod
 {
     internal class AddAvailabilityPeriodCommandHandler : ICommandHandler<AddAvailabilityPeriodCommand, AvailabilityPeriodResponse>
     {

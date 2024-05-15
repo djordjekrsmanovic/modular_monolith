@@ -1,4 +1,4 @@
-﻿namespace Booking.Accomodation.Domain
+﻿namespace Booking.AccommodationNS.Domain
 {
     public interface IUnitOfWork
     {

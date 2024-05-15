@@ -1,14 +1,14 @@
 ﻿using Booking.BuildingBlocks.Domain;
 using Booking.BuildingBlocks.Domain.SharedKernel.ValueObjects;
 
-namespace Booking.Booking.Domain.Entities
+namespace Booking.AccommodationNS.Domain.Entities
 {
     public class AvailabilityPeriod : Entity<Guid>
     {
-        public DateTimeSlot Slot { get; set; }
+        public DateTimeSlot Slot { get; private set; }
 
-        public Money Price { get; set; }
-        public Guid AccommodationId { get; set; }
+        public Money Price { get; private set; }
+        public Guid AccommodationId { get; private set; }
 
         private AvailabilityPeriod() { }
 

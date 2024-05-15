@@ -1,8 +1,8 @@
-﻿using Booking.Booking.Domain.Entities;
+﻿using Booking.AccommodationNS.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Booking.Accomodation.Infrastructure.Database.Configuration
+namespace Booking.AccommodationNS.Infrastructure.Database.Configuration
 {
     internal class AvailibilityPeriodConfiguration : IEntityTypeConfiguration<AvailabilityPeriod>
     {

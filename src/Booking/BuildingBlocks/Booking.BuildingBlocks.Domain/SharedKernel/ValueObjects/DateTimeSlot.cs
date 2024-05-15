@@ -4,9 +4,9 @@ namespace Booking.BuildingBlocks.Domain.SharedKernel.ValueObjects
 {
     public class DateTimeSlot : ValueObject
     {
-        public DateTime Start { get; set; }
+        public DateTime Start { get; private set; }
 
-        public DateTime End { get; set; }
+        public DateTime End { get; private set; }
 
         private DateTimeSlot(DateTime start, DateTime end)
         {

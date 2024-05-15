@@ -1,28 +1,28 @@
-﻿using Booking.Accomodation.Domain.Errors;
-using Booking.Accomodation.Domain.Events;
-using Booking.Booking.Domain.Enums;
+﻿using Booking.AccommodationNS.Domain.Enums;
+using Booking.AccommodationNS.Domain.Errors;
+using Booking.AccommodationNS.Domain.Events;
 using Booking.BuildingBlocks.Domain;
 using Booking.BuildingBlocks.Domain.SharedKernel.ValueObjects;
 
-namespace Booking.Booking.Domain.Entities
+namespace Booking.AccommodationNS.Domain.Entities
 {
     public class ReservationRequest : Entity<Guid>
     {
-        public DateTimeSlot Slot { get; set; }
+        public DateTimeSlot Slot { get; private set; }
 
-        public ReservationRequestStatus Status { get; set; }
+        public ReservationRequestStatus Status { get; private set; }
 
-        public int GuestNumber { get; set; }
+        public int GuestNumber { get; private set; }
 
-        public string? Message { get; set; }
+        public string? Message { get; private set; }
 
-        public Guid GuestId { get; set; }
+        public Guid GuestId { get; private set; }
 
-        public Guid AccomodationId { get; set; }
+        public Guid AccomodationId { get; private set; }
 
-        public Guid HostId { get; set; }
+        public Guid HostId { get; private set; }
 
-        public Money Price { get; set; }
+        public Money Price { get; private set; }
 
         private ReservationRequest(DateTimeSlot slot, int guestNumber, string message, Guid guestId, Guid accommodationId, Money price, Guid hostId)
         {

@@ -15,8 +15,4 @@
     <ProjectReference Include="..\Booking.Commerce.IntegrationEvents\Booking.Commerce.IntegrationEvents.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Features\Subscriptions\Payments\RejectPayment\" />
-  </ItemGroup>
-
 </Project>

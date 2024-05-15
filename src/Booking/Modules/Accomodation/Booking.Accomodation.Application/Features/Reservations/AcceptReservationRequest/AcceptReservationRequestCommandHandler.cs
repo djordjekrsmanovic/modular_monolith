@@ -1,13 +1,13 @@
-﻿using Booking.Accomodation.Domain;
-using Booking.Accomodation.Domain.Errors;
-using Booking.Accomodation.Domain.Repositories;
-using Booking.Booking.Domain.Entities;
+﻿using Booking.AccommodationNS.Domain;
+using Booking.AccommodationNS.Domain.Errors;
+using Booking.AccommodationNS.Domain.Repositories;
+using Booking.AccommodationNS.Domain.Entities;
 using Booking.BuildingBlocks.Application.CQRS;
 using Booking.BuildingBlocks.Domain;
 
-namespace Booking.Accomodation.Application.Features.Reservations.AcceptReservationRequest
+namespace Booking.AccommodationNS.Application.Features.Reservations.AcceptReservationRequest
 {
-    internal class AcceptReservationRequestCommandHandler : ICommandHandler<AcceptReservationRequestCommand>
+    internal sealed class AcceptReservationRequestCommandHandler : ICommandHandler<AcceptReservationRequestCommand>
     {
         private readonly IReservationRequestRepository _reservationRequestRepository;
 

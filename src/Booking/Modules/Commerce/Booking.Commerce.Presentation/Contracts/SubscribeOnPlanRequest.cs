@@ -2,7 +2,7 @@
 
 namespace Booking.Commerce.Presentation.Contracts
 {
-    public record SubscribeOnPlanRequest(Guid SubscriberId, Guid PlanId, PaymentMethod PaymentMethod)
+    public sealed record SubscribeOnPlanRequest(Guid SubscriberId, Guid PlanId, PaymentMethod PaymentMethod)
     {
     }
 }

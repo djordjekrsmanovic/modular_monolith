@@ -1,6 +1,6 @@
-﻿using Booking.Booking.Domain.Entities;
+﻿using Booking.AccommodationNS.Domain.Entities;
 
-namespace Booking.Accomodation.Domain.Repositories
+namespace Booking.AccommodationNS.Domain.Repositories
 {
     public interface IReviewRepository
     {

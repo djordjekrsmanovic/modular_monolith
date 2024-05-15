@@ -1,13 +1,13 @@
-﻿using Booking.Accomodation.Domain;
-using Booking.Booking.Infrastructure.Database;
+﻿using Booking.AccommodationNS.Domain;
+using Booking.AccommodationNS.Infrastructure.Database;
 using Booking.BuildingBlocks.Infrastructure.Database;
 using MediatR;
 
-namespace Booking.Accomodation.Infrastructure.Database
+namespace Booking.AccommodationNS.Infrastructure.Database
 {
-    internal class UnitOfWork : TUnitOfWork<AccomodationDbContext>, IUnitOfWork
+    internal class UnitOfWork : TUnitOfWork<AccommodationDbContext>, IUnitOfWork
     {
-        public UnitOfWork(AccomodationDbContext dbContext, IPublisher publisher) : base(dbContext, publisher)
+        public UnitOfWork(AccommodationDbContext dbContext, IPublisher publisher) : base(dbContext, publisher)
         {
         }
     }

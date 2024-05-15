@@ -4,7 +4,7 @@ using Booking.Commerce.Domain.Enums;
 
 namespace Booking.Commerce.Domain.Events
 {
-    public record UserSubscribedDomainEvent(Subscription Subscription, PaymentMethod PaymentMethod) : DomainEvent
+    public sealed record UserSubscribedDomainEvent(Subscription Subscription, PaymentMethod PaymentMethod) : DomainEvent
     {
     }
 }

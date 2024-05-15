@@ -6,5 +6,5 @@ namespace Booking.UserAccess.Domain.Events
     {
 
     }
-    
+
 }

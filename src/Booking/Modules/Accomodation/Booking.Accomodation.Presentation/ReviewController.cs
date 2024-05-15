@@ -1,11 +1,11 @@
-﻿using Booking.Accomodation.Application.Features.Reviews.AddReview;
-using Booking.Accomodation.Application.Features.Reviews.GetAccommodationReviews;
-using Booking.Accomodation.Presentation.Contracts;
+﻿using Booking.AccommodationNS.Application.Features.Reviews.AddReview;
+using Booking.AccommodationNS.Application.Features.Reviews.GetAccommodationReviews;
+using Booking.AccommodationNS.Presentation.Contracts;
 using Booking.BuildingBlocks.Presentation;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Booking.Accomodation.Presentation
+namespace Booking.AccommodationNS.Presentation
 {
     [Route("api/reviews")]
     public class ReviewController : ApiController

@@ -1,15 +1,15 @@
-﻿using Booking.Accomodation.Domain;
-using Booking.Accomodation.Domain.Repositories;
-using Booking.Accomodation.Infrastructure.Database;
-using Booking.Accomodation.Infrastructure.Database.Repositories;
-using Booking.Booking.Infrastructure.Database;
+﻿using Booking.AccommodationNS.Domain;
+using Booking.AccommodationNS.Domain.Repositories;
+using Booking.AccommodationNS.Infrastructure.Database;
+using Booking.AccommodationNS.Infrastructure.Database.Repositories;
+using Booking.AccommodationNS.Infrastructure.Database;
 using Booking.BuildingBlocks.Application.EventBus;
 using Booking.BuildingBlocks.Infrastructure.EventBus;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Booking.Booking.Infrastructure
+namespace Booking.AccommodationNS.Infrastructure
 {
     public static class AccomodationStartup
     {
@@ -36,7 +36,7 @@ namespace Booking.Booking.Infrastructure
         private static void SetUpDatabase(IServiceCollection services, string connectionString)
         {
 
-            services.AddDbContext<AccomodationDbContext>(options =>
+            services.AddDbContext<AccommodationDbContext>(options =>
                 options.UseSqlServer(connectionString, x => x.MigrationsHistoryTable("__MigrationHistory", "accomodation")), ServiceLifetime.Scoped);
             services.AddScoped<IHostRepository, HostRepository>();
             services.AddScoped<IGuestRepository, GuestRepository>();

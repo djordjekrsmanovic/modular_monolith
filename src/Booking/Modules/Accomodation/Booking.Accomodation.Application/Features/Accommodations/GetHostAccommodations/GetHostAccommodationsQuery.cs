@@ -1,9 +1,9 @@
-﻿using Booking.Accomodation.Application.Features.Accommodations.GetAccommodation;
+﻿using Booking.AccommodationNS.Application.Features.Accommodations.GetAccommodation;
 using Booking.BuildingBlocks.Application.CQRS;
 
-namespace Booking.Accomodation.Application.Features.Accommodations.GetHostAccommodations
+namespace Booking.AccommodationNS.Application.Features.Accommodations.GetHostAccommodations
 {
-    public record GetHostAccommodationsQuery(Guid HostId) : IQuery<List<AccommodationResponse>>
+    public sealed record GetHostAccommodationsQuery(Guid HostId) : IQuery<List<AccommodationResponse>>
     {
     }
 }

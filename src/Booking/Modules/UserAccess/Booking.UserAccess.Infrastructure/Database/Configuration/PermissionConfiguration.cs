@@ -13,12 +13,11 @@ namespace Booking.UserAccess.Infrastructure.Database.Configuration
             builder.HasKey(x => x.Id);
 
             IEnumerable<Permission> permissions = Enum.GetValues<PermissionEnum>()
-                .Select(p => 
-            new Permission
-            {
-                Id = (int)p,
-                Name = p.ToString(),
-            });
+                .Select(p =>
+                    Permission.Create(
+                        (int)p,
+                        p.ToString()
+                    ).Value);
 
             builder.HasData(permissions);
 

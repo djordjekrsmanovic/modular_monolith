@@ -1,9 +1,9 @@
-﻿using Booking.Accomodation.Domain.Repositories;
-using Booking.Booking.Domain.Entities;
+﻿using Booking.AccommodationNS.Domain.Repositories;
+using Booking.AccommodationNS.Domain.Entities;
 using Booking.BuildingBlocks.Application.CQRS;
 using Booking.BuildingBlocks.Domain;
 
-namespace Booking.Accomodation.Application.Features.Reservations.GetHostReservationRequests
+namespace Booking.AccommodationNS.Application.Features.Reservations.GetHostReservationRequests
 {
     internal class GetHostReservationsQueryHandler : IQueryHandler<GetHostReservationRequestsQuery, List<ReservationRequestResponse>>
     {

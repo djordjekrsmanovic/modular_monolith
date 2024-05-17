@@ -41,6 +41,11 @@ namespace Booking.BuildingBlocks.Domain.SharedKernel.ValueObjects
             return date >= Start && date <= End;
         }
 
+        public bool IsSlotOverlaping(DateTimeSlot slot)
+        {
+            return IsDateInSlot(slot.Start) || IsDateInSlot(slot.End);
+        }
+
         public int GetNumberOfDays()
         {
             TimeSpan difference = End - Start;

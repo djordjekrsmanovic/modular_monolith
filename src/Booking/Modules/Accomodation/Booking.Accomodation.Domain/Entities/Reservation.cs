@@ -14,7 +14,7 @@ namespace Booking.AccommodationNS.Domain.Entities
 
         public Guid GustId { get; private set; }
 
-        public Guid AccomodationId { get; private set; }
+        public Guid AccommodationId { get; private set; }
 
         public Guid? ReservationRequestId { get; private set; }
 
@@ -26,7 +26,7 @@ namespace Booking.AccommodationNS.Domain.Entities
             GuestNumber = guestNumber;
             TotalPrice = price;
             GustId = gustId;
-            AccomodationId = accomodationId;
+            AccommodationId = accomodationId;
             ReservationRequestId = reservationRequestId;
         }
 
@@ -35,7 +35,7 @@ namespace Booking.AccommodationNS.Domain.Entities
         public static Result<Reservation> Create(DateTimeSlot slot, int guestNumber, Money pricePerGuest, Guid guestId, Guid accommodationId, Guid? reservationRequestId)
         {
             var reservation = new Reservation(slot, guestNumber, Money.CalculateSumPriceForReservation(pricePerGuest, guestNumber, slot.GetNumberOfDays()), guestId, accommodationId, reservationRequestId);
-            reservation.RaiseDomainEvent(new ReservationCreatedDomainEvent(reservation.Id, reservation.TotalPrice));
+            reservation.RaiseDomainEvent(new ReservationCreatedDomainEvent(reservation.Id, reservation.TotalPrice, reservation.AccommodationId, reservation.Slot));
             return Result.Success(reservation);
         }
 

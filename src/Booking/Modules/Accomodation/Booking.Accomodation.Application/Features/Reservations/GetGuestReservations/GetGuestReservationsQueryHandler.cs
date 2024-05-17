@@ -30,7 +30,7 @@ namespace Booking.AccommodationNS.Application.Features.Reservations.GetGuestRese
 
             foreach (var r in reservations)
             {
-                Accommodation accommodation = _accommodationRepository.GetWithoutRelations(r.AccomodationId);
+                Accommodation accommodation = _accommodationRepository.GetWithoutRelations(r.AccommodationId);
                 Review review = await _reviewRepository.GetReservationReviewAsync(r.Id);
                 bool reviewExist = review is not null ? true : false;
                 responses.Add(new ReservationResponse(

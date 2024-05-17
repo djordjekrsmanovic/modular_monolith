@@ -1,3 +1,6 @@
+<div *ngIf="reservations.length==0">
+  No Reservations Found!
+</div>
 <div *ngIf="dataLoaded">
     <div *ngFor="let reservation of reservations">
         <client-reservation [reservation]="reservation"></client-reservation>

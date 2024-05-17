@@ -132,11 +132,6 @@ namespace Booking.AccommodationNS.Domain.Entities
             return Id;
         }
 
-        public void AddAditionalServices(List<AdditionalService> additionalServices)
-        {
-            AdditionalServices.AddRange(additionalServices);
-        }
-
         public void AddImages(List<Image> images)
         {
             Images.AddRange(images);
@@ -192,6 +187,11 @@ namespace Booking.AccommodationNS.Domain.Entities
         public bool IsPosibleToDelete()
         {
             return !Reservations.Where(x => x.Slot.IsDateInSlot(DateTime.UtcNow) || x.Slot.IsDateBeforeSlot(DateTime.UtcNow)).Any();
+        }
+
+        public void CancelReservationRequests(DateTimeSlot reservationTimeSlot)
+        {
+            throw new NotImplementedException();
         }
     }
 }

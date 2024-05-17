@@ -26,7 +26,7 @@ namespace Booking.Commerce.Domain.Entities
         {
             Id = Guid.NewGuid();
             SubscriptionPeriod = subscriptionPeriod;
-            Status = SubscriptionStatus.Active;
+            Status = SubscriptionStatus.WaitingForApproval;
             Plan = plan;
             SubscriberId = subscriberId;
         }

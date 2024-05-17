@@ -83,9 +83,12 @@ export class AddAccommodationComponent implements OnInit {
   }
 
   submit(){
+    this.selectedAdditionalService.forEach(x=>x.selected=true)
     this.addAccommodation.additionalServices=this.selectedAdditionalService;
     console.log(this.addAccommodation);
-    this.accommodationService.addAccommodation(this.addAccommodation).subscribe();
+    this.accommodationService.addAccommodation(this.addAccommodation).subscribe(data=>{
+      alert('Success');window.location.href='host-db'
+    });
   }
 
 }

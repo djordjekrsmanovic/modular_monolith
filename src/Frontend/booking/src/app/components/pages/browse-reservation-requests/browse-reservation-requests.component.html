@@ -1,3 +1,6 @@
+<div *ngIf="reservationRequests.length==0">
+    No Reservation Requests Found!
+</div>
 <div *ngIf="dataLoaded" class="scrollable-div">
     <div class="columns is-multiline">
         <div *ngFor="let request of reservationRequests" class="column is-half">

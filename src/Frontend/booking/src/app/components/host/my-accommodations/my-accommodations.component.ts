@@ -16,4 +16,8 @@ export class MyAccommodationsComponent implements OnInit {
     })
   }
 
+  addAccommodation(){
+    window.location.href='add-accommodation'
+  }
+
 }

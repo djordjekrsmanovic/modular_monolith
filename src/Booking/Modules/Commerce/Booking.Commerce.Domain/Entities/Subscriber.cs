@@ -41,7 +41,7 @@ namespace Booking.Commerce.Domain.Entities
 
         private bool isAlreadySubscribed(SubscriptionPlan plan)
         {
-            return Subscriptions.Any(subscription => subscription.Plan.Id == plan.Id && subscription.Status == SubscriptionStatus.Active);
+            return Subscriptions.Any(subscription => subscription.Status == SubscriptionStatus.Active);
         }
 
         public void AddInvoice(SubscriptionInvoice invoice)

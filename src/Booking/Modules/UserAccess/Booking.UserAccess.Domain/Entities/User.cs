@@ -21,6 +21,8 @@ namespace Booking.UserAccess.Domain.Entities
 
         public Address Address { get; private set; }
 
+        public bool IsDeleted { get; private set; }
+
         public IReadOnlyCollection<Role> Roles => _roles.ToList().AsReadOnly();
 
         private User()
@@ -38,6 +40,7 @@ namespace Booking.UserAccess.Domain.Entities
             this.isActive = isActive;
             Phone = phone;
             Address = address;
+            IsDeleted = false;
         }
 
         public static Result<User> CreateFromRegistrationRequest(RegistrationRequest request)
@@ -75,6 +78,11 @@ namespace Booking.UserAccess.Domain.Entities
             Address = Address.Create(address.Street, address.City, address.Country).Value;
 
             return Result.Success(Id);
+        }
+
+        public void DeleteUser()
+        {
+            IsDeleted = true;
         }
     }
 }

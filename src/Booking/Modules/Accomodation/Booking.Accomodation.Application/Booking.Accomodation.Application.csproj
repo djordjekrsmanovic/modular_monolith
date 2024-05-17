@@ -14,4 +14,8 @@
     <ProjectReference Include="..\Booking.Accomodation.IntegrationEvents\Booking.Accomodation.IntegrationEvents.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\Hosts\NewFolder\" />
+  </ItemGroup>
+
 </Project>

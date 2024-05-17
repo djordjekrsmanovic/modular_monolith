@@ -36,6 +36,8 @@ namespace Booking.AccommodationNS.Domain.Entities
 
         public DateTime CreatedAt { get; private set; }
 
+        public bool IsDeleted { get; private set; }
+
         private Accommodation() { }
 
         private Accommodation(string name, string description, Address address, GuestCapacity capacity,
@@ -53,6 +55,7 @@ namespace Booking.AccommodationNS.Domain.Entities
             Raiting = 0;
             ReservationApprovalRequired = reservationApprovalRequired;
             CreatedAt = DateTime.Now;
+            IsDeleted = false;
         }
 
         public static Result<Accommodation> Create(Guid hostId, string name, string description,
@@ -179,6 +182,16 @@ namespace Booking.AccommodationNS.Domain.Entities
         {
             double sum = reviews.Sum(x => x.Rating);
             Raiting = sum / reviews.Count();
+        }
+
+        public void Delete()
+        {
+            IsDeleted = true;
+        }
+
+        public bool IsPosibleToDelete()
+        {
+            return !Reservations.Where(x => x.Slot.IsDateInSlot(DateTime.UtcNow) || x.Slot.IsDateBeforeSlot(DateTime.UtcNow)).Any();
         }
     }
 }

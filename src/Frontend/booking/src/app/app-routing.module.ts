@@ -19,6 +19,7 @@ import { CreateReservationResquestComponent } from './components/pages/create-re
 import { ReservationRequestComponent } from './components/reservation-request/reservation-request.component';
 import { ReservationComponent } from './components/guest/guest-dashboard/reservation/reservation.component';
 import { AddReviewComponent } from './components/add-review/add-review.component';
+import { DeleteAccountComponent } from './components/delete-account/delete-account.component';
 
 
 const routes: Routes = [
@@ -34,6 +35,7 @@ const routes: Routes = [
   {path: 'add-reservation/:id',component: AddReservationComponent},
   {path: 'create-reservation-request/:id',component: CreateReservationResquestComponent},
   {path:'add-review/:id',component: AddReviewComponent},
+  {path:'test',component:DeleteAccountComponent},
   { path: '', component: HomeComponent },
   { path: '**', component: NotFoundComponent },
 

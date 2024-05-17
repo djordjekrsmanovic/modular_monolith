@@ -70,4 +70,14 @@ export class UserService {
     const headers = this.getHeaders();
     return this._http.put<string>(this.url,changePersonalInfo, { headers: headers });
   }
+
+  deleteUser() {
+    const headers = this.getHeaders();
+    const id=this.getCurrentUser().id
+    if (this.getCurrentUser().role=='Host'){
+      return this._http.post(`${server}api/clients/delete-host`,{id:id},{headers:headers})
+    }else{
+      return this._http.post(`${server}api/clients/delete-gust`,{id:id},{headers:headers})
+    }
+  }
 }

@@ -114,6 +114,10 @@
           <app-browse-subscription-invoices></app-browse-subscription-invoices>
         </div>
 
+        <div *ngIf="activeTab == 'DELETE_ACCOUNT'">
+          <app-delete-account></app-delete-account>
+        </div>
+
       </div>
     </div>
   </div>

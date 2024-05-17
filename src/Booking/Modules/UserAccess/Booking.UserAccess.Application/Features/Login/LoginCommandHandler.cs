@@ -32,6 +32,11 @@ namespace Booking.UserAccess.Application.Features.Login
                 return Result.Failure<LoginResponse>(new Error("User.WrongCredentials", "Invalid user credentials", ErrorType.Unauthorized));
             }
 
+            if (user.IsDeleted)
+            {
+                return Result.Failure<LoginResponse>(new Error("User.WrongCredentials", "Invalid user credentials", ErrorType.Unauthorized));
+            }
+
             if (!user.Password.Equals(_cryptograpyProvider.HashPassword(request.password)))
             {
                 return Result.Failure<LoginResponse>(new Error("User.WrongCredentials", "Invalid user credentials", ErrorType.Unauthorized));

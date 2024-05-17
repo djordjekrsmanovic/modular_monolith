@@ -67,6 +67,7 @@ import { BrowseReservationInvoicesComponent } from './components/guest/guest-das
 import { SubscriptionInvoiceComponent } from './components/subscription-invoice/subscription-invoice.component';
 import { BrowseSubscriptionInvoicesComponent } from './components/host/browse-subscription-invoices/browse-subscription-invoices.component';
 import { AddReviewComponent } from './components/add-review/add-review.component';
+import { DeleteAccountComponent } from './components/delete-account/delete-account.component';
 
 
 @NgModule({
@@ -128,7 +129,8 @@ import { AddReviewComponent } from './components/add-review/add-review.component
     BrowseReservationInvoicesComponent,
     SubscriptionInvoiceComponent,
     BrowseSubscriptionInvoicesComponent,
-    AddReviewComponent
+    AddReviewComponent,
+    DeleteAccountComponent
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule,NgbModalModule,
     FlatpickrModule.forRoot(),

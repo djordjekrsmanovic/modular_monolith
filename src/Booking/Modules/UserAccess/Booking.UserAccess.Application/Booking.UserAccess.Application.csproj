@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\BuildingBlocks\Booking.BuildingBlocks.Application\Booking.BuildingBlocks.Application.csproj" />
+    <ProjectReference Include="..\..\Accomodation\Booking.Accomodation.IntegrationEvents\Booking.Accomodation.IntegrationEvents.csproj" />
     <ProjectReference Include="..\Booking.UserAccess.Domain\Booking.UserAccess.Domain.csproj" />
     <ProjectReference Include="..\Booking.UserAccess.IntegrationEvents\Booking.UserAccess.IntegrationEvents.csproj" />
   </ItemGroup>

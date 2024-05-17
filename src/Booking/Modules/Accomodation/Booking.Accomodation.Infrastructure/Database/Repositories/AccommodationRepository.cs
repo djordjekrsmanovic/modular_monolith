@@ -1,6 +1,5 @@
-﻿using Booking.AccommodationNS.Domain.Repositories;
-using Booking.AccommodationNS.Domain.Entities;
-using Booking.AccommodationNS.Infrastructure.Database;
+﻿using Booking.AccommodationNS.Domain.Entities;
+using Booking.AccommodationNS.Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
@@ -22,7 +21,7 @@ namespace Booking.AccommodationNS.Infrastructure.Database.Repositories
         public async Task<List<Accommodation>> Get(string? SearchTerm, string? SortColumn, string? SortOrder, int Page,
         int PageSize, DateTime StartDate, DateTime EndDate, string? Country)
         {
-            IQueryable<Accommodation> accommodationsQuery = _context.Set<Accommodation>();
+            IQueryable<Accommodation> accommodationsQuery = _context.Set<Accommodation>().Where(a => !a.IsDeleted);
 
 
 

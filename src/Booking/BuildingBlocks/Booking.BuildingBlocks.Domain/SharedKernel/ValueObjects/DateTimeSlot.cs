@@ -47,5 +47,10 @@ namespace Booking.BuildingBlocks.Domain.SharedKernel.ValueObjects
 
             return (int)difference.TotalDays;
         }
+
+        public bool IsDateBeforeSlot(DateTime date)
+        {
+            return date < Start;
+        }
     }
 }

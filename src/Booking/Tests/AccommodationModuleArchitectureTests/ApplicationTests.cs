@@ -77,7 +77,10 @@ namespace AccommodationModuleArchitectureTests
         {
 
             var testResult = Types.InAssembly(AccommodationApplicationAssembly)
-                .That().HaveNameEndingWith("Handler")
+                .That()
+                .ImplementInterface(typeof(ICommandHandler<>))
+                .Or()
+                .ImplementInterface(typeof(IQueryHandler<,>))
                 .Should()
                 .HaveDependencyOn(AccommodationDomainNamespace)
                 .GetResult();

@@ -41,5 +41,7 @@ namespace Booking.AccommodationNS.Domain.Entities
         {
             return currentAccommodationNumber < AccommodationLimit;
         }
+
+
     }
 }

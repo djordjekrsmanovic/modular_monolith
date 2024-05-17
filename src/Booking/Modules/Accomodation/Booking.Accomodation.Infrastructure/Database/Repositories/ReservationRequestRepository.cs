@@ -1,6 +1,5 @@
-﻿using Booking.AccommodationNS.Domain.Repositories;
-using Booking.AccommodationNS.Domain.Entities;
-using Booking.AccommodationNS.Infrastructure.Database;
+﻿using Booking.AccommodationNS.Domain.Entities;
+using Booking.AccommodationNS.Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace Booking.AccommodationNS.Infrastructure.Database.Repositories
@@ -19,6 +18,11 @@ namespace Booking.AccommodationNS.Infrastructure.Database.Repositories
             _context.Set<ReservationRequest>().Add(value);
         }
 
+        public async Task<List<ReservationRequest>> GetAccommodationRequests(Guid accommodationId)
+        {
+            return await _context.Set<ReservationRequest>().Where(x => x.AccomodationId == accommodationId).ToListAsync();
+        }
+
         public async Task<ReservationRequest> GetAsync(Guid Id)
         {
             return await _context.Set<ReservationRequest>().Where(x => x.Id == Id).FirstOrDefaultAsync();
@@ -33,5 +37,7 @@ namespace Booking.AccommodationNS.Infrastructure.Database.Repositories
         {
             return await _context.Set<ReservationRequest>().Where(x => x.HostId == hostId).OrderBy(x => x.Slot.Start).ToListAsync();
         }
+
+
     }
 }

@@ -11,5 +11,7 @@ namespace Booking.AccommodationNS.Domain.Repositories
         Task<List<ReservationRequest>> GetHostReservationRequests(Guid hostId);
 
         Task<List<ReservationRequest>> GetGuestReservationRequests(Guid guestId);
+
+        Task<List<ReservationRequest>> GetAccommodationRequests(Guid accommodationId);
     }
 }

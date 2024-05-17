@@ -23,7 +23,7 @@ namespace Booking.AccommodationNS.Infrastructure.Database.Configuration
 
             builder.HasMany(x => x.Reservations)
                 .WithOne()
-                .HasForeignKey(x => x.AccomodationId)
+                .HasForeignKey(x => x.AccommodationId)
                 .IsRequired(true);
 
 

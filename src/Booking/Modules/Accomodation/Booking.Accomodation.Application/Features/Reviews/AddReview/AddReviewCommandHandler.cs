@@ -44,7 +44,7 @@ namespace Booking.AccommodationNS.Application.Features.Reviews.AddReview
 
             Reservation reservation = await _reservationRepository.GetAsync(request.ReservationId);
 
-            Review review = Review.Create(request.ReservationId, request.GuestId, reservation.AccomodationId, request.Comment, request.Rating).Value;
+            Review review = Review.Create(request.ReservationId, request.GuestId, reservation.AccommodationId, request.Comment, request.Rating).Value;
 
             await _reviewRepository.Add(review);
 

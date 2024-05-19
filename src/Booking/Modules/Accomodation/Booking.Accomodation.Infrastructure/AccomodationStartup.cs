@@ -2,7 +2,6 @@
 using Booking.AccommodationNS.Domain.Repositories;
 using Booking.AccommodationNS.Infrastructure.Database;
 using Booking.AccommodationNS.Infrastructure.Database.Repositories;
-using Booking.AccommodationNS.Infrastructure.Database;
 using Booking.BuildingBlocks.Application.EventBus;
 using Booking.BuildingBlocks.Infrastructure.EventBus;
 using Microsoft.EntityFrameworkCore;
@@ -15,8 +14,9 @@ namespace Booking.AccommodationNS.Infrastructure
     {
         public static IServiceCollection ConfigureAccomodationModule
         (this IServiceCollection services, IConfiguration configuration)
+
         {
-            string connectionString = "Server=NHL2131W;Database=Booking;Trusted_Connection=True;TrustServerCertificate=True;";
+            string connectionString = configuration["DatabaseConfig:ConnectionString"];
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies([Application.AssemblyReference.Assembly]));
 
             SetUpServices(services);

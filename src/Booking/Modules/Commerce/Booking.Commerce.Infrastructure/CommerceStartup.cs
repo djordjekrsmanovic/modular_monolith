@@ -14,12 +14,11 @@ namespace Booking.Commerce.Infrastructure
     {
         public static IServiceCollection ConfigureCommerceModule(this IServiceCollection services, IConfiguration configuration)
         {
-            string connectionString = "Server=NHL2131W;Database=Booking;Trusted_Connection=True;TrustServerCertificate=True;";
+            string connectionString = configuration["DatabaseConfig:ConnectionString"];
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies([Application.AssemblyReference.Assembly]));
 
             SetUpServices(services);
             SetUpDatabase(services, connectionString);
-            //SetUpAuthentication(services);
 
             return services;
         }

@@ -3,6 +3,7 @@ using Booking.BuildingBlocks.Application.EventBus;
 using Booking.BuildingBlocks.Infrastructure.Emails;
 using Booking.BuildingBlocks.Infrastructure.EventBus;
 using Booking.UserAccess.Application.Abstractions;
+using Booking.UserAccess.Application.Abstractions.Email;
 using Booking.UserAccess.Application.Implementations;
 using Booking.UserAccess.Domain;
 using Booking.UserAccess.Domain.Repositories;
@@ -21,7 +22,7 @@ namespace Booking.UserAccess.Infrastructure
     {
         public static IServiceCollection ConfigureUserAccessModule(this IServiceCollection services, IConfiguration configuration)
         {
-            string connectionString = "Server=NHL2131W;Database=Booking;Trusted_Connection=True;TrustServerCertificate=True;";
+            string connectionString = configuration["DatabaseConfig:ConnectionString"];
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies([Application.AssemblyReference.Assembly]));
 
             SetUpServices(services);

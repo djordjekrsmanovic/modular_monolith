@@ -10,10 +10,10 @@ namespace Booking.UserAccess.Application.Features.Registration.SubmitRegistratio
 {
     internal class RegistrationCommandHandler : ICommandHandler<RegistrationCommand, Guid>
     {
-        private IUserRepository _userRepository;
-        private IRegistrationRequestRepository _registrationRequestRepository;
-        private IUnitOfWork _unitOfWork;
-        private ICryptograpyProvider _cryptograpyProvider;
+        private readonly IUserRepository _userRepository;
+        private readonly IRegistrationRequestRepository _registrationRequestRepository;
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly ICryptograpyProvider _cryptograpyProvider;
 
         public RegistrationCommandHandler(IUserRepository userRepository,
             IRegistrationRequestRepository registrationRequestRepository,

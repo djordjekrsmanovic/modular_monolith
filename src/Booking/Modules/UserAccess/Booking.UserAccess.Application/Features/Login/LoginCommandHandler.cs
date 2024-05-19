@@ -10,11 +10,11 @@ namespace Booking.UserAccess.Application.Features.Login
     internal class LoginCommandHandler : ICommandHandler<LoginCommand, LoginResponse>
     {
 
-        private IUserRepository _userRepository;
+        private readonly IUserRepository _userRepository;
 
-        private IJwtProvider _jwtProvider;
+        private readonly IJwtProvider _jwtProvider;
 
-        private ICryptograpyProvider _cryptograpyProvider;
+        private readonly ICryptograpyProvider _cryptograpyProvider;
 
         public LoginCommandHandler(IUserRepository userRepository, IJwtProvider jwtProvider, ICryptograpyProvider cryptograpyProvider)
         {

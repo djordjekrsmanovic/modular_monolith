@@ -1,5 +1,6 @@
 ﻿using Booking.BuildingBlocks.Domain;
 using Booking.UserAccess.Application.Abstractions;
+using Booking.UserAccess.Application.Abstractions.Email;
 using Booking.UserAccess.Domain.Events;
 
 namespace Booking.UserAccess.Application.Features.Registration.SubmitRegistrationRequest
@@ -10,7 +11,7 @@ namespace Booking.UserAccess.Application.Features.Registration.SubmitRegistratio
 
         private readonly string Subject = "Confirm your registration request";
 
-        public RegistrationSubmittedDomainEventHandler(Abstractions.IUserAccessEmailSender emailSender)
+        public RegistrationSubmittedDomainEventHandler(IUserAccessEmailSender emailSender)
         {
             _emailSender = emailSender;
         }

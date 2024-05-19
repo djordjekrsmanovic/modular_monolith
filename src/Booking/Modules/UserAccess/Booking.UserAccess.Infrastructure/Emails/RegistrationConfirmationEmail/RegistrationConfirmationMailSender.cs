@@ -1,5 +1,5 @@
 ﻿using Booking.BuildingBlocks.Application.Emails;
-using Booking.UserAccess.Application.Abstractions;
+using Booking.UserAccess.Application.Abstractions.Email;
 
 namespace Booking.UserAccess.Infrastructure.Emails.RegistrationConfirmationEmail
 {

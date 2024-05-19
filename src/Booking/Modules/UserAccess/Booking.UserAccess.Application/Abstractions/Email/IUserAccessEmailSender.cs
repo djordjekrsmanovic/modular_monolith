@@ -1,6 +1,4 @@
-﻿
-
-namespace Booking.UserAccess.Application.Abstractions
+﻿namespace Booking.UserAccess.Application.Abstractions.Email
 {
     public interface IUserAccessEmailSender
     {

@@ -9,9 +9,9 @@ namespace Booking.UserAccess.Application.Features.Registration.ConfirmRegistrati
 {
     internal class ConfirmRegistrationCommandHandler : ICommandHandler<ConfirmRegistrationCommand>
     {
-        private IRegistrationRequestRepository _registrationRequestRepository;
-        private IUserRepository _userRepository;
-        private IUnitOfWork _unitOfWork;
+        private readonly IRegistrationRequestRepository _registrationRequestRepository;
+        private readonly IUserRepository _userRepository;
+        private readonly IUnitOfWork _unitOfWork;
 
         public ConfirmRegistrationCommandHandler(IRegistrationRequestRepository registrationRequestRepository,
             IUserRepository userRepository,

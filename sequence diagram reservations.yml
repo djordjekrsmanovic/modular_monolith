@@ -1,8 +1,17 @@
 @startuml
 
+skinparam sequence {
+  ParticipantFontSize 32
+  ActorFontSize 32
+  classFontSize 28
+  MessageFontSize 32
+  NoteFontSize 32
+  SequenceBoxFontSize 32
+  SequenceReferenceFontSize 32
+  ArrowFontSize 42
+}
+
 actor Guest
-
-
 participant "Reservation UI" as reservation_ui
 participant "Reservation Controller" as reservation_controller
 participant "Reservation Command Handler" as reservation_command_handler
@@ -18,7 +27,7 @@ database "Database" as accommodation_database
 
 Guest -> reservation_ui: Enter (date,from,to,guest number)
 activate reservation_ui
-Guest -> reservation_ui: Click Confirm
+Guest -> reservation_ui: <b> Click Confirm </b>
 
 reservation_ui -> reservation_controller: Send Request
 activate reservation_controller
@@ -33,45 +42,4 @@ deactivate accommodation_database
 
 alt Accommodation Available and Reservation Not Overlaps With Existing
     reservation_command_handler -> reservation_command_handler: Create Reservation and Raise Domain Event
-    reservation_command_handler -> accommodation_unit_of_work : Persist Entity Changes
-    activate accommodation_unit_of_work
-    accommodation_unit_of_work -> accommodation_database: Save Entity Changes In Database
-    activate accommodation_database
-    deactivate accommodation_database
-
-
-    activate accommodation_unit_of_work #DarkSalmon
-    accommodation_unit_of_work -> accommodation_unit_of_work: Extract Domain Events From Entity
-    accommodation_unit_of_work -> accommodation_unit_of_work: Publish Domain Events
-    accommodation_unit_of_work -> reservation_created_domain_event_handler: Activate Handler
-    activate reservation_created_domain_event_handler
-    reservation_command_handler -> reservation_controller: Return Success
-    deactivate accommodation_unit_of_work
-    deactivate accommodation_unit_of_work
-    reservation_controller -> reservation_ui: Return Success
-    deactivate reservation_command_handler
-    reservation_ui -> Guest: Show User Success Message
-
-    reservation_created_domain_event_handler -> reservation_created_domain_event_handler: Handle Domain Event
-    reservation_created_domain_event_handler -> event_bus ++: Create Integration Event and Publish to Bus
-    event_bus -> reservation_created_integration_handler ++: Handle Integration Event
-    deactivate reservation_created_domain_event_handler
-    deactivate event_bus
-    reservation_created_integration_handler -> reservation_created_integration_handler: Create Reservation
-    reservation_created_integration_handler -> accommodation_database: Persist Reservation
-    activate accommodation_database
-    deactivate accommodation_database
-    deactivate reservation_created_integration_handler
-else Reservation Request Needed
-    reservation_command_handler -> reservation_controller: Return Error Response
-    reservation_controller -> reservation_controller: Handle Failure
-    reservation_controller -> reservation_ui: Return 400 Response With Error Details
-    reservation_ui -> Guest: Show Error Message
-    reservation_ui -> reservation_ui: Create Reservation
-end
-
-
-
-
-@enduml
-
+    reservation_command_handler -> accommodation_unit_of_work : P

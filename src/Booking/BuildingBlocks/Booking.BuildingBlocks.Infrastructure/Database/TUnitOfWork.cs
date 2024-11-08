@@ -20,7 +20,6 @@ namespace Booking.BuildingBlocks.Infrastructure.Database
         {
             ExcludeStaticEntitiesFromTracking();
 
-
             await _context.SaveChangesAsync(cancellationToken);
 
             await PublishDomainEvents(cancellationToken);

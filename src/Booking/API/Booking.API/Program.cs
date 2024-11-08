@@ -46,14 +46,15 @@ builder.Services.ConfigureOptions<MassTransitHostOptionsSetup>()
     x.UsingInMemory((context, configurator) => configurator.ConfigureEndpoints(context));
 });
 
+builder.Services.AddHealthChecks();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+
+app.UseSwagger();
+app.UseSwaggerUI();
+
 
 app.UseCors(policy =>
      policy.AllowAnyOrigin()
@@ -65,6 +66,8 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 
 app.UseRouting();
+
+app.MapHealthChecks("/health");
 
 app.UseAuthorization();
 

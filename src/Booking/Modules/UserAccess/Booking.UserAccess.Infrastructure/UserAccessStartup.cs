@@ -22,7 +22,7 @@ namespace Booking.UserAccess.Infrastructure
     {
         public static IServiceCollection ConfigureUserAccessModule(this IServiceCollection services, IConfiguration configuration)
         {
-            string connectionString = configuration["DatabaseConfig:ConnectionString"];
+            string connectionString = LoadConnectionString();
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies([Application.AssemblyReference.Assembly]));
 
             SetUpServices(services);
@@ -30,6 +30,18 @@ namespace Booking.UserAccess.Infrastructure
             SetUpAuthentication(services);
 
             return services;
+        }
+
+        private static string LoadConnectionString()
+        {
+            string databaseName = Environment.GetEnvironmentVariable("POSTGRES_DB");
+            string databaseUser = Environment.GetEnvironmentVariable("POSTGRES_USER");
+            string databasePassword = Environment.GetEnvironmentVariable("POSTGRES_PASSWORD");
+            string databaseHost = Environment.GetEnvironmentVariable("POSTGRES_HOST") ?? "localhost";
+            string databasePort = Environment.GetEnvironmentVariable("POSTGRES_PORT") ?? "5432"; // default port is 5432
+
+            // Construct the connection string
+            return $"Host={databaseHost};Port={databasePort};Database={databaseName};Username={databaseUser};Password={databasePassword};";
         }
 
         private static void SetUpServices(IServiceCollection services)
@@ -55,7 +67,7 @@ namespace Booking.UserAccess.Infrastructure
         private static void SetUpDatabase(IServiceCollection services, string connectionString)
         {
             services.AddDbContext<UserAccessDbContext>(options =>
-                options.UseSqlServer(connectionString, x => x.MigrationsHistoryTable("__MigrationHistory", "user_access"))
+                options.UseNpgsql(connectionString, x => x.MigrationsHistoryTable("__MigrationHistory", "user_access"))
             );
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IRegistrationRequestRepository, RegistrationRequestRepository>();

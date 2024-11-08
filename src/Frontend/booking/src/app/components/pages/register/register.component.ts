@@ -1,4 +1,4 @@
-import { ThrowStmt } from '@angular/compiler';
+
 import { Component, OnInit, ɵgetInjectableDef } from '@angular/core';
 import { Router } from '@angular/router';
 import { RegistrationService } from '../../../service/registration.service';

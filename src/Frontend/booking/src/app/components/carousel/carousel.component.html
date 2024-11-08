@@ -1,14 +1,3 @@
-<carousel
-  [cellsToShow]="1"
-  [autoplay]="true"
-  [autoplayInterval]="5000"
-  [transitionDuration]="600"
-  [margin]="0"
-  [counter]="true"
-  style="width: 500px; min-height: 500px"
+<div class="carousel-cell">
 
->
-  <div class="carousel-cell" *ngFor="let image of images">
-    <img [src]="sanitizer.bypassSecurityTrustResourceUrl(image.content)" class="center-cropped" />
-  </div>
-</carousel>
+</div>

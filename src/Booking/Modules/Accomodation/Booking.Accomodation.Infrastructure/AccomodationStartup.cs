@@ -16,13 +16,25 @@ namespace Booking.AccommodationNS.Infrastructure
         (this IServiceCollection services, IConfiguration configuration)
 
         {
-            string connectionString = configuration["DatabaseConfig:ConnectionString"];
+            string connectionString = LoadConnectionString();
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies([Application.AssemblyReference.Assembly]));
 
             SetUpServices(services);
             SetUpDatabase(services, connectionString);
 
             return services;
+        }
+
+        private static string LoadConnectionString()
+        {
+            string databaseName = Environment.GetEnvironmentVariable("POSTGRES_DB");
+            string databaseUser = Environment.GetEnvironmentVariable("POSTGRES_USER");
+            string databasePassword = Environment.GetEnvironmentVariable("POSTGRES_PASSWORD");
+            string databaseHost = Environment.GetEnvironmentVariable("POSTGRES_HOST") ?? "localhost";
+            string databasePort = Environment.GetEnvironmentVariable("POSTGRES_PORT") ?? "5432"; // default port is 5432
+
+            // Construct the connection string
+            return $"Host={databaseHost};Port={databasePort};Database={databaseName};Username={databaseUser};Password={databasePassword};";
         }
 
         private static void SetUpServices(IServiceCollection services)
@@ -37,7 +49,8 @@ namespace Booking.AccommodationNS.Infrastructure
         {
 
             services.AddDbContext<AccommodationDbContext>(options =>
-                options.UseSqlServer(connectionString, x => x.MigrationsHistoryTable("__MigrationHistory", "accomodation")), ServiceLifetime.Scoped);
+                options.UseNpgsql(connectionString, x => x.MigrationsHistoryTable("__MigrationHistory", "accomodation")),
+                ServiceLifetime.Scoped);
             services.AddScoped<IHostRepository, HostRepository>();
             services.AddScoped<IGuestRepository, GuestRepository>();
             services.AddScoped<IAccommodationRepository, AccommodationRepository>();

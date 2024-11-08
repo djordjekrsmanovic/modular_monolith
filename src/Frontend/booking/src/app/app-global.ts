@@ -1,1 +1,2 @@
-export const server: string = 'https://localhost:7096/';
+import { environment } from '../environments/environment.prod';
+export const server: string = environment.backend_url || 'http://fallback-url/';

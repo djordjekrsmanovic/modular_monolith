@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AddAccommodation } from 'src/app/model/add-accommodation';
 import { AdditionalService } from 'src/app/model/additiona-service';
 import {Image} from 'src/app/model/image'
@@ -31,7 +31,7 @@ export class EditAccommodationComponent implements OnInit {
   myForm = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(3)]),
     file: new FormControl('', [Validators.required]),
-    fileSource: new FormControl('', [Validators.required])
+    fileSource: new FormArray<FormControl>([], [Validators.required])
   });
 
 
